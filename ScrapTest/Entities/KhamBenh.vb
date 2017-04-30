@@ -1,4 +1,5 @@
 ﻿Imports System.Data
+Imports NpgsqlTypes
 
 Public Class KhamBenh
     Private _MaKhamBenh As String

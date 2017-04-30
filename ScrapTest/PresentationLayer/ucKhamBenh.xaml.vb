@@ -1,8 +1,9 @@
-﻿Public Class ucKhamBenh
+﻿Imports NpgsqlTypes
+Public Class ucKhamBenh
     Private Sub Button_Click(sender As Object, e As RoutedEventArgs)
         Dim khamBenh As New KhamBenh
         khamBenh.HoTenBenhNhan = NameTextBox.Text
-        khamBenh.NgayKham = DateTextBox.DisplayDate
+        khamBenh.NgayKham = DateTextBox.SelectedDate
         khamBenh.NamSinh = Integer.Parse(YearTextBox.Text)
         khamBenh.GioiTinh = GenderTextBox.Text
         khamBenh.DiaChi = AddressTextBox.Text

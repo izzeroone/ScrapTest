@@ -10,10 +10,11 @@ Module KhamBenhDAO
             Dim param As New List(Of NpgsqlParameter)
             Dim parameter As New NpgsqlParameter()
 
-            'parameter.ParameterName = "_NgayKham"
+            parameter.ParameterName = "_NgayKham"
             'parameter.DbType = NpgsqlDbType.Date
-            'parameter.Value = Date.Today
-            'param.Add(parameter)
+            parameter.NpgsqlDbType = NpgsqlDbType.Date
+            parameter.Value = khamBenh.NgayKham
+            param.Add(parameter)
 
             parameter = New NpgsqlParameter()
             parameter.ParameterName = "_HoTenBenhNhan"
@@ -27,11 +28,11 @@ Module KhamBenhDAO
             parameter.Value = khamBenh.GioiTinh
             param.Add(parameter)
 
-            'parameter = New NpgsqlParameter()
-            'parameter.ParameterName = "_NamSinh"
-            'parameter.DbType = NpgsqlDbType.Integer
-            'parameter.Value = khamBenh.NamSinh
-            'param.Add(parameter)
+            parameter = New NpgsqlParameter()
+            parameter.ParameterName = "_NamSinh"
+            parameter.NpgsqlDbType = NpgsqlDbType.Integer
+            parameter.Value = khamBenh.NamSinh
+            param.Add(parameter)
 
             parameter = New NpgsqlParameter()
             parameter.ParameterName = "_DiaChi"
@@ -44,7 +45,7 @@ Module KhamBenhDAO
                 result = True
             End If
         Catch ex As Exception
-            Dialog.Show(ex.ToString())
+            MessageBox.Show(ex.ToString())
         End Try
         Return result
     End Function
