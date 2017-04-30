@@ -91,7 +91,8 @@
         <Grid Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" Margin="34.047,0.4,0.4,-0.4" Grid.RowSpan="6" >
             <StackPanel Orientation="Horizontal" Margin="0 12 0 0">
                 <Button Style="{StaticResource MaterialDesignRaisedDarkButton}" Margin="0 12 8 0" Width="100"
-                    ToolTip="Resource name: MaterialDesignRaisedDarkButton">
+                    ToolTip="Resource name: MaterialDesignRaisedDarkButton"
+                        Click="Button_Click">
                     _ĐỒNG Ý
                 </Button>
                 <Button Style="{StaticResource MaterialDesignRaisedAccentButton}" Margin="0 12 16 0" Width="100"
