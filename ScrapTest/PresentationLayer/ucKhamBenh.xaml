@@ -60,35 +60,46 @@
             <TextBlock Grid.Row = "0" Grid.Column="0"  Grid.ColumnSpan="2" Grid.RowSpan="2" TextAlignment="Center" 
                    TextElement.FontWeight="Bold" TextElement.FontSize="18">LẬP PHIẾU KHÁM BỆNH</TextBlock>
         </materialDesign:ColorZone>
-        <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="16,3.6,7.4,5.2" Grid.ColumnSpan="2">Ngày khám</TextBlock>
-        <DatePicker Grid.Column="1" 
+        <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" Grid.ColumnSpan="2">Mã khám bệnh</TextBlock>
+        <TextBox Grid.Row="2" Grid.Column="1" 
+				    x:Name="MaTextBox"
+                 IsReadOnly="True"
+                 Background="Gray"
+				    materialDesign:HintAssist.Hint="Họ tên" Grid.ColumnSpan="2" Margin="34.047,7.8,0.4,8">
+        </TextBox>
+        <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="16,3.6,7.4,5.2" Grid.ColumnSpan="2">Ngày khám</TextBlock>
+        <DatePicker Grid.Row="3" 
+                    Grid.Column="1" 
+                    Grid.ColumnSpan="2"
 				    x:Name="DateTextBox"
 				    materialDesign:HintAssist.Hint="Ngày khám"
-                    SelectedDate="{x:Static sys:DateTime.Now}" Grid.ColumnSpan="2" Margin="34.047,70,0.4,0.2" Grid.RowSpan="3"/>
-        <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" Grid.ColumnSpan="2">Họ tên</TextBlock>
-        <TextBox Grid.Row="3" Grid.Column="1" 
+                    SelectedDate="{x:Static sys:DateTime.Now}"
+                    Margin="34.047,8,0.4,8" />
+        <TextBlock Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" Grid.ColumnSpan="2">Họ tên</TextBlock>
+        <TextBox Grid.Row="4" Grid.Column="1" 
 				    x:Name="NameTextBox"
 				    materialDesign:HintAssist.Hint="Họ tên" Grid.ColumnSpan="2" Margin="34.047,7.8,0.4,8">
         </TextBox>
-        <TextBlock Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Margin="16,14,7.4,14" Grid.ColumnSpan="2">Giới tính</TextBlock>
-        <ComboBox Grid.Row="4" Grid.Column="1" 
+        <TextBlock Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" Margin="16,14,7.4,14" Grid.ColumnSpan="2">Giới tính</TextBlock>
+        <ComboBox Grid.Row="5" Grid.Column="1" 
 				    x:Name="GenderTextBox"
 				    materialDesign:HintAssist.Hint="Giới tính" Grid.ColumnSpan="2" Margin="34.047,8,0.4,8">
             <ComboBoxItem>Nam</ComboBoxItem>
             <ComboBoxItem>Nữ</ComboBoxItem>
             <ComboBoxItem>Không biết</ComboBoxItem>
         </ComboBox>
-        <TextBlock Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" Margin="16,12,7.4,12.8" Grid.ColumnSpan="2">Năm sinh</TextBlock>
-        <TextBox Grid.Row="5" Grid.Column="1" 
-				    x:Name="YearTextBox"
-				    materialDesign:HintAssist.Hint="Năm sinh" Grid.ColumnSpan="2" Margin="34.047,8,0.4,7.8">
-        </TextBox>
-        <TextBlock Grid.Row="6" Grid.Column="0" VerticalAlignment="Center" Margin="16,12.2,7.4,12.6" Grid.ColumnSpan="2">Địa chỉ</TextBlock>
+        <TextBlock Grid.Row="6" Grid.Column="0" VerticalAlignment="Center" Margin="16,12,7.4,12.8" Grid.ColumnSpan="2">Năm sinh</TextBlock>
         <TextBox Grid.Row="6" Grid.Column="1" 
+				    x:Name="YearTextBox"
+				    materialDesign:HintAssist.Hint="Năm sinh" Grid.ColumnSpan="2" Margin="34.047,8,0.4,7.8"
+                    PreviewTextInput="NumberValidationTextBox">
+        </TextBox>
+        <TextBlock Grid.Row="7" Grid.Column="0" VerticalAlignment="Center" Margin="16,12.2,7.4,12.6" Grid.ColumnSpan="2">Địa chỉ</TextBlock>
+        <TextBox Grid.Row="7" Grid.Column="1" 
 				    x:Name="AddressTextBox"
 				    materialDesign:HintAssist.Hint="Địa chỉ" Grid.ColumnSpan="2" Margin="34.047,8.2,0.4,7.6">
         </TextBox>
-        <Grid Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" Margin="34.047,0.4,0.4,-0.4" Grid.RowSpan="6" >
+        <Grid Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" Margin="34.047,0.4,0.4,-0.4" Grid.RowSpan="6" >
             <StackPanel Orientation="Horizontal" Margin="0 12 0 0">
                 <Button Style="{StaticResource MaterialDesignRaisedDarkButton}" Margin="0 12 8 0" Width="100"
                     ToolTip="Resource name: MaterialDesignRaisedDarkButton"

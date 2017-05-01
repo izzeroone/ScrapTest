@@ -44,6 +44,40 @@ Module DataAccessHelper
         Return ExecuteQuery(spName, Nothing)
     End Function
 
+    Public Function ObjExecuteQuery(ByVal spName As String, sqlParams As List(Of NpgsqlParameter)) As Object
+        Dim dt As Object
+        Try
+            Dim connect As NpgsqlConnection = New NpgsqlConnection(connectionString)
+            connect.Open()
+
+            Try
+                Dim command As NpgsqlCommand = connect.CreateCommand
+                command.CommandType = CommandType.StoredProcedure
+                command.CommandText = spName
+                If (Not (sqlParams) Is Nothing) Then
+                    For Each param As NpgsqlParameter In sqlParams
+                        command.Parameters.Add(param)
+                    Next
+                End If
+
+                dt = command.ExecuteScalar()
+            Catch ex As NpgsqlException
+                Throw ex
+            Finally
+                connect.Close()
+            End Try
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+        Return dt
+    End Function
+
+    Public Function ObjExecuteQuery(ByVal spName As String) As Object
+        Return ObjExecuteQuery(spName, Nothing)
+    End Function
+
     Public Function ExecuteNoneQuery(ByVal spName As String, ByVal sqlParams As List(Of NpgsqlParameter)) As Integer
         Dim n As Integer
         Try

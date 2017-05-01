@@ -50,4 +50,9 @@ Module KhamBenhDAO
         Return result
     End Function
 #End Region
+#Region "4. Get"
+    Public Function GetMaKhamBenh() As String
+        Return ObjExecuteQuery("getmakhambenh").ToString()
+    End Function
+#End Region
 End Module
