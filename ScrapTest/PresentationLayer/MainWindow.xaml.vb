@@ -6,5 +6,6 @@
 
         ' Add any initialization after the InitializeComponent() call.
         DataContext = New MainMenuItem()
+
     End Sub
 End Class

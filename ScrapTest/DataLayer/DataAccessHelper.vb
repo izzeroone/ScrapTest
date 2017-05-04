@@ -34,7 +34,7 @@ Module DataAccessHelper
             End Try
 
         Catch ex As Exception
-            Throw ex
+            MessageBox.Show(ex.ToString())
         End Try
 
         Return dt

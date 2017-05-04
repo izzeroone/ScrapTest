@@ -29,10 +29,6 @@
             <Style TargetType="{x:Type Slider}" BasedOn="{StaticResource MaterialDesignSlider}">
                 <Setter Property="Margin" Value="0 8 0 8" />
             </Style>
-            <!--<Style TargetType="{x:Type materialDesign:PackIcon}" BasedOn="{StaticResource {x:Type materialDesign:PackIcon}}">
-                <Setter Property="VerticalAlignment" Value="Center" />
-                <Setter Property="Margin" Value="4 0 4 0" />
-            </Style>-->
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid HorizontalAlignment="Center" VerticalAlignment="Stretch">
@@ -43,13 +39,6 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -84,5 +73,37 @@
 				    materialDesign:HintAssist.Hint="Ngày khám"
                     SelectedDate="{x:Static sys:DateTime.Now}"
                     Margin="34.047,8,0.4,8" />
+        <DataGrid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3"  
+            Margin="0 8 0 0" x:Name="dataView" CanUserSortColumns="True" CanUserAddRows="False"
+                       materialDesign:DataGridAssist.CellPadding="4 2 2 2" materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2"
+                    ItemsSource="{Binding}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <materialDesign:MaterialDataGridTextColumn Binding="{Binding _makhambenh}"
+                                                           Header="Mã khám bệnh"                                                        
+                                                           EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" 
+                                                           IsReadOnly="True"/>
+
+                <materialDesign:MaterialDataGridTextColumn Binding="{Binding _ngaykham}"
+                                                           Header="Ngày khám"                                                        
+                                                           EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+
+                <materialDesign:MaterialDataGridTextColumn Binding="{Binding _hotenbenhnhan}"
+                                                           Header="Họ tên"                                                        
+                                                           EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+
+                <materialDesign:MaterialDataGridTextColumn Binding="{Binding _gioitinh}"
+                                                           Header="Giới tính"                                                        
+                                                           EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+
+                <materialDesign:MaterialDataGridTextColumn Binding="{Binding _namsinh}"
+                                                           Header="Năm sinh"                                                        
+                                                           EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+
+                <materialDesign:MaterialDataGridTextColumn Binding="{Binding _diachi}"
+                                                           Header="Địa chỉ"                                                        
+                                                           EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>
