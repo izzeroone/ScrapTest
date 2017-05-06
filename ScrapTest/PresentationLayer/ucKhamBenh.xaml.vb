@@ -10,8 +10,7 @@ Public Class ucKhamBenh
         InitializeComponent()
 
         ' Add any initialization after the InitializeComponent() call.
-        listKhamBenh = GetKhamBenhByDateBus(DateTextBox.SelectedDate)
-        dataView.DataContext = listKhamBenh
+        ReloadData()
     End Sub
 
     Private Sub NumberValidationTextBox(ByVal sender As Object, ByVal e As TextCompositionEventArgs)
@@ -24,9 +23,11 @@ Public Class ucKhamBenh
     End Sub
 
     Private Sub NewButton_Click(sender As Object, e As RoutedEventArgs)
-        Dim khamBenh As New KhamBenh(GetMaKhamBenhBus(), DateTextBox.SelectedDate, Nothing, Nothing, DateTextBox.SelectedDate.Value.Year - 18, Nothing)
-        listKhamBenh.Add(khamBenh)
-        dataView.SelectedIndex = dataView.Items.Count - 1
+        If Not listKhamBenh.Last.MaKhamBenh = GetMaKhamBenhBus() Then
+            Dim khamBenh As New KhamBenh(GetMaKhamBenhBus(), DateTextBox.SelectedDate, Nothing, Nothing, DateTextBox.SelectedDate.Value.Year - 18, Nothing)
+            listKhamBenh.Add(khamBenh)
+            dataView.SelectedIndex = dataView.Items.Count - 1
+        End If
     End Sub
 
     Private Sub UpdateButton_Click(sender As Object, e As RoutedEventArgs)
@@ -69,8 +70,9 @@ Public Class ucKhamBenh
     End Sub
 
     Private Sub ReloadData()
-        If DataView IsNot Nothing And DateTextBox.SelectedDate IsNot Nothing Then
-            DataView.DataContext = GetKhamBenhByDate(DateTextBox.SelectedDate)
+        If dataView IsNot Nothing And DateTextBox.SelectedDate IsNot Nothing Then
+            listKhamBenh = GetKhamBenhByDate(DateTextBox.SelectedDate)
+            dataView.DataContext = listKhamBenh
         End If
     End Sub
 End Class
