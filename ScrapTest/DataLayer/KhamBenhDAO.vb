@@ -1,4 +1,5 @@
-﻿Imports System.Data
+﻿Imports System.ComponentModel
+Imports System.Data
 Imports Npgsql
 Imports NpgsqlTypes
 
@@ -125,20 +126,25 @@ Module KhamBenhDAO
         Return ObjExecuteQuery("getmakhambenh").ToString()
     End Function
 
-    Public Function GetKhamBenhByDate(ByVal ngayKham As Date) As DataTable
+    Public Function GetKhamBenhByDate(ByVal ngayKham As Date) As BindingList(Of KhamBenh)
         Try
+            Dim list As New BindingList(Of KhamBenh)
             Dim param As New List(Of NpgsqlParameter)
             Dim parameter As New NpgsqlParameter()
 
-            parameter.ParameterName = "dngaykham"
             parameter.NpgsqlDbType = NpgsqlDbType.Date
             parameter.Value = ngayKham
             param.Add(parameter)
 
-            Return ExecuteQuery("getkhambenhbydate", param)
+            Dim tb As DataTable = ExecuteQuery("getkhambenhbydate", param)
+            For Each row As DataRow In tb.Rows
+                list.Add(New KhamBenh(row))
+            Next
+            Return list
         Catch ex As Exception
             Throw ex
         End Try
     End Function
+
 #End Region
 End Module

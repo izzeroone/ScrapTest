@@ -67,8 +67,9 @@ Public Class KhamBenh
 
     End Sub
 
-    Public Sub New(ByVal NgayKham As Date, ByVal HoTenBenhNhan As String, ByVal GioiTinh As String,
+    Public Sub New(ByVal MaKhamBenh As String, ByVal NgayKham As Date, ByVal HoTenBenhNhan As String, ByVal GioiTinh As String,
                    ByVal NamSinh As Int16, ByVal DiaChi As String)
+        _MaKhamBenh = MaKhamBenh
         _NgayKham = NgayKham
         _HoTenBenhNhan = HoTenBenhNhan
         _GioiTinh = GioiTinh
@@ -77,10 +78,11 @@ Public Class KhamBenh
     End Sub
 
     Public Sub New(ByVal row As DataRow)
-        _MaKhamBenh = row.Field(Of String)("MaKhamBenh")
-        _NgayKham = row.Field(Of Date)("NgayKham")
-        _GioiTinh = row.Field(Of String)("GioiTinh")
-        _NamSinh = row.Field(Of Int16)("NamSinh")
-        _DiaChi = row.Field(Of String)("DiaChi")
+        _MaKhamBenh = row.Field(Of String)("makhambenh")
+        _NgayKham = row.Field(Of Date)("ngaykham")
+        _HoTenBenhNhan = row.Field(Of String)("hotenbenhnhan")
+        _GioiTinh = row.Field(Of String)("gioitinh")
+        _NamSinh = row.Field(Of Int32)("namsinh")
+        _DiaChi = row.Field(Of String)("diachi")
     End Sub
 End Class

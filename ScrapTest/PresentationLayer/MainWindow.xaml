@@ -71,6 +71,8 @@
                                   Padding="{Binding ElementName=DemoItemsListBox, Path=SelectedItem.MarginRequirement}">
                         <ContentControl Content="{Binding ElementName=MainMenuList, Path=SelectedItem.Content}"></ContentControl>
                     </ScrollViewer>
+                    <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" x:Name="MainSnackbar"
+                                            Grid.Row="1" />
                 </Grid>
             </DockPanel>
         </materialDesign:DrawerHost>

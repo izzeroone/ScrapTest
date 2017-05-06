@@ -1,4 +1,5 @@
-﻿Imports System.Data
+﻿Imports System.ComponentModel
+Imports System.Data
 
 Public Module KhamBenhBUS
 #Region "1. Inserting"
@@ -17,7 +18,7 @@ Public Module KhamBenhBUS
     End Function
 #End Region
 #Region "4. Get"
-    Public Function GetKhamBenhByDateBus(ByVal ngayKham As Date) As DataTable
+    Public Function GetKhamBenhByDateBus(ByVal ngayKham As Date) As BindingList(Of KhamBenh)
         Return GetKhamBenhByDate(ngayKham)
     End Function
 
@@ -28,7 +29,12 @@ Public Module KhamBenhBUS
 
 #Region "5.Valild"
     Public Function IsVaildNamSinhBus(ByVal namSinh As String, ByRef iNamSinh As Integer)
-        Return Integer.TryParse(namSinh, iNamSinh)
+        If (Integer.TryParse(namSinh, iNamSinh)) Then
+            If (iNamSinh > 0) Then
+                Return True
+            End If
+        End If
+        Return False
     End Function
 #End Region
 End Module
