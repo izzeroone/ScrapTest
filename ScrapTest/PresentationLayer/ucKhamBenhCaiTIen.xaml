@@ -65,7 +65,7 @@
 				    x:Name="MaTextBox"
                  IsReadOnly="True"
                  Background="Gray"
-                 Text="{Binding SelectedItem._makhambenh, ElementName=dataView, Mode=OneWay}"
+                 Text="{Binding SelectedItem._makhambenh, ElementName=dataView, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
 				    Grid.ColumnSpan="2" Margin="34.047,7.8,0.4,8">
         </TextBox>
         <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="16,3.6,7.4,5.2" Grid.ColumnSpan="2">Ngày khám</TextBlock>
@@ -143,12 +143,17 @@
                 <Button Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="0 12 8 0" Width="100"
                     ToolTip="Resource name: MaterialDesignRaisedDarkButton"
                         Click="NewButton_Click">
-                    _TẠO MỚI
+                    TẠO MỚI
                 </Button>
                 <Button Style="{StaticResource MaterialDesignRaisedDarkButton}" Margin="0 12 8 0" Width="100"
                     ToolTip="Resource name: MaterialDesignRaisedDarkButton"
                         Click="UpdateButton_Click">
-                    _CẬP NHẬT
+                    CẬP NHẬT
+                </Button>
+                <Button Style="{StaticResource MaterialDesignRaisedButton}" Margin="0 12 8 0" Width="100"
+                    ToolTip="Resource name: MaterialDesignRaisedDarkButton"
+                        Click="DeleteButton_Click">
+                    XÓA
                 </Button>
                 <Button Style="{StaticResource MaterialDesignRaisedAccentButton}" Margin="0 12 16 0" Width="100"
                     ToolTip="Resource name: MaterialDesignRaisedAccentButton"

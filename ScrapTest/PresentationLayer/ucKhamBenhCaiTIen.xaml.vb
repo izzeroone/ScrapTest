@@ -34,15 +34,13 @@ Public Class ucKhamBenhCaiTIen
     Private Sub UpdateButton_Click(sender As Object, e As RoutedEventArgs)
         Dim khamBenh As New KhamBenh
         khamBenh.MaKhamBenh = MaTextBox.Text
-        MessageBox.Show(MaTextBox.Text)
         khamBenh.HoTenBenhNhan = NameTextBox.Text
         khamBenh.NgayKham = DateTextBox.SelectedDate
 
-        Try
-            khamBenh.NamSinh = Integer.Parse(YearTextBox.Text)
-        Catch ex As Exception
-            Dialog.Show("Nam sinh khong hop le")
-        End Try
+        If Not IsVaildNamSinhBus(YearTextBox.Text, khamBenh.NamSinh) Then
+            Dialog.Show("Năm sinh không hợp lệ")
+            Return
+        End If
 
         khamBenh.GioiTinh = GenderTextBox.Text
         khamBenh.DiaChi = AddressTextBox.Text
@@ -55,8 +53,18 @@ Public Class ucKhamBenhCaiTIen
         ReloadData()
     End Sub
 
-    Private Sub CancelButton_Click(sender As Object, e As RoutedEventArgs)
+    Private Sub DeleteButton_Click(sender As Object, e As RoutedEventArgs)
+        Dim result As Boolean = DeleteKhamBenhById(MaTextBox.Text)
+        If (result = True) Then
+            Dialog.Show("Successful")
+        Else
+            Dialog.Show("False")
+        End If
+        ReloadData()
+    End Sub
 
+    Private Sub CancelButton_Click(sender As Object, e As RoutedEventArgs)
+        dataView.SelectedIndex = -1
     End Sub
 
     Private Sub ReloadData()

@@ -103,6 +103,23 @@ Module KhamBenhDAO
         Return result
     End Function
 #End Region
+
+#Region "3. Delete"
+    Public Function DeleteKhamBenhById(ByVal maKhamBenh As String) As Boolean
+        Try
+            Dim param As New List(Of NpgsqlParameter)
+            Dim parameter As New NpgsqlParameter()
+
+            parameter.NpgsqlDbType = NpgsqlDbType.Char
+            parameter.Value = maKhamBenh
+            param.Add(parameter)
+
+            Return ExecuteNoneQuery("deletekhambenhbyid", param)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+#End Region
 #Region "4. Get"
     Public Function GetMaKhamBenh() As String
         Return ObjExecuteQuery("getmakhambenh").ToString()
