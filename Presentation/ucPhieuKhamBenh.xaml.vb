@@ -1,9 +1,10 @@
 ﻿Imports System.ComponentModel
 Imports System.Data
 Imports System.Text.RegularExpressions
-Imports Domain.Domain
-Public Class ucKhamBenh
-    Dim listKhamBenh As BindingList(Of KhamBenh)
+Imports Business.Business
+Imports Entities.Entities
+Public Class ucPhieuKhamBenh
+    Dim listKhamBenh As BindingList(Of KhamBenhDTO)
     Public Sub New()
 
         ' This call is required by the designer.
@@ -23,50 +24,50 @@ Public Class ucKhamBenh
     End Sub
 
     Private Sub NewButton_Click(sender As Object, e As RoutedEventArgs)
-        If Not listKhamBenh.Last.MaKhamBenh = GetMaKhamBenhBus() Then
-            Dim khamBenh As New KhamBenh(GetMaKhamBenhBus(), DateTextBox.SelectedDate, Nothing, Nothing, DateTextBox.SelectedDate.Value.Year - 18, Nothing)
+        If Not listKhamBenh.Last.MaKhamBenh = KhamBenhBUS.GetMaKhamBenh() Then
+            Dim khamBenh As New KhamBenhDTO(KhamBenhBUS.GetMaKhamBenh(), DateTextBox.SelectedDate, Nothing, Nothing, DateTextBox.SelectedDate.Value.Year - 18, Nothing)
             listKhamBenh.Add(khamBenh)
             dataView.SelectedIndex = dataView.Items.Count - 1
         End If
     End Sub
 
     Private Sub UpdateButton_Click(sender As Object, e As RoutedEventArgs)
-        Dim khamBenh As New KhamBenh
+        Dim khamBenh As New KhamBenhDTO
         khamBenh.MaKhamBenh = MaTextBox.Text
         khamBenh.HoTenBenhNhan = NameTextBox.Text
         khamBenh.NgayKham = DateTextBox.SelectedDate
 
-        If Not IsVaildNamSinhBus(YearTextBox.Text, khamBenh.NamSinh) Then
-            Dialog.Show("Năm sinh không hợp lệ")
+        If Not KhamBenhBUS.IsVaildNamSinh(YearTextBox.Text, khamBenh.NamSinh) Then
+            Domain.Dialog.Show("Năm sinh không hợp lệ")
             Return
         End If
 
         khamBenh.GioiTinh = GenderTextBox.Text
         khamBenh.DiaChi = AddressTextBox.Text
-        Dim result As Boolean = InsertOrUpdateKhamBenhBus(khamBenh)
+        Dim result As Boolean = KhamBenhBUS.InsertOrUpdateKhamBenh(khamBenh)
         If (result = True) Then
-            Dialog.Show("Successful")
+            Domain.Dialog.Show("Successful")
         Else
-            Dialog.Show("False")
+            Domain.Dialog.Show("False")
         End If
         ReloadData()
     End Sub
 
     Private Sub DeleteButton_Click(sender As Object, e As RoutedEventArgs)
         Dim result As Boolean
-        For Each khamBenh As KhamBenh In DataView.SelectedItems
+        For Each khamBenh As KhamBenhDTO In dataView.SelectedItems
             result = DeleteKhamBenhById(khamBenh.MaKhamBenh)
         Next
         If (result = True) Then
-            Domain.Domain.Dialog.Show("Successful")
+            Domain.Dialog.Show("Successful")
         Else
-            Dialog.Show("False")
+            Domain.Dialog.Show("False")
         End If
         ReloadData()
     End Sub
 
     Private Sub CancelButton_Click(sender As Object, e As RoutedEventArgs)
-        DataView.SelectedIndex = -1
+        dataView.SelectedIndex = -1
     End Sub
 
     Private Sub ReloadData()

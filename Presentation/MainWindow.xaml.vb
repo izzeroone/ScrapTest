@@ -1,13 +1,11 @@
-﻿Imports Domain.Domain
-
-Class MainWindow
+﻿Class MainWindow
     Public Sub New()
 
         ' This call is required by the designer.
         InitializeComponent()
 
         ' Add any initialization after the InitializeComponent() call.
-        DataContext = New MainMenuItem()
+        DataContext = New Domain.MainMenuItem
         Task.Factory.StartNew(Sub()
                                   System.Threading.Thread.Sleep(2500)
                               End Sub).ContinueWith(Sub(ByVal t)
