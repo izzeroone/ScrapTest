@@ -1,5 +1,5 @@
 ﻿Imports System.Data
-Imports NpgsqlTypes
+
 Namespace Entities
     Public Class KhamBenhDTO
         Private _MaKhamBenh As String

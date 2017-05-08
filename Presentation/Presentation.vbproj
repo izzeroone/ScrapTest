@@ -58,6 +58,8 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System" />
@@ -79,6 +81,16 @@
     <Compile Include="Application.xaml.vb">
       <DependentUpon>Application.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LoaiThuoc.vb" />
+    <Compile Include="ucLoaiBenh.xaml.vb">
+      <DependentUpon>ucLoaiBenh.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucLoaiCachDung.xaml.vb">
+      <DependentUpon>ucLoaiCachDung.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucLoaiDonVi.xaml.vb">
+      <DependentUpon>ucLoaiDonVi.xaml</DependentUpon>
     </Compile>
     <Compile Include="ucPhieuKhamBenh.xaml.vb">
       <DependentUpon>ucPhieuKhamBenh.xaml</DependentUpon>
@@ -152,6 +164,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ucLoaiBenh.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ucLoaiCachDung.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ucLoaiDonVi.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,0 +1,92 @@
+﻿<UserControl x:Class="ucLoaiCachDung"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:Presentation"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="560">
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Stretch">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="160" />
+            <ColumnDefinition Width="400" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <materialDesign:Card Margin="4 4 0 0" Background="{DynamicResource PrimaryHueLightBrush}"
+                      Foreground="{DynamicResource PrimaryHueLightForegroundBrush}"
+                      Grid.Row="0" Grid.Column="0"
+                      Grid.ColumnSpan="2"
+                      VerticalAlignment="Center"
+                      HorizontalAlignment="Center"
+                      Padding="8">
+            <TextBlock Grid.Row = "0" Grid.Column="0"  TextAlignment="Center" 
+                       TextElement.FontWeight="Bold" TextElement.FontSize="18">DANH SÁCH LOẠI CÁCH DÙNG</TextBlock>
+        </materialDesign:Card>
+        <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" >Mã Cách Dùng</TextBlock>
+        <TextBox Grid.Row="1" Grid.Column="1" 
+				    x:Name="tbMaCachDung"
+                 IsReadOnly="True"
+                 Background="Gray"
+                 Text="{Binding SelectedItem.MaCachDung, ElementName=dgLoaiCachDung, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+				 Margin="34.047,7.8,0.4,8">
+        </TextBox>
+        <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" >Tên cách dùng</TextBlock>
+        <TextBox Grid.Row="2" Grid.Column="1" 
+				    x:Name="tbTenCachDung"
+                 Text="{Binding SelectedItem.TenCachDung, ElementName=dgLoaiCachDung, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+				 Margin="34.047,7.8,0.4,8">
+        </TextBox>
+        <DataGrid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"  
+            Margin="0 8 0 0" x:Name="dgLoaiCachDung" CanUserSortColumns="True" CanUserAddRows="False"
+                       materialDesign:DataGridAssist.CellPadding="4 2 2 2" materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2"
+                    ItemsSource="{Binding}" AutoGenerateColumns="False" 
+                  MaxHeight="300">
+            <DataGrid.Columns>
+                <materialDesign:MaterialDataGridTextColumn Binding="{Binding MaCachDung}"
+                                                           Header="Mã Cách Dùng"                                                        
+                                                           EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" 
+                                                           IsReadOnly="True"/>
+
+                <materialDesign:MaterialDataGridTextColumn Binding="{Binding TenCachDung}"
+                                                           Header="Tên Cách Dùng"                                                        
+                                                           EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+
+
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal" Margin="0 12 0 0" FlowDirection="RightToLeft">
+            <Button Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="0 12 8 0" Width="100"
+                    ToolTip="Resource name: MaterialDesignRaisedDarkButton"
+                        Click="NewButton_Click">
+                TẠO MỚI
+            </Button>
+            <Button Style="{StaticResource MaterialDesignRaisedDarkButton}" Margin="0 12 8 0" Width="100"
+                    ToolTip="Resource name: MaterialDesignRaisedDarkButton"
+                        Click="UpdateButton_Click">
+                CẬP NHẬT
+            </Button>
+            <Button Style="{StaticResource MaterialDesignRaisedButton}" Margin="0 12 8 0" Width="100"
+                    ToolTip="Resource name: MaterialDesignRaisedDarkButton"
+                        Click="DeleteButton_Click">
+                XÓA
+            </Button>
+            <Button Style="{StaticResource MaterialDesignRaisedAccentButton}" Margin="0 12 16 0" Width="100"
+                    ToolTip="Resource name: MaterialDesignRaisedAccentButton"
+                        Click="CancelButton_Click">
+                HỦY
+            </Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -24,26 +24,32 @@ Public Class ucPhieuKhamBenh
     End Sub
 
     Private Sub NewButton_Click(sender As Object, e As RoutedEventArgs)
-        If Not listKhamBenh.Last.MaKhamBenh = KhamBenhBUS.GetMaKhamBenh() Then
-            Dim khamBenh As New KhamBenhDTO(KhamBenhBUS.GetMaKhamBenh(), DateTextBox.SelectedDate, Nothing, Nothing, DateTextBox.SelectedDate.Value.Year - 18, Nothing)
+        If Not listKhamBenh.Count = 0 Then
+            If Not listKhamBenh.Last.MaKhamBenh = KhamBenhBUS.GetMaKhamBenh() Then
+                Dim khamBenh As New KhamBenhDTO(KhamBenhBUS.GetMaKhamBenh(), tbNgayKham.SelectedDate, Nothing, Nothing, tbNgayKham.SelectedDate.Value.Year - 18, Nothing)
+                listKhamBenh.Add(khamBenh)
+                dgKhamBenh.SelectedIndex = dgKhamBenh.Items.Count - 1
+            End If
+        Else
+            Dim khamBenh As New KhamBenhDTO(KhamBenhBUS.GetMaKhamBenh(), tbNgayKham.SelectedDate, Nothing, Nothing, tbNgayKham.SelectedDate.Value.Year - 18, Nothing)
             listKhamBenh.Add(khamBenh)
-            dataView.SelectedIndex = dataView.Items.Count - 1
+            dgKhamBenh.SelectedIndex = dgKhamBenh.Items.Count - 1
         End If
     End Sub
 
     Private Sub UpdateButton_Click(sender As Object, e As RoutedEventArgs)
         Dim khamBenh As New KhamBenhDTO
-        khamBenh.MaKhamBenh = MaTextBox.Text
-        khamBenh.HoTenBenhNhan = NameTextBox.Text
-        khamBenh.NgayKham = DateTextBox.SelectedDate
+        khamBenh.MaKhamBenh = tbMaKhamBenh.Text
+        khamBenh.HoTenBenhNhan = tbHoTen.Text
+        khamBenh.NgayKham = tbNgayKham.SelectedDate
 
-        If Not KhamBenhBUS.IsVaildNamSinh(YearTextBox.Text, khamBenh.NamSinh) Then
+        If Not KhamBenhBUS.IsVaildNamSinh(tbNamSinh.Text, khamBenh.NamSinh) Then
             Domain.Dialog.Show("Năm sinh không hợp lệ")
             Return
         End If
 
-        khamBenh.GioiTinh = GenderTextBox.Text
-        khamBenh.DiaChi = AddressTextBox.Text
+        khamBenh.GioiTinh = tbGioiTinh.Text
+        khamBenh.DiaChi = tbDiaChi.Text
         Dim result As Boolean = KhamBenhBUS.InsertOrUpdateKhamBenh(khamBenh)
         If (result = True) Then
             Domain.Dialog.Show("Successful")
@@ -55,8 +61,8 @@ Public Class ucPhieuKhamBenh
 
     Private Sub DeleteButton_Click(sender As Object, e As RoutedEventArgs)
         Dim result As Boolean
-        For Each khamBenh As KhamBenhDTO In dataView.SelectedItems
-            result = DeleteKhamBenhById(khamBenh.MaKhamBenh)
+        For Each khamBenh As KhamBenhDTO In dgKhamBenh.SelectedItems
+            result = DeleteKhamBenhByMa(khamBenh.MaKhamBenh)
         Next
         If (result = True) Then
             Domain.Dialog.Show("Successful")
@@ -67,13 +73,13 @@ Public Class ucPhieuKhamBenh
     End Sub
 
     Private Sub CancelButton_Click(sender As Object, e As RoutedEventArgs)
-        dataView.SelectedIndex = -1
+        dgKhamBenh.SelectedIndex = -1
     End Sub
 
     Private Sub ReloadData()
-        If dataView IsNot Nothing And DateTextBox.SelectedDate IsNot Nothing Then
-            listKhamBenh = GetKhamBenhByDate(DateTextBox.SelectedDate)
-            dataView.DataContext = listKhamBenh
+        If dgKhamBenh IsNot Nothing And tbNgayKham.SelectedDate IsNot Nothing Then
+            listKhamBenh = GetKhamBenhByNgayKham(tbNgayKham.SelectedDate)
+            dgKhamBenh.DataContext = listKhamBenh
         End If
     End Sub
 End Class

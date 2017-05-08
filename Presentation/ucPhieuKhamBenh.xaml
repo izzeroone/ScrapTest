@@ -8,29 +8,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <UserControl.Resources>
-        <ResourceDictionary>
-            <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignTextBox}">
-                <Setter Property="Margin" Value="0 8 0 8" />
-            </Style>
-            <Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource MaterialDesignPasswordBox}">
-                <Setter Property="Margin" Value="0 8 0 8" />
-            </Style>
-            <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MaterialDesignComboBox}">
-                <Setter Property="HorizontalAlignment" Value="Stretch" />
-                <Setter Property="Margin" Value="0 8 0 8" />
-            </Style>
-            <Style TargetType="{x:Type Viewbox}">
-                <Setter Property="Width" Value="18" />
-                <Setter Property="Height" Value="18" />
-                <Setter Property="Margin" Value="0 0 8 0" />
-                <Setter Property="VerticalAlignment" Value="Center" />
-            </Style>
-            <Style TargetType="{x:Type Slider}" BasedOn="{StaticResource MaterialDesignSlider}">
-                <Setter Property="Margin" Value="0 8 0 8" />
-            </Style>
-        </ResourceDictionary>
-    </UserControl.Resources>
+   
     <Grid HorizontalAlignment="Center" VerticalAlignment="Stretch">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="115.953" />
@@ -62,53 +40,53 @@
         </materialDesign:Card>
         <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" Grid.ColumnSpan="2">Mã khám bệnh</TextBlock>
         <TextBox Grid.Row="2" Grid.Column="1" 
-				    x:Name="MaTextBox"
+				    x:Name="tbMaKhamBenh"
                  IsReadOnly="True"
                  Background="Gray"
-                 Text="{Binding SelectedItem.MaKhamBenh, ElementName=dataView, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                 Text="{Binding SelectedItem.MaKhamBenh, ElementName=dgKhamBenh, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
 				    Grid.ColumnSpan="2" Margin="34.047,7.8,0.4,8">
         </TextBox>
         <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="16,3.6,7.4,5.2" Grid.ColumnSpan="2">Ngày khám</TextBlock>
         <DatePicker Grid.Row="3" 
                     Grid.Column="1" 
                     Grid.ColumnSpan="2"
-				    x:Name="DateTextBox"
+				    x:Name="tbNgayKham"
 				    materialDesign:HintAssist.Hint="Ngày khám"
                     SelectedDate="{x:Static sys:DateTime.Now}"
                     Margin="34.047,8,0.4,8" 
                     SelectedDateChanged="DateTextBox_SelectedDateChanged"/>
         <TextBlock Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" Grid.ColumnSpan="2">Họ tên</TextBlock>
         <TextBox Grid.Row="4" Grid.Column="1" 
-				    x:Name="NameTextBox"
-                    Text="{Binding SelectedItem.HoTenBenhNhan, ElementName=dataView, Mode=OneWay}"
+				    x:Name="tbHoTen"
+                    Text="{Binding SelectedItem.HoTenBenhNhan, ElementName=dgKhamBenh, Mode=OneWay}"
 				    materialDesign:HintAssist.Hint="Họ tên" Grid.ColumnSpan="2" Margin="34.047,7.8,0.4,8">
         </TextBox>
         <TextBlock Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" Margin="16,14,7.4,14" Grid.ColumnSpan="2">Giới tính</TextBlock>
         <ComboBox Grid.Row="5" Grid.Column="1" 
-				    x:Name="GenderTextBox"
+				    x:Name="tbGioiTinh"
 				    materialDesign:HintAssist.Hint="Giới tính" Grid.ColumnSpan="2" Margin="34.047,8,0.4,8"
-                  Text="{Binding SelectedItem.GioiTinh, ElementName=dataView, Mode=OneWay}">
+                  Text="{Binding SelectedItem.GioiTinh, ElementName=dgKhamBenh, Mode=OneWay}">
             <ComboBoxItem>Nam</ComboBoxItem>
             <ComboBoxItem>Nữ</ComboBoxItem>
             <ComboBoxItem>Không biết</ComboBoxItem>
         </ComboBox>
         <TextBlock Grid.Row="6" Grid.Column="0" VerticalAlignment="Center" Margin="16,12,7.4,12.8" Grid.ColumnSpan="2">Năm sinh</TextBlock>
         <TextBox Grid.Row="6" Grid.Column="1" 
-				    x:Name="YearTextBox"
+				    x:Name="tbNamSinh"
 				    materialDesign:HintAssist.Hint="Năm sinh" Grid.ColumnSpan="2" Margin="34.047,8,0.4,7.8"
-                    Text="{Binding SelectedItem.NamSinh, ElementName=dataView, Mode=OneWay}"
+                    Text="{Binding SelectedItem.NamSinh, ElementName=dgKhamBenh, Mode=OneWay}"
                     PreviewTextInput="NumberValidationTextBox">
         </TextBox>
         <TextBlock Grid.Row="7" Grid.Column="0" VerticalAlignment="Center" Margin="16,12.2,7.4,12.6" Grid.ColumnSpan="2">Địa chỉ</TextBlock>
         <TextBox Grid.Row="7" Grid.Column="1" 
-				    x:Name="AddressTextBox"
-                    Text="{Binding SelectedItem.DiaChi, ElementName=dataView, Mode=OneWay}"
+				    x:Name="tbDiaChi"
+                    Text="{Binding SelectedItem.DiaChi, ElementName=dgKhamBenh, Mode=OneWay}"
 				    materialDesign:HintAssist.Hint="Địa chỉ" Grid.ColumnSpan="2" Margin="34.047,8.2,0.4,7.6">
         </TextBox>
         <DataGrid Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="3"  
-            Margin="0 8 0 0" x:Name="dataView" CanUserSortColumns="True" CanUserAddRows="False"
+            Margin="0 8 0 0" x:Name="dgKhamBenh" CanUserSortColumns="True" CanUserAddRows="False"
                        materialDesign:DataGridAssist.CellPadding="4 2 2 2" materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2"
-                    ItemsSource="{Binding}" AutoGenerateColumns="False"
+                    ItemsSource="{Binding}" AutoGenerateColumns="False" 
                   MaxHeight="300">
             <DataGrid.Columns>
                 <materialDesign:MaterialDataGridTextColumn Binding="{Binding MaKhamBenh}"

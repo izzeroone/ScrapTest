@@ -64,6 +64,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="KhamBenhDTO.vb" />
+    <Compile Include="LoaiBenhDTO.vb" />
+    <Compile Include="LoaiCachDungDTO.vb" />
+    <Compile Include="LoaiDonViDTO.vb" />
+    <Compile Include="LoaiThuocDTO.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

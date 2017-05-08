@@ -7,92 +7,39 @@ Imports System.Windows.Forms
 
 Namespace DataAccess
     Public Module KhamBenhDAL
-#Region "1.Inserting"
-        Public Function insertKhamBenh(ByVal khamBenh As KhamBenhDTO) As Boolean
+#Region "1.Inserting & Update"
+        Public Function InsertOrUpdateKhamBenh(ByVal khamBenh As KhamBenhDTO) As Boolean
             Dim result As Boolean
             result = False
             Try
                 Dim param As New List(Of NpgsqlParameter)
                 Dim parameter As New NpgsqlParameter()
 
-                parameter.ParameterName = "_NgayKham"
-                'parameter.DbType = NpgsqlDbType.Date
-                parameter.NpgsqlDbType = NpgsqlDbType.Date
-                parameter.Value = khamBenh.NgayKham
-                param.Add(parameter)
-
-                parameter = New NpgsqlParameter()
-                parameter.ParameterName = "_HoTenBenhNhan"
-                parameter.DbType = System.Data.DbType.String
-                parameter.Value = khamBenh.HoTenBenhNhan
-                param.Add(parameter)
-
-                parameter = New NpgsqlParameter()
-                parameter.ParameterName = "_GioiTinh"
-                parameter.DbType = System.Data.DbType.String
-                parameter.Value = khamBenh.GioiTinh
-                param.Add(parameter)
-
-                parameter = New NpgsqlParameter()
-                parameter.ParameterName = "_NamSinh"
-                parameter.NpgsqlDbType = NpgsqlDbType.Integer
-                parameter.Value = khamBenh.NamSinh
-                param.Add(parameter)
-
-                parameter = New NpgsqlParameter()
-                parameter.ParameterName = "_DiaChi"
-                parameter.DbType = System.Data.DbType.String
-                parameter.Value = khamBenh.DiaChi
-                param.Add(parameter)
-
-                Dim n As Boolean = ExecuteNoneQuery("newKhamBenh", param)
-                If (n = True) Then
-                    result = True
-                End If
-            Catch ex As Exception
-                MessageBox.Show(ex.ToString())
-            End Try
-            Return result
-        End Function
-
-        Public Function insertOrUpdateKhamBenh(ByVal khamBenh As KhamBenhDTO) As Boolean
-            Dim result As Boolean
-            result = False
-            Try
-                Dim param As New List(Of NpgsqlParameter)
-                Dim parameter As New NpgsqlParameter()
-
-                parameter.ParameterName = "__MaKhamBenh"
                 parameter.NpgsqlDbType = NpgsqlDbType.Char
                 parameter.Value = khamBenh.MaKhamBenh
                 param.Add(parameter)
 
                 parameter = New NpgsqlParameter()
-                parameter.ParameterName = "_NgayKham"
                 parameter.NpgsqlDbType = NpgsqlDbType.Date
                 parameter.Value = khamBenh.NgayKham
                 param.Add(parameter)
 
                 parameter = New NpgsqlParameter()
-                parameter.ParameterName = "_HoTenBenhNhan"
                 parameter.DbType = System.Data.DbType.String
                 parameter.Value = khamBenh.HoTenBenhNhan
                 param.Add(parameter)
 
                 parameter = New NpgsqlParameter()
-                parameter.ParameterName = "_GioiTinh"
                 parameter.DbType = System.Data.DbType.String
                 parameter.Value = khamBenh.GioiTinh
                 param.Add(parameter)
 
                 parameter = New NpgsqlParameter()
-                parameter.ParameterName = "_NamSinh"
                 parameter.NpgsqlDbType = NpgsqlDbType.Integer
                 parameter.Value = khamBenh.NamSinh
                 param.Add(parameter)
 
                 parameter = New NpgsqlParameter()
-                parameter.ParameterName = "_DiaChi"
                 parameter.DbType = System.Data.DbType.String
                 parameter.Value = khamBenh.DiaChi
                 param.Add(parameter)
@@ -108,8 +55,8 @@ Namespace DataAccess
         End Function
 #End Region
 
-#Region "3. Delete"
-        Public Function DeleteKhamBenhById(ByVal maKhamBenh As String) As Boolean
+#Region "2. Delete"
+        Public Function DeleteKhamBenhByMa(ByVal maKhamBenh As String) As Boolean
             Try
                 Dim param As New List(Of NpgsqlParameter)
                 Dim parameter As New NpgsqlParameter()
@@ -118,18 +65,18 @@ Namespace DataAccess
                 parameter.Value = maKhamBenh
                 param.Add(parameter)
 
-                Return ExecuteNoneQuery("deletekhambenhbyid", param)
+                Return ExecuteNoneQuery("deletekhambenhbyma", param)
             Catch ex As Exception
                 Throw ex
             End Try
         End Function
 #End Region
-#Region "4. Get"
+#Region "3. Get"
         Public Function GetMaKhamBenh() As String
             Return ObjExecuteQuery("getmakhambenh").ToString()
         End Function
 
-        Public Function GetKhamBenhByDate(ByVal ngayKham As Date) As BindingList(Of KhamBenhDTO)
+        Public Function GetKhamBenhByNgayKham(ByVal ngayKham As Date) As BindingList(Of KhamBenhDTO)
             Try
                 Dim list As New BindingList(Of KhamBenhDTO)
                 Dim param As New List(Of NpgsqlParameter)
@@ -139,7 +86,7 @@ Namespace DataAccess
                 parameter.Value = ngayKham
                 param.Add(parameter)
 
-                Dim tb As DataTable = ExecuteQuery("getkhambenhbydate", param)
+                Dim tb As DataTable = ExecuteQuery("getkhambenhbyngaykham", param)
                 For Each row As DataRow In tb.Rows
                     list.Add(New KhamBenhDTO(row))
                 Next

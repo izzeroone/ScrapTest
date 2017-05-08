@@ -74,6 +74,10 @@
   <ItemGroup>
     <Compile Include="DataAccessHelper.vb" />
     <Compile Include="KhamBenhDAL.vb" />
+    <Compile Include="LoaiBenhDAL.vb" />
+    <Compile Include="LoaiCachDungDAL.vb" />
+    <Compile Include="LoaiDonViDAL.vb" />
+    <Compile Include="LoaiThuocDAL.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
