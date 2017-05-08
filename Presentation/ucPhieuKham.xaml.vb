@@ -5,14 +5,14 @@ Imports System.Text.RegularExpressions
 Imports Business.Business
 Imports Entities.Entities
 Public Class ucPhieuKham
-    Dim listChiTietPhieuKham As ObservableCollection(Of ChiTietPhieuKhamDTO)
+    Dim listChiTietPhieuKham As ObservableCollection(Of ROWChiTietPhieuKhamDTO)
     Public Sub New()
 
         ' This call is required by the designer.
         InitializeComponent()
-
+        Dim t As ROWChiTietPhieuKhamDTO
         ' Add any initialization after the InitializeComponent() call.
-        listChiTietPhieuKham = New ObservableCollection(Of ChiTietPhieuKhamDTO)
+        listChiTietPhieuKham = New ObservableCollection(Of ROWChiTietPhieuKhamDTO)
         cbMaKhamBenh.ItemsSource = KhamBenhBUS.GetAllMaKhamBenh()
         cbLoaiBenh.ItemsSource = LoaiBenhBUS.GetAllLoaiBenh()
         cbLoaiBenh.DisplayMemberPath = "TenLoaiBenh"
@@ -91,7 +91,7 @@ Public Class ucPhieuKham
 
     Private Sub ReloadData()
         If dgChiTietPhieuKham IsNot Nothing Then
-            listChiTietPhieuKham = GetChiTietPhieuKhamByMaNgayKham(cbMaKhamBenh.SelectedValue)
+            listChiTietPhieuKham = ROWChiTietPhieuKhamBUS.GetChiTietPhieuKhamByMaKhamBenh(cbMaKhamBenh.SelectedItem.ToString())
             dgChiTietPhieuKham.DataContext = listChiTietPhieuKham
         End If
     End Sub

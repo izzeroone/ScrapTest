@@ -57,28 +57,33 @@
         <TextBlock Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" >Bệnh</TextBlock>
         <ComboBox Grid.Row="4" Grid.Column="1" 
 				    x:Name="cbLoaiBenh"
+                  SelectedValue="{Binding SelectedItem.MaLoaiBenh, ElementName=dgChiTietPhieuKham, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
 				 Margin="34.047,7.8,0.4,8">
         </ComboBox>
         <TextBlock Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" >Tên thuốc</TextBlock>
         <ComboBox Grid.Row="5" Grid.Column="1" 
 				    x:Name="cbThuoc"
+                  SelectedValue="{Binding SelectedItem.MaThuoc, ElementName=dgChiTietPhieuKham, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
 				 Margin="34.047,7.8,0.4,8">
         </ComboBox>
         <TextBlock Grid.Row="6" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" >Đơn vị</TextBlock>
         <ComboBox Grid.Row="6" Grid.Column="1" 
 				    x:Name="cbDonVi"
+                  SelectedValue="{Binding SelectedItem.MaDonVi, ElementName=dgChiTietPhieuKham, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
 				 Margin="34.047,7.8,0.4,8">
         </ComboBox>
         <TextBlock Grid.Row="7" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" >Số lượng</TextBlock>
         <TextBox Grid.Row="7" Grid.Column="1" 
 				    x:Name="tbSoLuong"
 				 Margin="34.047,7.8,0.4,8"
+                 Text="{Binding SelectedItem.SoLuong, ElementName=dgChiTietPhieuKham, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                   PreviewTextInput="NumberValidationTextBox">
         </TextBox>
 
         <TextBlock Grid.Row="8" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" >Cách dùng</TextBlock>
         <ComboBox Grid.Row="8" Grid.Column="1" 
 				    x:Name="cbCachDung"
+                  SelectedValue="{Binding SelectedItem.MaCachDung, ElementName=dgChiTietPhieuKham, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
 				 Margin="34.047,7.8,0.4,8">
         </ComboBox>
         <DataGrid Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2"  
@@ -87,7 +92,7 @@
                     ItemsSource="{Binding}" AutoGenerateColumns="False" 
                   MaxHeight="300">
             <DataGrid.Columns>
-                <materialDesign:MaterialDataGridTextColumn Binding="{Binding MaChiTieuPhieuKham}"
+                <materialDesign:MaterialDataGridTextColumn Binding="{Binding MaChiTietPhieuKham}"
                                                            Header="Mã CTPK"                                                        
                                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" 
                                                            IsReadOnly="True"/>
@@ -95,24 +100,30 @@
                 <materialDesign:MaterialDataGridTextColumn Binding="{Binding TrieuChung}"
                                                            Header="Triệu Chứng"                                                        
                                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-                <materialDesign:MaterialDataGridTextColumn Binding="{Binding MaLoaiBenh}"
-                                                           Header="Mã Loại Bệnh"                                                        
+
+                
+                <materialDesign:MaterialDataGridTextColumn Binding="{Binding TenLoaiBenh}"
+                                                           Header="Tên Bệnh"                                                        
                                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
 
-                <materialDesign:MaterialDataGridTextColumn Binding="{Binding MaThuoc}"
-                                                           Header="Mã Thuốc"                                                        
+                <materialDesign:MaterialDataGridTextColumn Binding="{Binding TenThuoc}"
+                                                           Header="Tên Thuốc"                                                        
                                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
 
                 <materialDesign:MaterialDataGridTextColumn Binding="{Binding MaDonVi}"
-                                                           Header="Mã Đơn Vị"                                                        
+                                                           Header="Đơn Vị"                                                        
+                                                           EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+
+                <materialDesign:MaterialDataGridTextColumn Binding="{Binding TenDonVi}"
+                                                           Header="Đơn Vị"                                                        
                                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
 
                 <materialDesign:MaterialDataGridTextColumn Binding="{Binding SoLuong}"
                                                            Header="Số Lượng"                                                        
                                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
 
-                <materialDesign:MaterialDataGridTextColumn Binding="{Binding MaCachDung}"
-                                                           Header="Mã Cách Dùng"                                                        
+                <materialDesign:MaterialDataGridTextColumn Binding="{Binding TenCachDung}"
+                                                           Header="Cách Dùng"                                                        
                                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
 
             </DataGrid.Columns>

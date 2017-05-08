@@ -104,14 +104,6 @@
         End Sub
 
         Public Sub New(ByVal row As DataRow)
-            '_MaChiTietPhieuKham = row.Field(Of String)("MaChiTietPhieuKham")
-            '_MaKhamBenh = row.Field(Of String)("MaKhamBenh")
-            '_TrieuChung = row.Field(Of String)("TrieuChung")
-            '_MaLoaiBenh = row.Field(Of String)("MaLoaiBenh")
-            '_MaThuoc = row.Field(Of String)("MaThuoc")
-            '_MaDonVi = row.Field(Of String)("MaDonVi")
-            '_SoLuong = row.Field(Of Integer)("SoLuong")
-            '_MaCachDung = row.Field(Of String)("MaCachDung")
             _MaChiTietPhieuKham = row.Field(Of String)("machitietphieukham")
             _MaKhamBenh = row.Field(Of String)("makhambenh")
             _TrieuChung = row.Field(Of String)("trieuchung")
