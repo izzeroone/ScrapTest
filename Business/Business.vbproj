@@ -63,10 +63,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChiTieuPhieuKhamBUS.vb" />
     <Compile Include="KhamBenhBUS.vb" />
     <Compile Include="LoaiBenhBUS.vb" />
     <Compile Include="LoaiCachDungBUS.vb" />
     <Compile Include="LoaiDonViBUS.vb" />
+    <Compile Include="LoaiThuocBUS.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

@@ -92,6 +92,12 @@
     <Compile Include="ucLoaiDonVi.xaml.vb">
       <DependentUpon>ucLoaiDonVi.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ucLoaiThuoc.xaml.vb">
+      <DependentUpon>ucLoaiThuoc.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucPhieuKham.xaml.vb">
+      <DependentUpon>ucPhieuKham.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ucPhieuKhamBenh.xaml.vb">
       <DependentUpon>ucPhieuKhamBenh.xaml</DependentUpon>
     </Compile>
@@ -176,6 +182,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ucLoaiDonVi.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ucLoaiThuoc.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ucPhieuKham.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

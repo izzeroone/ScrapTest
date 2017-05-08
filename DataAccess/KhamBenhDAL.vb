@@ -4,6 +4,7 @@ Imports Npgsql
 Imports NpgsqlTypes
 Imports Entities.Entities
 Imports System.Windows.Forms
+Imports System.Collections.ObjectModel
 
 Namespace DataAccess
     Public Module KhamBenhDAL
@@ -89,6 +90,20 @@ Namespace DataAccess
                 Dim tb As DataTable = ExecuteQuery("getkhambenhbyngaykham", param)
                 For Each row As DataRow In tb.Rows
                     list.Add(New KhamBenhDTO(row))
+                Next
+                Return list
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
+
+        Public Function GetAllMaKhamBenh() As ObservableCollection(Of String)
+            Try
+
+                Dim list As New ObservableCollection(Of String)
+                Dim tb As DataTable = ExecuteQuery("getallmakhambenh")
+                For Each row As DataRow In tb.Rows
+                    list.Add(row.Field(Of String)("makhambenh"))
                 Next
                 Return list
             Catch ex As Exception

@@ -2,11 +2,13 @@
 Imports System.Data
 Imports Entities.Entities
 Imports DataAccess.DataAccess
+Imports System.Collections.ObjectModel
+
 Namespace Business
     Public Module KhamBenhBUS
 #Region "1. Inserting"
         Public Function InsertOrUpdateKhamBenh(ByVal khamBenh As KhamBenhDTO) As Boolean
-            Return KhamBenhDAL.insertOrUpdateKhamBenh(khamBenh)
+            Return KhamBenhDAL.InsertOrUpdateKhamBenh(khamBenh)
         End Function
 
 #End Region
@@ -22,6 +24,10 @@ Namespace Business
 
         Public Function GetMaKhamBenh() As String
             Return KhamBenhDAL.GetMaKhamBenh()
+        End Function
+
+        Public Function GetAllMaKhamBenh() As ObservableCollection(Of String)
+            Return KhamBenhDAL.GetAllMaKhamBenh()
         End Function
 #End Region
 
