@@ -1,4 +1,5 @@
 ﻿
+Imports System.Collections.ObjectModel
 Imports System.ComponentModel
 Imports System.Windows
 Imports System.Windows.Controls
@@ -12,9 +13,19 @@ Namespace Domain
         Private _verticalScrollBarVisibilityRequirement As ScrollBarVisibility
         Private _marginRequirement As Thickness
 
+        Public Sub New()
+
+        End Sub
+
         Public Sub New(ByVal Name As String, ByVal Content As Object)
             _name = Name
             _content = Content
+            _marginRequirement = New Thickness(16)
+        End Sub
+
+        Public Sub New(ByVal Name As String)
+            _name = Name
+            _content = Nothing
             _marginRequirement = New Thickness(16)
         End Sub
 

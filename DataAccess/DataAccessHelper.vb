@@ -6,10 +6,10 @@ Namespace DataAccess
         Dim connectionString As String
 
         Sub New()
-            'connectionString = String.Format("User ID={0};Password={1};Host={2};Port={3};Database={4};",
-            '                             "htyycgpx", "xo2vkZBRfinzgnFOZCGzwjFSpkh33sh0", "stampy.db.elephantsql.com", "5432", "htyycgpx")
             connectionString = String.Format("User ID={0};Password={1};Host={2};Port={3};Database={4};",
-                                         "ngayngu", "abc123", "127.0.0.1", "5432", "QuanLyPhongMach")
+                                         "htyycgpx", "xo2vkZBRfinzgnFOZCGzwjFSpkh33sh0", "stampy.db.elephantsql.com", "5432", "htyycgpx")
+            'connectionString = String.Format("User ID={0};Password={1};Host={2};Port={3};Database={4};",
+            '                             "ngayngu", "abc123", "127.0.0.1", "5432", "QuanLyPhongMach")
         End Sub
 
         Public Function ExecuteQuery(ByVal spName As String, sqlParams As List(Of NpgsqlParameter)) As DataTable

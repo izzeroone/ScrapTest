@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:Presentation"
+        xmlns:domain="clr-namespace:Presentation.Domain"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="800"
@@ -31,19 +32,29 @@
     <materialDesign:DialogHost Identifier="RootDialog">
         <materialDesign:DrawerHost IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}">
             <materialDesign:DrawerHost.LeftDrawerContent>
-                <DockPanel MinWidth="212">
+                <DockPanel MinWidth="180">
                     <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" 
                                     DockPanel.Dock="Top"
                                     HorizontalAlignment="Right" Margin="16"
                                     IsChecked="{Binding ElementName=MenuToggleButton, Path=IsChecked, Mode=TwoWay}" />
-                    <ListBox x:Name="MainMenuList" Margin="0 16 0 16" SelectedIndex="0"
-                             ItemsSource="{Binding MenuItems}">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate DataType="MenuItem">
-                                <TextBlock Text="{Binding Name}" Margin="0 32 0 32"></TextBlock>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
+                    <TreeView x:Name="trvMenu">
+                        <TreeView.Resources>
+                            <HierarchicalDataTemplate DataType="{x:Type domain:GroupMenuItem}" ItemsSource="{Binding MenuItems}">
+                                <materialDesign:ColorZone materialDesign:ShadowAssist.ShadowDepth="Depth2"
+                                          Mode="PrimaryLight" DockPanel.Dock="Top">
+                                    <DockPanel Width="180">
+                                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Name}" FontSize="16">
+                                        </TextBlock>
+                                    </DockPanel>
+                                </materialDesign:ColorZone>
+                            </HierarchicalDataTemplate>
+                            <HierarchicalDataTemplate DataType="{x:Type domain:MenuItem}">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="8 0 0 0" Text="{Binding Name}"></TextBlock>
+                                </StackPanel>
+                            </HierarchicalDataTemplate>
+                        </TreeView.Resources>
+                    </TreeView>
 
                 </DockPanel>
 
@@ -55,7 +66,7 @@
                         <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}"
                                       IsChecked="False" x:Name="MenuToggleButton">
                         </ToggleButton>
-                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20">
                             QUẢN LÝ PHÒNG MẠCH TƯ
                         </TextBlock>
                     </DockPanel>
@@ -69,7 +80,7 @@
                                   HorizontalScrollBarVisibility="{Binding ElementName=MainMenuList, Path=SelectedItem.HorizontalScrollBarVisibilityRequirement}"
                                   VerticalScrollBarVisibility="{Binding ElementName=MainMenuList, Path=SelectedItem.VerticalScrollBarVisibilityRequirement}" 
                                   Padding="{Binding ElementName=DemoItemsListBox, Path=SelectedItem.MarginRequirement}">
-                        <ContentControl Content="{Binding ElementName=MainMenuList, Path=SelectedItem.Content}"></ContentControl>
+                        <ContentControl Content="{Binding ElementName=trvMenu, Path=SelectedItem.Content}"></ContentControl>
                     </ScrollViewer>
                     <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" x:Name="MainSnackbar"
                                             Grid.Row="1" />

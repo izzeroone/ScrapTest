@@ -10,7 +10,7 @@ Public Class ucPhieuKham
 
         ' This call is required by the designer.
         InitializeComponent()
-        Dim t As ROWChiTietPhieuKhamDTO
+
         ' Add any initialization after the InitializeComponent() call.
         listChiTietPhieuKham = New ObservableCollection(Of ROWChiTietPhieuKhamDTO)
         cbMaKhamBenh.ItemsSource = KhamBenhBUS.GetAllMaKhamBenh()
@@ -37,12 +37,14 @@ Public Class ucPhieuKham
     Private Sub NewButton_Click(sender As Object, e As RoutedEventArgs)
         If Not listChiTietPhieuKham.Count = 0 Then
             If Not listChiTietPhieuKham.Last.MaChiTietPhieuKham = ChiTietPhieuKhamBUS.GetMaChiTietPhieuKham() Then
-                Dim ChiTietPhieuKham As New ChiTietPhieuKhamDTO(ChiTietPhieuKhamBUS.GetMaChiTietPhieuKham(), cbMaKhamBenh.SelectedValue, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing)
+                Dim ChiTietPhieuKham As New ROWChiTietPhieuKhamDTO() With {.MaChiTietPhieuKham = ChiTietPhieuKhamBUS.GetMaChiTietPhieuKham(),
+                                                                       .MaKhamBenh = cbMaKhamBenh.SelectedValue}
                 listChiTietPhieuKham.Add(ChiTietPhieuKham)
                 dgChiTietPhieuKham.SelectedIndex = dgChiTietPhieuKham.Items.Count - 1
             End If
         Else
-            Dim ChiTietPhieuKham As New ChiTietPhieuKhamDTO(ChiTietPhieuKhamBUS.GetMaChiTietPhieuKham(), cbMaKhamBenh.SelectedValue, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing)
+            Dim ChiTietPhieuKham As New ROWChiTietPhieuKhamDTO() With {.MaChiTietPhieuKham = ChiTietPhieuKhamBUS.GetMaChiTietPhieuKham(),
+                                                                       .MaKhamBenh = cbMaKhamBenh.SelectedValue}
             listChiTietPhieuKham.Add(ChiTietPhieuKham)
             dgChiTietPhieuKham.SelectedIndex = dgChiTietPhieuKham.Items.Count - 1
         End If
@@ -58,7 +60,7 @@ Public Class ucPhieuKham
         ChiTietPhieuKham.MaDonVi = cbDonVi.SelectedValue
 
         If Not ChiTietPhieuKhamBUS.IsVaildSoLuong(tbSoLuong.Text, ChiTietPhieuKham.SoLuong) Then
-            Domain.Dialog.Show("Năm sinh không hợp lệ")
+            Domain.Dialog.Show("Số lượng không hợp lệ")
             Return
         End If
 
@@ -96,8 +98,22 @@ Public Class ucPhieuKham
         End If
     End Sub
 
+    Private Sub LoadComboBoxData()
+        cbMaKhamBenh.ItemsSource = KhamBenhBUS.GetAllMaKhamBenh()
+        cbLoaiBenh.ItemsSource = LoaiBenhBUS.GetAllLoaiBenh()
+        cbDonVi.ItemsSource = LoaiDonViBUS.GetAllLoaiDonVi()
+        cbCachDung.ItemsSource = LoaiCachDungBUS.GetAllLoaiCachDung()
+        cbThuoc.ItemsSource = LoaiThuocBUS.GetAllLoaiThuoc()
+    End Sub
+
     Private Sub cbMaKhamBenh_SelectionChanged(sender As Object, e As SelectionChangedEventArgs)
         If cbMaKhamBenh IsNot Nothing Then
+            Dim khamBenh As KhamBenhDTO = KhamBenhBUS.GetKhamBenhByMaKhamBenh(cbMaKhamBenh.SelectedItem.ToString())
+            tbNgayKhamBenh.Text = khamBenh.NgayKham.Date.ToString()
+            tbHoTen.Text = khamBenh.HoTenBenhNhan
+            tbGioiTinh.Text = khamBenh.GioiTinh
+            tbNamSinh.Text = khamBenh.NamSinh
+            tbDiaChi.Text = khamBenh.DiaChi
             ReloadData()
         End If
     End Sub

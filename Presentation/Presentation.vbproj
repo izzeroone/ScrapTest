@@ -123,7 +123,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Domain\Dialog.vb" />
-    <Compile Include="Domain\MainMenuItem.vb" />
+    <Compile Include="Domain\GroupMenuItem.vb" />
     <Compile Include="Domain\MenuItem.vb" />
     <Compile Include="Domain\MessageDialog.xaml.vb">
       <DependentUpon>MessageDialog.xaml</DependentUpon>

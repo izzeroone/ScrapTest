@@ -29,6 +29,10 @@ Namespace Business
         Public Function GetAllMaKhamBenh() As ObservableCollection(Of String)
             Return KhamBenhDAL.GetAllMaKhamBenh()
         End Function
+
+        Public Function GetKhamBenhByMaKhamBenh(ByVal maKhamBenh As String) As KhamBenhDTO
+            Return KhamBenhDAL.GetKhamBenhByMaKhamBenh(maKhamBenh)
+        End Function
 #End Region
 
 #Region "5.Valild"
@@ -39,6 +43,16 @@ Namespace Business
                 End If
             End If
             Return False
+        End Function
+
+        Public Function IsKhamBenhInsertable(ByVal khamBenh As KhamBenhDTO) As Boolean
+            Dim result As Boolean
+            Try
+                Boolean.TryParse(KhamBenhDAL.IsKhamBenhInsertable(khamBenh).ToString(), result)
+            Catch ex As Exception
+                Throw ex
+            End Try
+            Return result
         End Function
 #End Region
     End Module

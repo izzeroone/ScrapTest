@@ -50,12 +50,17 @@ Public Class ucPhieuKhamBenh
 
         khamBenh.GioiTinh = tbGioiTinh.Text
         khamBenh.DiaChi = tbDiaChi.Text
-        Dim result As Boolean = KhamBenhBUS.InsertOrUpdateKhamBenh(khamBenh)
-        If (result = True) Then
-            Domain.Dialog.Show("Successful")
+        If KhamBenhBUS.IsKhamBenhInsertable(khamBenh) Then
+            Dim result As Boolean = KhamBenhBUS.InsertOrUpdateKhamBenh(khamBenh)
+            If (result = True) Then
+                Domain.Dialog.Show("Successful")
+            Else
+                Domain.Dialog.Show("False")
+            End If
         Else
-            Domain.Dialog.Show("False")
+            Domain.Dialog.Show("Vượt qua số bệnh nhân khám tối đa trong ngày")
         End If
+
         ReloadData()
     End Sub
 

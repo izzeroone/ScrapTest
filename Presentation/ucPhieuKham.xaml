@@ -9,8 +9,10 @@
              d:DesignHeight="700" d:DesignWidth="560">
     <Grid HorizontalAlignment="Center" VerticalAlignment="Stretch">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="160" />
-            <ColumnDefinition Width="400" />
+            <ColumnDefinition Width="120" />
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="200" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>
@@ -28,7 +30,7 @@
         <materialDesign:Card Margin="4 4 0 0" Background="{DynamicResource PrimaryHueLightBrush}"
                       Foreground="{DynamicResource PrimaryHueLightForegroundBrush}"
                       Grid.Row="0" Grid.Column="0"
-                      Grid.ColumnSpan="2"
+                      Grid.ColumnSpan="4"
                       VerticalAlignment="Center"
                       HorizontalAlignment="Center"
                       Padding="8">
@@ -41,52 +43,81 @@
                   SelectionChanged="cbMaKhamBenh_SelectionChanged"
 				 Margin="34.047,7.8,0.4,8">
         </ComboBox>
-        <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" >Mã Chi Tiết Phiếu Khám</TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" >Ngày Khám Bệnh</TextBlock>
         <TextBox Grid.Row="2" Grid.Column="1" 
+				    x:Name="tbNgayKhamBenh"
+				 Margin="34.047,7.8,0.4,8">
+        </TextBox>
+        <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" >Họ Tên</TextBlock>
+        <TextBox Grid.Row="3" Grid.Column="1" 
+				    x:Name="tbHoTen"
+				 Margin="34.047,7.8,0.4,8">
+        </TextBox>
+        <TextBlock Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" >Giới tính</TextBlock>
+        <TextBox Grid.Row="4" Grid.Column="1" 
+				    x:Name="tbGioiTinh"
+				 Margin="34.047,7.8,0.4,8">
+        </TextBox>
+        <TextBlock Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" >Năm Sinh</TextBlock>
+        <TextBox Grid.Row="5" Grid.Column="1" 
+				    x:Name="tbNamSinh"
+				 Margin="34.047,7.8,0.4,8">
+        </TextBox>
+        <TextBlock Grid.Row="6" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" >Địa Chỉ</TextBlock>
+        <TextBox Grid.Row="6" Grid.Column="1" 
+				    x:Name="tbDiaChi"
+                 AcceptsReturn="True"
+				 Margin="34.047,7.8,0.4,8">
+        </TextBox>
+            <TextBlock Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Margin="16,11.8,7.4,13" >Mã CTPK</TextBlock>
+        <TextBox Grid.Row="1" Grid.Column="3" 
 				    x:Name="tbMaChiTietPhieuKham"
                  IsReadOnly="True"
                  Text="{Binding SelectedItem.MaChiTietPhieuKham, ElementName=dgChiTietPhieuKham, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
 				 Margin="34.047,7.8,0.4,8">
         </TextBox>
-        <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" >Triệu chứng</TextBlock>
-        <TextBox Grid.Row="3" Grid.Column="1" 
+        <TextBlock Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" Margin="16,11.8,7.4,13" >Triệu chứng</TextBlock>
+        <TextBox Grid.Row="2" Grid.Column="3" 
 				    x:Name="tbTrieuChung"
                  Text="{Binding SelectedItem.TrieuChung, ElementName=dgChiTietPhieuKham, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-				 Margin="34.047,7.8,0.4,8">
+				 Margin="34.047,7.8,0.4,8"
+                 AcceptsReturn="True"                 
+                 VerticalScrollBarVisibility="Auto"
+                 TextWrapping="Wrap">
         </TextBox>
-        <TextBlock Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" >Bệnh</TextBlock>
-        <ComboBox Grid.Row="4" Grid.Column="1" 
+        <TextBlock Grid.Row="3" Grid.Column="2" VerticalAlignment="Center" Margin="16,11.8,7.4,13" >Bệnh</TextBlock>
+        <ComboBox Grid.Row="3" Grid.Column="3" 
 				    x:Name="cbLoaiBenh"
                   SelectedValue="{Binding SelectedItem.MaLoaiBenh, ElementName=dgChiTietPhieuKham, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
 				 Margin="34.047,7.8,0.4,8">
         </ComboBox>
-        <TextBlock Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" >Tên thuốc</TextBlock>
-        <ComboBox Grid.Row="5" Grid.Column="1" 
+        <TextBlock Grid.Row="4" Grid.Column="2" VerticalAlignment="Center" Margin="16,11.8,7.4,13" >Tên thuốc</TextBlock>
+        <ComboBox Grid.Row="4" Grid.Column="3" 
 				    x:Name="cbThuoc"
                   SelectedValue="{Binding SelectedItem.MaThuoc, ElementName=dgChiTietPhieuKham, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
 				 Margin="34.047,7.8,0.4,8">
         </ComboBox>
-        <TextBlock Grid.Row="6" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" >Đơn vị</TextBlock>
-        <ComboBox Grid.Row="6" Grid.Column="1" 
+        <TextBlock Grid.Row="5" Grid.Column="2" VerticalAlignment="Center" Margin="16,11.8,7.4,13" >Đơn vị</TextBlock>
+        <ComboBox Grid.Row="5" Grid.Column="3" 
 				    x:Name="cbDonVi"
                   SelectedValue="{Binding SelectedItem.MaDonVi, ElementName=dgChiTietPhieuKham, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
 				 Margin="34.047,7.8,0.4,8">
         </ComboBox>
-        <TextBlock Grid.Row="7" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" >Số lượng</TextBlock>
-        <TextBox Grid.Row="7" Grid.Column="1" 
+        <TextBlock Grid.Row="6" Grid.Column="2" VerticalAlignment="Center" Margin="16,11.8,7.4,13" >Số lượng</TextBlock>
+        <TextBox Grid.Row="6" Grid.Column="3" 
 				    x:Name="tbSoLuong"
 				 Margin="34.047,7.8,0.4,8"
                  Text="{Binding SelectedItem.SoLuong, ElementName=dgChiTietPhieuKham, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                   PreviewTextInput="NumberValidationTextBox">
         </TextBox>
 
-        <TextBlock Grid.Row="8" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" >Cách dùng</TextBlock>
-        <ComboBox Grid.Row="8" Grid.Column="1" 
+        <TextBlock Grid.Row="7" Grid.Column="2" VerticalAlignment="Center" Margin="16,11.8,7.4,13" >Cách dùng</TextBlock>
+        <ComboBox Grid.Row="7" Grid.Column="3" 
 				    x:Name="cbCachDung"
                   SelectedValue="{Binding SelectedItem.MaCachDung, ElementName=dgChiTietPhieuKham, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
 				 Margin="34.047,7.8,0.4,8">
         </ComboBox>
-        <DataGrid Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2"  
+        <DataGrid Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="4"  
             Margin="0 8 0 0" x:Name="dgChiTietPhieuKham" CanUserSortColumns="True" CanUserAddRows="False"
                        materialDesign:DataGridAssist.CellPadding="4 2 2 2" materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2"
                     ItemsSource="{Binding}" AutoGenerateColumns="False" 
@@ -128,7 +159,7 @@
 
             </DataGrid.Columns>
         </DataGrid>
-        <StackPanel Grid.Row="10" Grid.Column="1" Orientation="Horizontal" Margin="0 12 0 0" FlowDirection="RightToLeft">
+        <StackPanel Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="4" Orientation="Horizontal" Margin="0 12 0 0" FlowDirection="RightToLeft">
             <Button Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="0 12 8 0" Width="100"
                     ToolTip="Resource name: MaterialDesignRaisedDarkButton"
                         Click="NewButton_Click">

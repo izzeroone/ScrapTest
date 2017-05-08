@@ -111,6 +111,26 @@ Namespace DataAccess
             End Try
         End Function
 
+        Public Function GetKhamBenhByMaKhamBenh(ByVal MaKhamBenh As String) As KhamBenhDTO
+            Dim param As New List(Of NpgsqlParameter)
+            Dim parameter As New NpgsqlParameter()
+
+            parameter.NpgsqlDbType = NpgsqlDbType.Char
+            parameter.Value = MaKhamBenh
+            param.Add(parameter)
+
+            Dim tb As DataTable = ExecuteQuery("getkhambenhbymakhambenh", param)
+            Return New KhamBenhDTO(tb.Rows.Item(0))
+        End Function
+#End Region
+#Region "4.Vaild"
+        Public Function IsKhamBenhInsertable(ByVal khamBenh As KhamBenhDTO) As Object
+            Dim param As New List(Of NpgsqlParameter)
+            param.Add(New NpgsqlParameter() With {.NpgsqlDbType = NpgsqlDbType.Char, .Value = khamBenh.MaKhamBenh})
+            param.Add(New NpgsqlParameter() With {.NpgsqlDbType = NpgsqlDbType.Date, .Value = khamBenh.NgayKham})
+
+            Return ObjExecuteQuery("iskhambenhinsertable", param)
+        End Function
 #End Region
     End Module
 End Namespace

@@ -7,7 +7,7 @@
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="500" d:DesignWidth="500">
    
     <Grid HorizontalAlignment="Center" VerticalAlignment="Stretch">
         <Grid.ColumnDefinitions>
@@ -38,16 +38,8 @@
             <TextBlock Grid.Row = "0" Grid.Column="0"  Grid.ColumnSpan="2" Grid.RowSpan="2" TextAlignment="Center" 
                        TextElement.FontWeight="Bold" TextElement.FontSize="18">LẬP PHIẾU KHÁM BỆNH</TextBlock>
         </materialDesign:Card>
-        <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" Grid.ColumnSpan="2">Mã khám bệnh</TextBlock>
-        <TextBox Grid.Row="2" Grid.Column="1" 
-				    x:Name="tbMaKhamBenh"
-                 IsReadOnly="True"
-                 Background="Gray"
-                 Text="{Binding SelectedItem.MaKhamBenh, ElementName=dgKhamBenh, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-				    Grid.ColumnSpan="2" Margin="34.047,7.8,0.4,8">
-        </TextBox>
-        <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="16,3.6,7.4,5.2" Grid.ColumnSpan="2">Ngày khám</TextBlock>
-        <DatePicker Grid.Row="3" 
+        <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="16,3.6,7.4,5.2" Grid.ColumnSpan="2">Ngày khám</TextBlock>
+        <DatePicker Grid.Row="2" 
                     Grid.Column="1" 
                     Grid.ColumnSpan="2"
 				    x:Name="tbNgayKham"
@@ -55,6 +47,14 @@
                     SelectedDate="{x:Static sys:DateTime.Now}"
                     Margin="34.047,8,0.4,8" 
                     SelectedDateChanged="DateTextBox_SelectedDateChanged"/>
+        <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" Grid.ColumnSpan="2">Mã khám bệnh</TextBlock>
+        <TextBox Grid.Row="3" Grid.Column="1" 
+				    x:Name="tbMaKhamBenh"
+                 IsReadOnly="True"
+                 Background="Gray"
+                 Text="{Binding SelectedItem.MaKhamBenh, ElementName=dgKhamBenh, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+				    Grid.ColumnSpan="2" Margin="34.047,7.8,0.4,8">
+        </TextBox>
         <TextBlock Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" Grid.ColumnSpan="2">Họ tên</TextBlock>
         <TextBox Grid.Row="4" Grid.Column="1" 
 				    x:Name="tbHoTen"
@@ -116,8 +116,8 @@
 
             </DataGrid.Columns>
         </DataGrid>
-        <Grid Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="2" Margin="34.047,0.4,0.4,-0.4" Grid.RowSpan="6" >
-            <StackPanel Orientation="Horizontal" Margin="0 12 0 0">
+        <Grid Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="3" Margin="34.047,0.4,0.4,-0.4" Grid.RowSpan="6"  >
+            <StackPanel Orientation="Horizontal" Margin="0 12 0 0" FlowDirection="RightToLeft">
                 <Button Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="0 12 8 0" Width="100"
                     ToolTip="Resource name: MaterialDesignRaisedDarkButton"
                         Click="NewButton_Click">

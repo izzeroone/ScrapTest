@@ -42,6 +42,10 @@
             End Set
         End Property
 
+        Public Sub New()
+
+        End Sub
+
         Public Sub New(ByVal row As DataRow)
             MyBase.New(row)
             _TenLoaiBenh = row.Field(Of String)("tenloaibenh")
