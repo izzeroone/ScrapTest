@@ -99,17 +99,19 @@ Public Class ucPhieuKham
     End Sub
 
     Private Sub LoadComboBoxData()
-        cbMaKhamBenh.ItemsSource = KhamBenhBUS.GetAllMaKhamBenh()
-        cbLoaiBenh.ItemsSource = LoaiBenhBUS.GetAllLoaiBenh()
-        cbDonVi.ItemsSource = LoaiDonViBUS.GetAllLoaiDonVi()
-        cbCachDung.ItemsSource = LoaiCachDungBUS.GetAllLoaiCachDung()
-        cbThuoc.ItemsSource = LoaiThuocBUS.GetAllLoaiThuoc()
+        If Me.IsVisible = True Then
+            cbMaKhamBenh.ItemsSource = KhamBenhBUS.GetAllMaKhamBenh()
+            cbLoaiBenh.ItemsSource = LoaiBenhBUS.GetAllLoaiBenh()
+            cbDonVi.ItemsSource = LoaiDonViBUS.GetAllLoaiDonVi()
+            cbCachDung.ItemsSource = LoaiCachDungBUS.GetAllLoaiCachDung()
+            cbThuoc.ItemsSource = LoaiThuocBUS.GetAllLoaiThuoc()
+        End If
     End Sub
 
     Private Sub cbMaKhamBenh_SelectionChanged(sender As Object, e As SelectionChangedEventArgs)
         If cbMaKhamBenh IsNot Nothing Then
             Dim khamBenh As KhamBenhDTO = KhamBenhBUS.GetKhamBenhByMaKhamBenh(cbMaKhamBenh.SelectedItem.ToString())
-            tbNgayKhamBenh.Text = khamBenh.NgayKham.Date.ToString()
+            tbNgayKhamBenh.Text = khamBenh.NgayKham.Date.ToShortDateString()
             tbHoTen.Text = khamBenh.HoTenBenhNhan
             tbGioiTinh.Text = khamBenh.GioiTinh
             tbNamSinh.Text = khamBenh.NamSinh

@@ -46,7 +46,7 @@
         <TextBox Grid.Row="2" Grid.Column="1" 
 				    x:Name="tbTenCachDung"
                  Text="{Binding SelectedItem.TenCachDung, ElementName=dgLoaiCachDung, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-				 Margin="34.047,7.8,0.4,8">
+				 Margin="34.047,7.8,0.4,8" AcceptsReturn="True">
         </TextBox>
         <DataGrid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"  
             Margin="0 8 0 0" x:Name="dgLoaiCachDung" CanUserSortColumns="True" CanUserAddRows="False"

@@ -82,6 +82,7 @@
       <DependentUpon>Application.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Domain\DateToStringConverter.vb" />
     <Compile Include="LoaiThuoc.vb" />
     <Compile Include="ucLoaiBenh.xaml.vb">
       <DependentUpon>ucLoaiBenh.xaml</DependentUpon>
@@ -100,6 +101,9 @@
     </Compile>
     <Compile Include="ucPhieuKhamBenh.xaml.vb">
       <DependentUpon>ucPhieuKhamBenh.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucTraCuuBenhNhan.xaml.vb">
+      <DependentUpon>ucTraCuuBenhNhan.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -194,6 +198,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ucPhieuKhamBenh.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ucTraCuuBenhNhan.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

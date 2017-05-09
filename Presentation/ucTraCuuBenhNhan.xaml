@@ -12,7 +12,7 @@
     <UserControl.Resources>
         <domain:DateToStringConverter x:Key ="DateToStringConverter"></domain:DateToStringConverter>
     </UserControl.Resources>
-        
+
     <Grid HorizontalAlignment="Center" VerticalAlignment="Stretch">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="120" />
@@ -43,12 +43,17 @@
             <TextBlock Grid.Row = "0" Grid.Column="0"  TextAlignment="Center" 
                        TextElement.FontWeight="Bold" TextElement.FontSize="18">LẬP PHIẾU KHÁM BỆNH</TextBlock>
         </materialDesign:Card>
-        <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" >Mã Khám Bệnh</TextBlock>
-        <ComboBox Grid.Row="1" Grid.Column="1" 
-				    x:Name="cbMaKhamBenh"
-                  SelectionChanged="cbMaKhamBenh_SelectionChanged"
-				 Margin="34.047,7.8,0.4,8">
-        </ComboBox>
+        <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" >Ngày khám</TextBlock>
+        <DatePicker Grid.Row="1" 
+                    Grid.Column="1" 
+				    x:Name="dpNgayKhamBatDau"
+				    materialDesign:HintAssist.Hint="Bắt đầu"
+                    Margin="34.047,8,0.4,8" />
+        <DatePicker Grid.Row="1" 
+                    Grid.Column="3" 
+				    x:Name="dpNgayKhamKetThuc"
+				    materialDesign:HintAssist.Hint="Kết thúc"
+                    Margin="34.047,8,0.4,8" />
         <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" >Ngày Khám Bệnh</TextBlock>
         <TextBox Grid.Row="2" Grid.Column="1" 
 				    x:Name="tbNgayKhamBenh"
@@ -73,13 +78,6 @@
         <TextBox Grid.Row="6" Grid.Column="1" 
 				    x:Name="tbDiaChi"
                  AcceptsReturn="True"
-				 Margin="34.047,7.8,0.4,8">
-        </TextBox>
-            <TextBlock Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Margin="16,11.8,7.4,13" >Mã CTPK</TextBlock>
-        <TextBox Grid.Row="1" Grid.Column="3" 
-				    x:Name="tbMaChiTietPhieuKham"
-                 IsReadOnly="True"
-                 Text="{Binding SelectedItem.MaChiTietPhieuKham, ElementName=dgChiTietPhieuKham, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
 				 Margin="34.047,7.8,0.4,8">
         </TextBox>
         <TextBlock Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" Margin="16,11.8,7.4,13" >Triệu chứng</TextBlock>
@@ -138,7 +136,7 @@
                                                            Header="Triệu Chứng"                                                        
                                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
 
-                
+
                 <materialDesign:MaterialDataGridTextColumn Binding="{Binding TenLoaiBenh}"
                                                            Header="Tên Bệnh"                                                        
                                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
