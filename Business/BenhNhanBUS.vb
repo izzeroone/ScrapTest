@@ -17,6 +17,21 @@ Namespace Business
 
         End Function
 
+        Public Function FindKhamBenhV2(ByVal ngayKhamBatDau As Date,
+                                     ByVal ngayKhamKetThuc As Date,
+                                     ByVal hoTen As String,
+                                     ByVal gioiTinh As String,
+                                     ByVal namSinh As String,
+                                     ByVal diaChi As String,
+                                     ByVal trieuChung As String,
+                                     ByVal tenLoaiBenh As String,
+                                     ByVal tenThuoc As String,
+                                     ByVal tenDonVi As String) As List(Of BenhNhanDTO)
+
+            Return BenhNhanDAL.FindBenhNhanV2(ngayKhamBatDau, ngayKhamKetThuc, hoTen, gioiTinh, namSinh, diaChi, trieuChung, tenLoaiBenh, tenThuoc, tenDonVi)
+
+        End Function
+
         Public Function IsVaildNamSinh(ByVal namSinh As String, ByRef iNamSinh As Integer) As Boolean
             If (Integer.TryParse(namSinh, iNamSinh)) Then
                 If (namSinh > 0) Then

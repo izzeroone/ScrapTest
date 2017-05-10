@@ -102,6 +102,9 @@
     <Compile Include="ucPhieuKhamBenh.xaml.vb">
       <DependentUpon>ucPhieuKhamBenh.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ucTraCuuBenhNhanV2.xaml.vb">
+      <DependentUpon>ucTraCuuBenhNhanV2.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ucTraCuuBenhNhan.xaml.vb">
       <DependentUpon>ucTraCuuBenhNhan.xaml</DependentUpon>
     </Compile>
@@ -200,6 +203,10 @@
     <Page Include="ucPhieuKhamBenh.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ucTraCuuBenhNhanV2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="ucTraCuuBenhNhan.xaml">
       <SubType>Designer</SubType>
