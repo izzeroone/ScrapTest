@@ -34,7 +34,7 @@
             <TextBlock Grid.Row = "0" Grid.Column="0"  TextAlignment="Center" 
                        TextElement.FontWeight="Bold" TextElement.FontSize="18">DANH SÁCH LOẠI ĐƠN VỊ</TextBlock>
         </materialDesign:Card>
-        <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" >Mã Đơn Vị</TextBlock>
+        <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" >Mã đơn vị</TextBlock>
         <TextBox Grid.Row="1" Grid.Column="1" 
 				    x:Name="tbMaDonVi"
                  IsReadOnly="True"

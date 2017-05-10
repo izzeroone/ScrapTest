@@ -58,15 +58,9 @@ Public Class ucTraCuuBenhNhanV2
     Private Sub FindButton_Click(sender As Object, e As RoutedEventArgs)
         Dim ngayKhamBatDau As Date
         Dim ngayKhamKetThuc As Date
-        'Dim hoTen As String
         Dim gioiTinh As String
         Dim namSinh As String = String.Empty
         Dim iNamSinh As Integer
-        'Dim diaChi As String
-        'Dim trieuChung As String
-        Dim maLoaiBenh As String
-        Dim maThuoc As String
-        Dim maDonVi As String
 
         If dpNgayKhamBatDau.SelectedDate Is Nothing Then
             If dpNgayKhamKetThuc.SelectedDate Is Nothing Then

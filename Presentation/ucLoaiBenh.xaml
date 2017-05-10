@@ -34,7 +34,7 @@
             <TextBlock Grid.Row = "0" Grid.Column="0"  TextAlignment="Center" 
                        TextElement.FontWeight="Bold" TextElement.FontSize="18">DANH SÁCH LOẠI BỆNH</TextBlock>
         </materialDesign:Card>
-        <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" Grid.ColumnSpan="2">Mã Loại bệnh</TextBlock>
+        <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" Grid.ColumnSpan="2">Mã loại bệnh</TextBlock>
         <TextBox Grid.Row="1" Grid.Column="1" 
 				    x:Name="tbMaLoaiBenh"
                  IsReadOnly="True"

@@ -43,18 +43,18 @@
             <TextBlock Grid.Row = "0" Grid.Column="0"  TextAlignment="Center" 
                        TextElement.FontWeight="Bold" TextElement.FontSize="18">LẬP PHIẾU KHÁM BỆNH</TextBlock>
         </materialDesign:Card>
-        <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" >Mã Khám Bệnh</TextBlock>
+        <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" >Mã khám bệnh</TextBlock>
         <ComboBox Grid.Row="1" Grid.Column="1" 
 				    x:Name="cbMaKhamBenh"
                   SelectionChanged="cbMaKhamBenh_SelectionChanged"
 				 Margin="34.047,7.8,0.4,8">
         </ComboBox>
-        <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" >Ngày Khám Bệnh</TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" >Ngày khám bệnh</TextBlock>
         <TextBox Grid.Row="2" Grid.Column="1" 
 				    x:Name="tbNgayKhamBenh"
 				 Margin="34.047,7.8,0.4,8">
         </TextBox>
-        <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" >Họ Tên</TextBlock>
+        <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" >Họ tên</TextBlock>
         <TextBox Grid.Row="3" Grid.Column="1" 
 				    x:Name="tbHoTen"
 				 Margin="34.047,7.8,0.4,8">
@@ -64,12 +64,12 @@
 				    x:Name="tbGioiTinh"
 				 Margin="34.047,7.8,0.4,8">
         </TextBox>
-        <TextBlock Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" >Năm Sinh</TextBlock>
+        <TextBlock Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" >Năm sinh</TextBlock>
         <TextBox Grid.Row="5" Grid.Column="1" 
 				    x:Name="tbNamSinh"
 				 Margin="34.047,7.8,0.4,8">
         </TextBox>
-        <TextBlock Grid.Row="6" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" >Địa Chỉ</TextBlock>
+        <TextBlock Grid.Row="6" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" >Địa chỉ</TextBlock>
         <TextBox Grid.Row="6" Grid.Column="1" 
 				    x:Name="tbDiaChi"
                  AcceptsReturn="True"
@@ -147,9 +147,6 @@
                                                            Header="Tên Thuốc"                                                        
                                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
 
-                <materialDesign:MaterialDataGridTextColumn Binding="{Binding MaDonVi}"
-                                                           Header="Đơn Vị"                                                        
-                                                           EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
 
                 <materialDesign:MaterialDataGridTextColumn Binding="{Binding TenDonVi}"
                                                            Header="Đơn Vị"                                                        
