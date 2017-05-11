@@ -84,6 +84,9 @@
     </Compile>
     <Compile Include="Domain\DateToStringConverter.vb" />
     <Compile Include="LoaiThuoc.vb" />
+    <Compile Include="ucHoaDonThanhToan.xaml.vb">
+      <DependentUpon>ucHoaDonThanhToan.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ucLoaiBenh.xaml.vb">
       <DependentUpon>ucLoaiBenh.xaml</DependentUpon>
     </Compile>
@@ -177,6 +180,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ucHoaDonThanhToan.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
