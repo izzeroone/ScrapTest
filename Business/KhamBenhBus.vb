@@ -30,6 +30,10 @@ Namespace Business
             Return KhamBenhDAL.GetAllMaKhamBenh()
         End Function
 
+        Public Function GetAllKhamBenh() As ObservableCollection(Of KhamBenhDTO)
+            Return KhamBenhDAL.GetAllKhamBenh()
+        End Function
+
         Public Function GetKhamBenhByMaKhamBenh(ByVal maKhamBenh As String) As KhamBenhDTO
             Return KhamBenhDAL.GetKhamBenhByMaKhamBenh(maKhamBenh)
         End Function

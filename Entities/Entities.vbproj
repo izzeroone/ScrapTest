@@ -66,6 +66,7 @@
     <Compile Include="BenhNhanDTO.vb" />
     <Compile Include="CauHinhCSDLDTO.vb" />
     <Compile Include="ChiTietPhieuKhamDTO.vb" />
+    <Compile Include="ChiTietThuocDTO.vb" />
     <Compile Include="KhamBenhDTO.vb" />
     <Compile Include="LoaiBenhDTO.vb" />
     <Compile Include="LoaiCachDungDTO.vb" />

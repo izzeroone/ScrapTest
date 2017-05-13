@@ -111,6 +111,20 @@ Namespace DataAccess
             End Try
         End Function
 
+        Public Function GetAllKhamBenh() As ObservableCollection(Of KhamBenhDTO)
+            Try
+                Dim list As New ObservableCollection(Of KhamBenhDTO)
+
+                Dim tb As DataTable = ExecuteQuery("getallkhambenh")
+                For Each row As DataRow In tb.Rows
+                    list.Add(New KhamBenhDTO(row))
+                Next
+                Return list
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
+
         Public Function GetKhamBenhByMaKhamBenh(ByVal MaKhamBenh As String) As KhamBenhDTO
             Dim param As New List(Of NpgsqlParameter)
             Dim parameter As New NpgsqlParameter()

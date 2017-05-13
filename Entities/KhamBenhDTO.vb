@@ -8,6 +8,8 @@ Namespace Entities
         Private _gioiTinh As String
         Private _namSinh As Int32
         Private _diaChi As String
+        Private _tienKham As Integer
+        Private _tienThuoc As Integer
 
         Public Property MaKhamBenh As String
             Get
@@ -63,6 +65,24 @@ Namespace Entities
             End Set
         End Property
 
+        Public Property TienKham As Integer
+            Get
+                Return _tienKham
+            End Get
+            Set(value As Integer)
+                _tienKham = value
+            End Set
+        End Property
+
+        Public Property TienThuoc As Integer
+            Get
+                Return _tienThuoc
+            End Get
+            Set(value As Integer)
+                _tienThuoc = value
+            End Set
+        End Property
+
         Public Sub New()
 
         End Sub
@@ -84,6 +104,8 @@ Namespace Entities
             _gioiTinh = row.Field(Of String)("gioitinh")
             _namSinh = row.Field(Of Int32)("namsinh")
             _diaChi = row.Field(Of String)("diachi")
+            TienKham = row.Field(Of Decimal)("tienkham")
+            TienThuoc = row.Field(Of Decimal)("tienthuoc")
         End Sub
     End Class
 End Namespace

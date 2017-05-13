@@ -5,8 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:Presentation"
+             xmlns:domain="clr-namespace:Presentation.Domain"
              mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="560">
+             d:DesignHeight="500" d:DesignWidth="560"
+             IsVisibleChanged="UserControl_IsVisibleChanged">
+    <UserControl.Resources>
+        <domain:DateToStringConverter x:Key ="DateToStringConverter"></domain:DateToStringConverter>
+    </UserControl.Resources>
     <Grid HorizontalAlignment="Center" VerticalAlignment="Stretch">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="160" />
@@ -36,19 +41,22 @@
         </materialDesign:Card>
         <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" Grid.ColumnSpan="2">Mã khám bệnh</TextBlock>
         <ComboBox Grid.Row="1" Grid.Column="1" 
-				    x:Name="tbMaKhamBenh"
-				 Margin="34.047,7.8,0.4,8">
+				    x:Name="cbMaKhamBenh"
+				 Margin="34.047,7.8,0.4,8"
+                  SelectionChanged="cbMaKhamBenh_SelectionChanged">
         </ComboBox>
         <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" Grid.ColumnSpan="2">Họ tên</TextBlock>
         <TextBox Grid.Row="2" Grid.Column="1" 
 				    x:Name="tbHoTen"
 				 Margin="34.047,7.8,0.4,8"
+                 Text="{Binding ElementName=cbMaKhamBenh, Path=SelectedItem.HoTenBenhNhan, UpdateSourceTrigger=PropertyChanged}"
                  IsReadOnly="True">
         </TextBox>
         <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" Grid.ColumnSpan="2">Ngày khám</TextBlock>
         <TextBox Grid.Row="3" Grid.Column="1" 
 				    x:Name="tbNgayKham"
 				 Margin="34.047,7.8,0.4,8"
+                 Text="{Binding ElementName=cbMaKhamBenh, Path=SelectedItem.NgayKham, Converter={StaticResource DateToStringConverter} ,UpdateSourceTrigger=PropertyChanged}"
                  IsReadOnly="True">
         </TextBox>
         <TextBlock Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" Grid.ColumnSpan="2">Tiền khám</TextBlock>
@@ -70,9 +78,9 @@
                  IsReadOnly="True">
         </TextBox>
         <DataGrid Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2"  
-            Margin="0 8 0 0" x:Name="dgLoaiThuoc" CanUserSortColumns="True" CanUserAddRows="False"
+            Margin="0 8 0 0" x:Name="dgChiTietThuoc" CanUserSortColumns="True" CanUserAddRows="False"
                        materialDesign:DataGridAssist.CellPadding="4 2 2 2" materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2"
-                    ItemsSource="{Binding}" AutoGenerateColumns="False" 
+                    ItemsSource="{Binding}" AutoGenerateColumns="True" 
                   MaxHeight="300">
             <DataGrid.Columns>
 
@@ -82,8 +90,10 @@
         </DataGrid>
         <StackPanel Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="0 12 0 0" FlowDirection="RightToLeft">
             <Button Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="0 12 8 0" Width="100"
-                    ToolTip="Resource name: MaterialDesignRaisedDarkButton">
-                TẠO MỚI
+                    ToolTip="Resource name: MaterialDesignRaisedDarkButton"
+                    x:Name="btThanhToan"
+                    Click="btThanhToan_Click">
+                THANH TOÁN
             </Button>
         </StackPanel>
     </Grid>
