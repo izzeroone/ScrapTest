@@ -83,7 +83,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Domain\DateToStringConverter.vb" />
-    <Compile Include="LoaiThuoc.vb" />
+    <Compile Include="Domain\Encrypt.vb" />
+    <Compile Include="ucCauHinhCSDL.xaml.vb">
+      <DependentUpon>ucCauHinhCSDL.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ucHoaDonThanhToan.xaml.vb">
       <DependentUpon>ucHoaDonThanhToan.xaml</DependentUpon>
     </Compile>
@@ -183,6 +186,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ucCauHinhCSDL.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ucHoaDonThanhToan.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -224,6 +231,10 @@
     <ProjectReference Include="..\Business\Business.vbproj">
       <Project>{afa3bca0-e723-419a-8faf-8e086c4026b9}</Project>
       <Name>Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataAccess\DataAccess.vbproj">
+      <Project>{64fe2d85-81c7-4332-9d55-ebc467fe5ce9}</Project>
+      <Name>DataAccess</Name>
     </ProjectReference>
     <ProjectReference Include="..\Entities\Entities.vbproj">
       <Project>{35daa3d6-8f15-447e-b718-8bde2fb3f45a}</Project>

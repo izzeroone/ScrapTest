@@ -1,4 +1,4 @@
-﻿
+﻿Imports DataAccess.DataAccess
 Class MainWindow
 
     Public Sub New()
@@ -7,6 +7,7 @@ Class MainWindow
         InitializeComponent()
 
         ' Add any initialization after the InitializeComponent() call.
+        CauHinhCSDLDAL.WriteCauHinhCSDL()
         SetupHarburgerBar()
         Business.Business.ThongSoBUS.LoadThongSo()
         Task.Factory.StartNew(Sub()
@@ -39,6 +40,11 @@ Class MainWindow
         menuItems3.MenuItems.Add(New Domain.MenuItem() With {.Name = "Loại đơn vị", .Content = New ucLoaiDonVi()})
         menuItems3.MenuItems.Add(New Domain.MenuItem() With {.Name = "Loại cách dùng", .Content = New ucLoaiCachDung()})
         mainMenuItems.Add(menuItems3)
+
+        Dim menuItems4 As New Domain.GroupMenuItem With {.Name = "CẤU HÌNH"}
+        menuItems4.MenuItems.Add(New Domain.MenuItem() With {.Name = "Kết nối CSDL", .Content = New ucCauHinhCSDL()})
+        mainMenuItems.Add(menuItems4)
+
         trvMenu.ItemsSource = mainMenuItems
     End Sub
 End Class

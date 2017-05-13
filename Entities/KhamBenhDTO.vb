@@ -2,64 +2,64 @@
 
 Namespace Entities
     Public Class KhamBenhDTO
-        Private _MaKhamBenh As String
-        Private _NgayKham As Date
-        Private _HoTenBenhNhan As String
-        Private _GioiTinh As String
-        Private _NamSinh As Int32
-        Private _DiaChi As String
+        Private _maKhamBenh As String
+        Private _ngayKham As Date
+        Private _hoTenBenhNhan As String
+        Private _gioiTinh As String
+        Private _namSinh As Int32
+        Private _diaChi As String
 
         Public Property MaKhamBenh As String
             Get
-                Return _MaKhamBenh
+                Return _maKhamBenh
             End Get
             Set(value As String)
-                _MaKhamBenh = value
+                _maKhamBenh = value
             End Set
         End Property
 
         Public Property NgayKham As Date
             Get
-                Return _NgayKham
+                Return _ngayKham
             End Get
             Set(value As Date)
-                _NgayKham = value
+                _ngayKham = value
             End Set
         End Property
 
         Public Property HoTenBenhNhan As String
             Get
-                Return _HoTenBenhNhan
+                Return _hoTenBenhNhan
             End Get
             Set(value As String)
-                _HoTenBenhNhan = value
+                _hoTenBenhNhan = value
             End Set
         End Property
 
         Public Property GioiTinh As String
             Get
-                Return _GioiTinh
+                Return _gioiTinh
             End Get
             Set(value As String)
-                _GioiTinh = value
+                _gioiTinh = value
             End Set
         End Property
 
         Public Property NamSinh As Int32
             Get
-                Return _NamSinh
+                Return _namSinh
             End Get
             Set(value As Int32)
-                _NamSinh = value
+                _namSinh = value
             End Set
         End Property
 
         Public Property DiaChi As String
             Get
-                Return _DiaChi
+                Return _diaChi
             End Get
             Set(value As String)
-                _DiaChi = value
+                _diaChi = value
             End Set
         End Property
 
@@ -69,21 +69,21 @@ Namespace Entities
 
         Public Sub New(ByVal MaKhamBenh As String, ByVal NgayKham As Date, ByVal HoTenBenhNhan As String, ByVal GioiTinh As String,
                    ByVal NamSinh As Int16, ByVal DiaChi As String)
-            _MaKhamBenh = MaKhamBenh
-            _NgayKham = NgayKham
-            _HoTenBenhNhan = HoTenBenhNhan
-            _GioiTinh = GioiTinh
-            _NamSinh = NamSinh
-            _DiaChi = DiaChi
+            _maKhamBenh = MaKhamBenh
+            _ngayKham = NgayKham
+            _hoTenBenhNhan = HoTenBenhNhan
+            _gioiTinh = GioiTinh
+            _namSinh = NamSinh
+            _diaChi = DiaChi
         End Sub
 
         Public Sub New(ByVal row As DataRow)
-            _MaKhamBenh = row.Field(Of String)("makhambenh")
-            _NgayKham = row.Field(Of Date)("ngaykham")
-            _HoTenBenhNhan = row.Field(Of String)("hotenbenhnhan")
-            _GioiTinh = row.Field(Of String)("gioitinh")
-            _NamSinh = row.Field(Of Int32)("namsinh")
-            _DiaChi = row.Field(Of String)("diachi")
+            _maKhamBenh = row.Field(Of String)("makhambenh")
+            _ngayKham = row.Field(Of Date)("ngaykham")
+            _hoTenBenhNhan = row.Field(Of String)("hotenbenhnhan")
+            _gioiTinh = row.Field(Of String)("gioitinh")
+            _namSinh = row.Field(Of Int32)("namsinh")
+            _diaChi = row.Field(Of String)("diachi")
         End Sub
     End Class
 End Namespace

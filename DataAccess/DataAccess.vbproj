@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BenhNhanDAL.vb" />
+    <Compile Include="CauHinhCSDLDAL.vb" />
     <Compile Include="ChiTieuPhieuKhamDAL.vb" />
     <Compile Include="DataAccessHelper.vb" />
     <Compile Include="KhamBenhDAL.vb" />
@@ -119,6 +120,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Encrypt\Encrypt.csproj">
+      <Project>{82854b5c-a34a-4cdd-b5b7-633c07948c02}</Project>
+      <Name>Encrypt</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Entities\Entities.vbproj">
       <Project>{35daa3d6-8f15-447e-b718-8bde2fb3f45a}</Project>
       <Name>Entities</Name>

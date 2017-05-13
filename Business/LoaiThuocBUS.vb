@@ -21,7 +21,12 @@ Namespace Business
         End Function
 
         Public Function GetAllLoaiThuoc() As ObservableCollection(Of LoaiThuocDTO)
-            Return LoaiThuocDAL.GetAllLoaiThuoc()
+            Dim dt As DataTable = LoaiThuocDAL.GetAllLoaiThuoc()
+            Dim list As New ObservableCollection(Of LoaiThuocDTO)
+            For Each row As DataRow In dt.Rows
+                list.Add(New LoaiThuocDTO(row))
+            Next
+            Return list
         End Function
 #End Region
 

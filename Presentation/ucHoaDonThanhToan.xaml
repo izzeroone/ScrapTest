@@ -63,8 +63,14 @@
 				 Margin="34.047,7.8,0.4,8"
                  IsReadOnly="True">
         </TextBox>
-        <DataGrid Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2"  
-            Margin="0 8 0 0" x:Name="dgLoaiBenh" CanUserSortColumns="True" CanUserAddRows="False"
+        <TextBlock Grid.Row="6" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" Grid.ColumnSpan="2">Tình trạng</TextBlock>
+        <TextBox Grid.Row="6" Grid.Column="1" 
+				    x:Name="tbTinhTrang"
+				 Margin="34.047,7.8,0.4,8"
+                 IsReadOnly="True">
+        </TextBox>
+        <DataGrid Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2"  
+            Margin="0 8 0 0" x:Name="dgLoaiThuoc" CanUserSortColumns="True" CanUserAddRows="False"
                        materialDesign:DataGridAssist.CellPadding="4 2 2 2" materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2"
                     ItemsSource="{Binding}" AutoGenerateColumns="False" 
                   MaxHeight="300">
@@ -74,7 +80,7 @@
 
             </DataGrid.Columns>
         </DataGrid>
-        <StackPanel Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="0 12 0 0" FlowDirection="RightToLeft">
+        <StackPanel Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="0 12 0 0" FlowDirection="RightToLeft">
             <Button Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="0 12 8 0" Width="100"
                     ToolTip="Resource name: MaterialDesignRaisedDarkButton">
                 TẠO MỚI
