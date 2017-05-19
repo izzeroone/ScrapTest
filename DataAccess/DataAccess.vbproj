@@ -74,6 +74,7 @@
   <ItemGroup>
     <Compile Include="BenhNhanDAL.vb" />
     <Compile Include="CauHinhCSDLDAL.vb" />
+    <Compile Include="ChiTietHoaDonDAL.vb" />
     <Compile Include="ChiTietThuocDAL.vb" />
     <Compile Include="ChiTieuPhieuKhamDAL.vb" />
     <Compile Include="DataAccessHelper.vb" />
