@@ -36,7 +36,7 @@ Namespace DataAccess
 #End Region
 #Region "3. Get"
         Public Function GetMaCachDung() As String
-            Return ObjExecuteQuery("getmacachdung")
+            Return ExecuteScalar("getmacachdung")
         End Function
 
         Public Function GetAllLoaiCachDung() As ObservableCollection(Of LoaiCachDungDTO)

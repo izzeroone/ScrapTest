@@ -30,7 +30,7 @@ Namespace DataAccess
 #End Region
 #Region "3. Get"
         Public Function GetMaThuoc() As String
-            Return ObjExecuteQuery("getmathuoc")
+            Return ExecuteScalar("getmathuoc")
         End Function
 
         Public Function GetAllLoaiThuoc() As DataTable

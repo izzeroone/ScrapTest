@@ -7,7 +7,6 @@ Class MainWindow
         InitializeComponent()
 
         ' Add any initialization after the InitializeComponent() call.
-        CauHinhCSDLDAL.WriteCauHinhCSDL()
         SetupHarburgerBar()
         Business.Business.ThongSoBUS.LoadThongSo()
         Task.Factory.StartNew(Sub()

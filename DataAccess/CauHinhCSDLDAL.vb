@@ -8,7 +8,20 @@ Namespace DataAccess
         Private passphase As String = "QuanLyPhongMach"
 #Region "1. Get"
         Public Function GetAllCauHinhCSDL() As List(Of CauHinhCSDLDTO)
-
+            If Not File.Exists(IO.Path.Combine(My.Application.Info.DirectoryPath, "cauhinh.xml")) Then
+                WriteCauHinhCSDL()
+            End If
+            Dim serializer As New XmlSerializer(GetType(List(Of CauHinhCSDLDTO)))
+            Dim list As New List(Of CauHinhCSDLDTO)
+            Try
+                Using stream As FileStream = File.OpenWrite(IO.Path.Combine(My.Application.Info.DirectoryPath, "cauhinh.xml"))
+                    list = serializer.Deserialize(stream)
+                End Using
+                For Each item As CauHinhCSDLDTO In list
+                    item.Password = Encrypt.StringCipher.Decrypt(item.Password, passphase)
+                Next
+            Catch ex As Exception
+            End Try
         End Function
 #End Region
 #Region "2. Writing"

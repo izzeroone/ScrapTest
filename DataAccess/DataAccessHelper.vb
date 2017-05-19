@@ -48,7 +48,7 @@ Namespace DataAccess
             Return ExecuteQuery(spName, Nothing)
         End Function
 
-        Public Function ObjExecuteQuery(ByVal spName As String, sqlParams As List(Of NpgsqlParameter)) As Object
+        Public Function ExecuteScalar(ByVal spName As String, sqlParams As List(Of NpgsqlParameter)) As Object
             Dim dt As Object
             Try
                 Dim connect As NpgsqlConnection = New NpgsqlConnection(connectionString)
@@ -78,8 +78,8 @@ Namespace DataAccess
             Return dt
         End Function
 
-        Public Function ObjExecuteQuery(ByVal spName As String) As Object
-            Return ObjExecuteQuery(spName, Nothing)
+        Public Function ExecuteScalar(ByVal spName As String) As Object
+            Return ExecuteScalar(spName, Nothing)
         End Function
 
         Public Function ExecuteNoneQuery(ByVal spName As String, ByVal sqlParams As List(Of NpgsqlParameter)) As Integer

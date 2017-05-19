@@ -74,7 +74,7 @@ Namespace DataAccess
 #End Region
 #Region "3. Get"
         Public Function GetMaKhamBenh() As String
-            Return ObjExecuteQuery("getmakhambenh").ToString()
+            Return ExecuteScalar("getmakhambenh").ToString()
         End Function
 
         Public Function GetKhamBenhByNgayKham(ByVal ngayKham As Date) As BindingList(Of KhamBenhDTO)
@@ -143,7 +143,7 @@ Namespace DataAccess
             param.Add(New NpgsqlParameter() With {.NpgsqlDbType = NpgsqlDbType.Char, .Value = khamBenh.MaKhamBenh})
             param.Add(New NpgsqlParameter() With {.NpgsqlDbType = NpgsqlDbType.Date, .Value = khamBenh.NgayKham})
 
-            Return ObjExecuteQuery("iskhambenhinsertable", param)
+            Return ExecuteScalar("iskhambenhinsertable", param)
         End Function
 #End Region
     End Module

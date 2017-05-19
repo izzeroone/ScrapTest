@@ -36,7 +36,7 @@ Namespace DataAccess
 #End Region
 #Region "3. Get"
         Public Function GetMaDonVi() As String
-            Return ObjExecuteQuery("getmadonvi")
+            Return ExecuteScalar("getmadonvi")
         End Function
 
         Public Function GetAllLoaiDonVi() As ObservableCollection(Of LoaiDonViDTO)

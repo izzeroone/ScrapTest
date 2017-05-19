@@ -84,7 +84,7 @@ Namespace DataAccess
 #End Region
 #Region "3. Get"
         Public Function GetMaChiTietPhieuKham() As String
-            Return ObjExecuteQuery("getmachitietphieukham").ToString()
+            Return ExecuteScalar("getmachitietphieukham").ToString()
         End Function
 
         Public Function GetChiTietPhieuKhamByMaKhamBenh(ByVal maKhamBenh As String) As ObservableCollection(Of ChiTietPhieuKhamDTO)

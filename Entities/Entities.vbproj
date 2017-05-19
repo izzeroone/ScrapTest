@@ -65,8 +65,10 @@
   <ItemGroup>
     <Compile Include="BenhNhanDTO.vb" />
     <Compile Include="CauHinhCSDLDTO.vb" />
+    <Compile Include="ChiTietHoaDonDTO.vb" />
     <Compile Include="ChiTietPhieuKhamDTO.vb" />
     <Compile Include="ChiTietThuocDTO.vb" />
+    <Compile Include="HoaDonDTO.vb" />
     <Compile Include="KhamBenhDTO.vb" />
     <Compile Include="LoaiBenhDTO.vb" />
     <Compile Include="LoaiCachDungDTO.vb" />

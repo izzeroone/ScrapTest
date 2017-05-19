@@ -36,7 +36,7 @@ Namespace DataAccess
 #End Region
 #Region "3. Get"
         Public Function GetMaLoaiBenh() As String
-            Return ObjExecuteQuery("getmaloaibenh")
+            Return ExecuteScalar("getmaloaibenh")
         End Function
 
         Public Function GetAllLoaiBenh() As ObservableCollection(Of LoaiBenhDTO)

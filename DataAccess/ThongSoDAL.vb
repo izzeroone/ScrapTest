@@ -6,7 +6,7 @@ Namespace DataAccess
         Public Function GetThongSo(ByVal tenThongSo As String) As String
             Dim param As New List(Of NpgsqlParameter)
             param.Add(New NpgsqlParameter With {.NpgsqlDbType = NpgsqlDbType.Text, .Value = tenThongSo})
-            Return ObjExecuteQuery("getthongso", param)
+            Return ExecuteScalar("getthongso", param)
         End Function
 #End Region
 #Region "2. Update"
