@@ -31,6 +31,8 @@ Namespace Business
 #End Region
 #Region "Delete"
         Public Function DeleteHoaDon(ByVal maKhamBenh As String) As Boolean
+            Dim hoaDon As HoaDonDTO = GetHoaDon(maKhamBenh)
+            ChiTietHoaDonBUS.DeleteAllChiTietHoaDon(hoaDon.MaHoaDon)
             Return HoaDonDAL.DeleteHoaDon(maKhamBenh)
         End Function
 #End Region

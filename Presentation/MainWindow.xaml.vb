@@ -40,9 +40,13 @@ Class MainWindow
         menuItems3.MenuItems.Add(New Domain.MenuItem() With {.Name = "Loại cách dùng", .Content = New ucLoaiCachDung()})
         mainMenuItems.Add(menuItems3)
 
-        Dim menuItems4 As New Domain.GroupMenuItem With {.Name = "CẤU HÌNH"}
-        menuItems4.MenuItems.Add(New Domain.MenuItem() With {.Name = "Kết nối CSDL", .Content = New ucCauHinhCSDL()})
+        Dim menuItems4 As New Domain.GroupMenuItem With {.Name = "BÁO CÁO"}
+        menuItems4.MenuItems.Add(New Domain.MenuItem() With {.Name = "Báo cáo doanh thu", .Content = New ucBaoCaoDoanhThu()})
         mainMenuItems.Add(menuItems4)
+
+        Dim menuItems5 As New Domain.GroupMenuItem With {.Name = "CẤU HÌNH"}
+        menuItems5.MenuItems.Add(New Domain.MenuItem() With {.Name = "Kết nối CSDL", .Content = New ucCauHinhCSDL()})
+        mainMenuItems.Add(menuItems5)
 
         trvMenu.ItemsSource = mainMenuItems
     End Sub

@@ -95,6 +95,12 @@
                     Click="btThanhToan_Click">
                 THANH TOÁN
             </Button>
+            <Button Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="0 12 8 0" Width="100"
+                    ToolTip="Resource name: MaterialDesignRaisedDarkButton"
+                    x:Name="btDelete"
+                    Click="btDelete_Click">
+                XÓA
+            </Button>
         </StackPanel>
     </Grid>
 </UserControl>

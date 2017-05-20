@@ -43,4 +43,11 @@ Public Class ucHoaDonThanhToan
             Next
         End If
     End Sub
+
+    Private Sub btDelete_Click(sender As Object, e As RoutedEventArgs)
+        Dim maKhamBenh As String = cbMaKhamBenh.SelectedValue.ToString()
+        If (HoaDonBUS.IsHoaDonPay(maKhamBenh)) Then
+            HoaDonBUS.DeleteHoaDon(maKhamBenh)
+        End If
+    End Sub
 End Class

@@ -84,6 +84,9 @@
     </Compile>
     <Compile Include="Domain\DateToStringConverter.vb" />
     <Compile Include="Domain\Encrypt.vb" />
+    <Compile Include="ucBaoCaoDoanhThu.xaml.vb">
+      <DependentUpon>ucBaoCaoDoanhThu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ucCauHinhCSDL.xaml.vb">
       <DependentUpon>ucCauHinhCSDL.xaml</DependentUpon>
     </Compile>
@@ -183,6 +186,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ucBaoCaoDoanhThu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
