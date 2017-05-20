@@ -28,6 +28,15 @@ Namespace Business
             Next
             Return list
         End Function
+
+        Public Function GetThuoc(ByVal maThuoc As String) As LoaiThuocDTO
+            Dim tb As DataTable = LoaiThuocDAL.GetThuoc(maThuoc)
+            If tb.Rows.Count = 0 Then
+                Return New LoaiThuocDTO
+            Else
+                Return New LoaiThuocDTO(tb.Rows.Item(0))
+            End If
+        End Function
 #End Region
 
     End Module

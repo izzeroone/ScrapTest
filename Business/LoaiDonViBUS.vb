@@ -23,6 +23,15 @@ Namespace Business
         Public Function GetAllLoaiDonVi() As ObservableCollection(Of LoaiDonViDTO)
             Return LoaiDonViDAL.GetAllLoaiDonVi()
         End Function
+
+        Public Function GetDonVi(ByVal maDonVi) As LoaiDonViDTO
+            Dim tb As DataTable = LoaiDonViDAL.GetDonVi(maDonVi)
+            If tb.Rows.Count = 0 Then
+                Return New LoaiDonViDTO
+            Else
+                Return New LoaiDonViDTO(tb.Rows.Item(0))
+            End If
+        End Function
 #End Region
 
     End Module

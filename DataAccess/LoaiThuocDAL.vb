@@ -37,6 +37,12 @@ Namespace DataAccess
             Return ExecuteQuery("getallloaithuoc")
 
         End Function
+
+        Public Function GetThuoc(ByVal maThuoc As String) As DataTable
+            Dim param As New List(Of NpgsqlParameter)
+            param.Add(New NpgsqlParameter() With {.NpgsqlDbType = NpgsqlDbType.Char, .Value = maThuoc})
+            Return ExecuteQuery("getthuoc", param)
+        End Function
 #End Region
     End Module
 End Namespace

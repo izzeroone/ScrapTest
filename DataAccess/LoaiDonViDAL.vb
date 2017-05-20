@@ -47,6 +47,12 @@ Namespace DataAccess
             Next
             Return list
         End Function
+
+        Public Function GetDonVi(ByVal maDonVi As String) As DataTable
+            Dim param As New List(Of NpgsqlParameter)
+            param.Add(New NpgsqlParameter() With {.NpgsqlDbType = NpgsqlDbType.Char, .Value = maDonVi})
+            Return ExecuteQuery("getdonvi", param)
+        End Function
 #End Region
     End Module
 End Namespace

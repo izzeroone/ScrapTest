@@ -1,4 +1,5 @@
 ﻿Imports System.Collections.ObjectModel
+Imports System.Text.RegularExpressions
 Imports Business.Business
 Imports Entities.Entities
 Public Class ucLoaiThuoc
@@ -13,6 +14,11 @@ Public Class ucLoaiThuoc
     End Sub
     Private Sub CancelButton_Click(sender As Object, e As RoutedEventArgs)
         dgLoaiThuoc.SelectedIndex = -1
+    End Sub
+
+    Private Sub NumberValidationTextBox(ByVal sender As Object, ByVal e As TextCompositionEventArgs)
+        Dim regex As Regex = New Regex("[^0-9]+")
+        e.Handled = regex.IsMatch(e.Text)
     End Sub
 
     Private Sub DeleteButton_Click(sender As Object, e As RoutedEventArgs)
@@ -32,6 +38,7 @@ Public Class ucLoaiThuoc
         Dim loaiThuoc As New LoaiThuocDTO()
         loaiThuoc.MaThuoc = tbMaThuoc.Text
         loaiThuoc.TenThuoc = tbTenThuoc.Text
+        loaiThuoc.DonGia = Integer.Parse(tbDonGia.Text)
         Dim result As Boolean = LoaiThuocBUS.InsertOrUpdateThuoc(loaiThuoc)
         If (result = True) Then
             Domain.Dialog.Show("Successful")

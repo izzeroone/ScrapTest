@@ -1,7 +1,7 @@
 ﻿Imports System.Collections.ObjectModel
 Imports Entities.Entities
 Imports DataAccess.DataAccess
-Namespace DataAccess
+Namespace Business
     Public Module ChiTietHoaDonBUS
 #Region "Insert or update"
         Public Function InsertChiTietHoaDon(ByVal chiTietHoaDon As ChiTietHoaDonDTO) As Boolean

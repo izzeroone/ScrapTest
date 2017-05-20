@@ -18,12 +18,25 @@ Namespace Business
         End Function
 #End Region
 #Region "4. Get"
-        Public Function GetChiTietPhieuKhamByMaNgayKham(ByVal maKhamBenh As String) As ObservableCollection(Of ChiTietPhieuKhamDTO)
+        Public Function GetChiTietPhieuKhamByMaKhamBenh(ByVal maKhamBenh As String) As ObservableCollection(Of ChiTietPhieuKhamDTO)
             Return ChiTietPhieuKhamDAL.GetChiTietPhieuKhamByMaKhamBenh(maKhamBenh)
         End Function
 
         Public Function GetMaChiTietPhieuKham() As String
             Return ChiTietPhieuKhamDAL.GetMaChiTietPhieuKham()
+        End Function
+
+        Public Function GetChiTietHoaDon(ByVal maKhamBenh As String) As ObservableCollection(Of ChiTietHoaDonDTO)
+            Dim listCTHD As New ObservableCollection(Of ChiTietHoaDonDTO)
+            Dim listCTPK As ObservableCollection(Of ChiTietPhieuKhamDTO) = ChiTietPhieuKhamBUS.GetChiTietPhieuKhamByMaKhamBenh(maKhamBenh)
+            For Each ctpk As ChiTietPhieuKhamDTO In listCTPK
+                listCTHD.Add(New ChiTietHoaDonDTO() With {.TenThuoc = GetThuoc(ctpk.MaThuoc).TenThuoc,
+                                                           .TenDonVi = GetDonVi(ctpk.MaDonVi).TenDonVi,
+                                                           .SoLuong = ctpk.SoLuong,
+                                                           .DonGia = GetThuoc(ctpk.MaThuoc).DonGia}
+                                                           )
+            Next
+            Return listCTHD
         End Function
 #End Region
 
