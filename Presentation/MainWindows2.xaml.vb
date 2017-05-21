@@ -42,6 +42,7 @@ Class MainWindows2
 
         Dim menuItems4 As New Domain.GroupMenuItem With {.Name = "BÁO CÁO"}
         menuItems4.MenuItems.Add(New Domain.MenuItem() With {.Name = "Báo cáo doanh thu", .Content = New ucBaoCaoDoanhThu()})
+        menuItems4.MenuItems.Add(New Domain.MenuItem() With {.Name = "Báo cáo sử dụng thuốc", .Content = New ucBaoCaoThuoc()})
         mainMenuItems.Add(menuItems4)
 
         Dim menuItems5 As New Domain.GroupMenuItem With {.Name = "CẤU HÌNH"}

@@ -90,6 +90,9 @@
     <Compile Include="ucBaoCaoDoanhThu.xaml.vb">
       <DependentUpon>ucBaoCaoDoanhThu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ucBaoCaoThuoc.xaml.vb">
+      <DependentUpon>ucBaoCaoThuoc.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ucCauHinhCSDL.xaml.vb">
       <DependentUpon>ucCauHinhCSDL.xaml</DependentUpon>
     </Compile>
@@ -197,6 +200,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ucBaoCaoDoanhThu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ucBaoCaoThuoc.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

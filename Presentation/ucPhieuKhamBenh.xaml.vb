@@ -1,10 +1,10 @@
-﻿Imports System.ComponentModel
+﻿Imports System.Collections.ObjectModel
 Imports System.Data
 Imports System.Text.RegularExpressions
 Imports Business.Business
 Imports Entities.Entities
 Public Class ucPhieuKhamBenh
-    Dim listKhamBenh As BindingList(Of KhamBenhDTO)
+    Dim listKhamBenh As ObservableCollection(Of KhamBenhDTO)
     Public Sub New()
 
         ' This call is required by the designer.

@@ -77,7 +77,7 @@ Namespace DataAccess
             Return ExecuteScalar("getmakhambenh").ToString()
         End Function
 
-        Public Function GetKhamBenhByNgayKham(ByVal ngayKham As Date) As BindingList(Of KhamBenhDTO)
+        Public Function GetKhamBenhByNgayKham(ByVal ngayKham As Date) As DataTable
             Try
                 Dim list As New BindingList(Of KhamBenhDTO)
                 Dim param As New List(Of NpgsqlParameter)
@@ -87,11 +87,7 @@ Namespace DataAccess
                 parameter.Value = ngayKham
                 param.Add(parameter)
 
-                Dim tb As DataTable = ExecuteQuery("getkhambenhbyngaykham", param)
-                For Each row As DataRow In tb.Rows
-                    list.Add(New KhamBenhDTO(row))
-                Next
-                Return list
+                Return ExecuteQuery("getkhambenhbyngaykham", param)
             Catch ex As Exception
                 Throw ex
             End Try
@@ -134,7 +130,13 @@ Namespace DataAccess
             param.Add(parameter)
 
             Dim tb As DataTable = ExecuteQuery("getkhambenhbymakhambenh", param)
-            Return New KhamBenhDTO(tb.Rows.Item(0))
+            Return New KhamBenhDTO(tb.Rows.Item(0)).GetAdditionData(tb.Rows.Item(0))
+        End Function
+
+        Public Function GetTinhTrangKhamBenh(ByVal maKhamBenh As String) As String
+            Dim param As New List(Of NpgsqlParameter)
+            param.Add(New NpgsqlParameter() With {.NpgsqlDbType = NpgsqlDbType.Char, .Value = maKhamBenh})
+            Return ExecuteScalar("gettinhtrangkhambenh", param).ToString()
         End Function
 #End Region
 #Region "4.Vaild"

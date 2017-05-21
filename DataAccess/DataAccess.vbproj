@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaoCaoDoanhThuDAL.vb" />
+    <Compile Include="BaoCaoThuocDAL.vb" />
     <Compile Include="BenhNhanDAL.vb" />
     <Compile Include="CauHinhCSDLDAL.vb" />
     <Compile Include="ChiTietHoaDonDAL.vb" />

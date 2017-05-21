@@ -18,8 +18,18 @@ Namespace Business
         End Function
 #End Region
 #Region "4. Get"
-        Public Function GetKhamBenhByNgayKham(ByVal ngayKham As Date) As BindingList(Of KhamBenhDTO)
-            Return KhamBenhDAL.GetKhamBenhByNgayKham(ngayKham)
+        Public Function GetKhamBenhByNgayKham(ByVal ngayKham As Date) As ObservableCollection(Of KhamBenhDTO)
+            Dim list As New ObservableCollection(Of KhamBenhDTO)
+            Dim tb As DataTable = KhamBenhDAL.GetKhamBenhByNgayKham(ngayKham)
+            Dim khamBenh As KhamBenhDTO
+            For Each row As DataRow In tb.Rows
+                khamBenh = New KhamBenhDTO(row)
+                khamBenh.GetAdditionData(row)
+                khamBenh.TinhTrang = GetTinhTrangKhamBenh(khamBenh.MaKhamBenh)
+                list.Add(khamBenh)
+            Next
+            Return list
+
         End Function
 
         Public Function GetMaKhamBenh() As String
@@ -36,6 +46,20 @@ Namespace Business
 
         Public Function GetKhamBenhByMaKhamBenh(ByVal maKhamBenh As String) As KhamBenhDTO
             Return KhamBenhDAL.GetKhamBenhByMaKhamBenh(maKhamBenh)
+        End Function
+
+        Public Function GetTinhTrangKhamBenh(ByVal maKhamBenh As String) As String
+            Dim i As Integer = Integer.Parse(KhamBenhDAL.GetTinhTrangKhamBenh(maKhamBenh))
+            Select Case i
+                Case 0
+                    Return "Chưa khám"
+                Case 1
+                    Return "Đã khám, chưa thanh toán"
+                Case 2
+                    Return "Đã khám, đã thanh toán"
+                Case Else
+                    Return "Không biết"
+            End Select
         End Function
 #End Region
 

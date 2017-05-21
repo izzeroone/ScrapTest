@@ -77,48 +77,45 @@
 				    x:Name="tbDiaChi"
                  IsReadOnly="True">
         </TextBox>
-        <Separator Grid.Row="3" Grid.Column="0" Style="{StaticResource MySeparatorStyle}"/>
-        <TextBlock Grid.Row="4" Grid.Column="0" Style="{StaticResource LabelStyle}" >Mã CTPK</TextBlock>
-        <TextBox Grid.Row="4" Grid.Column="1" 
+        <TextBlock Grid.Row="3" Grid.Column="0" Style="{StaticResource LabelStyle}" >Triệu chứng</TextBlock>
+        <TextBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" 
+				    x:Name="tbTrieuChung">
+        </TextBox>
+        <TextBlock Grid.Row="3" Grid.Column="4" Style="{StaticResource LabelStyle}">Bệnh</TextBlock>
+        <ComboBox Grid.Row="3" Grid.Column="5" 
+				    x:Name="cbLoaiBenh">
+        </ComboBox>
+        <Separator Grid.Row="4" Grid.Column="0" Style="{StaticResource MySeparatorStyle}"/>
+        <TextBlock Grid.Row="5" Grid.Column="0" Style="{StaticResource LabelStyle}" >Mã CTPK</TextBlock>
+        <TextBox Grid.Row="5" Grid.Column="1" 
 				    x:Name="tbMaChiTietPhieuKham"
                  IsReadOnly="True"
                  Text="{Binding SelectedItem.MaChiTietPhieuKham, ElementName=dgChiTietPhieuKham, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
         </TextBox>
       
-        <TextBlock Grid.Row="4" Grid.Column="2" Style="{StaticResource LabelStyle}">Bệnh</TextBlock>
-        <ComboBox Grid.Row="4" Grid.Column="3" 
-				    x:Name="cbLoaiBenh"
-                  SelectedValue="{Binding SelectedItem.MaLoaiBenh, ElementName=dgChiTietPhieuKham, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
-        </ComboBox>
-        <TextBlock Grid.Row="4" Grid.Column="4" Style="{StaticResource LabelStyle}" >Tên thuốc</TextBlock>
-        <ComboBox Grid.Row="4" Grid.Column="5" 
+        
+        <TextBlock Grid.Row="5" Grid.Column="2" Style="{StaticResource LabelStyle}" >Tên thuốc</TextBlock>
+        <ComboBox Grid.Row="5" Grid.Column="3" 
 				    x:Name="cbThuoc"
                   SelectedValue="{Binding SelectedItem.MaThuoc, ElementName=dgChiTietPhieuKham, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
         </ComboBox>
-        <TextBlock Grid.Row="5" Grid.Column="0" Style="{StaticResource LabelStyle}">Đơn vị</TextBlock>
-        <ComboBox Grid.Row="5" Grid.Column="1" 
+        <TextBlock Grid.Row="5" Grid.Column="4" Style="{StaticResource LabelStyle}">Đơn vị</TextBlock>
+        <ComboBox Grid.Row="5" Grid.Column="5" 
 				    x:Name="cbDonVi"
                   SelectedValue="{Binding SelectedItem.MaDonVi, ElementName=dgChiTietPhieuKham, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
         </ComboBox>
-        <TextBlock Grid.Row="5" Grid.Column="2" Style="{StaticResource LabelStyle}">Số lượng</TextBlock>
-        <TextBox Grid.Row="5" Grid.Column="3" 
+        <TextBlock Grid.Row="6" Grid.Column="0" Style="{StaticResource LabelStyle}">Số lượng</TextBlock>
+        <TextBox Grid.Row="6" Grid.Column="1" 
 				    x:Name="tbSoLuong"
                  Text="{Binding SelectedItem.SoLuong, ElementName=dgChiTietPhieuKham, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                   PreviewTextInput="NumberValidationTextBox">
         </TextBox>
-        <TextBlock Grid.Row="5" Grid.Column="4" Style="{StaticResource LabelStyle}" >Cách dùng</TextBlock>
-        <ComboBox Grid.Row="5" Grid.Column="5" 
+        <TextBlock Grid.Row="6" Grid.Column="2" Style="{StaticResource LabelStyle}" >Cách dùng</TextBlock>
+        <ComboBox Grid.Row="6" Grid.Column="3" 
 				    x:Name="cbCachDung"
                   SelectedValue="{Binding SelectedItem.MaCachDung, ElementName=dgChiTietPhieuKham, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
         </ComboBox>
-        <TextBlock Grid.Row="6" Grid.Column="0" Style="{StaticResource LabelStyle}" >Triệu chứng</TextBlock>
-        <TextBox Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="3" 
-				    x:Name="tbTrieuChung"
-                 Text="{Binding SelectedItem.TrieuChung, ElementName=dgChiTietPhieuKham, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-                 AcceptsReturn="True"                 
-                 VerticalScrollBarVisibility="Auto"
-                 TextWrapping="Wrap">
-        </TextBox>
+        
         <Separator Grid.Row="7" Grid.Column="0" Style="{StaticResource MySeparatorStyle}"/>
         <StackPanel Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="8" Style="{StaticResource DataGridStyle}" >
             <materialDesign:Card>

@@ -8,6 +8,9 @@ Namespace Entities
         Private _gioiTinh As String
         Private _namSinh As Int32
         Private _diaChi As String
+        Private _trieuChung As String
+        Private _maLoaiBenh As String
+        Private _tinhTrang As String
 
         Public Property MaKhamBenh As String
             Get
@@ -63,6 +66,33 @@ Namespace Entities
             End Set
         End Property
 
+        Public Property TrieuChung As String
+            Get
+                Return _trieuChung
+            End Get
+            Set(value As String)
+                _trieuChung = value
+            End Set
+        End Property
+
+        Public Property MaLoaiBenh As String
+            Get
+                Return _maLoaiBenh
+            End Get
+            Set(value As String)
+                _maLoaiBenh = value
+            End Set
+        End Property
+
+
+        Public Property TinhTrang As String
+            Get
+                Return _tinhTrang
+            End Get
+            Set(value As String)
+                _tinhTrang = value
+            End Set
+        End Property
 
         Public Sub New()
 
@@ -86,5 +116,12 @@ Namespace Entities
             _namSinh = row.Field(Of Int32)("namsinh")
             _diaChi = row.Field(Of String)("diachi")
         End Sub
+
+        Public Function GetAdditionData(ByVal row As DataRow) As KhamBenhDTO
+            _trieuChung = row.Field(Of String)("trieuchung")
+            _maLoaiBenh = row.Field(Of String)("maloaibenh")
+            '_tinhTrang = row.Field(Of String)("tinhtrang")
+            Return Me
+        End Function
     End Class
 End Namespace

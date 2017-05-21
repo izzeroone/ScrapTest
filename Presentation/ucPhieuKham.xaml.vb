@@ -116,6 +116,8 @@ Public Class ucPhieuKham
             tbGioiTinh.Text = khamBenh.GioiTinh
             tbNamSinh.Text = khamBenh.NamSinh
             tbDiaChi.Text = khamBenh.DiaChi
+            tbTrieuChung.Text = khamBenh.TrieuChung
+            cbLoaiBenh.SelectedValue = khamBenh.MaLoaiBenh
             ReloadData()
         End If
     End Sub
