@@ -7,15 +7,19 @@
              xmlns:local="clr-namespace:Presentation"
              xmlns:domain="clr-namespace:Presentation.Domain"
              mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="560"
+             d:DesignHeight="1200" d:DesignWidth="1200"
              IsVisibleChanged="UserControl_IsVisibleChanged">
     <UserControl.Resources>
         <domain:DateToStringConverter x:Key ="DateToStringConverter"></domain:DateToStringConverter>
     </UserControl.Resources>
     <Grid HorizontalAlignment="Center" VerticalAlignment="Stretch">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="160" />
-            <ColumnDefinition Width="400" />
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="120"/>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="200"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>
@@ -32,64 +36,72 @@
         <materialDesign:Card Margin="4 4 0 0" Background="{DynamicResource PrimaryHueLightBrush}"
                       Foreground="{DynamicResource PrimaryHueLightForegroundBrush}"
                       Grid.Row="0" Grid.Column="0"
-                      Grid.ColumnSpan="2"
+                      Grid.ColumnSpan="8"
                       VerticalAlignment="Center"
                       HorizontalAlignment="Center"
                       Padding="8">
             <TextBlock Grid.Row = "0" Grid.Column="0"  TextAlignment="Center" 
                        TextElement.FontWeight="Bold" TextElement.FontSize="18">HÓA ĐƠN THANH TOÁN</TextBlock>
         </materialDesign:Card>
-        <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" Grid.ColumnSpan="2">Mã khám bệnh</TextBlock>
+        <TextBlock Grid.Row="1" Grid.Column="0" Style="{DynamicResource LabelStyle}">Mã khám bệnh</TextBlock>
         <ComboBox Grid.Row="1" Grid.Column="1" 
 				    x:Name="cbMaKhamBenh"
-				 Margin="34.047,7.8,0.4,8"
                   SelectionChanged="cbMaKhamBenh_SelectionChanged">
         </ComboBox>
-        <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" Grid.ColumnSpan="2">Họ tên</TextBlock>
-        <TextBox Grid.Row="2" Grid.Column="1" 
+        <TextBlock Grid.Row="1" Grid.Column="2" Style="{DynamicResource LabelStyle}">Họ tên</TextBlock>
+        <TextBox Grid.Row="1" Grid.Column="3" 
 				    x:Name="tbHoTen"
-				 Margin="34.047,7.8,0.4,8"
                  Text="{Binding ElementName=cbMaKhamBenh, Path=SelectedItem.HoTenBenhNhan, UpdateSourceTrigger=PropertyChanged}"
                  IsReadOnly="True">
         </TextBox>
-        <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" Grid.ColumnSpan="2">Ngày khám</TextBlock>
-        <TextBox Grid.Row="3" Grid.Column="1" 
-				    x:Name="tbNgayKham"
-				 Margin="34.047,7.8,0.4,8"
+        <TextBlock Grid.Row="1" Grid.Column="4" Style="{DynamicResource LabelStyle}">Ngày khám</TextBlock>
+        <TextBox Grid.Row="1" Grid.Column="5" 
+				 x:Name="tbNgayKham"
                  Text="{Binding ElementName=cbMaKhamBenh, Path=SelectedItem.NgayKham, Converter={StaticResource DateToStringConverter} ,UpdateSourceTrigger=PropertyChanged}"
                  IsReadOnly="True">
         </TextBox>
-        <TextBlock Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" Grid.ColumnSpan="2">Tiền khám</TextBlock>
+        <Separator Grid.Row="3" Grid.Column="0" Style="{DynamicResource MySeparatorStyle}"/>
+        <TextBlock Grid.Row="4" Grid.Column="0" Style="{DynamicResource LabelStyle}">Tiền khám</TextBlock>
         <TextBox Grid.Row="4" Grid.Column="1" 
 				    x:Name="tbTienKham"
-				 Margin="34.047,7.8,0.4,8"
                  IsReadOnly="True">
         </TextBox>
-        <TextBlock Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" Grid.ColumnSpan="2">Tiền thuốc</TextBlock>
-        <TextBox Grid.Row="5" Grid.Column="1" 
+        <TextBlock Grid.Row="4" Grid.Column="2" Style="{DynamicResource LabelStyle}">Tiền thuốc</TextBlock>
+        <TextBox Grid.Row="4" Grid.Column="3" 
 				    x:Name="tbTienThuoc"
-				 Margin="34.047,7.8,0.4,8"
                  IsReadOnly="True">
         </TextBox>
-        <TextBlock Grid.Row="6" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" Grid.ColumnSpan="2">Tình trạng</TextBlock>
-        <TextBox Grid.Row="6" Grid.Column="1" 
+        <TextBlock Grid.Row="4" Grid.Column="4" Style="{DynamicResource LabelStyle}">Tình trạng</TextBlock>
+        <TextBox Grid.Row="4" Grid.Column="5" 
 				    x:Name="tbTinhTrang"
-				 Margin="34.047,7.8,0.4,8"
                  IsReadOnly="True">
         </TextBox>
-        <DataGrid Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2"  
-            Margin="0 8 0 0" x:Name="dgChiTietThuoc" CanUserSortColumns="True" CanUserAddRows="False"
-                       materialDesign:DataGridAssist.CellPadding="4 2 2 2" materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2"
-                    ItemsSource="{Binding}" AutoGenerateColumns="True" 
-                  MaxHeight="300">
+        <Separator Grid.Row="5" Grid.Column="0" Style="{DynamicResource MySeparatorStyle}"/>
+        <StackPanel Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="8" Style="{DynamicResource DataGridStyle}">
+            <materialDesign:Card>
+        <DataGrid  x:Name="dgChiTietThuoc" 
+                    materialDesign:DataGridAssist.CellPadding="4 2 2 2" materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2"
+                    ItemsSource="{Binding}" 
+                  Height="330">
             <DataGrid.Columns>
-
-
-
-            </DataGrid.Columns>
+                        <materialDesign:MaterialDataGridTextColumn Binding="{Binding TenThuoc}"
+                                                               Header="Tên thuốc"                                                        
+                                                               EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+                        <materialDesign:MaterialDataGridTextColumn Binding="{Binding TenDonVi}"
+                                                               Header="Tên đơn vị"                                                        
+                                                               EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+                        <materialDesign:MaterialDataGridTextColumn Binding="{Binding DonGia}"
+                                                               Header="Đơn giá"                                                        
+                                                               EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+                        <materialDesign:MaterialDataGridTextColumn Binding="{Binding SoLuong}"
+                                                               Header="Số lượng"                                                        
+                                                               EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+                    </DataGrid.Columns>
         </DataGrid>
-        <StackPanel Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="0 12 0 0" FlowDirection="RightToLeft">
-            <Button Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="0 12 8 0" Width="100"
+            </materialDesign:Card>
+        </StackPanel>
+        <StackPanel Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="8" Orientation="Horizontal" Margin="0 12 0 0" FlowDirection="RightToLeft">
+            <Button Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="0 12 8 0" Width="140"
                     ToolTip="Resource name: MaterialDesignRaisedDarkButton"
                     x:Name="btThanhToan"
                     Click="btThanhToan_Click">

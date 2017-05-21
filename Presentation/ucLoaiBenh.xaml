@@ -6,11 +6,13 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:Presentation"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="560">
+             d:DesignHeight="1000" d:DesignWidth="1000">
     <Grid HorizontalAlignment="Center" VerticalAlignment="Stretch">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="160" />
-            <ColumnDefinition Width="400" />
+            <ColumnDefinition Width="120" />
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="120" />
+            <ColumnDefinition Width="300" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>
@@ -27,46 +29,47 @@
         <materialDesign:Card Margin="4 4 0 0" Background="{DynamicResource PrimaryHueLightBrush}"
                       Foreground="{DynamicResource PrimaryHueLightForegroundBrush}"
                       Grid.Row="0" Grid.Column="0"
-                      Grid.ColumnSpan="2"
+                      Grid.ColumnSpan="8"
                       VerticalAlignment="Center"
                       HorizontalAlignment="Center"
                       Padding="8">
             <TextBlock Grid.Row = "0" Grid.Column="0"  TextAlignment="Center" 
                        TextElement.FontWeight="Bold" TextElement.FontSize="18">DANH SÁCH LOẠI BỆNH</TextBlock>
         </materialDesign:Card>
-        <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" Grid.ColumnSpan="2">Mã loại bệnh</TextBlock>
+        <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource LabelStyle}">Mã loại bệnh</TextBlock>
         <TextBox Grid.Row="1" Grid.Column="1" 
 				    x:Name="tbMaLoaiBenh"
                  IsReadOnly="True"
-                 Background="Gray"
-                 Text="{Binding SelectedItem.MaLoaiBenh, ElementName=dgLoaiBenh, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-				 Margin="34.047,7.8,0.4,8">
+                 Text="{Binding SelectedItem.MaLoaiBenh, ElementName=dgLoaiBenh, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
         </TextBox>
-        <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" Grid.ColumnSpan="2">Tên loại bệnh</TextBlock>
-        <TextBox Grid.Row="2" Grid.Column="1" 
+        <TextBlock Grid.Row="1" Grid.Column="2" Style="{StaticResource LabelStyle}">Tên loại bệnh</TextBlock>
+        <TextBox Grid.Row="1" Grid.Column="3" 
 				    x:Name="tbTenLoaiBenh"
-                 Text="{Binding SelectedItem.TenLoaiBenh, ElementName=dgLoaiBenh, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-				 Margin="34.047,7.8,0.4,8" AcceptsReturn="True">
+                 Text="{Binding SelectedItem.TenLoaiBenh, ElementName=dgLoaiBenh, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
         </TextBox>
-        <DataGrid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"  
-            Margin="0 8 0 0" x:Name="dgLoaiBenh" CanUserSortColumns="True" CanUserAddRows="False"
+        <Separator Grid.Row="2" Grid.Column="0" Style="{DynamicResource MySeparatorStyle}"/>
+        <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" Style="{StaticResource DataGridStyle}">
+            <materialDesign:Card>
+                <DataGrid x:Name="dgLoaiBenh" 
                        materialDesign:DataGridAssist.CellPadding="4 2 2 2" materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2"
-                    ItemsSource="{Binding}" AutoGenerateColumns="False" 
-                  MaxHeight="300">
-            <DataGrid.Columns>
-                <materialDesign:MaterialDataGridTextColumn Binding="{Binding MaLoaiBenh}"
+                    ItemsSource="{Binding}"
+                  Height="500">
+                    <DataGrid.Columns>
+                        <materialDesign:MaterialDataGridTextColumn Binding="{Binding MaLoaiBenh}"
                                                            Header="Mã Loại Bệnh"                                                        
                                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" 
                                                            IsReadOnly="True"/>
 
-                <materialDesign:MaterialDataGridTextColumn Binding="{Binding TenLoaiBenh}"
+                        <materialDesign:MaterialDataGridTextColumn Binding="{Binding TenLoaiBenh}"
                                                            Header="Tên Loại Bệnh"                                                        
                                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
 
 
-            </DataGrid.Columns>
-        </DataGrid>
-        <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="0 12 0 0" FlowDirection="RightToLeft">
+                    </DataGrid.Columns>
+                </DataGrid>
+            </materialDesign:Card>
+        </StackPanel>
+        <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4" Orientation="Horizontal" Margin="0 12 0 0" FlowDirection="RightToLeft">
             <Button Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="0 12 8 0" Width="100"
                     ToolTip="Resource name: MaterialDesignRaisedDarkButton"
                         Click="NewButton_Click">

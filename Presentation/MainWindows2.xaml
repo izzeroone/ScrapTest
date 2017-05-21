@@ -1,4 +1,4 @@
-﻿<Window x:Class="MainWindow"
+﻿<Window x:Class="MainWindows2"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -8,35 +8,39 @@
         xmlns:domain="clr-namespace:Presentation.Domain"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="800"
+        Title="MainWindow" Height="1080" Width="1900"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Normal"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
         Background="{DynamicResource MaterialDesignPaper}"
-        TextElement.FontWeight="Medium"
-        TextElement.FontSize="14"
-        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto">
+        FontFamily="{StaticResource MaterialDesignFont}">
 
     <materialDesign:DialogHost Identifier="RootDialog">
         <materialDesign:DrawerHost IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}">
             <materialDesign:DrawerHost.LeftDrawerContent>
-                <StackPanel MinWidth="180" Orientation="Vertical">
-                    <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" 
+                <StackPanel Width="230" Orientation="Vertical">
+                    <materialDesign:ColorZone Mode="PrimaryMid">
+                        <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" 
                                     DockPanel.Dock="Top"
                                     HorizontalAlignment="Right" Margin="16"
                                     IsChecked="{Binding ElementName=MenuToggleButton, Path=IsChecked, Mode=TwoWay}" />
+                    </materialDesign:ColorZone>
+
                     <TreeView x:Name="trvMenu">
                         <TreeView.Resources>
                             <HierarchicalDataTemplate DataType="{x:Type domain:GroupMenuItem}" ItemsSource="{Binding MenuItems}">
-                                <materialDesign:ColorZone materialDesign:ShadowAssist.ShadowDepth="Depth2"
-                                          Mode="PrimaryLight" DockPanel.Dock="Top">
-                                    <DockPanel HorizontalAlignment="Stretch">
-                                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Name}" FontSize="13">
+                                <DockPanel HorizontalAlignment="Stretch">
+                                        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding Name}" FontSize="16">
                                         </TextBlock>
                                     </DockPanel>
-                                </materialDesign:ColorZone>
                             </HierarchicalDataTemplate>
                             <HierarchicalDataTemplate DataType="{x:Type domain:MenuItem}">
                                 <StackPanel Orientation="Horizontal">
+                                    <Separator/>
                                     <TextBlock Margin="0 0 0 0" Text="{Binding Name}"></TextBlock>
+                                    <Separator/>
                                 </StackPanel>
                             </HierarchicalDataTemplate>
                         </TreeView.Resources>

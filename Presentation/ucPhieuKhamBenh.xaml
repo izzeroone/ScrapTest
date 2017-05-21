@@ -8,23 +8,25 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:domain="clr-namespace:Presentation.Domain"
              mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="500"
+             d:DesignHeight="500" d:DesignWidth="1200"
              >
     <UserControl.Resources>
-        <domain:DateToStringConverter x:Key ="DateToStringConverter"> </domain:DateToStringConverter>
+        <domain:DateToStringConverter x:Key ="DateToStringConverter"></domain:DateToStringConverter>
     </UserControl.Resources>
 
     <Grid HorizontalAlignment="Center" VerticalAlignment="Stretch">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="115.953" />
-            <ColumnDefinition Width="34.447"/>
-            <ColumnDefinition Width="400" />
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="120"/>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="200" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -36,93 +38,91 @@
         <materialDesign:Card Margin="4 4 0 0" Background="{DynamicResource PrimaryHueLightBrush}"
                       Foreground="{DynamicResource PrimaryHueLightForegroundBrush}"
                       Grid.Row="0" Grid.Column="0"
-                      Grid.ColumnSpan="3" Grid.RowSpan="2"
+                      Grid.ColumnSpan="8"
                       VerticalAlignment="Center"
                       HorizontalAlignment="Center"
                       Padding="8">
-            <TextBlock Grid.Row = "0" Grid.Column="0"  Grid.ColumnSpan="2" Grid.RowSpan="2" TextAlignment="Center" 
-                       TextElement.FontWeight="Bold" TextElement.FontSize="18">LẬP PHIẾU KHÁM BỆNH</TextBlock>
+            <TextBlock TextAlignment="Center" TextElement.FontWeight="Bold" TextElement.FontSize="18">LẬP PHIẾU KHÁM BỆNH</TextBlock>
         </materialDesign:Card>
-        <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="16,3.6,7.4,5.2" Grid.ColumnSpan="2">Ngày khám</TextBlock>
-        <DatePicker Grid.Row="2" 
-                    Grid.Column="1" 
-                    Grid.ColumnSpan="2"
+        <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource LabelStyle}" >Ngày khám</TextBlock>
+        <DatePicker Grid.Row="1" 
+                    Grid.Column="1"   
 				    x:Name="tbNgayKham"
 				    materialDesign:HintAssist.Hint="Ngày khám"
                     SelectedDate="{x:Static sys:DateTime.Now}"
-                    Margin="34.047,8,0.4,8" 
                     SelectedDateChanged="DateTextBox_SelectedDateChanged"/>
-        <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" Grid.ColumnSpan="2">Mã khám bệnh</TextBlock>
-        <TextBox Grid.Row="3" Grid.Column="1" 
-				    x:Name="tbMaKhamBenh"
+        <TextBlock Grid.Row="1" Grid.Column="2" Style="{StaticResource LabelStyle}">Mã khám bệnh</TextBlock>
+        <TextBox Grid.Row="1" Grid.Column="3" 
+				 x:Name="tbMaKhamBenh"
                  IsReadOnly="True"
-                 Background="Gray"
-                 Text="{Binding SelectedItem.MaKhamBenh, ElementName=dgKhamBenh, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-				    Grid.ColumnSpan="2" Margin="34.047,7.8,0.4,8">
+                 Text="{Binding SelectedItem.MaKhamBenh, ElementName=dgKhamBenh, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
         </TextBox>
-        <TextBlock Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" Grid.ColumnSpan="2">Họ tên</TextBlock>
-        <TextBox Grid.Row="4" Grid.Column="1" 
+        <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource LabelStyle}">Họ tên</TextBlock>
+        <TextBox Grid.Row="2" Grid.Column="1" 
 				    x:Name="tbHoTen"
                     Text="{Binding SelectedItem.HoTenBenhNhan, ElementName=dgKhamBenh, Mode=OneWay}"
-				    materialDesign:HintAssist.Hint="Họ tên" Grid.ColumnSpan="2" Margin="34.047,7.8,0.4,8">
+				    materialDesign:HintAssist.Hint="Họ tên">
         </TextBox>
-        <TextBlock Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" Margin="16,14,7.4,14" Grid.ColumnSpan="2">Giới tính</TextBlock>
-        <ComboBox Grid.Row="5" Grid.Column="1" 
+        <TextBlock Grid.Row="2" Grid.Column="2" Style="{StaticResource LabelStyle}">Giới tính</TextBlock>
+        <ComboBox Grid.Row="2" Grid.Column="3" 
 				    x:Name="tbGioiTinh"
-				    materialDesign:HintAssist.Hint="Giới tính" Grid.ColumnSpan="2" Margin="34.047,8,0.4,8"
+				    materialDesign:HintAssist.Hint="Giới tính"
                   Text="{Binding SelectedItem.GioiTinh, ElementName=dgKhamBenh, Mode=OneWay}">
             <ComboBoxItem>Nam</ComboBoxItem>
             <ComboBoxItem>Nữ</ComboBoxItem>
             <ComboBoxItem>Không biết</ComboBoxItem>
         </ComboBox>
-        <TextBlock Grid.Row="6" Grid.Column="0" VerticalAlignment="Center" Margin="16,12,7.4,12.8" Grid.ColumnSpan="2">Năm sinh</TextBlock>
-        <TextBox Grid.Row="6" Grid.Column="1" 
+        <TextBlock Grid.Row="2" Grid.Column="4" Style="{StaticResource LabelStyle}">Năm sinh</TextBlock>
+        <TextBox Grid.Row="2" Grid.Column="5" 
 				    x:Name="tbNamSinh"
-				    materialDesign:HintAssist.Hint="Năm sinh" Grid.ColumnSpan="2" Margin="34.047,8,0.4,7.8"
+				    materialDesign:HintAssist.Hint="Năm sinh"
                     Text="{Binding SelectedItem.NamSinh, ElementName=dgKhamBenh, Mode=OneWay}"
                     PreviewTextInput="NumberValidationTextBox">
         </TextBox>
-        <TextBlock Grid.Row="7" Grid.Column="0" VerticalAlignment="Center" Margin="16,12.2,7.4,12.6" Grid.ColumnSpan="2">Địa chỉ</TextBlock>
-        <TextBox Grid.Row="7" Grid.Column="1" 
+        <TextBlock Grid.Row="3" Grid.Column="0" Style="{StaticResource LabelStyle}">Địa chỉ</TextBlock>
+        <TextBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" 
 				    x:Name="tbDiaChi"
                     Text="{Binding SelectedItem.DiaChi, ElementName=dgKhamBenh, Mode=OneWay}"
-				    materialDesign:HintAssist.Hint="Địa chỉ" Grid.ColumnSpan="2" Margin="34.047,8.2,0.4,7.6">
+				    materialDesign:HintAssist.Hint="Địa chỉ">
         </TextBox>
-        <DataGrid Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="3"  
-            Margin="0 8 0 0" x:Name="dgKhamBenh" CanUserSortColumns="True" CanUserAddRows="False"
-                       materialDesign:DataGridAssist.CellPadding="4 2 2 2" materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2"
-                    ItemsSource="{Binding}" AutoGenerateColumns="False" 
-                  MaxHeight="300">
-            <DataGrid.Columns>
-                <materialDesign:MaterialDataGridTextColumn Binding="{Binding MaKhamBenh}"
-                                                           Header="Mã khám bệnh"                                                        
-                                                           EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" 
-                                                           IsReadOnly="True"/>
+        <Separator Grid.Row="4" Grid.Column="0" Style="{DynamicResource MySeparatorStyle}"/>
+        <StackPanel Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="8" Style="{StaticResource DataGridStyle}">
+            <materialDesign:Card>
+            <DataGrid  x:Name="dgKhamBenh" CanUserSortColumns="True" CanUserAddRows="False"
+                           materialDesign:DataGridAssist.CellPadding="4 2 2 2" materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2"
+                        ItemsSource="{Binding}" AutoGenerateColumns="False" 
+                      Height="400">
+                <DataGrid.Columns>
+                    <materialDesign:MaterialDataGridTextColumn Binding="{Binding MaKhamBenh}"
+                                                               Header="Mã khám bệnh"                                                        
+                                                               EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
 
-                <materialDesign:MaterialDataGridTextColumn Binding="{Binding NgayKham, Converter={StaticResource DateToStringConverter}}"
-                                                           Header="Ngày khám"                                                        
-                                                           EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+                    <materialDesign:MaterialDataGridTextColumn Binding="{Binding NgayKham, Converter={StaticResource DateToStringConverter}}"
+                                                               Header="Ngày khám"                                                        
+                                                               EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
 
-                <materialDesign:MaterialDataGridTextColumn Binding="{Binding HoTenBenhNhan}"
-                                                           Header="Họ tên"                                                        
-                                                           EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+                    <materialDesign:MaterialDataGridTextColumn Binding="{Binding HoTenBenhNhan}"
+                                                               Header="Họ tên"                                                        
+                                                               EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
 
-                <materialDesign:MaterialDataGridTextColumn Binding="{Binding GioiTinh}"
-                                                           Header="Giới tính"                                                        
-                                                           EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+                    <materialDesign:MaterialDataGridTextColumn Binding="{Binding GioiTinh}"
+                                                               Header="Giới tính"                                                        
+                                                               EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
 
-                <materialDesign:MaterialDataGridTextColumn Binding="{Binding NamSinh}"
-                                                           Header="Năm sinh"                                                        
-                                                           EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+                    <materialDesign:MaterialDataGridTextColumn Binding="{Binding NamSinh}"
+                                                               Header="Năm sinh"                                                        
+                                                               EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
 
-                <materialDesign:MaterialDataGridTextColumn Binding="{Binding DiaChi}"
-                                                           Header="Địa chỉ"                                                        
-                                                           EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+                    <materialDesign:MaterialDataGridTextColumn Binding="{Binding DiaChi}"
+                                                               Header="Địa chỉ"                                                        
+                                                               EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
 
-            </DataGrid.Columns>
-        </DataGrid>
-        <Grid Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="3" Margin="34.047,0.4,0.4,-0.4" Grid.RowSpan="6"  >
-            <StackPanel Orientation="Horizontal" Margin="0 12 0 0" FlowDirection="RightToLeft">
+                </DataGrid.Columns>
+            </DataGrid>
+            </materialDesign:Card>
+        </StackPanel>
+        <Grid Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="8" Grid.RowSpan="6"  >
+            <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft">
                 <Button Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="0 12 8 0" Width="100"
                     ToolTip="Resource name: MaterialDesignRaisedDarkButton"
                         Click="NewButton_Click">

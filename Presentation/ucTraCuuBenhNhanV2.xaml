@@ -7,7 +7,7 @@
              xmlns:local="clr-namespace:Presentation"
              xmlns:domain="clr-namespace:Presentation.Domain"
              mc:Ignorable="d" 
-             d:DesignHeight="700" d:DesignWidth="560"
+             d:DesignHeight="1200" d:DesignWidth="1200"
              IsVisibleChanged="LoadComboBoxData">
     <UserControl.Resources>
         <domain:DateToStringConverter x:Key ="DateToStringConverter"></domain:DateToStringConverter>
@@ -15,6 +15,10 @@
 
     <Grid HorizontalAlignment="Center" VerticalAlignment="Stretch">
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="120" />
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="200" />
             <ColumnDefinition Width="120" />
             <ColumnDefinition Width="200" />
             <ColumnDefinition Width="100" />
@@ -36,90 +40,74 @@
         <materialDesign:Card Margin="4 4 0 0" Background="{DynamicResource PrimaryHueLightBrush}"
                       Foreground="{DynamicResource PrimaryHueLightForegroundBrush}"
                       Grid.Row="0" Grid.Column="0"
-                      Grid.ColumnSpan="4"
+                      Grid.ColumnSpan="8"
                       VerticalAlignment="Center"
                       HorizontalAlignment="Center"
                       Padding="8">
             <TextBlock Grid.Row = "0" Grid.Column="0"  TextAlignment="Center" 
-                       TextElement.FontWeight="Bold" TextElement.FontSize="18">LẬP PHIẾU KHÁM BỆNH</TextBlock>
+                       TextElement.FontWeight="Bold" TextElement.FontSize="18">TRA CỨU BỆNH NHÂN</TextBlock>
         </materialDesign:Card>
-        <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" >Ngày khám</TextBlock>
+        <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource LabelStyle}" >Ngày khám</TextBlock>
         <DatePicker Grid.Row="1" 
                     Grid.Column="1" 
 				    x:Name="dpNgayKhamBatDau"
-				    materialDesign:HintAssist.Hint="Bắt đầu"
-                    Margin="34.047,8,0.4,8" 
-                 Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
+				    materialDesign:HintAssist.Hint="Bắt đầu"/>
         <DatePicker Grid.Row="1" 
                     Grid.Column="3" 
 				    x:Name="dpNgayKhamKetThuc"
-				    materialDesign:HintAssist.Hint="Kết thúc"
-                    Margin="34.047,8,0.4,8" 
-                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
-        <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" >Họ tên</TextBlock>
-        <TextBox Grid.Row="2" Grid.Column="1" 
-				    x:Name="tbHoTen"
-				 Margin="34.047,7.8,0.4,8">
+				    materialDesign:HintAssist.Hint="Kết thúc"/>
+        <TextBlock Grid.Row="1" Grid.Column="4" Style="{StaticResource LabelStyle}">Họ tên</TextBlock>
+        <TextBox Grid.Row="1" Grid.Column="5" 
+				    x:Name="tbHoTen">
         </TextBox>
-        <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" >Giới tính</TextBlock>
-        <ComboBox Grid.Row="3" Grid.Column="1" 
-				    x:Name="cbGioiTinh"
-				 Margin="34.047,7.8,0.4,8">
+        <TextBlock Grid.Row="1" Grid.Column="6" Style="{StaticResource LabelStyle}" >Giới tính</TextBlock>
+        <ComboBox Grid.Row="1" Grid.Column="7" 
+				    x:Name="cbGioiTinh">
             <ComboBoxItem>Nam</ComboBoxItem>
             <ComboBoxItem>Nữ</ComboBoxItem>
             <ComboBoxItem>Không biết</ComboBoxItem>
         </ComboBox>
-        <TextBlock Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" >Năm Sinh</TextBlock>
-        <TextBox Grid.Row="4" Grid.Column="1" 
-				    x:Name="tbNamSinh"
-				 Margin="34.047,7.8,0.4,8">
+        <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource LabelStyle}" >Năm Sinh</TextBlock>
+        <TextBox Grid.Row="2" Grid.Column="1" 
+				    x:Name="tbNamSinh">
         </TextBox>
-        <TextBlock Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" >Địa Chỉ</TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="2" Style="{StaticResource LabelStyle}" >Địa Chỉ</TextBlock>
+        <TextBox Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="3"
+				    x:Name="tbDiaChi">
+        </TextBox>
+        <Separator Grid.Row="3" Grid.Column="0" Style="{DynamicResource MySeparatorStyle}"/>
+        <TextBlock Grid.Row="4" Grid.Column="0" Style="{StaticResource LabelStyle}">Triệu chứng</TextBlock>
+        <TextBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" 
+				    x:Name="tbTrieuChung">
+        </TextBox>
+        <TextBlock Grid.Row="4" Grid.Column="4" Style="{StaticResource LabelStyle}">Bệnh</TextBlock>
+        <TextBox Grid.Row="4" Grid.Column="5" 
+				    x:Name="tbLoaiBenh">
+        </TextBox>
+        <TextBlock Grid.Row="4" Grid.Column="6" Style="{StaticResource LabelStyle}">Tên thuốc</TextBlock>
+        <TextBox Grid.Row="4" Grid.Column="7" 
+				    x:Name="tbThuoc">
+        </TextBox>
+        <TextBlock Grid.Row="5" Grid.Column="0" Style="{StaticResource LabelStyle}">Đơn vị</TextBlock>
         <TextBox Grid.Row="5" Grid.Column="1" 
-				    x:Name="tbDiaChi"
-                 AcceptsReturn="True"
-				 Margin="34.047,7.8,0.4,8">
+				    x:Name="tbDonVi">
         </TextBox>
-        <TextBlock Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" Margin="16,11.8,7.4,13" >Triệu chứng</TextBlock>
-        <TextBox Grid.Row="2" Grid.Column="3" 
-				    x:Name="tbTrieuChung"
-				 Margin="34.047,7.8,0.4,8"
-                 AcceptsReturn="True"                 
-                 VerticalScrollBarVisibility="Auto"
-                 TextWrapping="Wrap">
-        </TextBox>
-        <TextBlock Grid.Row="3" Grid.Column="2" VerticalAlignment="Center" Margin="16,11.8,7.4,13" >Bệnh</TextBlock>
-        <TextBox Grid.Row="3" Grid.Column="3" 
-				    x:Name="tbLoaiBenh"
-				 Margin="34.047,7.8,0.4,8">
-        </TextBox>
-        <TextBlock Grid.Row="4" Grid.Column="2" VerticalAlignment="Center" Margin="16,11.8,7.4,13" >Tên thuốc</TextBlock>
-        <TextBox Grid.Row="4" Grid.Column="3" 
-				    x:Name="tbThuoc"
-				 Margin="34.047,7.8,0.4,8">
-        </TextBox>
-        <TextBlock Grid.Row="5" Grid.Column="2" VerticalAlignment="Center" Margin="16,11.8,7.4,13" >Đơn vị</TextBlock>
+        <TextBlock Grid.Row="5" Grid.Column="2" Style="{StaticResource LabelStyle}">Số lượng</TextBlock>
         <TextBox Grid.Row="5" Grid.Column="3" 
-				    x:Name="tbDonVi"
-				 Margin="34.047,7.8,0.4,8">
-        </TextBox>
-        <TextBlock Grid.Row="6" Grid.Column="2" VerticalAlignment="Center" Margin="16,11.8,7.4,13" >Số lượng</TextBlock>
-        <TextBox Grid.Row="6" Grid.Column="3" 
-				    x:Name="tbSoLuong"
-				 Margin="34.047,7.8,0.4,8">
+				    x:Name="tbSoLuong">
         </TextBox>
 
-        <TextBlock Grid.Row="7" Grid.Column="2" VerticalAlignment="Center" Margin="16,11.8,7.4,13" >Cách dùng</TextBlock>
-        <TextBox Grid.Row="7" Grid.Column="3" 
-				    x:Name="tbCachDung"
-
-				 Margin="34.047,7.8,0.4,8">
+        <TextBlock Grid.Row="5" Grid.Column="4" Style="{StaticResource LabelStyle}">Cách dùng</TextBlock>
+        <TextBox Grid.Row="5" Grid.Column="5" 
+				    x:Name="tbCachDung">
         </TextBox>
-        <DataGrid Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="4"  
-            Margin="0 8 0 0" x:Name="dgBenhNhan" CanUserSortColumns="True" CanUserAddRows="False"
+        <Separator Grid.Row="6" Grid.Column="0" Style="{DynamicResource MySeparatorStyle}"/>
+        <StackPanel Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="8" Style="{StaticResource DataGridStyle}">
+            <materialDesign:Card>
+                <DataGrid x:Name="dgBenhNhan" 
                        materialDesign:DataGridAssist.CellPadding="4 2 2 2" materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2"
-                    ItemsSource="{Binding}" AutoGenerateColumns="False" 
-                  MaxHeight="300">
+                    ItemsSource="{Binding}" 
+                  Height="400">
             <DataGrid.Columns>
                 <materialDesign:MaterialDataGridTextColumn Binding="{Binding HoTen}"
                                                            Header="Họ tên"                                                        
@@ -143,7 +131,10 @@
 
             </DataGrid.Columns>
         </DataGrid>
-        <StackPanel Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="4" Orientation="Horizontal" Margin="0 12 0 0" FlowDirection="RightToLeft">
+
+            </materialDesign:Card>
+        </StackPanel>
+        <StackPanel Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="8" Orientation="Horizontal" Margin="0 12 0 0" FlowDirection="RightToLeft">
             <Button Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="0 12 8 0" Width="100"
                     ToolTip="Resource name: MaterialDesignRaisedDarkButton"
                         Click="FindButton_Click">
