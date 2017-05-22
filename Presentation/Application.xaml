@@ -3,7 +3,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:Presentation"
     xmlns:domain="clr-namespace:Presentation.Domain"
-    xmlns:entities="clr-namespace:Entities.Entities;assembly=Entities"
+    xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
+    xmlns:toolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
     StartupUri="MainWindows2.xaml">
     <Application.Resources>
         <ResourceDictionary>
@@ -98,6 +99,50 @@
             <Style TargetType="{x:Type StackPanel}" x:Key="DataGridStyle">
                 <Setter Property="Margin" Value="20, 10, 0, 0"/>
             </Style>
+            <Style x:Key="MaterialDesignListBoxItemCustom" TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource MaterialDesignListBoxItem}">
+                <Setter Property="Padding" Value="0"/>
+            </Style>
+            <Style x:Key="MaterialDesignAutoCompleteBox" TargetType="{x:Type toolkit:AutoCompleteBox}">
+                <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
+                <Setter Property="Margin" Value="20,3.6,0.4,5.2" />
+                <Setter Property="VerticalAlignment" Value="Stretch"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueLightBrush}"/>
+                <Setter Property="BorderThickness" Value="2"/>
+                <Setter Property="wpf:TextFieldAssist.TextBoxViewMargin" Value="0 0 0 0" />
+                <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                <Setter Property="VerticalContentAlignment" Value="Bottom"/>
+                <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                <Setter Property="AllowDrop" Value="true"/>
+                <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+                <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+                <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignListBoxItemCustom}"/>
+                <!--cludge the default context menu-->
+                <Setter Property="ContextMenu">
+                    <Setter.Value>
+                        <ContextMenu>
+                            <MenuItem Header="_Cut" Command="Cut">
+                                <MenuItem.Icon>
+                                    <wpf:PackIcon Kind="ContentCut"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <MenuItem Header="_Copy" Command="Copy">
+                                <MenuItem.Icon>
+                                    <wpf:PackIcon Kind="ContentCopy" />
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <MenuItem Header="_Paste" Command="Paste">
+                                <MenuItem.Icon>
+                                    <wpf:PackIcon Kind="ContentPaste"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                        </ContextMenu>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            
+            
+
 
             <domain:DateToStringConverter x:Key ="DateToStringConverter"></domain:DateToStringConverter>
             <domain:DoubleToPercentConverter x:Key="DoubleToPercentConverter"></domain:DoubleToPercentConverter>

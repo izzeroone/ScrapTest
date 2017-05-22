@@ -6,10 +6,13 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:Presentation"
              xmlns:domain="clr-namespace:Presentation.Domain"
+             xmlns:toolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
+             xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
+             xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
              mc:Ignorable="d" 
              d:DesignHeight="1200" d:DesignWidth="1200"
              IsVisibleChanged="LoadComboBoxData">
-
+    
     <Grid HorizontalAlignment="Center" VerticalAlignment="Stretch">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="120" />
@@ -95,9 +98,17 @@
 				    x:Name="tbTrieuChung">
         </TextBox>
         <TextBlock Grid.Row="3" Grid.Column="4" Style="{StaticResource LabelStyle}">Bệnh</TextBlock>
-        <TextBox Grid.Row="3" Grid.Column="5" 
-				    x:Name="tbLoaiBenh">
-        </TextBox>
+        <toolkit:AutoCompleteBox Grid.Row="3" Grid.Column="5" 
+				    x:Name="tbLoaiBenh"
+                    ValueMemberPath="TenLoaiBenh"
+                    FilterMode="Contains"
+                    Style="{DynamicResource MaterialDesignAutoCompleteBox}">
+            <toolkit:AutoCompleteBox.ItemTemplate>
+                <DataTemplate>
+                    <Label Content="{Binding TenLoaiBenh}"></Label>
+                </DataTemplate>
+            </toolkit:AutoCompleteBox.ItemTemplate>
+        </toolkit:AutoCompleteBox>
         <Separator Grid.Row="4" Grid.Column="0" Style="{DynamicResource MySeparatorStyle}"/>
         <TextBlock Grid.Row="5" Grid.Column="0" Style="{StaticResource LabelStyle}">Mã CTPK</TextBlock>
         <TextBox Grid.Row="5" Grid.Column="1" 
@@ -105,13 +116,29 @@
         </TextBox>
    
         <TextBlock Grid.Row="5" Grid.Column="2" Style="{StaticResource LabelStyle}">Tên thuốc</TextBlock>
-        <TextBox Grid.Row="5" Grid.Column="3" 
-				    x:Name="tbThuoc">
-        </TextBox>
+        <toolkit:AutoCompleteBox Grid.Row="5" Grid.Column="3" 
+				    x:Name="tbThuoc"
+                    ValueMemberPath="TenThuoc"
+                    FilterMode="Contains"
+                    Style="{DynamicResource MaterialDesignAutoCompleteBox}">
+            <toolkit:AutoCompleteBox.ItemTemplate>
+                <DataTemplate>
+                    <Label Content="{Binding TenThuoc}"></Label>
+                </DataTemplate>
+            </toolkit:AutoCompleteBox.ItemTemplate>
+        </toolkit:AutoCompleteBox>
         <TextBlock Grid.Row="5" Grid.Column="4" Style="{StaticResource LabelStyle}">Đơn vị</TextBlock>
-        <TextBox Grid.Row="5" Grid.Column="5" 
-				    x:Name="tbDonVi">
-        </TextBox>
+        <toolkit:AutoCompleteBox Grid.Row="5" Grid.Column="5" 
+				    x:Name="tbDonVi"
+                    ValueMemberPath="TenDonVi"
+                    FilterMode="Contains"
+                    Style="{DynamicResource MaterialDesignAutoCompleteBox}">
+            <toolkit:AutoCompleteBox.ItemTemplate>
+                <DataTemplate>
+                    <Label Content="{Binding TenDonVi}"></Label>
+                </DataTemplate>
+            </toolkit:AutoCompleteBox.ItemTemplate>
+        </toolkit:AutoCompleteBox>
         <TextBlock Grid.Row="6" Grid.Column="0" Style="{StaticResource LabelStyle}">Số lượng</TextBlock>
         <TextBox Grid.Row="6" Grid.Column="1" 
 				    x:Name="tbSoLuongBatDau"
@@ -128,9 +155,18 @@
         </TextBox>
 
         <TextBlock Grid.Row="6" Grid.Column="4" Style="{StaticResource LabelStyle}">Cách dùng</TextBlock>
-        <TextBox Grid.Row="6" Grid.Column="5" 
-				    x:Name="tbCachDung">
-        </TextBox>
+        <toolkit:AutoCompleteBox Grid.Row="6" Grid.Column="5" 
+				    x:Name="tbCachDung"
+                    ValueMemberPath="TenCachDung"
+                    FilterMode="Contains"
+                    Margin ="20,15,0.4,5.2"
+                    Style="{DynamicResource MaterialDesignAutoCompleteBox}">
+            <toolkit:AutoCompleteBox.ItemTemplate>
+                <DataTemplate>
+                    <Label Content="{Binding TenCachDung}"></Label>
+                </DataTemplate>
+            </toolkit:AutoCompleteBox.ItemTemplate>
+        </toolkit:AutoCompleteBox>
         <Separator Grid.Row="7" Grid.Column="0" Style="{DynamicResource MySeparatorStyle}"/>
         <TextBlock Grid.Row="8" Grid.Column="0" Style="{StaticResource LabelStyle}">Tiền khám</TextBlock>
         <TextBox Grid.Row="8" Grid.Column="1" 

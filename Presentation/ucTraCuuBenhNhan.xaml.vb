@@ -5,30 +5,6 @@ Imports System.Text.RegularExpressions
 Imports Business.Business
 Imports Entities.Entities
 Public Class ucTraCuuBenhNhan
-    Dim listLoaiBenh As New ObservableCollection(Of LoaiBenhDTO)
-    Dim listDonVi As New ObservableCollection(Of LoaiDonViDTO)
-    Dim listCachDung As New ObservableCollection(Of LoaiCachDungDTO)
-    Dim listThuoc As New ObservableCollection(Of LoaiThuocDTO)
-    Public Sub New()
-
-        ' This call is required by the designer.
-        InitializeComponent()
-
-        ' Add any initialization after the InitializeComponent() call.
-        'cbLoaiBenh.ItemsSource = listLoaiBenh
-        'cbLoaiBenh.DisplayMemberPath = "TenLoaiBenh"
-        'cbLoaiBenh.SelectedValuePath = "MaLoaiBenh"
-        'cbDonVi.ItemsSource = listDonVi
-        'cbDonVi.DisplayMemberPath = "TenDonVi"
-        'cbDonVi.SelectedValuePath = "MaDonVi"
-        'cbCachDung.ItemsSource = listCachDung
-        'cbCachDung.DisplayMemberPath = "TenCachDung"
-        'cbCachDung.SelectedValuePath = "MaCachDung"
-        'cbThuoc.ItemsSource = listThuoc
-        'cbThuoc.DisplayMemberPath = "TenThuoc"
-        'cbThuoc.SelectedValuePath = "MaThuoc"
-    End Sub
-
     Private Sub GetRange(ByVal tbBatDau As TextBox, ByVal tbKetThuc As TextBox, ByRef batDau As Integer, ByRef ketThuc As Integer)
         If tbBatDau.Text = "" Then
             If tbKetThuc.Text = "" Then
@@ -85,18 +61,10 @@ Public Class ucTraCuuBenhNhan
 
     Private Sub LoadComboBoxData()
         If Me.IsVisible = True Then
-            'listLoaiBenh = LoaiBenhBUS.GetAllLoaiBenh()
-            'listLoaiBenh.Insert(0, New LoaiBenhDTO With {.MaLoaiBenh = "", .TenLoaiBenh = "Trống"})
-            'listDonVi = LoaiDonViBUS.GetAllLoaiDonVi()
-            'listDonVi.Insert(0, New LoaiDonViDTO With {.MaDonVi = "", .TenDonVi = "Trống"})
-            'listCachDung = LoaiCachDungBUS.GetAllLoaiCachDung()
-            'listCachDung.Insert(0, New LoaiCachDungDTO With {.MaCachDung = "", .TenCachDung = "Trống"})
-            'listThuoc = LoaiThuocBUS.GetAllLoaiThuoc()
-            'listThuoc.Insert(0, New LoaiThuocDTO With {.MaThuoc = "", .TenThuoc = "Trống"})
-            'cbLoaiBenh.ItemsSource = listLoaiBenh
-            'cbDonVi.ItemsSource = listDonVi
-            'cbCachDung.ItemsSource = listCachDung
-            'cbThuoc.ItemsSource = listThuoc
+            tbLoaiBenh.ItemsSource = LoaiBenhBUS.GetAllLoaiBenh()
+            tbDonVi.ItemsSource = LoaiDonViBUS.GetAllLoaiDonVi()
+            tbCachDung.ItemsSource = LoaiCachDungBUS.GetAllLoaiCachDung()
+            tbThuoc.ItemsSource = LoaiThuocBUS.GetAllLoaiThuoc()
         End If
     End Sub
 
