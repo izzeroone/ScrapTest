@@ -87,6 +87,7 @@
     <Compile Include="Domain\DoubleToPercentConverter.vb" />
     <Compile Include="Domain\Encrypt.vb" />
     <Compile Include="Domain\FormatCheck.vb" />
+    <Compile Include="Domain\IntegerToTinhTrangConverter.vb" />
     <Compile Include="Domain\LongToMoneyConverter.vb" />
     <Compile Include="MainWindows2.xaml.vb">
       <DependentUpon>MainWindows2.xaml</DependentUpon>
@@ -120,6 +121,9 @@
     </Compile>
     <Compile Include="ucPhieuKhamBenh.xaml.vb">
       <DependentUpon>ucPhieuKhamBenh.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucThongSo.xaml.vb">
+      <DependentUpon>ucThongSo.xaml</DependentUpon>
     </Compile>
     <Compile Include="ucTraCuuBenhNhanV2.xaml.vb">
       <DependentUpon>ucTraCuuBenhNhanV2.xaml</DependentUpon>
@@ -240,6 +244,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ucPhieuKhamBenh.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ucThongSo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -48,18 +48,8 @@ Namespace Business
             Return KhamBenhDAL.GetKhamBenhByMaKhamBenh(maKhamBenh)
         End Function
 
-        Public Function GetTinhTrangKhamBenh(ByVal maKhamBenh As String) As String
-            Dim i As Integer = Integer.Parse(KhamBenhDAL.GetTinhTrangKhamBenh(maKhamBenh))
-            Select Case i
-                Case 0
-                    Return "Chưa khám"
-                Case 1
-                    Return "Đã khám, chưa thanh toán"
-                Case 2
-                    Return "Đã khám, đã thanh toán"
-                Case Else
-                    Return "Không biết"
-            End Select
+        Public Function GetTinhTrangKhamBenh(ByVal maKhamBenh As String) As Integer
+            Return Integer.Parse(KhamBenhDAL.GetTinhTrangKhamBenh(maKhamBenh))
         End Function
 #End Region
 

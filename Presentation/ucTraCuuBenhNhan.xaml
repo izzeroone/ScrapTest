@@ -9,9 +9,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="1200" d:DesignWidth="1200"
              IsVisibleChanged="LoadComboBoxData">
-    <UserControl.Resources>
-        <domain:DateToStringConverter x:Key ="DateToStringConverter"></domain:DateToStringConverter>
-    </UserControl.Resources>
 
     <Grid HorizontalAlignment="Center" VerticalAlignment="Stretch">
         <Grid.ColumnDefinitions>

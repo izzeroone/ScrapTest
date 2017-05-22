@@ -117,7 +117,7 @@
                     <materialDesign:MaterialDataGridTextColumn Binding="{Binding DiaChi}"
                                                                Header="Địa chỉ"                                                        
                                                                EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-                    <materialDesign:MaterialDataGridTextColumn Binding="{Binding TinhTrang}"
+                    <materialDesign:MaterialDataGridTextColumn Binding="{Binding TinhTrang, Converter={StaticResource IntegerToTinhTrangConverter}}"
                                                                Header="Tình trạng"                                                        
                                                                EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
 

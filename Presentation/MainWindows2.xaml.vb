@@ -30,7 +30,6 @@ Class MainWindows2
 
         Dim menuItems2 As New Domain.GroupMenuItem With {.Name = "TRA CỨU"}
         menuItems2.MenuItems.Add(New Domain.MenuItem() With {.Name = "Tra cứu bệnh nhân", .Content = New ucTraCuuBenhNhan()})
-        menuItems2.MenuItems.Add(New Domain.MenuItem() With {.Name = "Tra cứu bệnh nhân V2", .Content = New ucTraCuuBenhNhanV2()})
         mainMenuItems.Add(menuItems2)
 
         Dim menuItems3 As New Domain.GroupMenuItem With {.Name = "DANH MỤC"}
@@ -46,6 +45,7 @@ Class MainWindows2
         mainMenuItems.Add(menuItems4)
 
         Dim menuItems5 As New Domain.GroupMenuItem With {.Name = "CẤU HÌNH"}
+        menuItems5.MenuItems.Add(New Domain.MenuItem() With {.Name = "Thông số", .Content = New ucThongSo()})
         menuItems5.MenuItems.Add(New Domain.MenuItem() With {.Name = "Kết nối CSDL", .Content = New ucCauHinhCSDL()})
         mainMenuItems.Add(menuItems5)
 

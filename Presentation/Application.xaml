@@ -3,6 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:Presentation"
     xmlns:domain="clr-namespace:Presentation.Domain"
+    xmlns:entities="clr-namespace:Entities.Entities;assembly=Entities"
     StartupUri="MainWindows2.xaml">
     <Application.Resources>
         <ResourceDictionary>
@@ -101,6 +102,7 @@
             <domain:DateToStringConverter x:Key ="DateToStringConverter"></domain:DateToStringConverter>
             <domain:DoubleToPercentConverter x:Key="DoubleToPercentConverter"></domain:DoubleToPercentConverter>
             <domain:LongToMoneyConverter x:Key="LongToMoneyConverter"></domain:LongToMoneyConverter>
+            <domain:IntegerToTinhTrangConverter x:Key="IntegerToTinhTrangConverter"></domain:IntegerToTinhTrangConverter>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

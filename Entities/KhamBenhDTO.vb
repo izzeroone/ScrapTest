@@ -10,7 +10,7 @@ Namespace Entities
         Private _diaChi As String
         Private _trieuChung As String
         Private _maLoaiBenh As String
-        Private _tinhTrang As String
+        Private _tinhTrang As Integer
 
         Public Property MaKhamBenh As String
             Get
@@ -84,12 +84,11 @@ Namespace Entities
             End Set
         End Property
 
-
-        Public Property TinhTrang As String
+        Public Property TinhTrang As Integer
             Get
                 Return _tinhTrang
             End Get
-            Set(value As String)
+            Set(value As Integer)
                 _tinhTrang = value
             End Set
         End Property
@@ -120,7 +119,6 @@ Namespace Entities
         Public Function GetAdditionData(ByVal row As DataRow) As KhamBenhDTO
             _trieuChung = row.Field(Of String)("trieuchung")
             _maLoaiBenh = row.Field(Of String)("maloaibenh")
-            '_tinhTrang = row.Field(Of String)("tinhtrang")
             Return Me
         End Function
     End Class

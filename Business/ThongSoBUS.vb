@@ -18,5 +18,10 @@ Namespace Business
         Public Function UpdateTienKham(ByVal tienKham As Integer) As Boolean
             Return ThongSoDAL.UpdateThongSo("tienkham", tienKham.ToString())
         End Function
+
+        Public Sub DefaultValue()
+            UpdateSoBenhNhanToiDa(40)
+            UpdateTienKham(30000)
+        End Sub
     End Module
 End Namespace

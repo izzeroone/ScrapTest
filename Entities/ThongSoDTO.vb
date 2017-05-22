@@ -1,13 +1,13 @@
 ﻿Namespace Entities
     Public Module ThongSoDTO
-        Private _soBenhNhanKhamToiDa As String
+        Private _soBenhNhanKhamToiDa As Integer
         Private _tienKham As Integer
 
-        Public Property SoBenhNhanKhamToiDa As String
+        Public Property SoBenhNhanKhamToiDa As Integer
             Get
                 Return _soBenhNhanKhamToiDa
             End Get
-            Set(value As String)
+            Set(value As Integer)
                 _soBenhNhanKhamToiDa = value
             End Set
         End Property
