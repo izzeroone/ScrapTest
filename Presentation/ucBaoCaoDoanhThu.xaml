@@ -52,16 +52,16 @@
                     ItemsSource="{Binding}" 
                   Height="450">
                     <DataGrid.Columns>
-                        <materialDesign:MaterialDataGridTextColumn Binding="{Binding Ngay}"
+                        <materialDesign:MaterialDataGridTextColumn Binding="{Binding Ngay, Converter={StaticResource DateToStringConverter}}"
                                                                Header="Ngày"                                                        
                                                                EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
                         <materialDesign:MaterialDataGridTextColumn Binding="{Binding SoBenhNhan}"
                                                                Header="Số bệnh nhân"                                                        
                                                                EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-                        <materialDesign:MaterialDataGridTextColumn Binding="{Binding DoanhThu}"
+                        <materialDesign:MaterialDataGridTextColumn Binding="{Binding DoanhThu, Converter={StaticResource LongToMoneyConverter}}"
                                                                Header="Doanh thu"                                                        
                                                                EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-                        <materialDesign:MaterialDataGridTextColumn Binding="{Binding TiLe}"
+                        <materialDesign:MaterialDataGridTextColumn Binding="{Binding TiLe, Converter={StaticResource DoubleToPercentConverter}}"
                                                                Header="Tỉ lệ"                                                        
                                                                EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
                     </DataGrid.Columns>

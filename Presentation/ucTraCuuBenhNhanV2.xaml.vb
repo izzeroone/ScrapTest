@@ -111,15 +111,6 @@ Public Class ucTraCuuBenhNhanV2
         'Else
         '    namSinh = iNamSinh.ToString()
         'End If
-        dgBenhNhan.ItemsSource = BenhNhanBUS.FindKhamBenhV2(ngayKhamBatDau,
-                                                          ngayKhamKetThuc,
-                                                          tbHoTen.Text,
-                                                          gioiTinh,
-                                                          namSinh,
-                                                          tbDiaChi.Text,
-                                                          tbTrieuChung.Text,
-                                                          tbLoaiBenh.Text,
-                                                          tbThuoc.Text,
-                                                          tbCachDung.Text)
+
     End Sub
 End Class

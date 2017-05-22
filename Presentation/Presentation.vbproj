@@ -83,7 +83,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Domain\DateToStringConverter.vb" />
+    <Compile Include="Domain\DoubleToPercentConverter.vb" />
     <Compile Include="Domain\Encrypt.vb" />
+    <Compile Include="Domain\FormatCheck.vb" />
+    <Compile Include="Domain\LongToMoneyConverter.vb" />
     <Compile Include="MainWindows2.xaml.vb">
       <DependentUpon>MainWindows2.xaml</DependentUpon>
     </Compile>

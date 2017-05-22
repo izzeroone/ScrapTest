@@ -71,7 +71,7 @@
                 <materialDesign:MaterialDataGridTextColumn Binding="{Binding TenThuoc}"
                                                            Header="Tên Thuốc"                                                        
                                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-                <materialDesign:MaterialDataGridTextColumn Binding="{Binding DonGia}"
+                <materialDesign:MaterialDataGridTextColumn Binding="{Binding DonGia, Converter={StaticResource LongToMoneyConverter}}"
                                                            Header="Đơn Giá"                                                        
                                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
 

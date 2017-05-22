@@ -14,7 +14,7 @@ Namespace Business
             Next
 
             For Each baoCao As BaoCaoDoanhThuDTO In list
-                baoCao.TiLe = baoCao.DoanhThu / tong
+                baoCao.TiLe = 1.0 * baoCao.DoanhThu / tong
             Next
 
             Return list

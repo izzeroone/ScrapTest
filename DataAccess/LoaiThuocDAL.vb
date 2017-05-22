@@ -1,5 +1,6 @@
 ﻿Imports System.Collections.ObjectModel
 Imports System.ComponentModel
+Imports System.Windows.Forms
 Imports Entities.Entities
 Imports Npgsql
 Imports NpgsqlTypes
@@ -11,7 +12,6 @@ Namespace DataAccess
             param.Add(New NpgsqlParameter() With {.NpgsqlDbType = NpgsqlDbType.Char, .Value = loaiThuoc.MaThuoc})
             param.Add(New NpgsqlParameter() With {.NpgsqlDbType = NpgsqlDbType.Text, .Value = loaiThuoc.TenThuoc})
             param.Add(New NpgsqlParameter() With {.NpgsqlDbType = NpgsqlDbType.Money, .Value = loaiThuoc.DonGia})
-
 
             Return ExecuteNoneQuery("insertorupdateloaithuoc", param)
         End Function

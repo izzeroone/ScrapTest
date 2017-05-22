@@ -74,7 +74,8 @@
         <TextBlock Grid.Row="4" Grid.Column="4" Style="{DynamicResource LabelStyle}">Tình trạng</TextBlock>
         <TextBox Grid.Row="4" Grid.Column="5" 
 				    x:Name="tbTinhTrang"
-                 IsReadOnly="True">
+                 IsReadOnly="True"
+                 BorderThickness="2">
         </TextBox>
         <Separator Grid.Row="5" Grid.Column="0" Style="{DynamicResource MySeparatorStyle}"/>
         <StackPanel Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="8" Style="{DynamicResource DataGridStyle}">
@@ -90,11 +91,14 @@
                         <materialDesign:MaterialDataGridTextColumn Binding="{Binding TenDonVi}"
                                                                Header="Tên đơn vị"                                                        
                                                                EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-                        <materialDesign:MaterialDataGridTextColumn Binding="{Binding DonGia}"
+                        <materialDesign:MaterialDataGridTextColumn Binding="{Binding DonGia, Converter={StaticResource LongToMoneyConverter}}"
                                                                Header="Đơn giá"                                                        
                                                                EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
                         <materialDesign:MaterialDataGridTextColumn Binding="{Binding SoLuong}"
                                                                Header="Số lượng"                                                        
+                                                               EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+                        <materialDesign:MaterialDataGridTextColumn Binding="{Binding ThanhTien, Converter={StaticResource LongToMoneyConverter}}"
+                                                               Header="Thành tiền"                                                        
                                                                EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
                     </DataGrid.Columns>
         </DataGrid>

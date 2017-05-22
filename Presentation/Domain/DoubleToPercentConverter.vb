@@ -1,17 +1,18 @@
 ﻿Imports System.Globalization
 
 Namespace Domain
-    Public Class DateToStringConverter
+    Public Class DoubleToPercentConverter
         Implements IValueConverter
 
         Public Function Convert(value As Object, targetType As Type, parameter As Object, culture As CultureInfo) As Object Implements IValueConverter.Convert
-            Dim _date As Date = value
-            Return _date.ToString("dd/MM/yyyy")
-
+            Dim v As Double = value
+            Return String.Format(CultureInfo.InvariantCulture,
+                                      "{0:#0.##%}", v)
         End Function
 
         Public Function ConvertBack(value As Object, targetType As Type, parameter As Object, culture As CultureInfo) As Object Implements IValueConverter.ConvertBack
-            Return Date.Parse(value.ToString())
+            Throw New NotImplementedException()
         End Function
     End Class
 End Namespace
+

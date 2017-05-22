@@ -6,6 +6,7 @@
         Private _tenDonVi As String
         Private _soLuong As Integer
         Private _donGia As Integer
+        Private _thanhTien As Long
 
         Public Property MaChiTietHoaDon As String
             Get
@@ -61,6 +62,15 @@
             End Set
         End Property
 
+        Public Property ThanhTien As Long
+            Get
+                Return _thanhTien
+            End Get
+            Set(value As Long)
+                _thanhTien = value
+            End Set
+        End Property
+
         Public Sub New()
 
         End Sub
@@ -72,6 +82,7 @@
             TenDonVi = row.Field(Of String)("tendonvi")
             SoLuong = row.Field(Of Integer)("soluong")
             DonGia = row.Field(Of Decimal)("dongia")
+            ThanhTien = SoLuong * DonGia
         End Sub
     End Class
 End Namespace

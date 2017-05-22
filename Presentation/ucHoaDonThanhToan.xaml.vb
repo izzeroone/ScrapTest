@@ -21,12 +21,14 @@ Public Class ucHoaDonThanhToan
                 tbTienKham.Text = hoaDon.TienKham
                 dgChiTietThuoc.ItemsSource = listThuocPaid
                 tbTienThuoc.Text = HoaDonBUS.CalcTienThuoc(listThuocPaid).ToString()
+                tbTinhTrang.BorderBrush = Brushes.DarkSeaGreen
                 tbTinhTrang.Text = "Đã thanh toán"
             Else
                 tbTienKham.Text = ThongSoDTO.TienKham
                 listThuocUnpaid = ChiTietPhieuKhamBUS.GetChiTietHoaDon(maKhamBenh)
                 dgChiTietThuoc.ItemsSource = listThuocUnpaid
                 tbTienThuoc.Text = HoaDonBUS.CalcTienThuoc(listThuocUnpaid).ToString()
+                tbTinhTrang.BorderBrush = Brushes.OrangeRed
                 tbTinhTrang.Text = "Chưa thanh toán"
             End If
         End If

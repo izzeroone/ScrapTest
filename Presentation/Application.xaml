@@ -2,6 +2,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:Presentation"
+    xmlns:domain="clr-namespace:Presentation.Domain"
     StartupUri="MainWindows2.xaml">
     <Application.Resources>
         <ResourceDictionary>
@@ -13,6 +14,18 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Card.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignTextBox}">
+                <Setter Property="Margin" Value="20,3.6,0.4,5.2" />
+                <Setter Property="VerticalAlignment" Value="Bottom"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueLightBrush}"/>
+                <Setter Property="BorderThickness" Value="2"/>
+                <Style.Triggers>
+                    <Trigger Property="IsReadOnly" Value="True">
+                        <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignBodyLight}"/>
+                        <Setter Property="BorderThickness" Value="0.5"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="FloatHintTextBox" TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
                 <Setter Property="Margin" Value="20,3.6,0.4,5.2" />
                 <Setter Property="VerticalAlignment" Value="Bottom"/>
                 <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueLightBrush}"/>
@@ -84,6 +97,9 @@
             <Style TargetType="{x:Type StackPanel}" x:Key="DataGridStyle">
                 <Setter Property="Margin" Value="20, 10, 0, 0"/>
             </Style>
+            <domain:DateToStringConverter x:Key ="DateToStringConverter"></domain:DateToStringConverter>
+            <domain:DoubleToPercentConverter x:Key="DoubleToPercentConverter"></domain:DoubleToPercentConverter>
+            <domain:LongToMoneyConverter x:Key="LongToMoneyConverter"></domain:LongToMoneyConverter>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
