@@ -56,12 +56,14 @@
         <DatePicker Grid.Row="1" 
                     Grid.Column="3" 
 				    x:Name="dpBatDau"
-				    materialDesign:HintAssist.Hint="Bắt đầu"/>
+				    materialDesign:HintAssist.Hint="Bắt đầu"
+                    DateValidationError="DatePickerDateValidationError"/>
         <TextBlock Grid.Row="1" Grid.Column="4" Style="{StaticResource LabelStyle}" >đến</TextBlock>
         <DatePicker Grid.Row="1"
                     Grid.Column="5" 
 				    x:Name="dpKetThuc"
-				    materialDesign:HintAssist.Hint="Kết thúc"/>
+				    materialDesign:HintAssist.Hint="Kết thúc"
+                    DateValidationError="DatePickerDateValidationError"/>
         <TextBlock Grid.Row="1" Grid.Column="6" Style="{StaticResource LabelStyle}">Họ tên</TextBlock>
         <TextBox Grid.Row="1" Grid.Column="7" 
 				    x:Name="tbHoTen">

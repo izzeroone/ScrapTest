@@ -13,7 +13,6 @@ Public Class ucPhieuKham
 
         ' Add any initialization after the InitializeComponent() call.
         listChiTietPhieuKham = New ObservableCollection(Of ROWChiTietPhieuKhamDTO)
-        cbMaKhamBenh.ItemsSource = KhamBenhBUS.GetAllMaKhamBenh()
         cbLoaiBenh.ItemsSource = LoaiBenhBUS.GetAllLoaiBenh()
         cbLoaiBenh.DisplayMemberPath = "TenLoaiBenh"
         cbLoaiBenh.SelectedValuePath = "MaLoaiBenh"
@@ -51,6 +50,9 @@ Public Class ucPhieuKham
     End Sub
 
     Private Sub UpdateButton_Click(sender As Object, e As RoutedEventArgs)
+        If dgChiTietPhieuKham.SelectedIndex = -1 Then
+            Domain.Dialog.Show("Chưa có đối tượng được chọn")
+        End If
         Dim ChiTietPhieuKham As New ChiTietPhieuKhamDTO
         ChiTietPhieuKham.MaChiTietPhieuKham = tbMaChiTietPhieuKham.Text
         ChiTietPhieuKham.MaKhamBenh = cbMaKhamBenh.Text
@@ -93,14 +95,13 @@ Public Class ucPhieuKham
 
     Private Sub ReloadData()
         If dgChiTietPhieuKham IsNot Nothing Then
-            listChiTietPhieuKham = ROWChiTietPhieuKhamBUS.GetChiTietPhieuKhamByMaKhamBenh(cbMaKhamBenh.SelectedItem.ToString())
+            listChiTietPhieuKham = ROWChiTietPhieuKhamBUS.GetChiTietPhieuKhamByMaKhamBenh(cbMaKhamBenh.SelectedValue.ToString())
             dgChiTietPhieuKham.DataContext = listChiTietPhieuKham
         End If
     End Sub
 
     Private Sub LoadComboBoxData()
         If Me.IsVisible = True Then
-            cbMaKhamBenh.ItemsSource = KhamBenhBUS.GetAllMaKhamBenh()
             cbLoaiBenh.ItemsSource = LoaiBenhBUS.GetAllLoaiBenh()
             cbDonVi.ItemsSource = LoaiDonViBUS.GetAllLoaiDonVi()
             cbCachDung.ItemsSource = LoaiCachDungBUS.GetAllLoaiCachDung()
@@ -110,15 +111,28 @@ Public Class ucPhieuKham
 
     Private Sub cbMaKhamBenh_SelectionChanged(sender As Object, e As SelectionChangedEventArgs)
         If cbMaKhamBenh IsNot Nothing Then
-            Dim khamBenh As KhamBenhDTO = KhamBenhBUS.GetKhamBenhByMaKhamBenh(cbMaKhamBenh.SelectedItem.ToString())
-            tbNgayKhamBenh.Text = khamBenh.NgayKham.Date.ToShortDateString()
-            tbHoTen.Text = khamBenh.HoTenBenhNhan
-            tbGioiTinh.Text = khamBenh.GioiTinh
-            tbNamSinh.Text = khamBenh.NamSinh
-            tbDiaChi.Text = khamBenh.DiaChi
-            tbTrieuChung.Text = khamBenh.TrieuChung
-            cbLoaiBenh.SelectedValue = khamBenh.MaLoaiBenh
             ReloadData()
         End If
+    End Sub
+
+    Private Sub dpNgayKhamBenh_SelectedDateChanged(sender As Object, e As SelectionChangedEventArgs)
+        If dpNgayKhamBenh IsNot Nothing And dpNgayKhamBenh.SelectedDate IsNot Nothing Then
+            cbMaKhamBenh.SelectedValuePath = "MaKhamBenh"
+            cbMaKhamBenh.DisplayMemberPath = "MaKhamBenh"
+            cbMaKhamBenh.ItemsSource = KhamBenhBUS.GetKhamBenhByNgayKham(dpNgayKhamBenh.SelectedDate)
+        End If
+    End Sub
+
+    Private Sub cbMaKhamBenh_MouseDown(sender As Object, e As MouseButtonEventArgs)
+        If dpNgayKhamBenh.SelectedDate Is Nothing Then
+            Domain.Dialog.Show("Ngày khám chưa được chọn")
+        End If
+    End Sub
+
+    Private Sub DatePickerDateValidationError(sender As Object, e As DatePickerDateValidationErrorEventArgs)
+        Dim dp As DatePicker = sender
+        e.ThrowException = False
+        Domain.Dialog.Show("Ngày không hợp lệ")
+        dp.SelectedDate = Date.Now()
     End Sub
 End Class

@@ -5,10 +5,10 @@ Public Class ucHoaDonThanhToan
     Dim listThuocPaid As ObservableCollection(Of ChiTietHoaDonDTO)
     Dim listThuocUnpaid As ObservableCollection(Of ChiTietHoaDonDTO)
     Private Sub UserControl_IsVisibleChanged(sender As Object, e As DependencyPropertyChangedEventArgs)
-        If (Me.IsVisible = True) Then
+        If Me.IsVisible = True And dpNgayKham.SelectedDate IsNot Nothing Then
             cbMaKhamBenh.DisplayMemberPath = "MaKhamBenh"
             cbMaKhamBenh.SelectedValuePath = "MaKhamBenh"
-            cbMaKhamBenh.ItemsSource = KhamBenhBUS.GetAllKhamBenh()
+            cbMaKhamBenh.ItemsSource = KhamBenhBUS.GetKhamBenhByNgayKham(dpNgayKham.SelectedDate)
         End If
     End Sub
 
@@ -50,6 +50,14 @@ Public Class ucHoaDonThanhToan
         Dim maKhamBenh As String = cbMaKhamBenh.SelectedValue.ToString()
         If (HoaDonBUS.IsHoaDonPay(maKhamBenh)) Then
             HoaDonBUS.DeleteHoaDon(maKhamBenh)
+        End If
+    End Sub
+
+    Private Sub dpNgayKham_SelectedDateChanged(sender As Object, e As SelectionChangedEventArgs)
+        If dpNgayKham IsNot Nothing Then
+            cbMaKhamBenh.DisplayMemberPath = "MaKhamBenh"
+            cbMaKhamBenh.SelectedValuePath = "MaKhamBenh"
+            cbMaKhamBenh.ItemsSource = KhamBenhBUS.GetKhamBenhByNgayKham(dpNgayKham.SelectedDate)
         End If
     End Sub
 End Class

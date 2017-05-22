@@ -26,22 +26,26 @@ Public Class ucPhieuKhamBenh
     Private Sub NewButton_Click(sender As Object, e As RoutedEventArgs)
         If Not listKhamBenh.Count = 0 Then
             If Not listKhamBenh.Last.MaKhamBenh = KhamBenhBUS.GetMaKhamBenh() Then
-                Dim khamBenh As New KhamBenhDTO(KhamBenhBUS.GetMaKhamBenh(), tbNgayKham.SelectedDate, Nothing, Nothing, tbNgayKham.SelectedDate.Value.Year - 18, Nothing)
+                Dim khamBenh As New KhamBenhDTO(KhamBenhBUS.GetMaKhamBenh(), dpNgayKham.SelectedDate, Nothing, Nothing, dpNgayKham.SelectedDate.Value.Year - 18, Nothing)
                 listKhamBenh.Add(khamBenh)
                 dgKhamBenh.SelectedIndex = dgKhamBenh.Items.Count - 1
             End If
         Else
-            Dim khamBenh As New KhamBenhDTO(KhamBenhBUS.GetMaKhamBenh(), tbNgayKham.SelectedDate, Nothing, Nothing, tbNgayKham.SelectedDate.Value.Year - 18, Nothing)
+            Dim khamBenh As New KhamBenhDTO(KhamBenhBUS.GetMaKhamBenh(), dpNgayKham.SelectedDate, Nothing, Nothing, dpNgayKham.SelectedDate.Value.Year - 18, Nothing)
             listKhamBenh.Add(khamBenh)
             dgKhamBenh.SelectedIndex = dgKhamBenh.Items.Count - 1
         End If
     End Sub
 
     Private Sub UpdateButton_Click(sender As Object, e As RoutedEventArgs)
+        If (dgKhamBenh.SelectedIndex = -1) Then
+            Domain.Dialog.Show("Chưa có đối tượng được chọn")
+            Return
+        End If
         Dim khamBenh As New KhamBenhDTO
         khamBenh.MaKhamBenh = tbMaKhamBenh.Text
         khamBenh.HoTenBenhNhan = tbHoTen.Text
-        khamBenh.NgayKham = tbNgayKham.SelectedDate
+        khamBenh.NgayKham = dpNgayKham.SelectedDate
 
         If Not KhamBenhBUS.IsVaildNamSinh(tbNamSinh.Text, khamBenh.NamSinh) Then
             Domain.Dialog.Show("Năm sinh không hợp lệ")
@@ -82,9 +86,19 @@ Public Class ucPhieuKhamBenh
     End Sub
 
     Private Sub ReloadData()
-        If dgKhamBenh IsNot Nothing And tbNgayKham.SelectedDate IsNot Nothing Then
-            listKhamBenh = GetKhamBenhByNgayKham(tbNgayKham.SelectedDate)
+        If dgKhamBenh IsNot Nothing And dpNgayKham.SelectedDate IsNot Nothing Then
+            listKhamBenh = GetKhamBenhByNgayKham(dpNgayKham.SelectedDate)
             dgKhamBenh.DataContext = listKhamBenh
         End If
+        If tbSoBenhNhan IsNot Nothing Then
+            tbSoBenhNhan.Text = String.Format("Số bệnh nhân {0}/{1}", listKhamBenh.Count.ToString(), ThongSoDTO.SoBenhNhanKhamToiDa)
+        End If
+    End Sub
+
+    Private Sub DatePickerDateValidationError(sender As Object, e As DatePickerDateValidationErrorEventArgs)
+        Dim dp As DatePicker = sender
+        e.ThrowException = False
+        Domain.Dialog.Show("Ngày không hợp lệ")
+        dp.SelectedDate = Date.Now()
     End Sub
 End Class

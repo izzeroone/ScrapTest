@@ -35,10 +35,15 @@ Public Class ucLoaiThuoc
     End Sub
 
     Private Sub UpdateButton_Click(sender As Object, e As RoutedEventArgs)
+        If dgLoaiThuoc.SelectedIndex = -1 Then
+            Domain.Dialog.Show("Chưa có đối tượng được chọn")
+        End If
         Dim loaiThuoc As New LoaiThuocDTO()
         loaiThuoc.MaThuoc = tbMaThuoc.Text
         loaiThuoc.TenThuoc = tbTenThuoc.Text
-        loaiThuoc.DonGia = Integer.Parse(tbDonGia.Text)
+        If Not Integer.TryParse(tbDonGia.Text, loaiThuoc.DonGia) Then
+            loaiThuoc.DonGia = 0
+        End If
         Dim result As Boolean = LoaiThuocBUS.InsertOrUpdateThuoc(loaiThuoc)
         If (result = True) Then
             Domain.Dialog.Show("Successful")

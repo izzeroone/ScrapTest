@@ -29,6 +29,10 @@ Public Class ucLoaiCachDung
     End Sub
 
     Private Sub UpdateButton_Click(sender As Object, e As RoutedEventArgs)
+        If dgLoaiCachDung.SelectedIndex = -1 Then
+            Domain.Dialog.Show("Chưa có đối tượng được chọn")
+            Return
+        End If
         Dim loaiCachDung As New LoaiCachDungDTO()
         loaiCachDung.MaCachDung = tbMaCachDung.Text
         loaiCachDung.TenCachDung = tbTenCachDung.Text

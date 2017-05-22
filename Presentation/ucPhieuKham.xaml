@@ -47,43 +47,51 @@
             <TextBlock Grid.Row = "0" Grid.Column="0"  TextAlignment="Center" 
                        TextElement.FontWeight="Bold" TextElement.FontSize="18">LẬP PHIẾU KHÁM BỆNH</TextBlock>
         </materialDesign:Card>
-        <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource LabelStyle}" >Mã khám bệnh</TextBlock>
-        <ComboBox Grid.Row="1" Grid.Column="1" 
+        <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource LabelStyle}">Ngày khám bệnh</TextBlock>
+        <DatePicker Grid.Row="1" Grid.Column="1" 
+				    x:Name="dpNgayKhamBenh"
+                   SelectedDateChanged="dpNgayKhamBenh_SelectedDateChanged"
+                    DateValidationError="DatePickerDateValidationError">
+        </DatePicker>
+        <TextBlock Grid.Row="1" Grid.Column="2" Style="{StaticResource LabelStyle}" >Mã khám bệnh</TextBlock>
+        <ComboBox Grid.Row="1" Grid.Column="3" 
 				    x:Name="cbMaKhamBenh"
-                  SelectionChanged="cbMaKhamBenh_SelectionChanged">
+                  SelectionChanged="cbMaKhamBenh_SelectionChanged"
+                  MouseDown="cbMaKhamBenh_MouseDown">
         </ComboBox>
-        <TextBlock Grid.Row="1" Grid.Column="2" Style="{StaticResource LabelStyle}">Ngày khám bệnh</TextBlock>
-        <TextBox Grid.Row="1" Grid.Column="3" 
-				    x:Name="tbNgayKhamBenh"
-                 IsReadOnly="True">
-        </TextBox>
         <TextBlock Grid.Row="1" Grid.Column="4" Style="{StaticResource LabelStyle}">Họ tên</TextBlock>
         <TextBox Grid.Row="1" Grid.Column="5" 
 				    x:Name="tbHoTen"
+                 Text="{Binding SelectedItem.HoTenBenhNhan, ElementName=cbMaKhamBenh, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                  IsReadOnly="True">
         </TextBox>
         <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource LabelStyle}">Giới tính</TextBlock>
         <TextBox Grid.Row="2" Grid.Column="1" 
 				    x:Name="tbGioiTinh"
+                 Text="{Binding SelectedItem.GioiTinh, ElementName=cbMaKhamBenh, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                  IsReadOnly="True">
         </TextBox>
         <TextBlock Grid.Row="2" Grid.Column="2" Style="{StaticResource LabelStyle}" >Năm sinh</TextBlock>
         <TextBox Grid.Row="2" Grid.Column="3" 
 				    x:Name="tbNamSinh"
+                 Text="{Binding SelectedItem.NamSinh, ElementName=cbMaKhamBenh, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                  IsReadOnly="True">
         </TextBox>
         <TextBlock Grid.Row="2" Grid.Column="4" Style="{StaticResource LabelStyle}">Địa chỉ</TextBlock>
         <TextBox Grid.Row="2" Grid.Column="5" 
 				    x:Name="tbDiaChi"
+                 Text="{Binding SelectedItem.DiaChi, ElementName=cbMaKhamBenh, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                  IsReadOnly="True">
         </TextBox>
         <TextBlock Grid.Row="3" Grid.Column="0" Style="{StaticResource LabelStyle}" >Triệu chứng</TextBlock>
         <TextBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" 
-				    x:Name="tbTrieuChung">
+				    x:Name="tbTrieuChung"
+                 Text="{Binding SelectedItem.TrieuChung, ElementName=cbMaKhamBenh, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
         </TextBox>
         <TextBlock Grid.Row="3" Grid.Column="4" Style="{StaticResource LabelStyle}">Bệnh</TextBlock>
         <ComboBox Grid.Row="3" Grid.Column="5" 
-				    x:Name="cbLoaiBenh">
+				    x:Name="cbLoaiBenh"
+                  SelectedValue="{Binding SelectedItem.MaLoaiBenh, ElementName=cbMaKhamBenh, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
         </ComboBox>
         <Separator Grid.Row="4" Grid.Column="0" Style="{StaticResource MySeparatorStyle}"/>
         <TextBlock Grid.Row="5" Grid.Column="0" Style="{StaticResource LabelStyle}" >Mã CTPK</TextBlock>

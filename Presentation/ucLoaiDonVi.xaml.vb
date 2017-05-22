@@ -29,6 +29,10 @@ Public Class ucLoaiDonVi
     End Sub
 
     Private Sub UpdateButton_Click(sender As Object, e As RoutedEventArgs)
+        If dgLoaiDonVi.SelectedIndex = -1 Then
+            Domain.Dialog.Show("Chưa có đối tượng được chọn")
+            Return
+        End If
         Dim loaiDonVi As New LoaiDonViDTO()
         loaiDonVi.MaDonVi = tbMaDonVi.Text
         loaiDonVi.TenDonVi = tbTenDonVi.Text

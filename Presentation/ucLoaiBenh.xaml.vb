@@ -29,6 +29,10 @@ Public Class ucLoaiBenh
     End Sub
 
     Private Sub UpdateButton_Click(sender As Object, e As RoutedEventArgs)
+        If dgLoaiBenh.SelectedIndex = -1 Then
+            Domain.Dialog.Show("Chưa có đối tượng được chọn")
+            Return
+        End If
         Dim loaiBenh As New LoaiBenhDTO()
         loaiBenh.MaLoaiBenh = tbMaLoaiBenh.Text
         loaiBenh.TenLoaiBenh = tbTenLoaiBenh.Text
@@ -42,6 +46,7 @@ Public Class ucLoaiBenh
     End Sub
 
     Private Sub NewButton_Click(sender As Object, e As RoutedEventArgs)
+
         If Not listLoaiBenh.Count = 0 Then
             If Not listLoaiBenh.Last.MaLoaiBenh = LoaiBenhBUS.GetMaLoaiBenh() Then
                 Dim loaiBenh As New LoaiBenhDTO(LoaiBenhBUS.GetMaLoaiBenh(), Nothing)

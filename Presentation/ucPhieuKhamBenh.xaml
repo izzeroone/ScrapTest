@@ -8,7 +8,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:domain="clr-namespace:Presentation.Domain"
              mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="1200"
+             d:DesignHeight="1000" d:DesignWidth="1200"
              >
     <UserControl.Resources>
         <domain:DateToStringConverter x:Key ="DateToStringConverter"></domain:DateToStringConverter>
@@ -47,10 +47,11 @@
         <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource LabelStyle}" >Ngày khám</TextBlock>
         <DatePicker Grid.Row="1" 
                     Grid.Column="1"   
-				    x:Name="tbNgayKham"
+				    x:Name="dpNgayKham"
 				    materialDesign:HintAssist.Hint="Ngày khám"
                     SelectedDate="{x:Static sys:DateTime.Now}"
-                    SelectedDateChanged="DateTextBox_SelectedDateChanged"/>
+                    SelectedDateChanged="DateTextBox_SelectedDateChanged"
+                    DateValidationError="DatePickerDateValidationError"/>
         <TextBlock Grid.Row="1" Grid.Column="2" Style="{StaticResource LabelStyle}">Mã khám bệnh</TextBlock>
         <TextBox Grid.Row="1" Grid.Column="3" 
 				 x:Name="tbMaKhamBenh"
@@ -125,6 +126,9 @@
             </materialDesign:Card>
         </StackPanel>
         <Grid Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="8" Grid.RowSpan="6"  >
+            <materialDesign:Chip Margin="20, 0, 0, 0" Background="{DynamicResource PrimaryHueLightBrush}">
+                <TextBlock  Foreground="{DynamicResource PrimaryHueLightForegroundBrush}" x:Name="tbSoBenhNhan">Số bệnh nhân</TextBlock>
+            </materialDesign:Chip>
             <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft">
                 <Button Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="0 12 8 0" Width="100"
                     ToolTip="Resource name: MaterialDesignRaisedDarkButton"

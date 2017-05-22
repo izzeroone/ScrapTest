@@ -97,6 +97,7 @@
             <Style TargetType="{x:Type StackPanel}" x:Key="DataGridStyle">
                 <Setter Property="Margin" Value="20, 10, 0, 0"/>
             </Style>
+
             <domain:DateToStringConverter x:Key ="DateToStringConverter"></domain:DateToStringConverter>
             <domain:DoubleToPercentConverter x:Key="DoubleToPercentConverter"></domain:DoubleToPercentConverter>
             <domain:LongToMoneyConverter x:Key="LongToMoneyConverter"></domain:LongToMoneyConverter>

@@ -172,4 +172,11 @@ Public Class ucTraCuuBenhNhan
         Dim regex As Regex = New Regex("[^0-9]+")
         e.Handled = regex.IsMatch(e.Text)
     End Sub
+
+    Private Sub DatePickerDateValidationError(sender As Object, e As DatePickerDateValidationErrorEventArgs)
+        Dim dp As DatePicker = sender
+        e.ThrowException = False
+        Domain.Dialog.Show("Ngày không hợp lệ")
+        dp.SelectedDate = Date.Now()
+    End Sub
 End Class
