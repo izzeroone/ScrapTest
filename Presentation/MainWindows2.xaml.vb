@@ -10,8 +10,8 @@ Class MainWindows2
         ' Add any initialization after the InitializeComponent() call.
         SetupHarburgerBar()
         ThongSoBUS.LoadThongSo()
-        CauHinhCSDLBUS.GetAllCauHinhCSDL()
-        CauHinhCSDLBUS.SetActive(0)
+        'CauHinhCSDLBUS.GetAllCauHinhCSDL()
+        'CauHinhCSDLBUS.SetActive(0)
         Task.Factory.StartNew(Sub()
                                   System.Threading.Thread.Sleep(2500)
                               End Sub).ContinueWith(Sub(ByVal t)

@@ -4,11 +4,11 @@ Imports Npgsql
 Namespace DataAccess
     Public Module DataAccessHelper
         Private connectionString As String
-        Public _user As String = "ngayngu"
-        Public _password As String = "abc123"
-        Public _host As String = "127.0.0.1"
+        Public _user As String = "htyycgpx"
+        Public _password As String = "xo2vkZBRfinzgnFOZCGzwjFSpkh33sh0"
+        Public _host As String = "stampy.db.elephantsql.com"
         Public _port As Integer = "5432"
-        Public _database As String = "QuanLyPhongMach2"
+        Public _database As String = "htyycgpx"
 
         Sub New()
             'connectionString = String.Format("User ID={0};Password={1};Host={2};Port={3};Database={4};",
