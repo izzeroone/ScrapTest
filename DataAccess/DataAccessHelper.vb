@@ -3,13 +3,22 @@ Imports System.Windows.Forms
 Imports Npgsql
 Namespace DataAccess
     Public Module DataAccessHelper
-        Dim connectionString As String
+        Private connectionString As String
+        Public _user As String = "ngayngu"
+        Public _password As String = "abc123"
+        Public _host As String = "127.0.0.1"
+        Public _port As Integer = "5432"
+        Public _database As String = "QuanLyPhongMach2"
 
         Sub New()
             'connectionString = String.Format("User ID={0};Password={1};Host={2};Port={3};Database={4};",
             '                             "htyycgpx", "xo2vkZBRfinzgnFOZCGzwjFSpkh33sh0", "stampy.db.elephantsql.com", "5432", "htyycgpx")
+            ConstructConnectionString()
+        End Sub
+
+        Public Sub ConstructConnectionString()
             connectionString = String.Format("User ID={0};Password={1};Host={2};Port={3};Database={4};",
-                                         "ngayngu", "abc123", "127.0.0.1", "5432", "QuanLyPhongMach2")
+                                         _user, _password, _host, _port.ToString(), _database)
         End Sub
 
         Public Function ExecuteQuery(ByVal spName As String, sqlParams As List(Of NpgsqlParameter)) As DataTable
@@ -116,5 +125,18 @@ Namespace DataAccess
             Return ExecuteNoneQuery(spName, Nothing)
         End Function
 
+        Public Function TestConnectionString() As Boolean
+            Dim result As Boolean
+            Dim connect As New NpgsqlConnection(connectionString)
+            Try
+                connect.Open()
+                result = True
+            Catch ex As Exception
+                result = False
+            Finally
+                connect.Close()
+            End Try
+            Return result
+        End Function
     End Module
 End Namespace

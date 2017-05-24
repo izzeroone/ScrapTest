@@ -40,7 +40,10 @@
                 </Style.Triggers>
             </Style>
             <Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource MaterialDesignPasswordBox}">
-                <Setter Property="Margin" Value="0 8 0 8" />
+                <Setter Property="Margin" Value="20,3.6,0.4,5.2" />
+                <Setter Property="VerticalAlignment" Value="Bottom"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueLightBrush}"/>
+                <Setter Property="BorderThickness" Value="2"/>
             </Style>
             <Style TargetType="{x:Type TextBlock}" x:Key="LabelStyle">
                 <Setter Property="Margin" Value="16,3.6,7.4,10"/>

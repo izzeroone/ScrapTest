@@ -66,6 +66,7 @@
     <Compile Include="BaoCaoDoanhThuBUS.vb" />
     <Compile Include="BaoCaoThuocBUS.vb" />
     <Compile Include="BenhNhanBUS.vb" />
+    <Compile Include="CauHinhCSDLBUS.vb" />
     <Compile Include="ChiTietHoaDonBUS.vb" />
     <Compile Include="ChiTietThuocBUS.vb" />
     <Compile Include="ChiTieuPhieuKhamBUS.vb" />

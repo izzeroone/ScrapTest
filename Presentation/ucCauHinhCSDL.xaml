@@ -6,12 +6,13 @@
              xmlns:local="clr-namespace:Presentation"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="800">
+             d:DesignHeight="500" d:DesignWidth="800"
+             IsVisibleChanged="UserControl_IsVisibleChanged">
     <Grid HorizontalAlignment="Center" VerticalAlignment="Stretch">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="160" />
+            <ColumnDefinition Width="120" />
             <ColumnDefinition Width="200" />
-            <ColumnDefinition Width="160" />
+            <ColumnDefinition Width="120" />
             <ColumnDefinition Width="200" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -36,36 +37,71 @@
             <TextBlock  TextAlignment="Center" 
                        TextElement.FontWeight="Bold" TextElement.FontSize="18">CẤU HÌNH KẾT NỐI CSDL</TextBlock>
         </materialDesign:Card>
-        <TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="16,11.8,7.4,13" Grid.ColumnSpan="2">Profiler</TextBlock>
-        <ComboBox Grid.Row="1" Grid.Column="2" 
-				    x:Name="cbProfile"
-				 Margin="34.047,7.8,0.4,8">
+        <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource LabelStyle}">Profiler</TextBlock>
+        <ComboBox Grid.Column="1"  Grid.ColumnSpan="2"
+				    x:Name="cbProfile" Margin="107,0,48,5.8" Grid.RowSpan="2"
+                  DisplayMemberPath="Id">
+            <!--<ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Id}"/>
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Address}" />
+                        <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding Port}" FontStyle="Italic"/>
+                    </Grid>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>-->
         </ComboBox>
-        <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" Grid.ColumnSpan="2">Server</TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource LabelStyle}">Server</TextBlock>
         <TextBox Grid.Row="2" Grid.Column="1" 
 				    x:Name="tbServer"
-				 Margin="34.047,7.8,0.4,8">
+                 Text="{Binding SelectedItem.Address, ElementName=cbProfile, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
         </TextBox>
-        <TextBlock Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" Margin="16,11.8,7.4,13" Grid.ColumnSpan="2">Port</TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="2" Style="{StaticResource LabelStyle}">Port</TextBlock>
         <TextBox Grid.Row="2" Grid.Column="3" 
 				    x:Name="tbPort"
-				 Margin="34.047,7.8,0.4,8">
+                 Text="{Binding SelectedItem.Port, ElementName=cbProfile, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
         </TextBox>
-        <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" Grid.ColumnSpan="2">Username</TextBlock>
+        <TextBlock Grid.Row="3" Grid.Column="0" Style="{StaticResource LabelStyle}">Username</TextBlock>
         <TextBox Grid.Row="3" Grid.Column="1" 
 				    x:Name="tbUser"
-				 Margin="34.047,7.8,0.4,8">
+                 Text="{Binding SelectedItem.Username, ElementName=cbProfile, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
         </TextBox>
-        <TextBlock Grid.Row="3" Grid.Column="2" VerticalAlignment="Center" Margin="16,11.8,7.4,13" Grid.ColumnSpan="2">Port</TextBlock>
+        <TextBlock Grid.Row="3" Grid.Column="2" Style="{StaticResource LabelStyle}">Password</TextBlock>
         <PasswordBox Grid.Row="3" Grid.Column="3" 
-				    x:Name="tbPass"
-				 Margin="34.047,7.8,0.4,8">
+				    x:Name="tbPass">
         </PasswordBox>
-        <TextBlock Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Margin="16,11.8,7.4,13" Grid.ColumnSpan="2">Tên Database</TextBlock>
+        <TextBlock Grid.Row="4" Grid.Column="0" Style="{StaticResource LabelStyle}">Tên Database</TextBlock>
         <TextBox Grid.Row="4" Grid.Column="1" 
 				    x:Name="tbDatabase"
-				 Margin="34.047,7.8,0.4,8">
+                 Text="{Binding SelectedItem.Database, ElementName=cbProfile, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
         </TextBox>
+        <StackPanel Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="6" Orientation="Horizontal" Margin="0 12 0 0" FlowDirection="RightToLeft">
+            <Button Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="0 12 8 0" Width="100"
+                    ToolTip="Resource name: MaterialDesignRaisedDarkButton"
+                    Click="Accept_Click">
+                ĐỒNG Ý
+            </Button>
+            <Button Style="{StaticResource MaterialDesignRaisedDarkButton}" Margin="0 12 8 0" Width="100"
+                    ToolTip="Resource name: MaterialDesignRaisedDarkButton">
+                CẬP NHẬT
+            </Button>
+            <Button Style="{StaticResource MaterialDesignRaisedButton}" Margin="0 12 8 0" Width="100"
+                    ToolTip="Resource name: MaterialDesignRaisedDarkButton">
+                XÓA
+            </Button>
+            <Button Style="{StaticResource MaterialDesignRaisedAccentButton}" Margin="0 12 16 0" Width="100"
+                    ToolTip="Resource name: MaterialDesignRaisedAccentButton">
+                HỦY
+            </Button>
+        </StackPanel>
 
     </Grid>
 </UserControl>
