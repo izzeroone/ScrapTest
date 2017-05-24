@@ -1,4 +1,5 @@
 ﻿Imports DataAccess.DataAccess
+Imports Business.Business
 Class MainWindows2
 
     Public Sub New()
@@ -8,7 +9,9 @@ Class MainWindows2
 
         ' Add any initialization after the InitializeComponent() call.
         SetupHarburgerBar()
-        Business.Business.ThongSoBUS.LoadThongSo()
+        ThongSoBUS.LoadThongSo()
+        CauHinhCSDLBUS.GetAllCauHinhCSDL()
+        CauHinhCSDLBUS.SetActive(0)
         Task.Factory.StartNew(Sub()
                                   System.Threading.Thread.Sleep(2500)
                               End Sub).ContinueWith(Sub(ByVal t)

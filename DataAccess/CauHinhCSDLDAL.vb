@@ -29,20 +29,20 @@ Namespace DataAccess
         Public Function WriteCauHinhDefaultCSDL() As Boolean
             Dim serializer As New XmlSerializer(GetType(List(Of CauHinhCSDLDTO)))
             CauHinhCSDLDTO.List.Clear()
-            CauHinhCSDLDTO.List.Add(New CauHinhCSDLDTO() With {.Id = "Local",
-                                                .Address = "127.0.0.1",
-                                                .Port = "5432",
-                                                .Username = "ngayngu",
-                                                .Password = Encrypt.StringCipher.Encrypt("abc123", passphase),
-                                                .Database = "QuanLyPhongMach2"})
             CauHinhCSDLDTO.List.Add(New CauHinhCSDLDTO() With {.Id = "Free Database Server",
                                                 .Address = "stampy.db.elephantsql.com",
                                                 .Port = "5432",
                                                 .Username = "htyycgpx",
                                                 .Password = Encrypt.StringCipher.Encrypt("xo2vkZBRfinzgnFOZCGzwjFSpkh33sh0", passphase),
                                                 .Database = "htyycgpx"})
+            CauHinhCSDLDTO.List.Add(New CauHinhCSDLDTO() With {.Id = "Local",
+                                                .Address = "127.0.0.1",
+                                                .Port = "5432",
+                                                .Username = "ngayngu",
+                                                .Password = Encrypt.StringCipher.Encrypt("abc123", passphase),
+                                                .Database = "QuanLyPhongMach2"})
             Try
-                Using stream As FileStream = File.OpenWrite(IO.Path.Combine(My.Application.Info.DirectoryPath, "cauhinh.xml"))
+                Using stream As FileStream = File.OpenWrite(IO.Path.Combine(My.Application.Info.DirectoryPath, "CauHinh.xml"))
                     serializer.Serialize(stream, CauHinhCSDLDTO.List)
                 End Using
 
@@ -53,14 +53,19 @@ Namespace DataAccess
         End Function
 
         Public Function WriteCauHinhCSDL() As Boolean
-            If Not File.Exists(IO.Path.Combine(My.Application.Info.DirectoryPath, "cauhinh.xml")) Then
+            If Not File.Exists(IO.Path.Combine(My.Application.Info.DirectoryPath, "CauHinh.xml")) Then
                 WriteCauHinhDefaultCSDL()
                 Return False
             End If
+            File.Delete(IO.Path.Combine(My.Application.Info.DirectoryPath, "CauHinh.xml"))
             Dim serializer As New XmlSerializer(GetType(List(Of CauHinhCSDLDTO)))
+            Dim tempList As List(Of CauHinhCSDLDTO) = CauHinhCSDLDTO.List
+            For Each cauHinh As CauHinhCSDLDTO In tempList
+                cauHinh.Password = Encrypt.StringCipher.Encrypt(cauHinh.Password, passphase)
+            Next
             Try
-                Using stream As FileStream = File.OpenWrite(IO.Path.Combine(My.Application.Info.DirectoryPath, "cauhinh.xml"))
-                    serializer.Serialize(stream, CauHinhCSDLDTO.List)
+                Using stream As FileStream = File.OpenWrite(IO.Path.Combine(My.Application.Info.DirectoryPath, "CauHinh.xml"))
+                    serializer.Serialize(stream, tempList)
                 End Using
                 Return True
             Catch ex As Exception
