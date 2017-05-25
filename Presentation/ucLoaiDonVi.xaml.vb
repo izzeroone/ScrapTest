@@ -3,14 +3,6 @@ Imports Business.Business
 Imports Entities.Entities
 Public Class ucLoaiDonVi
     Private listLoaiDonVi As ObservableCollection(Of LoaiDonViDTO)
-    Public Sub New()
-
-        ' This call is required by the designer.
-        InitializeComponent()
-
-        ' Add any initialization after the InitializeComponent() call.
-        ReloadData()
-    End Sub
     Private Sub CancelButton_Click(sender As Object, e As RoutedEventArgs)
         dgLoaiDonVi.SelectedIndex = -1
     End Sub
@@ -59,7 +51,7 @@ Public Class ucLoaiDonVi
         End If
     End Sub
     Private Sub ReloadData()
-        If dgLoaiDonVi IsNot Nothing Then
+        If dgLoaiDonVi IsNot Nothing And Me.IsVisible Then
             listLoaiDonVi = LoaiDonViBUS.GetAllLoaiDonVi()
             dgLoaiDonVi.DataContext = listLoaiDonVi
         End If

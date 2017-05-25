@@ -3,14 +3,6 @@ Imports Business.Business
 Imports Entities.Entities
 Public Class ucLoaiBenh
     Private listLoaiBenh As ObservableCollection(Of LoaiBenhDTO)
-    Public Sub New()
-
-        ' This call is required by the designer.
-        InitializeComponent()
-
-        ' Add any initialization after the InitializeComponent() call.
-        ReloadData()
-    End Sub
     Private Sub CancelButton_Click(sender As Object, e As RoutedEventArgs)
         dgLoaiBenh.SelectedIndex = -1
     End Sub
@@ -60,7 +52,7 @@ Public Class ucLoaiBenh
         End If
     End Sub
     Private Sub ReloadData()
-        If dgLoaiBenh IsNot Nothing Then
+        If dgLoaiBenh IsNot Nothing And Me.IsVisible Then
             listLoaiBenh = LoaiBenhBUS.GetAllLoaiBenh()
             dgLoaiBenh.DataContext = listLoaiBenh
         End If

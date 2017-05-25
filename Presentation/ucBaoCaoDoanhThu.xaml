@@ -54,7 +54,7 @@
                 <DataGrid  x:Name="dgChiTietDoanhThu"
                        materialDesign:DataGridAssist.CellPadding="4 2 2 2" materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2"
                     ItemsSource="{Binding}" 
-                  Height="450">
+                  MaxHeight="450">
                     <DataGrid.Columns>
                         <materialDesign:MaterialDataGridTextColumn Binding="{Binding Ngay, Converter={StaticResource DateToStringConverter}}"
                                                                Header="Ngày"                                                        

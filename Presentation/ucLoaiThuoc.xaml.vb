@@ -4,14 +4,6 @@ Imports Business.Business
 Imports Entities.Entities
 Public Class ucLoaiThuoc
     Private listLoaiThuoc As ObservableCollection(Of LoaiThuocDTO)
-    Public Sub New()
-
-        ' This call is required by the designer.
-        InitializeComponent()
-
-        ' Add any initialization after the InitializeComponent() call.
-        ReloadData()
-    End Sub
     Private Sub CancelButton_Click(sender As Object, e As RoutedEventArgs)
         dgLoaiThuoc.SelectedIndex = -1
     End Sub
@@ -67,7 +59,7 @@ Public Class ucLoaiThuoc
         End If
     End Sub
     Private Sub ReloadData()
-        If dgLoaiThuoc IsNot Nothing Then
+        If dgLoaiThuoc IsNot Nothing And Me.IsVisible Then
             listLoaiThuoc = LoaiThuocBUS.GetAllLoaiThuoc()
             dgLoaiThuoc.DataContext = listLoaiThuoc
         End If

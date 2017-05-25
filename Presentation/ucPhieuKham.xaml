@@ -91,6 +91,8 @@
         <TextBlock Grid.Row="3" Grid.Column="4" Style="{StaticResource LabelStyle}">Bệnh</TextBlock>
         <ComboBox Grid.Row="3" Grid.Column="5" 
 				    x:Name="cbLoaiBenh"
+                  SelectedValuePath="MaLoaiBenh"
+                  DisplayMemberPath="TenLoaiBenh"
                   SelectedValue="{Binding SelectedItem.MaLoaiBenh, ElementName=cbMaKhamBenh, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
         </ComboBox>
         <Separator Grid.Row="4" Grid.Column="0" Style="{StaticResource MySeparatorStyle}"/>
@@ -105,11 +107,15 @@
         <TextBlock Grid.Row="5" Grid.Column="2" Style="{StaticResource LabelStyle}" >Tên thuốc</TextBlock>
         <ComboBox Grid.Row="5" Grid.Column="3" 
 				    x:Name="cbThuoc"
+                  SelectedValuePath="MaThuoc"
+                  DisplayMemberPath="TenThuoc"
                   SelectedValue="{Binding SelectedItem.MaThuoc, ElementName=dgChiTietPhieuKham, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
         </ComboBox>
         <TextBlock Grid.Row="5" Grid.Column="4" Style="{StaticResource LabelStyle}">Đơn vị</TextBlock>
         <ComboBox Grid.Row="5" Grid.Column="5" 
 				    x:Name="cbDonVi"
+                  SelectedValuePath="MaDonVi"
+                  DisplayMemberPath="TenDonVi"
                   SelectedValue="{Binding SelectedItem.MaDonVi, ElementName=dgChiTietPhieuKham, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
         </ComboBox>
         <TextBlock Grid.Row="6" Grid.Column="0" Style="{StaticResource LabelStyle}">Số lượng</TextBlock>
@@ -121,6 +127,8 @@
         <TextBlock Grid.Row="6" Grid.Column="2" Style="{StaticResource LabelStyle}" >Cách dùng</TextBlock>
         <ComboBox Grid.Row="6" Grid.Column="3" 
 				    x:Name="cbCachDung"
+                  SelectedValuePath="MaCachDung"
+                  DisplayMemberPath="TenCachDung"
                   SelectedValue="{Binding SelectedItem.MaCachDung, ElementName=dgChiTietPhieuKham, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
         </ComboBox>
         
@@ -130,7 +138,7 @@
                 <DataGrid  x:Name="dgChiTietPhieuKham" 
                        materialDesign:DataGridAssist.CellPadding="4 2 2 2" materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2"
                     ItemsSource="{Binding}" AutoGenerateColumns="False" 
-                  Height="330">
+                  MaxHeight="330">
                     <DataGrid.Columns>
                         <materialDesign:MaterialDataGridTextColumn Binding="{Binding MaChiTietPhieuKham}"
                                                            Header="Mã CTPK"                                                        

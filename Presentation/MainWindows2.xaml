@@ -28,7 +28,7 @@
                                     IsChecked="{Binding ElementName=MenuToggleButton, Path=IsChecked, Mode=TwoWay}" />
                     </materialDesign:ColorZone>
 
-                    <TreeView x:Name="trvMenu">
+                    <TreeView x:Name="trvMenu" SelectedItemChanged="trvMenu_SelectedItemChanged">
                         <TreeView.Resources>
                             <HierarchicalDataTemplate DataType="{x:Type domain:GroupMenuItem}" ItemsSource="{Binding MenuItems}">
                                 <DockPanel HorizontalAlignment="Stretch">

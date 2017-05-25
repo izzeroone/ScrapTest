@@ -12,19 +12,7 @@ Public Class ucPhieuKham
         InitializeComponent()
 
         ' Add any initialization after the InitializeComponent() call.
-        listChiTietPhieuKham = New ObservableCollection(Of ROWChiTietPhieuKhamDTO)
-        cbLoaiBenh.ItemsSource = LoaiBenhBUS.GetAllLoaiBenh()
-        cbLoaiBenh.DisplayMemberPath = "TenLoaiBenh"
-        cbLoaiBenh.SelectedValuePath = "MaLoaiBenh"
-        cbDonVi.ItemsSource = LoaiDonViBUS.GetAllLoaiDonVi()
-        cbDonVi.DisplayMemberPath = "TenDonVi"
-        cbDonVi.SelectedValuePath = "MaDonVi"
-        cbCachDung.ItemsSource = LoaiCachDungBUS.GetAllLoaiCachDung()
-        cbCachDung.DisplayMemberPath = "TenCachDung"
-        cbCachDung.SelectedValuePath = "MaCachDung"
-        cbThuoc.ItemsSource = LoaiThuocBUS.GetAllLoaiThuoc()
-        cbThuoc.DisplayMemberPath = "TenThuoc"
-        cbThuoc.SelectedValuePath = "MaThuoc"
+
     End Sub
 
     Private Sub NumberValidationTextBox(ByVal sender As Object, ByVal e As TextCompositionEventArgs)

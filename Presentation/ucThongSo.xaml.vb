@@ -1,14 +1,7 @@
 ﻿Imports Business.Business
 Imports Entities.Entities
 Public Class ucThongSo
-    Public Sub New()
 
-        ' This call is required by the designer.
-        InitializeComponent()
-
-        ' Add any initialization after the InitializeComponent() call.
-        Reload()
-    End Sub
     Private Sub UpdateButton_Click(sender As Object, e As RoutedEventArgs)
         Dim soBenhNhanToiDa As Integer
         Dim tienKham As Integer
@@ -30,9 +23,11 @@ Public Class ucThongSo
     End Sub
 
     Private Sub Reload()
-        ThongSoBUS.LoadThongSo()
-        tbSoBenhNhanToiDa.Text = ThongSoDTO.SoBenhNhanKhamToiDa.ToString()
-        tbTienKham.Text = ThongSoDTO.TienKham.ToString()
+        If Me.IsVisible Then
+            ThongSoBUS.LoadThongSo()
+            tbSoBenhNhanToiDa.Text = ThongSoDTO.SoBenhNhanKhamToiDa.ToString()
+            tbTienKham.Text = ThongSoDTO.TienKham.ToString()
+        End If
     End Sub
 
 

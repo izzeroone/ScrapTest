@@ -285,6 +285,10 @@
       <Project>{35daa3d6-8f15-447e-b718-8bde2fb3f45a}</Project>
       <Name>Entities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Utility\Utility.vbproj">
+      <Project>{88f35c7c-3013-4602-8278-7a1c389cbb03}</Project>
+      <Name>Utility</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

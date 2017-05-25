@@ -24,34 +24,38 @@ Class MainWindows2
     Public Sub SetupHarburgerBar()
         Dim mainMenuItems As New List(Of Domain.GroupMenuItem)
 
-        Dim menuItems1 As New Domain.GroupMenuItem With {.Name = "KHÁM BỆNH"}
-        menuItems1.MenuItems.Add(New Domain.MenuItem() With {.Name = "Lập phiếu khám bệnh", .Content = New ucPhieuKhamBenh()})
+        Dim menuItems1 As New Domain.GroupMenuItem With {.Name = "QUẢN LÝ KHÁM BỆNH"}
+        menuItems1.MenuItems.Add(New Domain.MenuItem() With {.Name = "Lập danh sách khám bệnh", .Content = New ucPhieuKhamBenh()})
         menuItems1.MenuItems.Add(New Domain.MenuItem() With {.Name = "Lập chi tiết phiếu khám", .Content = New ucPhieuKham()})
-        menuItems1.MenuItems.Add(New Domain.MenuItem() With {.Name = "Lập hóa đơn", .Content = New ucHoaDonThanhToan()})
+        menuItems1.MenuItems.Add(New Domain.MenuItem() With {.Name = "Tra cứu bệnh nhân", .Content = New ucTraCuuBenhNhan()})
         mainMenuItems.Add(menuItems1)
 
 
-        Dim menuItems2 As New Domain.GroupMenuItem With {.Name = "TRA CỨU"}
-        menuItems2.MenuItems.Add(New Domain.MenuItem() With {.Name = "Tra cứu bệnh nhân", .Content = New ucTraCuuBenhNhan()})
-        mainMenuItems.Add(menuItems2)
-
-        Dim menuItems3 As New Domain.GroupMenuItem With {.Name = "DANH MỤC"}
-        menuItems3.MenuItems.Add(New Domain.MenuItem() With {.Name = "Loại bệnh", .Content = New ucLoaiBenh()})
-        menuItems3.MenuItems.Add(New Domain.MenuItem() With {.Name = "Loại thuốc", .Content = New ucLoaiThuoc()})
-        menuItems3.MenuItems.Add(New Domain.MenuItem() With {.Name = "Loại đơn vị", .Content = New ucLoaiDonVi()})
-        menuItems3.MenuItems.Add(New Domain.MenuItem() With {.Name = "Loại cách dùng", .Content = New ucLoaiCachDung()})
+        Dim menuItems3 As New Domain.GroupMenuItem With {.Name = "QUẢN LÝ THUỐC"}
+        menuItems3.MenuItems.Add(New Domain.MenuItem() With {.Name = "Danh mục loại thuốc", .Content = New ucLoaiThuoc()})
+        menuItems3.MenuItems.Add(New Domain.MenuItem() With {.Name = "Danh mục loại đơn vị", .Content = New ucLoaiDonVi()})
+        menuItems3.MenuItems.Add(New Domain.MenuItem() With {.Name = "Danh mục loại cách dùng", .Content = New ucLoaiCachDung()})
+        menuItems3.MenuItems.Add(New Domain.MenuItem() With {.Name = "Báo cáo sử dụng thuốc", .Content = New ucBaoCaoThuoc()})
         mainMenuItems.Add(menuItems3)
 
-        Dim menuItems4 As New Domain.GroupMenuItem With {.Name = "BÁO CÁO"}
+        Dim menuItems6 As New Domain.GroupMenuItem With {.Name = "QUẢN LÝ LOẠI BỆNH"}
+        menuItems6.MenuItems.Add(New Domain.MenuItem() With {.Name = "Danh mục loại bệnh", .Content = New ucLoaiBenh()})
+        mainMenuItems.Add(menuItems6)
+
+        Dim menuItems4 As New Domain.GroupMenuItem With {.Name = "QUẢN LÝ TÀI CHÍNH"}
+        menuItems4.MenuItems.Add(New Domain.MenuItem() With {.Name = "Lập hóa đơn", .Content = New ucHoaDonThanhToan()})
         menuItems4.MenuItems.Add(New Domain.MenuItem() With {.Name = "Báo cáo doanh thu", .Content = New ucBaoCaoDoanhThu()})
-        menuItems4.MenuItems.Add(New Domain.MenuItem() With {.Name = "Báo cáo sử dụng thuốc", .Content = New ucBaoCaoThuoc()})
         mainMenuItems.Add(menuItems4)
 
-        Dim menuItems5 As New Domain.GroupMenuItem With {.Name = "CẤU HÌNH"}
+        Dim menuItems5 As New Domain.GroupMenuItem With {.Name = "TỔ CHỨC"}
         menuItems5.MenuItems.Add(New Domain.MenuItem() With {.Name = "Thông số", .Content = New ucThongSo()})
         menuItems5.MenuItems.Add(New Domain.MenuItem() With {.Name = "Kết nối CSDL", .Content = New ucCauHinhCSDL()})
         mainMenuItems.Add(menuItems5)
 
         trvMenu.ItemsSource = mainMenuItems
+    End Sub
+
+    Private Sub trvMenu_SelectedItemChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Object))
+
     End Sub
 End Class

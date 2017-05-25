@@ -3,14 +3,6 @@ Imports Business.Business
 Imports Entities.Entities
 Public Class ucLoaiCachDung
     Private listLoaiCachDung As ObservableCollection(Of LoaiCachDungDTO)
-    Public Sub New()
-
-        ' This call is required by the designer.
-        InitializeComponent()
-
-        ' Add any initialization after the InitializeComponent() call.
-        ReloadData()
-    End Sub
     Private Sub CancelButton_Click(sender As Object, e As RoutedEventArgs)
         dgLoaiCachDung.SelectedIndex = -1
     End Sub
@@ -59,7 +51,7 @@ Public Class ucLoaiCachDung
         End If
     End Sub
     Private Sub ReloadData()
-        If dgLoaiCachDung IsNot Nothing Then
+        If dgLoaiCachDung IsNot Nothing And Me.IsVisible Then
             listLoaiCachDung = LoaiCachDungBUS.GetAllLoaiCachDung()
             dgLoaiCachDung.DataContext = listLoaiCachDung
         End If

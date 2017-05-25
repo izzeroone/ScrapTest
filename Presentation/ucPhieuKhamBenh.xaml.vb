@@ -5,13 +5,13 @@ Imports Business.Business
 Imports Entities.Entities
 Public Class ucPhieuKhamBenh
     Dim listKhamBenh As ObservableCollection(Of KhamBenhDTO)
+    Dim firstLoad As Boolean = True
     Public Sub New()
 
         ' This call is required by the designer.
         InitializeComponent()
 
         ' Add any initialization after the InitializeComponent() call.
-        ReloadData()
     End Sub
 
     Private Sub NumberValidationTextBox(ByVal sender As Object, ByVal e As TextCompositionEventArgs)
@@ -40,6 +40,8 @@ Public Class ucPhieuKhamBenh
     Private Sub UpdateButton_Click(sender As Object, e As RoutedEventArgs)
         If (dgKhamBenh.SelectedIndex = -1) Then
             Domain.Dialog.Show("Chưa có đối tượng được chọn")
+            Dim stupid As New Utility.Utility.MessageDialog
+            stupid.ShowDialog()
             Return
         End If
         Dim khamBenh As New KhamBenhDTO
@@ -100,5 +102,12 @@ Public Class ucPhieuKhamBenh
         e.ThrowException = False
         Domain.Dialog.Show("Ngày không hợp lệ")
         dp.SelectedDate = Date.Now()
+    End Sub
+
+    Private Sub UserControl_IsVisibleChanged(sender As Object, e As DependencyPropertyChangedEventArgs)
+        If firstLoad Then
+            dpNgayKham.SelectedDate = Date.Now
+            firstLoad = False
+        End If
     End Sub
 End Class
