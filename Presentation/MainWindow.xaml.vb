@@ -22,7 +22,7 @@ Class MainWindow
         Dim mainMenuItems As New List(Of Domain.GroupMenuItem)
 
         Dim menuItems1 As New Domain.GroupMenuItem With {.Name = "KHÁM BỆNH"}
-        menuItems1.MenuItems.Add(New Domain.MenuItem() With {.Name = "Lập phiếu khám bệnh", .Content = New ucPhieuKhamBenh()})
+        menuItems1.MenuItems.Add(New Domain.MenuItem() With {.Name = "Lập phiếu khám bệnh", .Content = New ucDanhSachKhamBenh()})
         menuItems1.MenuItems.Add(New Domain.MenuItem() With {.Name = "Lập chi tiết phiếu khám", .Content = New ucPhieuKham()})
         menuItems1.MenuItems.Add(New Domain.MenuItem() With {.Name = "Lập hóa đơn", .Content = New ucHoaDonThanhToan()})
         mainMenuItems.Add(menuItems1)

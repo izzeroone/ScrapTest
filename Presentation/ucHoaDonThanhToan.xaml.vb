@@ -1,6 +1,8 @@
 ﻿Imports Entities.Entities
 Imports Business.Business
 Imports System.Collections.ObjectModel
+Imports MaterialDesignThemes.Wpf
+
 Public Class ucHoaDonThanhToan
     Dim listThuocPaid As ObservableCollection(Of ChiTietHoaDonDTO)
     Dim listThuocUnpaid As ObservableCollection(Of ChiTietHoaDonDTO)
@@ -28,6 +30,8 @@ Public Class ucHoaDonThanhToan
                 tbTienThuoc.Text = HoaDonBUS.CalcTienThuoc(listThuocPaid).ToString()
                 tbTinhTrang.BorderBrush = Brushes.DarkSeaGreen
                 tbTinhTrang.Text = "Đã thanh toán"
+                btCheckout.IsEnabled = False
+                btDelete.IsEnabled = True
             Else
                 tbTienKham.Text = ThongSoDTO.TienKham
                 listThuocUnpaid = ChiTietPhieuKhamBUS.GetChiTietHoaDon(maKhamBenh)
@@ -35,11 +39,19 @@ Public Class ucHoaDonThanhToan
                 tbTienThuoc.Text = HoaDonBUS.CalcTienThuoc(listThuocUnpaid).ToString()
                 tbTinhTrang.BorderBrush = Brushes.OrangeRed
                 tbTinhTrang.Text = "Chưa thanh toán"
+                btCheckout.IsEnabled = True
+                btDelete.IsEnabled = False
             End If
         End If
     End Sub
 
-    Private Sub btThanhToan_Click(sender As Object, e As RoutedEventArgs)
+    Private Async Sub btCheckout_Click(sender As Object, e As RoutedEventArgs)
+        Dim dialog As New Domain.YesNoDialog
+        dialog.Message.Text = "Bạn chắc chắn lập hóa đơn thanh toán bệnh nhân " + tbHoTen.Text
+        Await DialogHost.Show(dialog)
+        If (dialog.DialogResult = MessageBoxResult.No) Then
+            Exit Sub
+        End If
         Dim maKhamBenh As String = cbMaKhamBenh.SelectedValue.ToString()
         If (Not HoaDonBUS.IsHoaDonPay(maKhamBenh)) Then
             HoaDonBUS.InsertOrUpdateHoaDon(New HoaDonDTO() With {.MaKhamBenh = maKhamBenh, .TienKham = ThongSoDTO.TienKham})
@@ -47,13 +59,25 @@ Public Class ucHoaDonThanhToan
                 ChiTietHoaDonBUS.InsertChiTietHoaDon(cthd)
             Next
         End If
+        Dim tempIndex = cbMaKhamBenh.SelectedIndex
+        cbMaKhamBenh.SelectedIndex = -1
+        cbMaKhamBenh.SelectedIndex = tempIndex
     End Sub
 
-    Private Sub btDelete_Click(sender As Object, e As RoutedEventArgs)
+    Private Async Sub btDelete_Click(sender As Object, e As RoutedEventArgs)
+        Dim dialog As New Domain.YesNoDialog
+        dialog.Message.Text = "Bạn chắc xóa hóa đơn thanh toán bệnh nhân " + tbHoTen.Text
+        Await DialogHost.Show(dialog)
+        If (dialog.DialogResult = MessageBoxResult.No) Then
+            Exit Sub
+        End If
         Dim maKhamBenh As String = cbMaKhamBenh.SelectedValue.ToString()
         If (HoaDonBUS.IsHoaDonPay(maKhamBenh)) Then
             HoaDonBUS.DeleteHoaDon(maKhamBenh)
         End If
+        Dim tempIndex = cbMaKhamBenh.SelectedIndex
+        cbMaKhamBenh.SelectedIndex = -1
+        cbMaKhamBenh.SelectedIndex = tempIndex
     End Sub
 
     Private Sub dpNgayKham_SelectedDateChanged(sender As Object, e As SelectionChangedEventArgs)

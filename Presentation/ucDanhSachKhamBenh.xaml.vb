@@ -3,7 +3,9 @@ Imports System.Data
 Imports System.Text.RegularExpressions
 Imports Business.Business
 Imports Entities.Entities
-Public Class ucPhieuKhamBenh
+Imports MaterialDesignThemes.Wpf
+
+Public Class ucDanhSachKhamBenh
     Dim listKhamBenh As ObservableCollection(Of KhamBenhDTO)
     Dim firstLoad As Boolean = True
     Private Sub NumberValidationTextBox(ByVal sender As Object, ByVal e As TextCompositionEventArgs)
@@ -21,6 +23,9 @@ Public Class ucPhieuKhamBenh
                 Dim khamBenh As New KhamBenhDTO(KhamBenhBUS.GetMaKhamBenh(), dpNgayKham.SelectedDate, Nothing, Nothing, dpNgayKham.SelectedDate.Value.Year - 18, Nothing)
                 listKhamBenh.Add(khamBenh)
                 dgKhamBenh.SelectedIndex = dgKhamBenh.Items.Count - 1
+            Else
+                Domain.Dialog.Show("Bạn chưa cập nhật bệnh nhân bạn mới thêm vào trước đó")
+                Exit Sub
             End If
         Else
             Dim khamBenh As New KhamBenhDTO(KhamBenhBUS.GetMaKhamBenh(), dpNgayKham.SelectedDate, Nothing, Nothing, dpNgayKham.SelectedDate.Value.Year - 18, Nothing)
@@ -32,28 +37,28 @@ Public Class ucPhieuKhamBenh
     Private Sub UpdateButton_Click(sender As Object, e As RoutedEventArgs)
         If (dgKhamBenh.SelectedIndex = -1) Then
             Domain.Dialog.Show("Chưa có đối tượng được chọn")
-            Dim stupid As New Utility.Utility.MessageDialog
-            stupid.ShowDialog()
-            Return
+            Exit Sub
         End If
         Dim khamBenh As New KhamBenhDTO
         khamBenh.MaKhamBenh = tbMaKhamBenh.Text
         khamBenh.HoTenBenhNhan = tbHoTen.Text
         khamBenh.NgayKham = dpNgayKham.SelectedDate
-
         If Not KhamBenhBUS.IsVaildNamSinh(tbNamSinh.Text, khamBenh.NamSinh) Then
             Domain.Dialog.Show("Năm sinh không hợp lệ")
-            Return
+            Exit Sub
         End If
-
         khamBenh.GioiTinh = tbGioiTinh.Text
         khamBenh.DiaChi = tbDiaChi.Text
+        If Not KhamBenhBUS.IsVaildKhamBenh(khamBenh) Then
+            Domain.Dialog.Show("Thông tin bệnh nhân không hợp lệ")
+            Exit Sub
+        End If
         If KhamBenhBUS.IsKhamBenhInsertable(khamBenh) Then
             Dim result As Boolean = KhamBenhBUS.InsertOrUpdateKhamBenh(khamBenh)
             If (result = True) Then
-                Domain.Dialog.Show("Successful")
+                Domain.Dialog.Show("Cập nhật thành công")
             Else
-                Domain.Dialog.Show("False")
+                Domain.Dialog.Show("Cập nhật thất bại")
             End If
         Else
             Domain.Dialog.Show("Vượt qua số bệnh nhân khám tối đa trong ngày")
@@ -62,15 +67,21 @@ Public Class ucPhieuKhamBenh
         ReloadData()
     End Sub
 
-    Private Sub DeleteButton_Click(sender As Object, e As RoutedEventArgs)
+    Private Async Sub DeleteButton_Click(sender As Object, e As RoutedEventArgs)
+        Dim dialog As New Domain.YesNoDialog
+        dialog.Message.Text = "Bạn chắc chắn xóa " + dgKhamBenh.SelectedItems.Count.ToString() + " bệnh nhân được chọn"
+        Await DialogHost.Show(dialog)
+        If (dialog.DialogResult = MessageBoxResult.No) Then
+            Exit Sub
+        End If
         Dim result As Boolean
         For Each khamBenh As KhamBenhDTO In dgKhamBenh.SelectedItems
             result = DeleteKhamBenhByMa(khamBenh.MaKhamBenh)
         Next
         If (result = True) Then
-            Domain.Dialog.Show("Successful")
+            Domain.Dialog.Show("Xóa thành công")
         Else
-            Domain.Dialog.Show("False")
+            Domain.Dialog.Show("Xóa thất bại")
         End If
         ReloadData()
     End Sub

@@ -1,21 +1,29 @@
 ﻿Imports System.Collections.ObjectModel
 Imports Business.Business
 Imports Entities.Entities
+Imports MaterialDesignThemes.Wpf
+
 Public Class ucLoaiCachDung
     Private listLoaiCachDung As ObservableCollection(Of LoaiCachDungDTO)
     Private Sub CancelButton_Click(sender As Object, e As RoutedEventArgs)
         dgLoaiCachDung.SelectedIndex = -1
     End Sub
 
-    Private Sub DeleteButton_Click(sender As Object, e As RoutedEventArgs)
+    Private Async Sub DeleteButton_Click(sender As Object, e As RoutedEventArgs)
+        Dim dialog As New Domain.YesNoDialog
+        dialog.Message.Text = "Bạn chắc chắn xóa " + dgLoaiCachDung.SelectedItems.Count.ToString() + " loại cách dùng được chọn"
+        Await DialogHost.Show(dialog)
+        If (dialog.DialogResult = MessageBoxResult.No) Then
+            Exit Sub
+        End If
         Dim result As Boolean
         For Each loaiCachDung As LoaiCachDungDTO In dgLoaiCachDung.SelectedItems
             result = LoaiCachDungBUS.DeleteCachDungByMa(loaiCachDung.MaCachDung)
         Next
         If (result = True) Then
-            Domain.Dialog.Show("Successful")
+            Domain.Dialog.Show("Xóa thành công")
         Else
-            Domain.Dialog.Show("False")
+            Domain.Dialog.Show("Xóa thất bại")
         End If
         ReloadData()
     End Sub
@@ -30,9 +38,9 @@ Public Class ucLoaiCachDung
         loaiCachDung.TenCachDung = tbTenCachDung.Text
         Dim result As Boolean = LoaiCachDungBUS.InsertOrUpdateCachDung(loaiCachDung)
         If (result = True) Then
-            Domain.Dialog.Show("Successful")
+            Domain.Dialog.Show("Cập nhật thành công")
         Else
-            Domain.Dialog.Show("False")
+            Domain.Dialog.Show("Cập nhật thất bại")
         End If
         ReloadData()
     End Sub
@@ -43,6 +51,9 @@ Public Class ucLoaiCachDung
                 Dim LoaiCachDung As New LoaiCachDungDTO(LoaiCachDungBUS.GetMaCachDung(), Nothing)
                 listLoaiCachDung.Add(LoaiCachDung)
                 dgLoaiCachDung.SelectedIndex = dgLoaiCachDung.Items.Count - 1
+            Else
+                Domain.Dialog.Show("Bạn chưa cập nhật loại cách dùng bạn mới thêm vào trước đó")
+                Exit Sub
             End If
         Else
             Dim LoaiCachDung As New LoaiCachDungDTO(LoaiCachDungBUS.GetMaCachDung(), Nothing)

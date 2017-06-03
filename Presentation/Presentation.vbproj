@@ -99,6 +99,9 @@
     <Compile Include="Domain\DoubleToPercentConverter.vb" />
     <Compile Include="Domain\IntegerToTinhTrangConverter.vb" />
     <Compile Include="Domain\LongToMoneyConverter.vb" />
+    <Compile Include="Domain\YesNoDialog.xaml.vb">
+      <DependentUpon>YesNoDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainWindows2.xaml.vb">
       <DependentUpon>MainWindows2.xaml</DependentUpon>
     </Compile>
@@ -132,8 +135,8 @@
     <Compile Include="ucPhieuKham.xaml.vb">
       <DependentUpon>ucPhieuKham.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ucPhieuKhamBenh.xaml.vb">
-      <DependentUpon>ucPhieuKhamBenh.xaml</DependentUpon>
+    <Compile Include="ucDanhSachKhamBenh.xaml.vb">
+      <DependentUpon>ucDanhSachKhamBenh.xaml</DependentUpon>
     </Compile>
     <Compile Include="ucThongSo.xaml.vb">
       <DependentUpon>ucThongSo.xaml</DependentUpon>
@@ -205,6 +208,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Domain\YesNoDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Domain\MessageDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -257,7 +264,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ucPhieuKhamBenh.xaml">
+    <Page Include="ucDanhSachKhamBenh.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -282,10 +289,6 @@
     <ProjectReference Include="..\Entities\Entities.vbproj">
       <Project>{35daa3d6-8f15-447e-b718-8bde2fb3f45a}</Project>
       <Name>Entities</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Utility\Utility.vbproj">
-      <Project>{88f35c7c-3013-4602-8278-7a1c389cbb03}</Project>
-      <Name>Utility</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

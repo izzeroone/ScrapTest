@@ -3,6 +3,7 @@ Imports System.Data
 Imports Entities.Entities
 Imports DataAccess.DataAccess
 Imports System.Collections.ObjectModel
+Imports System.Text.RegularExpressions
 
 Namespace Business
     Public Module KhamBenhBUS
@@ -71,6 +72,24 @@ Namespace Business
                 Throw ex
             End Try
             Return result
+        End Function
+
+        Public Function IsVaildKhamBenh(ByRef khamBenh As KhamBenhDTO) As Boolean
+            Dim numberRegex As String = "\d+"
+            'Trim các khoảng trắng
+            khamBenh.HoTenBenhNhan.Trim()
+            khamBenh.DiaChi.TrimStart()
+            'Kiểm tra các điều kiện
+            If khamBenh.HoTenBenhNhan = "" Or Regex.IsMatch(khamBenh.HoTenBenhNhan, numberRegex) Then
+                Return False
+            End If
+            If Not (khamBenh.HoTenBenhNhan = "Nam" Or khamBenh.HoTenBenhNhan = "Nữ" Or khamBenh.HoTenBenhNhan = "Không biết") Then
+                Return False
+            End If
+            If khamBenh.DiaChi = "" Then
+                Return False
+            End If
+            Return True
         End Function
 #End Region
     End Module

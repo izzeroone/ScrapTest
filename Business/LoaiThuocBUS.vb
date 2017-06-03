@@ -14,7 +14,6 @@ Namespace Business
             Return LoaiThuocDAL.DeleteLoaiThuocByMa(maThuoc)
         End Function
 #End Region
-
 #Region "3.Get"
         Public Function GetMaThuoc() As String
             Return LoaiThuocDAL.GetMaThuoc()
@@ -36,6 +35,16 @@ Namespace Business
             Else
                 Return New LoaiThuocDTO(tb.Rows.Item(0))
             End If
+        End Function
+#End Region
+#Region "4.Vaild"
+        Public Function IsVaildDonGia(ByVal donGia As String, ByRef iDonGia As Integer) As Boolean
+            If (Integer.TryParse(donGia, iDonGia)) Then
+                If (iDonGia > 0) Then
+                    Return True
+                End If
+            End If
+            Return False
         End Function
 #End Region
 

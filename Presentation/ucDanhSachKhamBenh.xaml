@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="ucPhieuKhamBenh"
+﻿<UserControl x:Class="ucDanhSachKhamBenh"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -127,22 +127,22 @@
             </materialDesign:Chip>
             <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft">
                 <Button Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="0 12 8 0" Width="100"
-                    ToolTip="Resource name: MaterialDesignRaisedDarkButton"
+                    ToolTip="Thêm 1 bệnh nhân mới"
                         Click="NewButton_Click">
                     TẠO MỚI
                 </Button>
                 <Button Style="{StaticResource MaterialDesignRaisedDarkButton}" Margin="0 12 8 0" Width="100"
-                    ToolTip="Resource name: MaterialDesignRaisedDarkButton"
+                    ToolTip="Cập nhật thông tin bệnh nhân hiện tại"
                         Click="UpdateButton_Click">
                     CẬP NHẬT
                 </Button>
                 <Button Style="{StaticResource MaterialDesignRaisedButton}" Margin="0 12 8 0" Width="100"
-                    ToolTip="Resource name: MaterialDesignRaisedDarkButton"
+                    ToolTip="Xóa bệnh nhân đã chọn"
                         Click="DeleteButton_Click">
                     XÓA
                 </Button>
                 <Button Style="{StaticResource MaterialDesignRaisedAccentButton}" Margin="0 12 16 0" Width="100"
-                    ToolTip="Resource name: MaterialDesignRaisedAccentButton"
+                    ToolTip="Xóa những gì đã nhập"
                         Click="CancelButton_Click">
                     HỦY
                 </Button>

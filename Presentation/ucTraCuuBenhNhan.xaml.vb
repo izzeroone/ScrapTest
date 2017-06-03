@@ -51,32 +51,6 @@ Public Class ucTraCuuBenhNhan
         End If
     End Sub
 
-    Private Sub CancelButton_Click(sender As Object, e As RoutedEventArgs)
-        dpBatDau.SelectedDate = Nothing
-        dpBatDau.DisplayDate = Date.Now()
-        dpKetThuc.SelectedDate = Nothing
-        dpKetThuc.DisplayDate = Date.Now()
-        tbMaKhamBenh.Clear()
-        tbHoTen.Clear()
-        cbGioiTinh.SelectedIndex = -1
-        tbNamSinhBatDau.Clear()
-        tbNamSinhKetThuc.Clear()
-        tbDiaChi.Clear()
-        tbTrieuChung.Clear()
-        tbLoaiBenh.Text = ""
-        tbMaChiTietPhieuKham.Clear()
-        tbThuoc.Text = ""
-        tbDonVi.Text = ""
-        tbSoLuongBatDau.Clear()
-        tbSoLuongKetThuc.Clear()
-        tbCachDung.Text = ""
-        tbTienKhamBatDau.Clear()
-        tbTienKhamKetThuc.Clear()
-        tbTienThuocBatDau.Clear()
-        tbTienThuocKetThuc.Clear()
-    End Sub
-
-
     Private Sub LoadComboBoxData()
         If Me.IsVisible = True Then
             tbLoaiBenh.ItemsSource = LoaiBenhBUS.GetAllLoaiBenh()
@@ -155,6 +129,32 @@ Public Class ucTraCuuBenhNhan
 
     End Sub
 
+    Private Sub ResetButton_Click(sender As Object, e As RoutedEventArgs)
+        dpBatDau.SelectedDate = Nothing
+        dpBatDau.DisplayDate = Date.Now()
+        dpKetThuc.SelectedDate = Nothing
+        dpKetThuc.DisplayDate = Date.Now()
+        tbMaKhamBenh.Clear()
+        tbHoTen.Clear()
+        cbGioiTinh.SelectedIndex = -1
+        tbNamSinhBatDau.Clear()
+        tbNamSinhKetThuc.Clear()
+        tbDiaChi.Clear()
+        tbTrieuChung.Clear()
+        tbLoaiBenh.Text = ""
+        tbMaChiTietPhieuKham.Clear()
+        tbThuoc.Text = ""
+        tbDonVi.Text = ""
+        tbSoLuongBatDau.Clear()
+        tbSoLuongKetThuc.Clear()
+        tbCachDung.Text = ""
+        tbTienKhamBatDau.Clear()
+        tbTienKhamKetThuc.Clear()
+        tbTienThuocBatDau.Clear()
+        tbTienThuocKetThuc.Clear()
+        dgBenhNhan.ItemsSource = Nothing
+    End Sub
+
     Public Sub NumberValidationTextBox(ByVal sender As Object, ByVal e As TextCompositionEventArgs)
         Dim regex As Regex = New Regex("[^0-9]+")
         e.Handled = regex.IsMatch(e.Text)
@@ -166,4 +166,6 @@ Public Class ucTraCuuBenhNhan
         Domain.Dialog.Show("Ngày không hợp lệ")
         dp.SelectedDate = Date.Now()
     End Sub
+
+
 End Class

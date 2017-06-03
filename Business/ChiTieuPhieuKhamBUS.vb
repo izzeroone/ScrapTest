@@ -44,13 +44,26 @@ Namespace Business
 #End Region
 
 #Region "5.Valild"
-        Public Function IsVaildSoLuong(ByVal soLuong As String, ByRef iSoLuong As Integer)
+        Public Function IsVaildSoLuong(ByVal soLuong As String, ByRef iSoLuong As Integer) As Boolean
             If (Integer.TryParse(soLuong, iSoLuong)) Then
                 If (iSoLuong > 0) Then
                     Return True
                 End If
             End If
             Return False
+        End Function
+
+        Public Function IsVaildChiTietPhieuKham(ByRef ctpk As ChiTietPhieuKhamDTO) As Boolean
+            'Trim các khoảng trắng
+            ctpk.TrieuChung.Trim()
+            If (ctpk.MaCachDung = "" Or
+            ctpk.MaDonVi = "" Or
+            ctpk.MaLoaiBenh = "" Or
+            ctpk.MaThuoc = "" Or
+            ctpk.TrieuChung = "") Then
+                Return False
+            End If
+            Return True
         End Function
 #End Region
     End Module
