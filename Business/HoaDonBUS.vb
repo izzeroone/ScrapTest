@@ -20,10 +20,6 @@ Namespace Business
         End Function
 #End Region
 #Region "Get"
-        Public Function GetMaHoaDon()
-            Return HoaDonDAL.GetMaHoaDon()
-        End Function
-
         Public Function GetHoaDon(ByVal maKhamBenh As String) As HoaDonDTO
             Dim tb As DataTable = HoaDonDAL.GetHoaDon(maKhamBenh)
             Return New HoaDonDTO(tb.Rows.Item(0))
@@ -32,7 +28,7 @@ Namespace Business
 #Region "Delete"
         Public Function DeleteHoaDon(ByVal maKhamBenh As String) As Boolean
             Dim hoaDon As HoaDonDTO = GetHoaDon(maKhamBenh)
-            ChiTietHoaDonBUS.DeleteAllChiTietHoaDon(hoaDon.MaHoaDon)
+            ChiTietHoaDonBUS.DeleteAllChiTietHoaDon(maKhamBenh)
             Return HoaDonDAL.DeleteHoaDon(maKhamBenh)
         End Function
 #End Region
@@ -40,7 +36,7 @@ Namespace Business
         Public Function CalcTienThuoc(ByVal list As ObservableCollection(Of ChiTietHoaDonDTO)) As Integer
             Dim tienThuoc As Integer = 0
             For Each chiTietHoaDon As ChiTietHoaDonDTO In list
-                tienThuoc += chiTietHoaDon.SoLuong * chiTietHoaDon.DonGia
+                tienThuoc += chiTietHoaDon.SoLuong * chiTietHoaDon.DonGiaThucTe
             Next
             Return tienThuoc
         End Function

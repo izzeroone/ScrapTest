@@ -1,28 +1,28 @@
 ﻿Namespace Entities
     Public Class ChiTietHoaDonDTO
-        Private _maChiTietHoaDon As String
-        Private _maHoaDon As String
+        Private _maChiTietPhieuKham As String
+        Private _maKhamBenh As String
         Private _tenThuoc As String
         Private _tenDonVi As String
         Private _soLuong As Integer
-        Private _donGia As Integer
+        Private _donGiaThucTe As Integer
         Private _thanhTien As Long
 
-        Public Property MaChiTietHoaDon As String
+        Public Property MaChiTietPhieuKham As String
             Get
-                Return _maChiTietHoaDon
+                Return _maChiTietPhieuKham
             End Get
             Set(value As String)
-                _maChiTietHoaDon = value
+                _maChiTietPhieuKham = value
             End Set
         End Property
 
-        Public Property MaHoaDon As String
+        Public Property MaKhamBenh As String
             Get
-                Return _maHoaDon
+                Return _maKhamBenh
             End Get
             Set(value As String)
-                _maHoaDon = value
+                _maKhamBenh = value
             End Set
         End Property
 
@@ -53,14 +53,6 @@
             End Set
         End Property
 
-        Public Property DonGia As Integer
-            Get
-                Return _donGia
-            End Get
-            Set(value As Integer)
-                _donGia = value
-            End Set
-        End Property
 
         Public Property ThanhTien As Long
             Get
@@ -71,18 +63,27 @@
             End Set
         End Property
 
+        Public Property DonGiaThucTe As Integer
+            Get
+                Return _donGiaThucTe
+            End Get
+            Set(value As Integer)
+                _donGiaThucTe = value
+            End Set
+        End Property
+
         Public Sub New()
 
         End Sub
 
         Public Sub New(ByVal row As DataRow)
-            MaChiTietHoaDon = row.Field(Of String)("machitiethoadon")
-            MaHoaDon = row.Field(Of String)("mahoadon")
+            MaChiTietPhieuKham = row.Field(Of String)("machitietphieukham")
+            MaKhamBenh = row.Field(Of String)("makhambenh")
             TenThuoc = row.Field(Of String)("tenthuoc")
             TenDonVi = row.Field(Of String)("tendonvi")
             SoLuong = row.Field(Of Integer)("soluong")
-            DonGia = row.Field(Of Decimal)("dongia")
-            ThanhTien = SoLuong * DonGia
+            DonGiaThucTe = row.Field(Of Decimal)("dongiathucte")
+            ThanhTien = SoLuong * DonGiaThucTe
         End Sub
     End Class
 End Namespace

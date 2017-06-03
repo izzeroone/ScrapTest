@@ -56,6 +56,24 @@ Public Class ucTraCuuBenhNhan
         dpBatDau.DisplayDate = Date.Now()
         dpKetThuc.SelectedDate = Nothing
         dpKetThuc.DisplayDate = Date.Now()
+        tbMaKhamBenh.Clear()
+        tbHoTen.Clear()
+        cbGioiTinh.SelectedIndex = -1
+        tbNamSinhBatDau.Clear()
+        tbNamSinhKetThuc.Clear()
+        tbDiaChi.Clear()
+        tbTrieuChung.Clear()
+        tbLoaiBenh.Text = ""
+        tbMaChiTietPhieuKham.Clear()
+        tbThuoc.Text = ""
+        tbDonVi.Text = ""
+        tbSoLuongBatDau.Clear()
+        tbSoLuongKetThuc.Clear()
+        tbCachDung.Text = ""
+        tbTienKhamBatDau.Clear()
+        tbTienKhamKetThuc.Clear()
+        tbTienThuocBatDau.Clear()
+        tbTienThuocKetThuc.Clear()
     End Sub
 
 
@@ -106,6 +124,7 @@ Public Class ucTraCuuBenhNhan
             GetRange(tbTienThuocBatDau, tbTienThuocKetThuc, tienThuocBatDau, tienThuocKetThuc)
         Catch ex As Exception
             Domain.Dialog.Show("Không hợp lệ")
+            Exit Sub
         End Try
 
         dgBenhNhan.ItemsSource = BenhNhanBUS.FindBenhNhan(mode,

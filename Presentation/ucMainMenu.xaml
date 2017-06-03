@@ -1,0 +1,111 @@
+﻿<UserControl x:Class="ucMainMenu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:Presentation"
+             mc:Ignorable="d" 
+             d:DesignHeight="1000" d:DesignWidth="1000">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type materialDesign:Card}">
+            <Setter Property="Margin" Value="3,3"></Setter>
+        </Style>
+        <Style TargetType="{x:Type GroupBox}" BasedOn="{StaticResource MaterialDesignCardGroupBox}">
+            <Setter Property="Width" Value="200"></Setter>
+            <Setter Property="Margin" Value="14"></Setter>
+            <Setter Property="VerticalAlignment" Value="Top"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid VerticalAlignment="Stretch" HorizontalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <GroupBox Header="Quản lý khám bệnh">
+                <GroupBox.HeaderTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Stethoscope" Height="32" Width="32" VerticalAlignment="Center" />
+                            <TextBlock Margin="8,0,0,0" VerticalAlignment="Center" Style="{StaticResource MaterialDesignSubheadingTextBlock}" Text="{Binding}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </GroupBox.HeaderTemplate>
+                <StackPanel>
+                    <ListView>
+                        <ListViewItem>Lập danh sách khám bệnh</ListViewItem>
+                        <ListViewItem>Lập phiếu khám</ListViewItem>
+                        <ListViewItem>Lập hóa đơn thanh toán</ListViewItem>
+                        <ListViewItem>Tra cứu bệnh nhân</ListViewItem>
+                    </ListView>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="Quản lý tài chính">
+                <GroupBox.HeaderTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="CreditCard" Height="32" Width="32" VerticalAlignment="Center" />
+                            <TextBlock Margin="8,0,0,0" VerticalAlignment="Center" Style="{StaticResource MaterialDesignSubheadingTextBlock}" Text="{Binding}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </GroupBox.HeaderTemplate>
+                <StackPanel>
+                    <ListView>
+                          <ListViewItem>Báo cáo doanh thu</ListViewItem>
+                    </ListView>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="Quản lý thuốc">
+                <GroupBox.HeaderTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Pill" Height="32" Width="32" VerticalAlignment="Center" />
+                            <TextBlock Margin="8,0,0,0" VerticalAlignment="Center" Style="{StaticResource MaterialDesignSubheadingTextBlock}" Text="{Binding}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </GroupBox.HeaderTemplate>
+                <StackPanel>
+                    <ListView>
+                        <ListViewItem>Danh mục loại thuốc</ListViewItem>
+                        <ListViewItem>Danh mục loại cách dùng</ListViewItem>
+                        <ListViewItem>Danh mục loại đơn vị</ListViewItem>
+                        <ListViewItem>Báo cáo sử dụng thuốc</ListViewItem>
+                    </ListView>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="Quản lý loại bệnh ">
+                <GroupBox.HeaderTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="SeatFlat" Height="32" Width="32" VerticalAlignment="Center" />
+                            <TextBlock Margin="8,0,0,0" VerticalAlignment="Center" Style="{StaticResource MaterialDesignSubheadingTextBlock}" Text="{Binding}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </GroupBox.HeaderTemplate>
+                <StackPanel>
+                    <ListView>
+                        <ListViewItem>Danh mục loại bệnh</ListViewItem>
+                    </ListView>
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox Header="Tổ chức ">
+                <GroupBox.HeaderTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Settings" Height="32" Width="32" VerticalAlignment="Center" />
+                            <TextBlock Margin="8,0,0,0" VerticalAlignment="Center" Style="{StaticResource MaterialDesignSubheadingTextBlock}" Text="{Binding}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </GroupBox.HeaderTemplate>
+                <StackPanel>
+                    <ListView>
+                        <ListViewItem>Thông số</ListViewItem>
+                    </ListView>
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
+    </Grid>
+</UserControl>

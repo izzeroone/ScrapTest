@@ -97,8 +97,6 @@
     <Compile Include="Domain\DatePickerCaledar.vb" />
     <Compile Include="Domain\DateToStringConverter.vb" />
     <Compile Include="Domain\DoubleToPercentConverter.vb" />
-    <Compile Include="Domain\Encrypt.vb" />
-    <Compile Include="Domain\FormatCheck.vb" />
     <Compile Include="Domain\IntegerToTinhTrangConverter.vb" />
     <Compile Include="Domain\LongToMoneyConverter.vb" />
     <Compile Include="MainWindows2.xaml.vb">
@@ -128,6 +126,9 @@
     <Compile Include="ucLoaiThuoc.xaml.vb">
       <DependentUpon>ucLoaiThuoc.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ucMainMenu.xaml.vb">
+      <DependentUpon>ucMainMenu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ucPhieuKham.xaml.vb">
       <DependentUpon>ucPhieuKham.xaml</DependentUpon>
     </Compile>
@@ -136,9 +137,6 @@
     </Compile>
     <Compile Include="ucThongSo.xaml.vb">
       <DependentUpon>ucThongSo.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ucTraCuuBenhNhanV2.xaml.vb">
-      <DependentUpon>ucTraCuuBenhNhanV2.xaml</DependentUpon>
     </Compile>
     <Compile Include="ucTraCuuBenhNhan.xaml.vb">
       <DependentUpon>ucTraCuuBenhNhan.xaml</DependentUpon>
@@ -251,6 +249,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ucMainMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ucPhieuKham.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -262,10 +264,6 @@
     <Page Include="ucThongSo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ucTraCuuBenhNhanV2.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="ucTraCuuBenhNhan.xaml">
       <SubType>Designer</SubType>

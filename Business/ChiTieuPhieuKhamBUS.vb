@@ -30,10 +30,13 @@ Namespace Business
             Dim listCTHD As New ObservableCollection(Of ChiTietHoaDonDTO)
             Dim listCTPK As ObservableCollection(Of ChiTietPhieuKhamDTO) = ChiTietPhieuKhamBUS.GetChiTietPhieuKhamByMaKhamBenh(maKhamBenh)
             For Each ctpk As ChiTietPhieuKhamDTO In listCTPK
-                listCTHD.Add(New ChiTietHoaDonDTO() With {.TenThuoc = GetThuoc(ctpk.MaThuoc).TenThuoc,
+                listCTHD.Add(New ChiTietHoaDonDTO() With {.MaKhamBenh = ctpk.MaKhamBenh,
+                                                             .MaChiTietPhieuKham = ctpk.MaChiTietPhieuKham,
+                                                            .TenThuoc = GetThuoc(ctpk.MaThuoc).TenThuoc,
                                                            .TenDonVi = GetDonVi(ctpk.MaDonVi).TenDonVi,
                                                            .SoLuong = ctpk.SoLuong,
-                                                           .DonGia = GetThuoc(ctpk.MaThuoc).DonGia}
+                                                           .DonGiaThucTe = GetThuoc(ctpk.MaThuoc).DonGia,
+                                                           .ThanhTien = .SoLuong * .DonGiaThucTe}
                                                            )
             Next
             Return listCTHD

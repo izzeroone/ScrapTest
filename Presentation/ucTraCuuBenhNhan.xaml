@@ -89,7 +89,7 @@
                  Style="{DynamicResource FloatHintTextBox}"
                  PreviewTextInput="NumberValidationTextBox">
         </TextBox>
-        <TextBlock Grid.Row="2" Grid.Column="6" Style="{StaticResource LabelStyle}" >Địa Chỉ</TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="6" Style="{StaticResource LabelStyle}" >Địa chỉ</TextBlock>
         <TextBox Grid.Row="2" Grid.Column="7" Grid.ColumnSpan="3"
 				    x:Name="tbDiaChi">
         </TextBox>
@@ -177,7 +177,7 @@
         </TextBox>
         <TextBlock Grid.Row="8" Grid.Column="2" Style="{StaticResource LabelStyle}">đến</TextBlock>
         <TextBox Grid.Row="8" Grid.Column="3" 
-				    x:Name="tbTienKhamKetTHuc"
+				    x:Name="tbTienKhamKetThuc"
                  materialDesign:HintAssist.Hint="Kết thúc"
                  Style="{DynamicResource FloatHintTextBox}"
                  PreviewTextInput="NumberValidationTextBox">
@@ -233,7 +233,7 @@
             <Button Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="0 12 8 0" Width="100"
                     ToolTip="Resource name: MaterialDesignRaisedDarkButton"
                         Click="FindButton_Click">
-                TÌM
+                HIỂN THỊ
             </Button>
             <Button Style="{StaticResource MaterialDesignRaisedAccentButton}" Margin="0 12 16 0" Width="100"
                     ToolTip="Resource name: MaterialDesignRaisedAccentButton"

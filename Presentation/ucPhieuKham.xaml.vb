@@ -6,14 +6,7 @@ Imports Business.Business
 Imports Entities.Entities
 Public Class ucPhieuKham
     Dim listChiTietPhieuKham As ObservableCollection(Of ROWChiTietPhieuKhamDTO)
-    Public Sub New()
-
-        ' This call is required by the designer.
-        InitializeComponent()
-
-        ' Add any initialization after the InitializeComponent() call.
-
-    End Sub
+    Dim firstTime As Boolean = True
 
     Private Sub NumberValidationTextBox(ByVal sender As Object, ByVal e As TextCompositionEventArgs)
         Dim regex As Regex = New Regex("[^0-9]+")
@@ -90,6 +83,10 @@ Public Class ucPhieuKham
 
     Private Sub LoadComboBoxData()
         If Me.IsVisible = True Then
+            If firstTime Then
+                dpNgayKhamBenh.SelectedDate = Date.Now
+                firstTime = False
+            End If
             cbLoaiBenh.ItemsSource = LoaiBenhBUS.GetAllLoaiBenh()
             cbDonVi.ItemsSource = LoaiDonViBUS.GetAllLoaiDonVi()
             cbCachDung.ItemsSource = LoaiCachDungBUS.GetAllLoaiCachDung()

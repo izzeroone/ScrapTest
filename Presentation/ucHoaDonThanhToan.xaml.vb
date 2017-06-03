@@ -4,11 +4,16 @@ Imports System.Collections.ObjectModel
 Public Class ucHoaDonThanhToan
     Dim listThuocPaid As ObservableCollection(Of ChiTietHoaDonDTO)
     Dim listThuocUnpaid As ObservableCollection(Of ChiTietHoaDonDTO)
+    Dim firstTime As Boolean = True
     Private Sub UserControl_IsVisibleChanged(sender As Object, e As DependencyPropertyChangedEventArgs)
-        If Me.IsVisible = True And dpNgayKham.SelectedDate IsNot Nothing Then
-            cbMaKhamBenh.DisplayMemberPath = "MaKhamBenh"
-            cbMaKhamBenh.SelectedValuePath = "MaKhamBenh"
-            cbMaKhamBenh.ItemsSource = KhamBenhBUS.GetKhamBenhByNgayKham(dpNgayKham.SelectedDate)
+        If Me.IsVisible = True Then
+            If firstTime Then
+                dpNgayKham.SelectedDate = Date.Now
+                firstTime = False
+            End If
+            If dpNgayKham.SelectedDate IsNot Nothing Then
+                cbMaKhamBenh.ItemsSource = KhamBenhBUS.GetKhamBenhByNgayKham(dpNgayKham.SelectedDate)
+            End If
         End If
     End Sub
 
@@ -17,7 +22,7 @@ Public Class ucHoaDonThanhToan
             Dim maKhamBenh As String = cbMaKhamBenh.SelectedValue.ToString()
             If (HoaDonBUS.IsHoaDonPay(maKhamBenh)) Then
                 Dim hoaDon As HoaDonDTO = HoaDonBUS.GetHoaDon(maKhamBenh)
-                listThuocPaid = ChiTietHoaDonBUS.GetAllChiTietHoaDon(hoaDon.MaHoaDon)
+                listThuocPaid = ChiTietHoaDonBUS.GetAllChiTietHoaDon(maKhamBenh)
                 tbTienKham.Text = hoaDon.TienKham
                 dgChiTietThuoc.ItemsSource = listThuocPaid
                 tbTienThuoc.Text = HoaDonBUS.CalcTienThuoc(listThuocPaid).ToString()
@@ -37,10 +42,8 @@ Public Class ucHoaDonThanhToan
     Private Sub btThanhToan_Click(sender As Object, e As RoutedEventArgs)
         Dim maKhamBenh As String = cbMaKhamBenh.SelectedValue.ToString()
         If (Not HoaDonBUS.IsHoaDonPay(maKhamBenh)) Then
-            HoaDonBUS.InsertOrUpdateHoaDon(New HoaDonDTO() With {.MaKhamBenh = maKhamBenh, .TienKham = ThongSoDTO.TienKham, .MaHoaDon = ""})
-            Dim maHoaDon As String = HoaDonBUS.GetHoaDon(maKhamBenh).MaHoaDon
+            HoaDonBUS.InsertOrUpdateHoaDon(New HoaDonDTO() With {.MaKhamBenh = maKhamBenh, .TienKham = ThongSoDTO.TienKham})
             For Each cthd As ChiTietHoaDonDTO In listThuocUnpaid
-                cthd.MaHoaDon = maHoaDon
                 ChiTietHoaDonBUS.InsertChiTietHoaDon(cthd)
             Next
         End If
@@ -55,8 +58,6 @@ Public Class ucHoaDonThanhToan
 
     Private Sub dpNgayKham_SelectedDateChanged(sender As Object, e As SelectionChangedEventArgs)
         If dpNgayKham IsNot Nothing Then
-            cbMaKhamBenh.DisplayMemberPath = "MaKhamBenh"
-            cbMaKhamBenh.SelectedValuePath = "MaKhamBenh"
             cbMaKhamBenh.ItemsSource = KhamBenhBUS.GetKhamBenhByNgayKham(dpNgayKham.SelectedDate)
         End If
     End Sub

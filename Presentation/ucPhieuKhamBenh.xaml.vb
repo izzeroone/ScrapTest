@@ -6,14 +6,6 @@ Imports Entities.Entities
 Public Class ucPhieuKhamBenh
     Dim listKhamBenh As ObservableCollection(Of KhamBenhDTO)
     Dim firstLoad As Boolean = True
-    Public Sub New()
-
-        ' This call is required by the designer.
-        InitializeComponent()
-
-        ' Add any initialization after the InitializeComponent() call.
-    End Sub
-
     Private Sub NumberValidationTextBox(ByVal sender As Object, ByVal e As TextCompositionEventArgs)
         Dim regex As Regex = New Regex("[^0-9]+")
         e.Handled = regex.IsMatch(e.Text)

@@ -15,7 +15,7 @@
         
     <Grid HorizontalAlignment="Center" VerticalAlignment="Stretch">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="120"/>
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="120"/>
             <ColumnDefinition Width="200" />
@@ -45,7 +45,7 @@
                       HorizontalAlignment="Center"
                       Padding="8">
             <TextBlock Grid.Row = "0" Grid.Column="0"  TextAlignment="Center" 
-                       TextElement.FontWeight="Bold" TextElement.FontSize="18">LẬP PHIẾU KHÁM BỆNH</TextBlock>
+                       TextElement.FontWeight="Bold" TextElement.FontSize="18">LẬP PHIẾU KHÁM</TextBlock>
         </materialDesign:Card>
         <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource LabelStyle}">Ngày khám bệnh</TextBlock>
         <DatePicker Grid.Row="1" Grid.Column="1" 

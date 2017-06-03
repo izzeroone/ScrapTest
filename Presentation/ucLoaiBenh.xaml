@@ -35,7 +35,7 @@
                       HorizontalAlignment="Center"
                       Padding="8">
             <TextBlock Grid.Row = "0" Grid.Column="0"  TextAlignment="Center" 
-                       TextElement.FontWeight="Bold" TextElement.FontSize="18">DANH SÁCH LOẠI BỆNH</TextBlock>
+                       TextElement.FontWeight="Bold" TextElement.FontSize="18">DANH MỤC LOẠI BỆNH</TextBlock>
         </materialDesign:Card>
         <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource LabelStyle}">Mã loại bệnh</TextBlock>
         <TextBox Grid.Row="1" Grid.Column="1" 
