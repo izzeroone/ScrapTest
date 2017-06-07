@@ -52,9 +52,8 @@
         <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="6" Style="{DynamicResource DataGridStyle}">
             <materialDesign:Card>
                 <DataGrid  x:Name="dgChiTietDoanhThu"
-                       materialDesign:DataGridAssist.CellPadding="4 2 2 2" materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2"
-                    ItemsSource="{Binding}" 
-                  MaxHeight="450">
+                           materialDesign:DataGridAssist.CellPadding="4 2 2 2" materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2"
+                           ItemsSource="{Binding}"  MaxHeight="450">
                     <DataGrid.Columns>
                         <materialDesign:MaterialDataGridTextColumn Binding="{Binding Ngay, Converter={StaticResource DateToStringConverter}}"
                                                                Header="Ngày"                                                        

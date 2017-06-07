@@ -28,6 +28,10 @@
             _TenCachDung = TenCachDung
         End Sub
 
+        ''' <summary>
+        ''' Lấy dữ liệu từ datarow
+        ''' </summary>
+        ''' <param name="row"></param>
         Public Sub New(ByVal row As DataRow)
             _MaCachDung = row.Field(Of String)("macachdung")
             _TenCachDung = row.Field(Of String)("tencachdung")

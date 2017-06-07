@@ -41,6 +41,10 @@
             _TenThuoc = TenThuoc
         End Sub
 
+        ''' <summary>
+        ''' Lấy dữ liệu từ datarow
+        ''' </summary>
+        ''' <param name="row"></param>
         Public Sub New(ByVal row As DataRow)
             _MaThuoc = row.Field(Of String)("mathuoc")
             _TenThuoc = row.Field(Of String)("tenthuoc")

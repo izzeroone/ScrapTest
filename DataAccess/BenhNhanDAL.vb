@@ -4,6 +4,31 @@ Imports Npgsql
 Imports NpgsqlTypes
 Namespace DataAccess
     Public Module BenhNhanDAL
+        ''' <summary>
+        ''' Thực hiện hàm tìm kiếm bệnh nhân ở cơ sở dữ liệu
+        ''' </summary>
+        ''' <param name="mode"></param>
+        ''' <param name="maKhamBenh"></param>
+        ''' <param name="ngayKhamBatDau"></param>
+        ''' <param name="ngayKhamKetThuc"></param>
+        ''' <param name="hoTen"></param>
+        ''' <param name="gioiTinh"></param>
+        ''' <param name="namSinhBatDau"></param>
+        ''' <param name="namSinhKetThuc"></param>
+        ''' <param name="diaChi"></param>
+        ''' <param name="trieuChung"></param>
+        ''' <param name="tenLoaiBenh"></param>
+        ''' <param name="maChiTietPhieuKham"></param>
+        ''' <param name="tenThuoc"></param>
+        ''' <param name="tenDonVi"></param>
+        ''' <param name="tenCachDung"></param>
+        ''' <param name="soLuongBatDau"></param>
+        ''' <param name="soLuongKetThuc"></param>
+        ''' <param name="tienKhamBatDau"></param>
+        ''' <param name="tienKhamKetThuc"></param>
+        ''' <param name="tienThuocBatDau"></param>
+        ''' <param name="tienThuocKetThuc"></param>
+        ''' <returns></returns>
         Public Function FindBenhNhan(ByVal mode As Integer,
                                      ByVal maKhamBenh As String,
                                      ByVal ngayKhamBatDau As Date,

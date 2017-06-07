@@ -3,39 +3,39 @@ Imports System.ComponentModel
 Namespace Domain
     Public Class GroupMenuItem
         Implements INotifyPropertyChanged
-        Private _Name As String
-        Private _Content As Object
-        Private _MenuItems As ObservableCollection(Of MenuItem)
+        Private _name As String
+        Private _content As Object
+        Private _menuItems As ObservableCollection(Of MenuItem)
 
         Public Property MenuItems As ObservableCollection(Of MenuItem)
             Get
-                Return _MenuItems
+                Return _menuItems
             End Get
             Set(value As ObservableCollection(Of MenuItem))
-                _MenuItems = value
+                _menuItems = value
             End Set
         End Property
 
         Public Property Name As String
             Get
-                Return _Name
+                Return _name
             End Get
             Set(value As String)
-                _Name = value
+                _name = value
             End Set
         End Property
 
         Public Property Content As Object
             Get
-                Return _Content
+                Return _content
             End Get
             Set(value As Object)
-                _Content = value
+                _content = value
             End Set
         End Property
 
         Public Sub New()
-            _MenuItems = New ObservableCollection(Of MenuItem)
+            _menuItems = New ObservableCollection(Of MenuItem)
         End Sub
 
         Public Event PropertyChanged As PropertyChangedEventHandler Implements INotifyPropertyChanged.PropertyChanged

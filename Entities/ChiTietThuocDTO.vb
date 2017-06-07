@@ -45,6 +45,10 @@
 
         End Sub
 
+        ''' <summary>
+        ''' Lấy dữ liệu từ datarow
+        ''' </summary>
+        ''' <param name="row"></param>
         Public Sub New(ByVal row As DataRow)
             _tenThuoc = row.Field(Of String)("tenthuoc")
             _donGia = row.Field(Of Decimal)("dongia")

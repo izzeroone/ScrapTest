@@ -76,6 +76,10 @@
 
         End Sub
 
+        ''' <summary>
+        ''' Lấy dữ liệu từ datarow
+        ''' </summary>
+        ''' <param name="row"></param>
         Public Sub New(ByVal row As DataRow)
             MaChiTietPhieuKham = row.Field(Of String)("machitietphieukham")
             MaKhamBenh = row.Field(Of String)("makhambenh")

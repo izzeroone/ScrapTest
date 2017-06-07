@@ -9,41 +9,23 @@ Imports System.Collections.ObjectModel
 Namespace DataAccess
     Public Module KhamBenhDAL
 #Region "1.Inserting & Update"
+        ''' <summary>
+        ''' Thực hiện cập nhật hoặc thêm khám bệnh nếu chưa có
+        ''' </summary>
+        ''' <param name="khamBenh"></param>
+        ''' <returns></returns>
         Public Function InsertOrUpdateKhamBenh(ByVal khamBenh As KhamBenhDTO) As Boolean
             Dim result As Boolean
             result = False
             Try
                 Dim param As New List(Of NpgsqlParameter)
-                Dim parameter As New NpgsqlParameter()
 
-                parameter.NpgsqlDbType = NpgsqlDbType.Char
-                parameter.Value = khamBenh.MaKhamBenh
-                param.Add(parameter)
-
-                parameter = New NpgsqlParameter()
-                parameter.NpgsqlDbType = NpgsqlDbType.Date
-                parameter.Value = khamBenh.NgayKham
-                param.Add(parameter)
-
-                parameter = New NpgsqlParameter()
-                parameter.DbType = System.Data.DbType.String
-                parameter.Value = khamBenh.HoTenBenhNhan
-                param.Add(parameter)
-
-                parameter = New NpgsqlParameter()
-                parameter.DbType = System.Data.DbType.String
-                parameter.Value = khamBenh.GioiTinh
-                param.Add(parameter)
-
-                parameter = New NpgsqlParameter()
-                parameter.NpgsqlDbType = NpgsqlDbType.Integer
-                parameter.Value = khamBenh.NamSinh
-                param.Add(parameter)
-
-                parameter = New NpgsqlParameter()
-                parameter.DbType = System.Data.DbType.String
-                parameter.Value = khamBenh.DiaChi
-                param.Add(parameter)
+                param.Add(New NpgsqlParameter With {.NpgsqlDbType = NpgsqlDbType.Char, .Value = khamBenh.MaKhamBenh})
+                param.Add(New NpgsqlParameter With {.NpgsqlDbType = NpgsqlDbType.Date, .Value = khamBenh.NgayKham})
+                param.Add(New NpgsqlParameter With {.NpgsqlDbType = NpgsqlDbType.Text, .Value = khamBenh.HoTenBenhNhan})
+                param.Add(New NpgsqlParameter With {.NpgsqlDbType = NpgsqlDbType.Text, .Value = khamBenh.GioiTinh})
+                param.Add(New NpgsqlParameter With {.NpgsqlDbType = NpgsqlDbType.Integer, .Value = khamBenh.NamSinh})
+                param.Add(New NpgsqlParameter With {.NpgsqlDbType = NpgsqlDbType.Text, .Value = khamBenh.DiaChi})
 
                 Dim n As Boolean = ExecuteNoneQuery("insertorupdatekhambenh", param)
                 If (n = True) Then
@@ -55,16 +37,17 @@ Namespace DataAccess
             Return result
         End Function
 #End Region
-
 #Region "2. Delete"
+        ''' <summary>
+        ''' Thực hiện hàm xóa khám bệnh dựa trên mã
+        ''' </summary>
+        ''' <param name="maKhamBenh"></param>
+        ''' <returns></returns>
         Public Function DeleteKhamBenhByMa(ByVal maKhamBenh As String) As Boolean
             Try
                 Dim param As New List(Of NpgsqlParameter)
-                Dim parameter As New NpgsqlParameter()
 
-                parameter.NpgsqlDbType = NpgsqlDbType.Char
-                parameter.Value = maKhamBenh
-                param.Add(parameter)
+                param.Add(New NpgsqlParameter With {.NpgsqlDbType = NpgsqlDbType.Char, .Value = maKhamBenh})
 
                 Return ExecuteNoneQuery("deletekhambenhbyma", param)
             Catch ex As Exception
@@ -73,10 +56,19 @@ Namespace DataAccess
         End Function
 #End Region
 #Region "3. Get"
+        ''' <summary>
+        ''' Phát sinh mã khám bệnh
+        ''' </summary>
+        ''' <returns></returns>
         Public Function GetMaKhamBenh() As String
             Return ExecuteScalar("getmakhambenh").ToString()
         End Function
 
+        ''' <summary>
+        ''' Lấy danh sách bệnh nhân của ngày khám
+        ''' </summary>
+        ''' <param name="ngayKham"></param>
+        ''' <returns></returns>
         Public Function GetKhamBenhByNgayKham(ByVal ngayKham As Date) As DataTable
             Try
                 Dim list As New BindingList(Of KhamBenhDTO)
@@ -93,34 +85,11 @@ Namespace DataAccess
             End Try
         End Function
 
-        Public Function GetAllMaKhamBenh() As ObservableCollection(Of String)
-            Try
-
-                Dim list As New ObservableCollection(Of String)
-                Dim tb As DataTable = ExecuteQuery("getallmakhambenh")
-                For Each row As DataRow In tb.Rows
-                    list.Add(row.Field(Of String)("makhambenh"))
-                Next
-                Return list
-            Catch ex As Exception
-                Throw ex
-            End Try
-        End Function
-
-        Public Function GetAllKhamBenh() As ObservableCollection(Of KhamBenhDTO)
-            Try
-                Dim list As New ObservableCollection(Of KhamBenhDTO)
-
-                Dim tb As DataTable = ExecuteQuery("getallkhambenh")
-                For Each row As DataRow In tb.Rows
-                    list.Add(New KhamBenhDTO(row))
-                Next
-                Return list
-            Catch ex As Exception
-                Throw ex
-            End Try
-        End Function
-
+        ''' <summary>
+        ''' Lấy thông tin của bệnh nhân dựa trên ngày khám
+        ''' </summary>
+        ''' <param name="MaKhamBenh"></param>
+        ''' <returns></returns>
         Public Function GetKhamBenhByMaKhamBenh(ByVal MaKhamBenh As String) As KhamBenhDTO
             Dim param As New List(Of NpgsqlParameter)
             Dim parameter As New NpgsqlParameter()
@@ -133,6 +102,11 @@ Namespace DataAccess
             Return New KhamBenhDTO(tb.Rows.Item(0)).GetAdditionData(tb.Rows.Item(0))
         End Function
 
+        ''' <summary>
+        ''' Lấy tình tráng khám bệnh của bệnh nhân
+        ''' </summary>
+        ''' <param name="maKhamBenh"></param>
+        ''' <returns></returns>
         Public Function GetTinhTrangKhamBenh(ByVal maKhamBenh As String) As String
             Dim param As New List(Of NpgsqlParameter)
             param.Add(New NpgsqlParameter() With {.NpgsqlDbType = NpgsqlDbType.Char, .Value = maKhamBenh})
@@ -140,6 +114,11 @@ Namespace DataAccess
         End Function
 #End Region
 #Region "4.Vaild"
+        ''' <summary>
+        ''' Kiểm tra xem có vượt quá thông số số bệnh nhân tối đa hay không
+        ''' </summary>
+        ''' <param name="khamBenh"></param>
+        ''' <returns></returns>
         Public Function IsKhamBenhInsertable(ByVal khamBenh As KhamBenhDTO) As Object
             Dim param As New List(Of NpgsqlParameter)
             param.Add(New NpgsqlParameter() With {.NpgsqlDbType = NpgsqlDbType.Char, .Value = khamBenh.MaKhamBenh})

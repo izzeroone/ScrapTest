@@ -3,6 +3,11 @@ Imports NpgsqlTypes
 Namespace DataAccess
     Public Module ThongSoDAL
 #Region "1. Get"
+        ''' <summary>
+        ''' Thực hiện hàm lấy thông số từ cở sơ dữ liệu
+        ''' </summary>
+        ''' <param name="tenThongSo"></param>
+        ''' <returns></returns>
         Public Function GetThongSo(ByVal tenThongSo As String) As String
             Dim param As New List(Of NpgsqlParameter)
             param.Add(New NpgsqlParameter With {.NpgsqlDbType = NpgsqlDbType.Text, .Value = tenThongSo})
@@ -10,6 +15,12 @@ Namespace DataAccess
         End Function
 #End Region
 #Region "2. Update"
+        ''' <summary>
+        ''' Thực hiện hàm cập nhật thông số 
+        ''' </summary>
+        ''' <param name="tenThongSo"></param>
+        ''' <param name="giaTri"></param>
+        ''' <returns></returns>
         Public Function UpdateThongSo(ByVal tenThongSo As String, ByVal giaTri As String) As Boolean
             Dim param As New List(Of NpgsqlParameter)
             param.Add(New NpgsqlParameter With {.NpgsqlDbType = NpgsqlDbType.Text, .Value = tenThongSo})

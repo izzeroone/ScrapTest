@@ -107,6 +107,10 @@ Namespace Entities
             _diaChi = DiaChi
         End Sub
 
+        ''' <summary>
+        ''' Lấy dữ liệu từ datarow
+        ''' </summary>
+        ''' <param name="row"></param>
         Public Sub New(ByVal row As DataRow)
             _maKhamBenh = row.Field(Of String)("makhambenh")
             _ngayKham = row.Field(Of Date)("ngaykham")
@@ -116,6 +120,11 @@ Namespace Entities
             _diaChi = row.Field(Of String)("diachi")
         End Sub
 
+        ''' <summary>
+        ''' Lấy thêm dữ liệu khi đã thêm phiếu khám
+        ''' </summary>
+        ''' <param name="row"></param>
+        ''' <returns></returns>
         Public Function GetAdditionData(ByVal row As DataRow) As KhamBenhDTO
             _trieuChung = row.Field(Of String)("trieuchung")
             _maLoaiBenh = row.Field(Of String)("maloaibenh")

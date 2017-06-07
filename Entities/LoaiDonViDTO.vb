@@ -30,6 +30,10 @@
             _TenDonVi = TenDonVi
         End Sub
 
+        ''' <summary>
+        ''' Lấy dữ liệu từ datarow
+        ''' </summary>
+        ''' <param name="row"></param>
         Public Sub New(ByVal row As DataRow)
             _MaDonVi = row.Field(Of String)("madonvi")
             _TenDonVi = row.Field(Of String)("tendonvi")

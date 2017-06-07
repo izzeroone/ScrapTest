@@ -28,6 +28,10 @@
             _TenLoaiBenh = TenLoaiBenh
         End Sub
 
+        ''' <summary>
+        ''' Lấy dữ liệu từ datarow
+        ''' </summary>
+        ''' <param name="row"></param>
         Public Sub New(ByVal row As DataRow)
             _MaLoaiBenh = row.Field(Of String)("maloaibenh")
             _TenLoaiBenh = row.Field(Of String)("tenloaibenh")

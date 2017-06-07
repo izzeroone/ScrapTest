@@ -16,12 +16,14 @@ Public Class ucLoaiThuoc
     End Sub
 
     Private Async Sub DeleteButton_Click(sender As Object, e As RoutedEventArgs)
+        'Kiểm tra người dùng có muốn xóa hay không
         Dim dialog As New Domain.YesNoDialog
         dialog.Message.Text = "Bạn chắc chắn xóa " + dgLoaiThuoc.SelectedItems.Count.ToString() + " loại thuốc được chọn"
         Await DialogHost.Show(dialog)
         If (dialog.DialogResult = MessageBoxResult.No) Then
             Exit Sub
         End If
+        'Tiến hành xóa  
         Dim result As Boolean
         For Each loaiThuoc As LoaiThuocDTO In dgLoaiThuoc.SelectedItems
             result = LoaiThuocBUS.DeleteThuocByMa(loaiThuoc.MaThuoc)
@@ -35,15 +37,22 @@ Public Class ucLoaiThuoc
     End Sub
 
     Private Sub UpdateButton_Click(sender As Object, e As RoutedEventArgs)
+        'Kiểm tra người dùng đã chọn loại thuốc trong danh sách chưa
         If dgLoaiThuoc.SelectedIndex = -1 Then
             Domain.Dialog.Show("Chưa có đối tượng được chọn")
         End If
+        'Lấy thông tin từ người dùng và kiểm tra
         Dim loaiThuoc As New LoaiThuocDTO()
         loaiThuoc.MaThuoc = tbMaThuoc.Text
+        If tbTenThuoc.Text.Trim() = "" Then
+            Domain.Dialog.Show("Bạn chưa nhập tên thuốc")
+            Exit Sub
+        End If
         loaiThuoc.TenThuoc = tbTenThuoc.Text
         If Not LoaiThuocBUS.IsVaildDonGia(tbDonGia.Text, loaiThuoc.DonGia) Then
             Domain.Dialog.Show("Đơn giá không hợp lệ")
         End If
+        'Tiến hành cập nhật
         Dim result As Boolean = LoaiThuocBUS.InsertOrUpdateThuoc(loaiThuoc)
         If (result = True) Then
             Domain.Dialog.Show("Cập nhật thành công")
@@ -54,8 +63,11 @@ Public Class ucLoaiThuoc
     End Sub
 
     Private Sub NewButton_Click(sender As Object, e As RoutedEventArgs)
+        'Kiểm tra danh sách loại thuốc có trống hay không
         If Not listLoaiThuoc.Count = 0 Then
+            'Kiểm tra người dùng đã cập nhật loại thuốc mới thêm vào trước đó
             If Not listLoaiThuoc.Last.MaThuoc = LoaiThuocBUS.GetMaThuoc() Then
+                'Thêm loại thuốc trống mới vào danh sách
                 Dim LoaiThuoc As New LoaiThuocDTO(LoaiThuocBUS.GetMaThuoc(), Nothing)
                 listLoaiThuoc.Add(LoaiThuoc)
                 dgLoaiThuoc.SelectedIndex = dgLoaiThuoc.Items.Count - 1
@@ -64,12 +76,14 @@ Public Class ucLoaiThuoc
                 Exit Sub
             End If
         Else
+            'Thêm loại thuốc trống mới vào danh sách
             Dim LoaiThuoc As New LoaiThuocDTO(LoaiThuocBUS.GetMaThuoc(), Nothing)
             listLoaiThuoc.Add(LoaiThuoc)
             dgLoaiThuoc.SelectedIndex = dgLoaiThuoc.Items.Count - 1
         End If
     End Sub
     Private Sub ReloadData()
+        'Cập nhật lại danh sách loại thuốc khi người dùng vào màn hình
         If dgLoaiThuoc IsNot Nothing And Me.IsVisible Then
             listLoaiThuoc = LoaiThuocBUS.GetAllLoaiThuoc()
             dgLoaiThuoc.DataContext = listLoaiThuoc

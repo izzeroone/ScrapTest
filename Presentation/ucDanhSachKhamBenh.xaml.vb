@@ -7,7 +7,8 @@ Imports MaterialDesignThemes.Wpf
 
 Public Class ucDanhSachKhamBenh
     Dim listKhamBenh As ObservableCollection(Of KhamBenhDTO)
-    Dim firstLoad As Boolean = True
+    Dim firstLoad As Boolean = True 'Có phải làn đầu tiền vào màn hình hay không
+
     Private Sub NumberValidationTextBox(ByVal sender As Object, ByVal e As TextCompositionEventArgs)
         Dim regex As Regex = New Regex("[^0-9]+")
         e.Handled = regex.IsMatch(e.Text)
@@ -18,8 +19,11 @@ Public Class ucDanhSachKhamBenh
     End Sub
 
     Private Sub NewButton_Click(sender As Object, e As RoutedEventArgs)
+        'Kiểm tra người dùng đã chọn ngày hay chưa và trong danh sách có bệnh nhân chưa
         If Not listKhamBenh.Count = 0 And dpNgayKham.SelectedDate IsNot Nothing Then
+            'Kiểm tra người dùng có cập nhật bệnh nhân trước đó hay chưa
             If Not listKhamBenh.Last.MaKhamBenh = KhamBenhBUS.GetMaKhamBenh() Then
+                'Thêm khám bệnh mới
                 Dim khamBenh As New KhamBenhDTO(KhamBenhBUS.GetMaKhamBenh(), dpNgayKham.SelectedDate, Nothing, Nothing, dpNgayKham.SelectedDate.Value.Year - 18, Nothing)
                 listKhamBenh.Add(khamBenh)
                 dgKhamBenh.SelectedIndex = dgKhamBenh.Items.Count - 1
@@ -28,6 +32,7 @@ Public Class ucDanhSachKhamBenh
                 Exit Sub
             End If
         Else
+            'Thêm khám bệnh mới
             Dim khamBenh As New KhamBenhDTO(KhamBenhBUS.GetMaKhamBenh(), dpNgayKham.SelectedDate, Nothing, Nothing, dpNgayKham.SelectedDate.Value.Year - 18, Nothing)
             listKhamBenh.Add(khamBenh)
             dgKhamBenh.SelectedIndex = dgKhamBenh.Items.Count - 1
@@ -35,10 +40,12 @@ Public Class ucDanhSachKhamBenh
     End Sub
 
     Private Sub UpdateButton_Click(sender As Object, e As RoutedEventArgs)
+        'Kiểm tra đã có bệnh nhân được chọn chưa
         If (dgKhamBenh.SelectedIndex = -1) Then
             Domain.Dialog.Show("Chưa có đối tượng được chọn")
             Exit Sub
         End If
+        'Lấy dữ liệu vào kiểm tra dữ liệu người dùng nhập vào
         Dim khamBenh As New KhamBenhDTO
         khamBenh.MaKhamBenh = tbMaKhamBenh.Text
         khamBenh.HoTenBenhNhan = tbHoTen.Text
@@ -53,7 +60,9 @@ Public Class ucDanhSachKhamBenh
             Domain.Dialog.Show("Thông tin bệnh nhân không hợp lệ")
             Exit Sub
         End If
+        'Kiểm tra có thỏa mãn thông số số bệnh nhân tối đa hay không
         If KhamBenhBUS.IsKhamBenhInsertable(khamBenh) Then
+            'Thực hiện việc thêm hoặc cập nhật
             Dim result As Boolean = KhamBenhBUS.InsertOrUpdateKhamBenh(khamBenh)
             If (result = True) Then
                 Domain.Dialog.Show("Cập nhật thành công")
@@ -68,12 +77,14 @@ Public Class ucDanhSachKhamBenh
     End Sub
 
     Private Async Sub DeleteButton_Click(sender As Object, e As RoutedEventArgs)
+        'Cảnh bảo người dùng về việc xóa
         Dim dialog As New Domain.YesNoDialog
         dialog.Message.Text = "Bạn chắc chắn xóa " + dgKhamBenh.SelectedItems.Count.ToString() + " bệnh nhân được chọn"
         Await DialogHost.Show(dialog)
         If (dialog.DialogResult = MessageBoxResult.No) Then
             Exit Sub
         End If
+        'Thực hiện xóa
         Dim result As Boolean
         For Each khamBenh As KhamBenhDTO In dgKhamBenh.SelectedItems
             result = DeleteKhamBenhByMa(khamBenh.MaKhamBenh)
@@ -90,6 +101,9 @@ Public Class ucDanhSachKhamBenh
         dgKhamBenh.SelectedIndex = -1
     End Sub
 
+    ''' <summary>
+    ''' Tải lại danh sách bệnh nhân và đếm số bệnh nhân
+    ''' </summary>
     Private Sub ReloadData()
         If dgKhamBenh IsNot Nothing And dpNgayKham.SelectedDate IsNot Nothing Then
             listKhamBenh = GetKhamBenhByNgayKham(dpNgayKham.SelectedDate)
@@ -108,7 +122,8 @@ Public Class ucDanhSachKhamBenh
     End Sub
 
     Private Sub UserControl_IsVisibleChanged(sender As Object, e As DependencyPropertyChangedEventArgs)
-        If firstLoad Then
+        If firstLoad And IsVisible = True Then
+            'Khi người dùng màn hình đầu tiên thì cập nhật ngày bằng ngày hiện tại
             dpNgayKham.SelectedDate = Date.Now
             firstLoad = False
         End If

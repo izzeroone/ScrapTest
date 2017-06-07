@@ -1,4 +1,7 @@
 ﻿Namespace Entities
+    ''' <summary>
+    ''' Module lưu thông số của chương trình
+    ''' </summary>
     Public Module ThongSoDTO
         Private _soBenhNhanKhamToiDa As Integer
         Private _tienKham As Integer

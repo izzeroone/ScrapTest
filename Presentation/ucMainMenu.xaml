@@ -7,105 +7,69 @@
              xmlns:local="clr-namespace:Presentation"
              mc:Ignorable="d" 
              d:DesignHeight="1000" d:DesignWidth="1000">
-    <UserControl.Resources>
-        <Style TargetType="{x:Type materialDesign:Card}">
-            <Setter Property="Margin" Value="3,3"></Setter>
-        </Style>
-        <Style TargetType="{x:Type GroupBox}" BasedOn="{StaticResource MaterialDesignCardGroupBox}">
-            <Setter Property="Width" Value="200"></Setter>
-            <Setter Property="Margin" Value="14"></Setter>
-            <Setter Property="VerticalAlignment" Value="Top"></Setter>
-            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
-        </Style>
-    </UserControl.Resources>
-    <Grid VerticalAlignment="Stretch" HorizontalAlignment="Center">
+    <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="1" Orientation="Horizontal">
-            <GroupBox Header="Quản lý khám bệnh">
-                <GroupBox.HeaderTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Stethoscope" Height="32" Width="32" VerticalAlignment="Center" />
-                            <TextBlock Margin="8,0,0,0" VerticalAlignment="Center" Style="{StaticResource MaterialDesignSubheadingTextBlock}" Text="{Binding}"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </GroupBox.HeaderTemplate>
-                <StackPanel>
-                    <ListView>
-                        <ListViewItem>Lập danh sách khám bệnh</ListViewItem>
-                        <ListViewItem>Lập phiếu khám</ListViewItem>
-                        <ListViewItem>Lập hóa đơn thanh toán</ListViewItem>
-                        <ListViewItem>Tra cứu bệnh nhân</ListViewItem>
-                    </ListView>
-                </StackPanel>
-            </GroupBox>
-            <GroupBox Header="Quản lý tài chính">
-                <GroupBox.HeaderTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="CreditCard" Height="32" Width="32" VerticalAlignment="Center" />
-                            <TextBlock Margin="8,0,0,0" VerticalAlignment="Center" Style="{StaticResource MaterialDesignSubheadingTextBlock}" Text="{Binding}"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </GroupBox.HeaderTemplate>
-                <StackPanel>
-                    <ListView>
-                          <ListViewItem>Báo cáo doanh thu</ListViewItem>
-                    </ListView>
-                </StackPanel>
-            </GroupBox>
-            <GroupBox Header="Quản lý thuốc">
-                <GroupBox.HeaderTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Pill" Height="32" Width="32" VerticalAlignment="Center" />
-                            <TextBlock Margin="8,0,0,0" VerticalAlignment="Center" Style="{StaticResource MaterialDesignSubheadingTextBlock}" Text="{Binding}"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </GroupBox.HeaderTemplate>
-                <StackPanel>
-                    <ListView>
-                        <ListViewItem>Danh mục loại thuốc</ListViewItem>
-                        <ListViewItem>Danh mục loại cách dùng</ListViewItem>
-                        <ListViewItem>Danh mục loại đơn vị</ListViewItem>
-                        <ListViewItem>Báo cáo sử dụng thuốc</ListViewItem>
-                    </ListView>
-                </StackPanel>
-            </GroupBox>
-            <GroupBox Header="Quản lý loại bệnh ">
-                <GroupBox.HeaderTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="SeatFlat" Height="32" Width="32" VerticalAlignment="Center" />
-                            <TextBlock Margin="8,0,0,0" VerticalAlignment="Center" Style="{StaticResource MaterialDesignSubheadingTextBlock}" Text="{Binding}"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </GroupBox.HeaderTemplate>
-                <StackPanel>
-                    <ListView>
-                        <ListViewItem>Danh mục loại bệnh</ListViewItem>
-                    </ListView>
-                </StackPanel>
-            </GroupBox>
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Top" Margin="16">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Image Source="Resources/ms-icon-310x310.png" Stretch="Uniform" Width="100" Height="100" />
+            <StackPanel Grid.Column="1" Margin="24 0 0 0" VerticalAlignment="Center">
+                <TextBlock Style="{StaticResource MaterialDesignDisplay1TextBlock}" TextWrapping="Wrap">Phần mềm quản lý phòng mạch tư</TextBlock>
+            </StackPanel>
+        </Grid>
+        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Top"
+                      Margin="0 0 0 32">
+            <Grid>
+                <StackPanel Orientation="Horizontal">
+                    <materialDesign:Card Width="420" Margin="4 2 8 16" Height="270">
+                        <Grid VerticalAlignment="Stretch" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="200" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Image Source="Resources/Contact.png" Grid.RowSpan="5" StretchDirection="Both" VerticalAlignment="Stretch" Stretch="UniformToFill" />
+                            <TextBlock Grid.Column="1" Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="16 16 16 2">Giới thiệu</TextBlock>
+                            <TextBlock Grid.Column="1" Grid.Row="1" TextWrapping="Wrap" Margin="16 0 16 8" Foreground="{DynamicResource MaterialDesignBodyLight}"
+                                       VerticalAlignment="Center">Tác giả: trumpsilver</TextBlock>
+                            <TextBlock Grid.Column="1" Grid.Row="2" TextWrapping="Wrap" Margin="16 0 16 8" Foreground="{DynamicResource MaterialDesignBodyLight}"
+                                       VerticalAlignment="Center">Phiên bản: 1.0.0.1</TextBlock>
+                            <Border Grid.Column="1" Grid.Row="3" BorderThickness="0 1 0 0" BorderBrush="{DynamicResource MaterialDesignDivider}" Margin="0 8 0 0">
+                                <Grid Margin="8">
+                                    <Button Style="{DynamicResource MaterialDesignFlatButton}" HorizontalAlignment="Left"
+                                            x:Name="GitHubButton" Click="GitHubButton_OnClick">
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="GithubCircle" />
+                                            <TextBlock Margin="8 0 0 0" VerticalAlignment="Center">GitHub</TextBlock>
+                                        </StackPanel>
+                                    </Button>
+                                    <Button Style="{DynamicResource MaterialDesignFlatButton}" HorizontalAlignment="Right"
+                                            x:Name="EmailButton" Click="EmailButton_OnClick">
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="Email" />
+                                            <TextBlock Margin="8 0 0 0" VerticalAlignment="Center">Email</TextBlock>
+                                        </StackPanel>
+                                    </Button>
+                                </Grid>
+                            </Border>
+                        </Grid>
+                    </materialDesign:Card>
 
-            <GroupBox Header="Tổ chức ">
-                <GroupBox.HeaderTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Settings" Height="32" Width="32" VerticalAlignment="Center" />
-                            <TextBlock Margin="8,0,0,0" VerticalAlignment="Center" Style="{StaticResource MaterialDesignSubheadingTextBlock}" Text="{Binding}"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </GroupBox.HeaderTemplate>
-                <StackPanel>
-                    <ListView>
-                        <ListViewItem>Thông số</ListViewItem>
-                    </ListView>
                 </StackPanel>
-            </GroupBox>
-        </StackPanel>
+            </Grid>
+        </ScrollViewer>
     </Grid>
 </UserControl>

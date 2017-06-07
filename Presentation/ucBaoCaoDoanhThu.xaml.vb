@@ -5,6 +5,7 @@ Public Class ucBaoCaoDoanhThu
     Dim list As ObservableCollection(Of BaoCaoDoanhThuDTO)
     Private Sub tbNgayKham_SelectedDateChanged(sender As Object, e As SelectionChangedEventArgs)
         Dim tong As Long
+        'Lấy báo cáo doanh thu và tính tổng
         list = BaoCaoDoanhThuBUS.GetBaoCaoDoanhThu(tbNgayKham.SelectedDate, tong)
         If dgChiTietDoanhThu IsNot Nothing Then
             If (list.Count <> 0) Then
@@ -14,6 +15,11 @@ Public Class ucBaoCaoDoanhThu
             End If
         End If
     End Sub
+    ''' <summary>
+    ''' Kiểm tra ngày nhập vào có hợp lệ hay không
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
     Private Sub DatePickerDateValidationError(sender As Object, e As DatePickerDateValidationErrorEventArgs)
         Dim dp As DatePicker = sender
         e.ThrowException = False

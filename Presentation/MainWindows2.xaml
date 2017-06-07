@@ -17,130 +17,25 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{StaticResource MaterialDesignFont}"
         Loaded="Window_Loaded">
-
+    <Window.Resources>
+        <DataTemplate x:Key="menuItemTemplate" DataType="domain:MenuItem">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Name}" Margin="0, 0, 0, 0" Padding="0, 0, 0, 0" />
+            </StackPanel>
+        </DataTemplate>
+        <Style TargetType="{x:Type Button}" x:Key="HomeButton">
+            
+        </Style>
+    </Window.Resources>
     <materialDesign:DialogHost Identifier="RootDialog">
-        <materialDesign:DrawerHost IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}">
-            <materialDesign:DrawerHost.LeftDrawerContent>
-                <StackPanel Width="230" Orientation="Vertical">
-                    <materialDesign:ColorZone Mode="PrimaryDark">
-                        <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" 
-                                    DockPanel.Dock="Top"
-                                    HorizontalAlignment="Right" Margin="16"
-                                    IsChecked="{Binding ElementName=MenuToggleButton, Path=IsChecked, Mode=TwoWay}" />
-                    </materialDesign:ColorZone>
-
-                    <TreeView x:Name="trvMenu" SelectedItemChanged="trvMenu_SelectedItemChanged">
-                        <TreeView.Resources>
-                            <HierarchicalDataTemplate DataType="{x:Type domain:GroupMenuItem}" ItemsSource="{Binding MenuItems}">
-                                <DockPanel HorizontalAlignment="Stretch">
-                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding Name}" FontSize="16" FontWeight="Light">
-                                    </TextBlock>
-                                </DockPanel>
-                            </HierarchicalDataTemplate>
-                            <HierarchicalDataTemplate DataType="{x:Type domain:MenuItem}">
-                                <StackPanel Orientation="Horizontal">
-                                    <Separator/>
-                                    <TextBlock Margin="0 0 0 0" Text="{Binding Name}" FontWeight="Regular"></TextBlock>
-                                    <Separator/>
-                                </StackPanel>
-                            </HierarchicalDataTemplate>
-                        </TreeView.Resources>
-                    </TreeView>
-                    <!--<StackPanel Orientation="Vertical">
-                        <GroupBox Header="Quản lý khám bệnh">
-                            <GroupBox.HeaderTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <materialDesign:PackIcon Kind="Stethoscope" Height="32" Width="32" VerticalAlignment="Center" />
-                                        <TextBlock Margin="8,0,0,0" VerticalAlignment="Center" Style="{StaticResource MaterialDesignSubheadingTextBlock}" Text="{Binding}"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </GroupBox.HeaderTemplate>
-                            <StackPanel>
-                                <ListView>
-                                    <ListViewItem>Lập danh sách khám bệnh</ListViewItem>
-                                    <ListViewItem>Lập phiếu khám</ListViewItem>
-                                    <ListViewItem>Lập hóa đơn thanh toán</ListViewItem>
-                                    <ListViewItem>Tra cứu bệnh nhân</ListViewItem>
-                                </ListView>
-                            </StackPanel>
-                        </GroupBox>
-                        <GroupBox Header="Quản lý tài chính">
-                            <GroupBox.HeaderTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <materialDesign:PackIcon Kind="CreditCard" Height="32" Width="32" VerticalAlignment="Center" />
-                                        <TextBlock Margin="8,0,0,0" VerticalAlignment="Center" Style="{StaticResource MaterialDesignSubheadingTextBlock}" Text="{Binding}"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </GroupBox.HeaderTemplate>
-                            <StackPanel>
-                                <ListView>
-                                    <ListViewItem>Báo cáo doanh thu</ListViewItem>
-                                </ListView>
-                            </StackPanel>
-                        </GroupBox>
-                        <GroupBox Header="Quản lý thuốc">
-                            <GroupBox.HeaderTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <materialDesign:PackIcon Kind="Pill" Height="32" Width="32" VerticalAlignment="Center" />
-                                        <TextBlock Margin="8,0,0,0" VerticalAlignment="Center" Style="{StaticResource MaterialDesignSubheadingTextBlock}" Text="{Binding}"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </GroupBox.HeaderTemplate>
-                            <StackPanel>
-                                <ListView>
-                                    <ListViewItem>Danh mục loại thuốc</ListViewItem>
-                                    <ListViewItem>Danh mục loại cách dùng</ListViewItem>
-                                    <ListViewItem>Danh mục loại đơn vị</ListViewItem>
-                                    <ListViewItem>Báo cáo sử dụng thuốc</ListViewItem>
-                                </ListView>
-                            </StackPanel>
-                        </GroupBox>
-                        <GroupBox Header="Quản lý loại bệnh ">
-                            <GroupBox.HeaderTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <materialDesign:PackIcon Kind="SeatFlat" Height="32" Width="32" VerticalAlignment="Center" />
-                                        <TextBlock Margin="8,0,0,0" VerticalAlignment="Center" Style="{StaticResource MaterialDesignSubheadingTextBlock}" Text="{Binding}"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </GroupBox.HeaderTemplate>
-                            <StackPanel>
-                                <ListView>
-                                    <ListViewItem>Danh mục loại bệnh</ListViewItem>
-                                </ListView>
-                            </StackPanel>
-                        </GroupBox>
-
-                        <GroupBox Header="Tổ chức ">
-                            <GroupBox.HeaderTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <materialDesign:PackIcon Kind="Settings" Height="32" Width="32" VerticalAlignment="Center" />
-                                        <TextBlock Margin="8,0,0,0" VerticalAlignment="Center" Style="{StaticResource MaterialDesignSubheadingTextBlock}" Text="{Binding}"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </GroupBox.HeaderTemplate>
-                            <StackPanel>
-                                <ListView>
-                                    <ListViewItem>Thông số</ListViewItem>
-                                </ListView>
-                            </StackPanel>
-                        </GroupBox>
-                    </StackPanel>-->
-                    <TextBlock Margin="0 500 0 500"></TextBlock>
-                </StackPanel>
-
-            </materialDesign:DrawerHost.LeftDrawerContent>
+        <materialDesign:DrawerHost>
             <DockPanel>
                 <materialDesign:ColorZone Padding ="16" materialDesign:ShadowAssist.ShadowDepth="Depth2"
                                           Mode="PrimaryMid" DockPanel.Dock="Top">
                     <DockPanel>
-                        <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}"
-                                      IsChecked="False" x:Name="MenuToggleButton">
-                        </ToggleButton>
+                        <Button Click="HomeButton_Click" BorderThickness="0">
+                            <materialDesign:PackIcon Kind="Home" Height="32" Width="32" VerticalAlignment="Center" Foreground="{DynamicResource MaterialDesignPaper}"/>
+                        </Button>
                         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20">
                             QUẢN LÝ PHÒNG MẠCH TƯ
                         </TextBlock>
@@ -155,7 +50,7 @@
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <!--<StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="0">
                         <GroupBox Header="Quản lý khám bệnh">
                             <GroupBox.HeaderTemplate>
                                 <DataTemplate>
@@ -166,11 +61,7 @@
                                 </DataTemplate>
                             </GroupBox.HeaderTemplate>
                             <StackPanel>
-                                <ListView>
-                                    <ListViewItem>Lập danh sách khám bệnh</ListViewItem>
-                                    <ListViewItem>Lập phiếu khám</ListViewItem>
-                                    <ListViewItem>Lập hóa đơn thanh toán</ListViewItem>
-                                    <ListViewItem>Tra cứu bệnh nhân</ListViewItem>
+                                <ListView x:Name="lvKhamBenh" ItemTemplate="{StaticResource menuItemTemplate}" MouseLeftButtonUp="listView_MouseLeftButtonUp">
                                 </ListView>
                             </StackPanel>
                         </GroupBox>
@@ -184,8 +75,7 @@
                                 </DataTemplate>
                             </GroupBox.HeaderTemplate>
                             <StackPanel>
-                                <ListView>
-                                    <ListViewItem>Báo cáo doanh thu</ListViewItem>
+                                <ListView x:Name="lvTaiChinh" ItemTemplate="{StaticResource menuItemTemplate}" MouseLeftButtonUp="listView_MouseLeftButtonUp">
                                 </ListView>
                             </StackPanel>
                         </GroupBox>
@@ -199,11 +89,7 @@
                                 </DataTemplate>
                             </GroupBox.HeaderTemplate>
                             <StackPanel>
-                                <ListView>
-                                    <ListViewItem>Danh mục loại thuốc</ListViewItem>
-                                    <ListViewItem>Danh mục loại cách dùng</ListViewItem>
-                                    <ListViewItem>Danh mục loại đơn vị</ListViewItem>
-                                    <ListViewItem>Báo cáo sử dụng thuốc</ListViewItem>
+                                <ListView x:Name="lvThuoc" ItemTemplate="{StaticResource menuItemTemplate}" MouseLeftButtonUp="listView_MouseLeftButtonUp">
                                 </ListView>
                             </StackPanel>
                         </GroupBox>
@@ -217,12 +103,10 @@
                                 </DataTemplate>
                             </GroupBox.HeaderTemplate>
                             <StackPanel>
-                                <ListView>
-                                    <ListViewItem>Danh mục loại bệnh</ListViewItem>
+                                <ListView x:Name="lvBenh" ItemTemplate="{StaticResource menuItemTemplate}" MouseLeftButtonUp="listView_MouseLeftButtonUp">
                                 </ListView>
                             </StackPanel>
                         </GroupBox>
-
                         <GroupBox Header="Tổ chức ">
                             <GroupBox.HeaderTemplate>
                                 <DataTemplate>
@@ -233,21 +117,20 @@
                                 </DataTemplate>
                             </GroupBox.HeaderTemplate>
                             <StackPanel>
-                                <ListView>
-                                    <ListViewItem>Thông số</ListViewItem>
+                                <ListView x:Name="lvToChuc" ItemTemplate="{StaticResource menuItemTemplate}" MouseLeftButtonUp="listView_MouseLeftButtonUp">
                                 </ListView>
                                 <TextBlock Margin="0 500 0 500">er</TextBlock>
                             </StackPanel>
                             
                         </GroupBox>
                         
-                    </StackPanel>-->
-                    <ScrollViewer Grid.Row="1"
+                    </StackPanel>
+                    <ScrollViewer Grid.Row="0"
                                   Grid.Column="1"
                                   HorizontalScrollBarVisibility="{Binding ElementName=MainMenuList, Path=SelectedItem.HorizontalScrollBarVisibilityRequirement}"
                                   VerticalScrollBarVisibility="{Binding ElementName=MainMenuList, Path=SelectedItem.VerticalScrollBarVisibilityRequirement}" 
                                   Padding="{Binding ElementName=DemoItemsListBox, Path=SelectedItem.MarginRequirement}">
-                        <ContentControl Content="{Binding ElementName=trvMenu, Path=SelectedItem.Content}"></ContentControl>
+                        <ContentControl x:Name="userControlDisplay"></ContentControl>
                     </ScrollViewer>
                     <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" x:Name="MainSnackbar"
                                             Grid.Row="1" Grid.Column="1" />

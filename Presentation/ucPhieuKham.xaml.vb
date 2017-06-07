@@ -21,8 +21,11 @@ Public Class ucPhieuKham
 
 
     Private Sub NewButton_Click(sender As Object, e As RoutedEventArgs)
+        'Kiểm tra danh sách chi tiết phiếu khám có rỗng không
         If Not listChiTietPhieuKham.Count = 0 Then
+            'Kiểm tra người dùng đã cập nhật chi tiết phiếu khám mới thêm vào trước đó hay chưa
             If Not listChiTietPhieuKham.Last.MaChiTietPhieuKham = ChiTietPhieuKhamBUS.GetMaChiTietPhieuKham() Then
+                'Thêm chi tiết phiếu khám mới rỗng vào danh sách
                 Dim ChiTietPhieuKham As New ROWChiTietPhieuKhamDTO() With {.MaChiTietPhieuKham = ChiTietPhieuKhamBUS.GetMaChiTietPhieuKham(),
                                                                        .MaKhamBenh = cbMaKhamBenh.SelectedValue}
                 listChiTietPhieuKham.Add(ChiTietPhieuKham)
@@ -32,6 +35,7 @@ Public Class ucPhieuKham
                 Exit Sub
             End If
         Else
+            'Thêm chi tiết phiếu khám mới rỗng vào danh sách
             Dim ChiTietPhieuKham As New ROWChiTietPhieuKhamDTO() With {.MaChiTietPhieuKham = ChiTietPhieuKhamBUS.GetMaChiTietPhieuKham(),
                                                                        .MaKhamBenh = cbMaKhamBenh.SelectedValue}
             listChiTietPhieuKham.Add(ChiTietPhieuKham)
@@ -40,10 +44,12 @@ Public Class ucPhieuKham
     End Sub
 
     Private Sub UpdateButton_Click(sender As Object, e As RoutedEventArgs)
+        'Kiểm tra người dùng đã chọn chi tiết phiếu khám trong danh sách hay chưa
         If dgChiTietPhieuKham.SelectedIndex = -1 Then
             Domain.Dialog.Show("Chưa có đối tượng được chọn")
             Exit Sub
         End If
+        'Lấy thông tin từ người dùng và kiểm tra
         Dim chiTietPhieuKham As New ChiTietPhieuKhamDTO
         chiTietPhieuKham.MaChiTietPhieuKham = tbMaChiTietPhieuKham.Text
         chiTietPhieuKham.MaKhamBenh = cbMaKhamBenh.Text
@@ -60,6 +66,7 @@ Public Class ucPhieuKham
             Domain.Dialog.Show("Thông tin không hợp lệ")
             Exit Sub
         End If
+        'Tiến hành cập nhật
         Dim result As Boolean = ChiTietPhieuKhamBUS.InsertOrUpdateChiTietPhieuKham(chiTietPhieuKham)
         If (result = True) Then
             Domain.Dialog.Show("Cập nhật thành công")
@@ -70,12 +77,14 @@ Public Class ucPhieuKham
     End Sub
 
     Private Async Sub DeleteButton_Click(sender As Object, e As RoutedEventArgs)
+        'Kiểm tra người dùng có muốn xóa hay không
         Dim dialog As New Domain.YesNoDialog
         dialog.Message.Text = "Bạn chắc chắn xóa " + dgChiTietPhieuKham.SelectedItems.Count.ToString() + " thuốc được chọn"
         Await DialogHost.Show(dialog)
         If (dialog.DialogResult = MessageBoxResult.No) Then
             Exit Sub
         End If
+        'Tiến hành xóa
         Dim result As Boolean
         For Each ChiTietPhieuKham As ChiTietPhieuKhamDTO In dgChiTietPhieuKham.SelectedItems
             result = DeleteChiTietPhieuKhamByMa(ChiTietPhieuKham.MaChiTietPhieuKham)
@@ -101,7 +110,7 @@ Public Class ucPhieuKham
         End If
     End Sub
     ''' <summary>
-    ''' Khởi tạo nguồn dữ liệu cho combobox
+    ''' Khởi tạo nguồn dữ liệu cho combobox khi người dùng vào màn hình
     ''' </summary>
     Private Sub LoadComboBoxData()
         If Me.IsVisible = True Then
@@ -117,12 +126,14 @@ Public Class ucPhieuKham
     End Sub
 
     Private Sub cbMaKhamBenh_SelectionChanged(sender As Object, e As SelectionChangedEventArgs)
+        'Cập nhật lại danh sách chi tiết phiếu khám khi người dùng chọn bệnh nhân khác
         If cbMaKhamBenh IsNot Nothing Then
             ReloadData()
         End If
     End Sub
 
     Private Sub dpNgayKhamBenh_SelectedDateChanged(sender As Object, e As SelectionChangedEventArgs)
+        'Cập nhật lại danh sách bệnh nhân khi ngày người dùng chọn thay đổi
         If dpNgayKhamBenh IsNot Nothing And dpNgayKhamBenh.SelectedDate IsNot Nothing Then
             cbMaKhamBenh.ItemsSource = KhamBenhBUS.GetKhamBenhByNgayKham(dpNgayKhamBenh.SelectedDate)
         End If

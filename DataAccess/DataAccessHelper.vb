@@ -97,11 +97,20 @@ Namespace DataAccess
 
             Return dt
         End Function
-
+        ''' <summary>
+        ''' Execute 1 hàm trong cơ sở dữ liệu và trả về 1 bảng
+        ''' </summary>
+        ''' <param name="spName"></param>
+        ''' <returns></returns>
         Public Function ExecuteQuery(ByVal spName As String) As DataTable
             Return ExecuteQuery(spName, Nothing)
         End Function
-
+        ''' <summary>
+        ''' Execute 1 hàm trong cơ sở dữ liệu và trả về 1 đối tượng
+        ''' </summary>
+        ''' <param name="spName"></param>
+        ''' <param name="sqlParams"></param>
+        ''' <returns></returns>
         Public Function ExecuteScalar(ByVal spName As String, sqlParams As List(Of NpgsqlParameter)) As Object
             Dim dt As Object
             Try
@@ -131,11 +140,20 @@ Namespace DataAccess
 
             Return dt
         End Function
-
+        ''' <summary>
+        ''' Execute 1 hàm trong cơ sở dữ liệu và trả về 1 đối tượng
+        ''' </summary>
+        ''' <param name="spName"></param>
+        ''' <returns></returns>
         Public Function ExecuteScalar(ByVal spName As String) As Object
             Return ExecuteScalar(spName, Nothing)
         End Function
-
+        ''' <summary>
+        ''' Execute 1 hàm trong cơ sở dữ liệu và trả về có thực hiện được hay không
+        ''' </summary>
+        ''' <param name="spName"></param>
+        ''' <param name="sqlParams"></param>
+        ''' <returns></returns>
         Public Function ExecuteNoneQuery(ByVal spName As String, ByVal sqlParams As List(Of NpgsqlParameter)) As Integer
             Dim n As Integer
             Try
@@ -165,7 +183,11 @@ Namespace DataAccess
 
             Return n
         End Function
-
+        ''' <summary>
+        ''' Execute 1 hàm trong cơ sở dữ liệu và trả về có thực hiện được hay không
+        ''' </summary>
+        ''' <param name="spName"></param>
+        ''' <returns></returns>
         Public Function ExecuteNoneQuery(ByVal spName As String) As Integer
             Return ExecuteNoneQuery(spName, Nothing)
         End Function

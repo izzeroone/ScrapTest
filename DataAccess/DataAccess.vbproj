@@ -78,7 +78,7 @@
     <Compile Include="CauHinhCSDLDAL.vb" />
     <Compile Include="ChiTietHoaDonDAL.vb" />
     <Compile Include="ChiTietThuocDAL.vb" />
-    <Compile Include="ChiTieuPhieuKhamDAL.vb" />
+    <Compile Include="ChiTietPhieuKhamDAL.vb" />
     <Compile Include="DataAccessHelper.vb" />
     <Compile Include="HoaDonDAL.vb" />
     <Compile Include="KhamBenhDAL.vb" />

@@ -2,6 +2,11 @@
 Imports Entities.Entities
 Imports System.Collections.ObjectModel
 Public Class ucCauHinhCSDL
+    ''' <summary>
+    ''' Khi màn hình được hiển thì thì cập nhật lại thông số từ cơ sớ dữ liệu
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
     Private Sub UserControl_IsVisibleChanged(sender As Object, e As DependencyPropertyChangedEventArgs)
         If Me.IsVisible = True Then
             Dim cauHinh As CauHinhCSDLDTO = GetCauHinhCSDL()
@@ -42,11 +47,21 @@ Public Class ucCauHinhCSDL
         End If
     End Sub
 
+    ''' <summary>
+    ''' Đặt cấu hình mặc định
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
     Private Sub DefaultButton_Click(sender As Object, e As RoutedEventArgs)
         Dim cauHinh As CauHinhCSDLDTO = CauHinhCSDLBUS.SetDefaultCauHinhCSDL()
         UpdateDisplay(cauHinh)
     End Sub
 
+    ''' <summary>
+    ''' Thử kết nối cơ sỡ dữ liệu
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
     Private Sub TestButton_Click(sender As Object, e As RoutedEventArgs)
         Dim cauHinh As New CauHinhCSDLDTO
         cauHinh.Address = tbServer.Text

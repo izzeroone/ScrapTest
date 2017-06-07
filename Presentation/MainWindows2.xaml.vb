@@ -3,56 +3,79 @@ Imports Business.Business
 Imports DataAccess.DataAccess
 Class MainWindows2
 
-    Public Sub SetupHarburgerBar()
-        Dim mainMenuItems As New List(Of Domain.GroupMenuItem)
+    Private manHinhChu As New ucMainMenu() ' Màn hình giới thiệu chương trình
+    ''' <summary>
+    ''' Khởi tạo menu items
+    ''' </summary>
+    Public Sub SetupMenuItems()
 
-        Dim menuItems0 As New Domain.GroupMenuItem With {.Name = "MÀN HÌNH CHÍNH", .Content = New ucMainMenu()}
-        mainMenuItems.Add(menuItems0)
-
+        'Tạo danh sách các màn hình thuộc nhóm khám bệnh
         Dim menuItems1 As New Domain.GroupMenuItem With {.Name = "QUẢN LÝ KHÁM BỆNH"}
         menuItems1.MenuItems.Add(New Domain.MenuItem() With {.Name = "Lập danh sách khám bệnh", .Content = New ucDanhSachKhamBenh()})
-        menuItems1.MenuItems.Add(New Domain.MenuItem() With {.Name = "Lập chi tiết phiếu khám", .Content = New ucPhieuKham()})
+        menuItems1.MenuItems.Add(New Domain.MenuItem() With {.Name = "Lập phiếu khám", .Content = New ucPhieuKham()})
         menuItems1.MenuItems.Add(New Domain.MenuItem() With {.Name = "Tra cứu bệnh nhân", .Content = New ucTraCuuBenhNhan()})
-        mainMenuItems.Add(menuItems1)
+        lvKhamBenh.ItemsSource = menuItems1.MenuItems
 
+        'Tạo danh sách các màn hình thuộc nhóm thuốc
+        Dim menuItems2 As New Domain.GroupMenuItem With {.Name = "QUẢN LÝ THUỐC"}
+        menuItems2.MenuItems.Add(New Domain.MenuItem() With {.Name = "Danh mục loại thuốc", .Content = New ucLoaiThuoc()})
+        menuItems2.MenuItems.Add(New Domain.MenuItem() With {.Name = "Danh mục loại đơn vị", .Content = New ucLoaiDonVi()})
+        menuItems2.MenuItems.Add(New Domain.MenuItem() With {.Name = "Danh mục loại cách dùng", .Content = New ucLoaiCachDung()})
+        menuItems2.MenuItems.Add(New Domain.MenuItem() With {.Name = "Báo cáo sử dụng thuốc", .Content = New ucBaoCaoThuoc()})
+        lvThuoc.ItemsSource = menuItems2.MenuItems
 
-        Dim menuItems3 As New Domain.GroupMenuItem With {.Name = "QUẢN LÝ THUỐC"}
-        menuItems3.MenuItems.Add(New Domain.MenuItem() With {.Name = "Danh mục loại thuốc", .Content = New ucLoaiThuoc()})
-        menuItems3.MenuItems.Add(New Domain.MenuItem() With {.Name = "Danh mục loại đơn vị", .Content = New ucLoaiDonVi()})
-        menuItems3.MenuItems.Add(New Domain.MenuItem() With {.Name = "Danh mục loại cách dùng", .Content = New ucLoaiCachDung()})
-        menuItems3.MenuItems.Add(New Domain.MenuItem() With {.Name = "Báo cáo sử dụng thuốc", .Content = New ucBaoCaoThuoc()})
-        mainMenuItems.Add(menuItems3)
+        'Tạo danh sách các màn hình thuộc nhóm loại bệnh
+        Dim menuItems3 As New Domain.GroupMenuItem With {.Name = "QUẢN LÝ LOẠI BỆNH"}
+        menuItems3.MenuItems.Add(New Domain.MenuItem() With {.Name = "Danh mục loại bệnh", .Content = New ucLoaiBenh()})
+        lvBenh.ItemsSource = menuItems3.MenuItems
 
-        Dim menuItems6 As New Domain.GroupMenuItem With {.Name = "QUẢN LÝ LOẠI BỆNH"}
-        menuItems6.MenuItems.Add(New Domain.MenuItem() With {.Name = "Danh mục loại bệnh", .Content = New ucLoaiBenh()})
-        mainMenuItems.Add(menuItems6)
-
+        'Tạo danh cách các màn hình thuộc nhóm tài chính
         Dim menuItems4 As New Domain.GroupMenuItem With {.Name = "QUẢN LÝ TÀI CHÍNH"}
         menuItems4.MenuItems.Add(New Domain.MenuItem() With {.Name = "Lập hóa đơn", .Content = New ucHoaDonThanhToan()})
         menuItems4.MenuItems.Add(New Domain.MenuItem() With {.Name = "Báo cáo doanh thu", .Content = New ucBaoCaoDoanhThu()})
-        mainMenuItems.Add(menuItems4)
+        lvTaiChinh.ItemsSource = menuItems4.MenuItems
 
+        'Tạo danh sách các màn hình thuộc nhóm tổ chức
         Dim menuItems5 As New Domain.GroupMenuItem With {.Name = "TỔ CHỨC"}
         menuItems5.MenuItems.Add(New Domain.MenuItem() With {.Name = "Thông số", .Content = New ucThongSo()})
         menuItems5.MenuItems.Add(New Domain.MenuItem() With {.Name = "Kết nối CSDL", .Content = New ucCauHinhCSDL()})
-        mainMenuItems.Add(menuItems5)
-
-        trvMenu.ItemsSource = mainMenuItems
-    End Sub
-
-    Private Sub trvMenu_SelectedItemChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Object))
+        lvToChuc.ItemsSource = menuItems5.MenuItems
 
     End Sub
 
     Private Sub Window_Loaded(sender As Object, e As RoutedEventArgs)
-        SetupHarburgerBar()
-        ThongSoBUS.LoadThongSo()
+        'Hiển thị màn hình chủ
+        userControlDisplay.Content = manHinhChu
+        'Khởi tạo menu
+        SetupMenuItems()
+        'Tải cấu hình từ file
         Dim cauHinh As CauHinhCSDLDTO = CauHinhCSDLBUS.GetCauHinhCSDL()
         DataAccessHelper.UpdateCauHinh(cauHinh)
+        'Tải các thông số
+        ThongSoBUS.LoadThongSo()
+        'Hiển thị thông báo
         Task.Factory.StartNew(Sub()
                                   System.Threading.Thread.Sleep(2500)
                               End Sub).ContinueWith(Sub(ByVal t)
                                                         MainSnackbar.MessageQueue.Enqueue("Chào mừng đến với phần mềm quản lý phòng mạch")
                                                     End Sub, TaskScheduler.FromCurrentSynchronizationContext())
+    End Sub
+
+    Private Sub listView_MouseLeftButtonUp(sender As Object, e As MouseButtonEventArgs)
+        Dim lv As ListView = sender
+        If lv.SelectedIndex <> -1 Then
+            'Cập nhật màn hình tương ứng với menu
+            userControlDisplay.Content = CType(lv.SelectedItem, Domain.MenuItem).Content
+        End If
+        'Đặt lại các listview
+        lvBenh.SelectedIndex = -1
+        lvKhamBenh.SelectedIndex = -1
+        lvTaiChinh.SelectedIndex = -1
+        lvThuoc.SelectedIndex = -1
+        lvToChuc.SelectedIndex = -1
+    End Sub
+
+    Private Sub HomeButton_Click(sender As Object, e As RoutedEventArgs)
+        userControlDisplay.Content = manHinhChu
     End Sub
 End Class

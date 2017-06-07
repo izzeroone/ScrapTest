@@ -5,22 +5,18 @@ Imports NpgsqlTypes
 Namespace DataAccess
     Public Module ROWChiTietPhieuKhamDAL
 #Region "For get only"
-        Public Function GetChiTietPhieuKhamByMaKhamBenh(ByRef maKhamBenh As String) As ObservableCollection(Of ROWChiTietPhieuKhamDTO)
-            Dim list As New ObservableCollection(Of ROWChiTietPhieuKhamDTO)
+        ''' <summary>
+        ''' Thực hiện hàm lấy chi tiết phiếu khám hiển thị
+        ''' </summary>
+        ''' <param name="maKhamBenh"></param>
+        ''' <returns></returns>
+        Public Function GetChiTietPhieuKhamByMaKhamBenh(ByRef maKhamBenh As String) As DataTable
             Dim param As New List(Of NpgsqlParameter)
-            Dim parameter As New NpgsqlParameter
 
-            parameter.NpgsqlDbType = NpgsqlDbType.Char
-            parameter.Value = maKhamBenh
-            param.Add(parameter)
+            param.Add(New NpgsqlParameter With {.NpgsqlDbType = NpgsqlDbType.Char, .Value = maKhamBenh})
 
-            Dim dt As DataTable = ExecuteQuery("getchitietphieukhambymakhambenh", param)
+            Return ExecuteQuery("getchitietphieukhambymakhambenh", param)
 
-            For Each row As DataRow In dt.Rows
-                list.Add(New ROWChiTietPhieuKhamDTO(row))
-            Next
-
-            Return list
         End Function
 #End Region
     End Module

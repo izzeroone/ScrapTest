@@ -103,6 +103,10 @@
             _MaCachDung = MaCachDung
         End Sub
 
+        ''' <summary>
+        ''' Lấy dữ liệu từ datarow
+        ''' </summary>
+        ''' <param name="row"></param>
         Public Sub New(ByVal row As DataRow)
             _MaChiTietPhieuKham = row.Field(Of String)("machitietphieukham")
             _MaKhamBenh = row.Field(Of String)("makhambenh")

@@ -5,6 +5,15 @@ Imports System.Text.RegularExpressions
 Imports Business.Business
 Imports Entities.Entities
 Public Class ucTraCuuBenhNhan
+    ''' <summary>
+    ''' Tạo dữ liệu khoảng dựa vào các số người dùng nhập
+    ''' Nếu người dùng không nhập số kết thúc thì cho số kết thức là lớn nhất
+    ''' Tương tự cho số bắt đầu 
+    ''' </summary>
+    ''' <param name="tbBatDau"></param>
+    ''' <param name="tbKetThuc"></param>
+    ''' <param name="batDau"></param>
+    ''' <param name="ketThuc"></param>
     Private Sub GetRange(ByVal tbBatDau As TextBox, ByVal tbKetThuc As TextBox, ByRef batDau As Integer, ByRef ketThuc As Integer)
         If tbBatDau.Text = "" Then
             If tbKetThuc.Text = "" Then
@@ -28,6 +37,15 @@ Public Class ucTraCuuBenhNhan
         End If
     End Sub
 
+    ''' <summary>
+    ''' Tạo dữ liệu khoảng dựa vào các ngày người dùng nhập
+    ''' Nếu người dùng không nhập ngày kết thúc thì cho ngày kết thức là lớn nhất
+    ''' Tương tự cho ngày bắt đầu
+    ''' </summary>
+    ''' <param name="dpBatDau"></param>
+    ''' <param name="dpKetThuc"></param>
+    ''' <param name="batDau"></param>
+    ''' <param name="ketThuc"></param>
     Private Sub GetRange(ByVal dpBatDau As DatePicker, ByVal dpKetThuc As DatePicker, ByRef batDau As Date, ByRef ketThuc As Date)
         If dpBatDau.SelectedDate Is Nothing Then
             If dpKetThuc.SelectedDate Is Nothing Then
@@ -52,6 +70,7 @@ Public Class ucTraCuuBenhNhan
     End Sub
 
     Private Sub LoadComboBoxData()
+        'Cập nhật lại cách gợi ý khi người dùng vào lại màn hình
         If Me.IsVisible = True Then
             tbLoaiBenh.ItemsSource = LoaiBenhBUS.GetAllLoaiBenh()
             tbDonVi.ItemsSource = LoaiDonViBUS.GetAllLoaiDonVi()
@@ -61,6 +80,7 @@ Public Class ucTraCuuBenhNhan
     End Sub
 
     Private Sub FindButton_Click(sender As Object, e As RoutedEventArgs)
+        'Lấy thông tin người dùng nhập và kiểm tra
         Dim ngayKhamBatDau As Date
         Dim ngayKhamKetThuc As Date
         Dim namSinhBatDau As Integer
@@ -84,7 +104,7 @@ Public Class ucTraCuuBenhNhan
             tbSoLuongBatDau.Text <> "" Or tbSoLuongKetThuc.Text <> "") Then
             mode += 2
         End If
-        If (tbTienKhamBatDau.Text <> "" Or tbTienKhamKetTHuc.Text <> "" Or
+        If (tbTienKhamBatDau.Text <> "" Or tbTienKhamKetThuc.Text <> "" Or
             tbTienThuocBatDau.Text <> "" Or tbTienThuocKetThuc.Text <> "") Then
             mode += 4
         End If
@@ -94,34 +114,34 @@ Public Class ucTraCuuBenhNhan
             GetRange(dpBatDau, dpKetThuc, ngayKhamBatDau, ngayKhamKetThuc)
             GetRange(tbNamSinhBatDau, tbNamSinhKetThuc, namSinhBatDau, namSinhKetThuc)
             GetRange(tbSoLuongBatDau, tbSoLuongKetThuc, soLuongBatDau, soLuongKetThuc)
-            GetRange(tbTienKhamBatDau, tbTienKhamKetTHuc, tienKhamBatDau, tienKhamKetThuc)
+            GetRange(tbTienKhamBatDau, tbTienKhamKetThuc, tienKhamBatDau, tienKhamKetThuc)
             GetRange(tbTienThuocBatDau, tbTienThuocKetThuc, tienThuocBatDau, tienThuocKetThuc)
         Catch ex As Exception
             Domain.Dialog.Show("Không hợp lệ")
             Exit Sub
         End Try
-
+        'TÌm kiếm dựa trên thông tin người dùng nhập
         dgBenhNhan.ItemsSource = BenhNhanBUS.FindBenhNhan(mode,
-                                                            tbMaKhamBenh.Text,
-                                                            ngayKhamBatDau,
-                                                            ngayKhamKetThuc,
-                                                            tbHoTen.Text,
-                                                            cbGioiTinh.Text,
-                                                            namSinhBatDau,
-                                                            namSinhKetThuc,
-                                                            tbDiaChi.Text,
-                                                            tbMaChiTietPhieuKham.Text,
-                                                            tbTrieuChung.Text,
-                                                            tbLoaiBenh.Text,
-                                                            tbThuoc.Text,
-                                                            tbDonVi.Text,
-                                                            tbCachDung.Text,
-                                                            soLuongBatDau,
-                                                            soLuongKetThuc,
-                                                            tienKhamBatDau,
-                                                            tienKhamKetThuc,
-                                                            tienThuocBatDau,
-                                                            tienThuocKetThuc)
+                                                        tbMaKhamBenh.Text,
+                                                        ngayKhamBatDau,
+                                                        ngayKhamKetThuc,
+                                                        tbHoTen.Text,
+                                                        cbGioiTinh.Text,
+                                                        namSinhBatDau,
+                                                        namSinhKetThuc,
+                                                        tbDiaChi.Text,
+                                                        tbMaChiTietPhieuKham.Text,
+                                                        tbTrieuChung.Text,
+                                                        tbLoaiBenh.Text,
+                                                        tbThuoc.Text,
+                                                        tbDonVi.Text,
+                                                        tbCachDung.Text,
+                                                        soLuongBatDau,
+                                                        soLuongKetThuc,
+                                                        tienKhamBatDau,
+                                                        tienKhamKetThuc,
+                                                        tienThuocBatDau,
+                                                        tienThuocKetThuc)
         If (dgBenhNhan.Items.IsEmpty) Then
             Domain.Dialog.Show("Không tìm thấy bệnh nhân")
         End If
@@ -130,6 +150,7 @@ Public Class ucTraCuuBenhNhan
     End Sub
 
     Private Sub ResetButton_Click(sender As Object, e As RoutedEventArgs)
+        'Xóa tất cả thông tin người dùng nhập vào
         dpBatDau.SelectedDate = Nothing
         dpBatDau.DisplayDate = Date.Now()
         dpKetThuc.SelectedDate = Nothing
