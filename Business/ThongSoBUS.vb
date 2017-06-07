@@ -2,6 +2,8 @@
 Imports Entities.Entities
 Namespace Business
     Public Module ThongSoBUS
+        Private ReadOnly defaultSoBenhNhan = 40
+        Private ReadOnly defaultTienKham = 30000
         Public Sub LoadThongSo()
             If Not Int32.TryParse(ThongSoDAL.GetThongSo("sobenhnhantoida"), ThongSoDTO.SoBenhNhanKhamToiDa) Then
                 ThongSoDTO.SoBenhNhanKhamToiDa = 40
@@ -20,8 +22,8 @@ Namespace Business
         End Function
 
         Public Sub DefaultValue()
-            UpdateSoBenhNhanToiDa(40)
-            UpdateTienKham(30000)
+            UpdateSoBenhNhanToiDa(defaultSoBenhNhan)
+            UpdateTienKham(defaultTienKham)
         End Sub
     End Module
 End Namespace

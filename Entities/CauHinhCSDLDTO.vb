@@ -1,23 +1,12 @@
 ﻿Imports System.Collections.ObjectModel
 Namespace Entities
     Public Class CauHinhCSDLDTO
-        Private _id As String
+
         Private _address As String
         Private _port As Int32
         Private _username As String
         Private _password As String
         Private _database As String
-        Private Shared _list As New List(Of CauHinhCSDLDTO)
-        Private Shared _activeIndex As Integer = 0
-
-        Public Property Id As String
-            Get
-                Return _id
-            End Get
-            Set(value As String)
-                _id = value
-            End Set
-        End Property
 
         Public Property Address As String
             Get
@@ -64,22 +53,5 @@ Namespace Entities
             End Set
         End Property
 
-        Public Shared Property List As List(Of CauHinhCSDLDTO)
-            Get
-                Return _list
-            End Get
-            Set(value As List(Of CauHinhCSDLDTO))
-                _list = value
-            End Set
-        End Property
-
-        Public Shared Property ActiveIndex As Integer
-            Get
-                Return _activeIndex
-            End Get
-            Set(value As Integer)
-                _activeIndex = value
-            End Set
-        End Property
     End Class
 End Namespace

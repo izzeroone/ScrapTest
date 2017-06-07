@@ -18,7 +18,7 @@ Public Class ucDanhSachKhamBenh
     End Sub
 
     Private Sub NewButton_Click(sender As Object, e As RoutedEventArgs)
-        If Not listKhamBenh.Count = 0 Then
+        If Not listKhamBenh.Count = 0 And dpNgayKham.SelectedDate IsNot Nothing Then
             If Not listKhamBenh.Last.MaKhamBenh = KhamBenhBUS.GetMaKhamBenh() Then
                 Dim khamBenh As New KhamBenhDTO(KhamBenhBUS.GetMaKhamBenh(), dpNgayKham.SelectedDate, Nothing, Nothing, dpNgayKham.SelectedDate.Value.Year - 18, Nothing)
                 listKhamBenh.Add(khamBenh)

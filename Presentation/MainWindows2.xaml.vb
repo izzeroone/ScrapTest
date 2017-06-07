@@ -1,30 +1,15 @@
-﻿Imports DataAccess.DataAccess
+﻿Imports Entities.Entities
 Imports Business.Business
+Imports DataAccess.DataAccess
 Class MainWindows2
-
-    Public Sub New()
-
-        ' This call is required by the designer.
-        InitializeComponent()
-
-        ' Add any initialization after the InitializeComponent() call.
-        SetupHarburgerBar()
-        ThongSoBUS.LoadThongSo()
-        'CauHinhCSDLBUS.GetAllCauHinhCSDL()
-        'CauHinhCSDLBUS.SetActive(0)
-        Task.Factory.StartNew(Sub()
-                                  System.Threading.Thread.Sleep(2500)
-                              End Sub).ContinueWith(Sub(ByVal t)
-                                                        MainSnackbar.MessageQueue.Enqueue("Chào mừng đến với phần mềm quản lý phòng mạch")
-                                                    End Sub, TaskScheduler.FromCurrentSynchronizationContext())
-
-
-    End Sub
 
     Public Sub SetupHarburgerBar()
         Dim mainMenuItems As New List(Of Domain.GroupMenuItem)
 
-        Dim menuItems1 As New Domain.GroupMenuItem With {.Name = "QUẢN LÝ KHÁM BỆNH", .Content = New ucMainMenu()}
+        Dim menuItems0 As New Domain.GroupMenuItem With {.Name = "MÀN HÌNH CHÍNH", .Content = New ucMainMenu()}
+        mainMenuItems.Add(menuItems0)
+
+        Dim menuItems1 As New Domain.GroupMenuItem With {.Name = "QUẢN LÝ KHÁM BỆNH"}
         menuItems1.MenuItems.Add(New Domain.MenuItem() With {.Name = "Lập danh sách khám bệnh", .Content = New ucDanhSachKhamBenh()})
         menuItems1.MenuItems.Add(New Domain.MenuItem() With {.Name = "Lập chi tiết phiếu khám", .Content = New ucPhieuKham()})
         menuItems1.MenuItems.Add(New Domain.MenuItem() With {.Name = "Tra cứu bệnh nhân", .Content = New ucTraCuuBenhNhan()})
@@ -57,5 +42,17 @@ Class MainWindows2
 
     Private Sub trvMenu_SelectedItemChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Object))
 
+    End Sub
+
+    Private Sub Window_Loaded(sender As Object, e As RoutedEventArgs)
+        SetupHarburgerBar()
+        ThongSoBUS.LoadThongSo()
+        Dim cauHinh As CauHinhCSDLDTO = CauHinhCSDLBUS.GetCauHinhCSDL()
+        DataAccessHelper.UpdateCauHinh(cauHinh)
+        Task.Factory.StartNew(Sub()
+                                  System.Threading.Thread.Sleep(2500)
+                              End Sub).ContinueWith(Sub(ByVal t)
+                                                        MainSnackbar.MessageQueue.Enqueue("Chào mừng đến với phần mềm quản lý phòng mạch")
+                                                    End Sub, TaskScheduler.FromCurrentSynchronizationContext())
     End Sub
 End Class

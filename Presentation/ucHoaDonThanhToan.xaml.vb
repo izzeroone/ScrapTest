@@ -25,9 +25,11 @@ Public Class ucHoaDonThanhToan
             If (HoaDonBUS.IsHoaDonPay(maKhamBenh)) Then
                 Dim hoaDon As HoaDonDTO = HoaDonBUS.GetHoaDon(maKhamBenh)
                 listThuocPaid = ChiTietHoaDonBUS.GetAllChiTietHoaDon(maKhamBenh)
-                tbTienKham.Text = hoaDon.TienKham
+                tbTienKham.Text = hoaDon.TienKham.ToString()
                 dgChiTietThuoc.ItemsSource = listThuocPaid
-                tbTienThuoc.Text = HoaDonBUS.CalcTienThuoc(listThuocPaid).ToString()
+                Dim tienThuoc As Integer = HoaDonBUS.CalcTienThuoc(listThuocPaid).ToString()
+                tbTienThuoc.Text = tienThuoc.ToString()
+                tbTongTien.Text = "Tổng tiền = " + (hoaDon.TienKham + tienThuoc).ToString()
                 tbTinhTrang.BorderBrush = Brushes.DarkSeaGreen
                 tbTinhTrang.Text = "Đã thanh toán"
                 btCheckout.IsEnabled = False
@@ -36,7 +38,9 @@ Public Class ucHoaDonThanhToan
                 tbTienKham.Text = ThongSoDTO.TienKham
                 listThuocUnpaid = ChiTietPhieuKhamBUS.GetChiTietHoaDon(maKhamBenh)
                 dgChiTietThuoc.ItemsSource = listThuocUnpaid
-                tbTienThuoc.Text = HoaDonBUS.CalcTienThuoc(listThuocUnpaid).ToString()
+                Dim tienThuoc As Integer = HoaDonBUS.CalcTienThuoc(listThuocUnpaid).ToString()
+                tbTienThuoc.Text = tienThuoc.ToString()
+                tbTongTien.Text = "Tổng tiền = " + (ThongSoDTO.TienKham + tienThuoc).ToString()
                 tbTinhTrang.BorderBrush = Brushes.OrangeRed
                 tbTinhTrang.Text = "Chưa thanh toán"
                 btCheckout.IsEnabled = True
@@ -47,7 +51,7 @@ Public Class ucHoaDonThanhToan
 
     Private Async Sub btCheckout_Click(sender As Object, e As RoutedEventArgs)
         Dim dialog As New Domain.YesNoDialog
-        dialog.Message.Text = "Bạn chắc chắn lập hóa đơn thanh toán bệnh nhân " + tbHoTen.Text
+        dialog.Message.Text = "Bạn có muốn lập hóa đơn thanh toán bệnh nhân " + tbHoTen.Text
         Await DialogHost.Show(dialog)
         If (dialog.DialogResult = MessageBoxResult.No) Then
             Exit Sub
@@ -66,7 +70,7 @@ Public Class ucHoaDonThanhToan
 
     Private Async Sub btDelete_Click(sender As Object, e As RoutedEventArgs)
         Dim dialog As New Domain.YesNoDialog
-        dialog.Message.Text = "Bạn chắc xóa hóa đơn thanh toán bệnh nhân " + tbHoTen.Text
+        dialog.Message.Text = "Bạn có muốn xóa hóa đơn thanh toán bệnh nhân " + tbHoTen.Text
         Await DialogHost.Show(dialog)
         If (dialog.DialogResult = MessageBoxResult.No) Then
             Exit Sub
@@ -81,7 +85,7 @@ Public Class ucHoaDonThanhToan
     End Sub
 
     Private Sub dpNgayKham_SelectedDateChanged(sender As Object, e As SelectionChangedEventArgs)
-        If dpNgayKham IsNot Nothing Then
+        If dpNgayKham IsNot Nothing And dpNgayKham.SelectedDate IsNot Nothing Then
             cbMaKhamBenh.ItemsSource = KhamBenhBUS.GetKhamBenhByNgayKham(dpNgayKham.SelectedDate)
         End If
     End Sub

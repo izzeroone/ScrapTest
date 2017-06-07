@@ -202,7 +202,7 @@
                 <DataGrid x:Name="dgBenhNhan" 
                        materialDesign:DataGridAssist.CellPadding="4 2 2 2" materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2"
                     ItemsSource="{Binding}" 
-                  Height="350">
+                  MaxHeight="270">
                     <DataGrid.Columns>
                         <materialDesign:MaterialDataGridTextColumn Binding="{Binding HoTen}"
                                                            Header="Họ tên"                                                        
