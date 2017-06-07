@@ -104,7 +104,7 @@ Public Class ucPhieuKham
     ''' Tải lại dữ liệu khi người dùng chọn bệnh nhân khác
     ''' </summary>
     Private Sub ReloadData()
-        If dgChiTietPhieuKham IsNot Nothing Then
+        If dgChiTietPhieuKham IsNot Nothing And cbMaKhamBenh.SelectedValue IsNot Nothing Then
             listChiTietPhieuKham = ROWChiTietPhieuKhamBUS.GetChiTietPhieuKhamByMaKhamBenh(cbMaKhamBenh.SelectedValue.ToString())
             dgChiTietPhieuKham.DataContext = listChiTietPhieuKham
         End If

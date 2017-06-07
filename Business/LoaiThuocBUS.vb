@@ -67,7 +67,7 @@ Namespace Business
         ''' <returns></returns>
         Public Function IsVaildDonGia(ByVal donGia As String, ByRef iDonGia As Integer) As Boolean
             If (Integer.TryParse(donGia, iDonGia)) Then
-                If (iDonGia > 0) Then
+                If (iDonGia >= 0) Then
                     Return True
                 End If
             End If

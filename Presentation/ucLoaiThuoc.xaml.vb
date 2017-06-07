@@ -40,6 +40,7 @@ Public Class ucLoaiThuoc
         'Kiểm tra người dùng đã chọn loại thuốc trong danh sách chưa
         If dgLoaiThuoc.SelectedIndex = -1 Then
             Domain.Dialog.Show("Chưa có đối tượng được chọn")
+            Exit Sub
         End If
         'Lấy thông tin từ người dùng và kiểm tra
         Dim loaiThuoc As New LoaiThuocDTO()
@@ -51,6 +52,7 @@ Public Class ucLoaiThuoc
         loaiThuoc.TenThuoc = tbTenThuoc.Text
         If Not LoaiThuocBUS.IsVaildDonGia(tbDonGia.Text, loaiThuoc.DonGia) Then
             Domain.Dialog.Show("Đơn giá không hợp lệ")
+            Exit Sub
         End If
         'Tiến hành cập nhật
         Dim result As Boolean = LoaiThuocBUS.InsertOrUpdateThuoc(loaiThuoc)
