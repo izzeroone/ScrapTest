@@ -8,7 +8,7 @@
         xmlns:domain="clr-namespace:Presentation.Domain"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="MainWindow" Height="1080" Width="1900"
+        Title="Quan ly phong mach" Height="1080" Width="1900"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Normal"
         TextElement.FontSize="13"
@@ -16,6 +16,7 @@
         TextOptions.TextRenderingMode="Auto"        
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{StaticResource MaterialDesignFont}"
+        Icon="favicon.ico"
         Loaded="Window_Loaded">
     <Window.Resources>
         <DataTemplate x:Key="menuItemTemplate" DataType="domain:MenuItem">

@@ -41,7 +41,7 @@
                                 <ColumnDefinition Width="200" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Image Source="Resources/Contact.png" Grid.RowSpan="5" StretchDirection="Both" VerticalAlignment="Stretch" Stretch="UniformToFill" />
+                            <Image Source="/Resources/avatar.png" Grid.Row="0" Grid.Column="0" Grid.RowSpan="5" StretchDirection="Both" VerticalAlignment="Stretch" Stretch="Uniform"/>
                             <TextBlock Grid.Column="1" Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="16 16 16 2">Giới thiệu</TextBlock>
                             <TextBlock Grid.Column="1" Grid.Row="1" TextWrapping="Wrap" Margin="16 0 16 8" Foreground="{DynamicResource MaterialDesignBodyLight}"
                                        VerticalAlignment="Center">Tác giả: trumpsilver</TextBlock>
