@@ -13,6 +13,8 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "DataAccess", "DataAccess\Da
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Encrypt", "Encrypt\Encrypt.csproj", "{82854B5C-A34A-4CDD-B5B7-633C07948C02}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{3665792F-6835-48BE-B4BD-B9B7E7712705}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,8 @@ Global
 		{82854B5C-A34A-4CDD-B5B7-633C07948C02}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{82854B5C-A34A-4CDD-B5B7-633C07948C02}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{82854B5C-A34A-4CDD-B5B7-633C07948C02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3665792F-6835-48BE-B4BD-B9B7E7712705}.Debug|Any CPU.ActiveCfg = Debug
+		{3665792F-6835-48BE-B4BD-B9B7E7712705}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

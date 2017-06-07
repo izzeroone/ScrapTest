@@ -51,8 +51,6 @@ Class MainWindows2
         'Tải cấu hình từ file
         Dim cauHinh As CauHinhCSDLDTO = CauHinhCSDLBUS.GetCauHinhCSDL()
         DataAccessHelper.UpdateCauHinh(cauHinh)
-        'Tải các thông số
-        ThongSoBUS.LoadThongSo()
         'Hiển thị thông báo
         Task.Factory.StartNew(Sub()
                                   System.Threading.Thread.Sleep(2500)

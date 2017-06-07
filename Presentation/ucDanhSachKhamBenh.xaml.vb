@@ -126,6 +126,7 @@ Public Class ucDanhSachKhamBenh
             'Khi người dùng màn hình đầu tiên thì cập nhật ngày bằng ngày hiện tại
             dpNgayKham.SelectedDate = Date.Now
             firstLoad = False
+            ThongSoBUS.LoadThongSo()
         End If
     End Sub
 End Class

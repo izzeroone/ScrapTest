@@ -20,6 +20,7 @@ Public Class ucHoaDonThanhToan
             If dpNgayKham.SelectedDate IsNot Nothing Then
                 cbMaKhamBenh.ItemsSource = KhamBenhBUS.GetKhamBenhByNgayKham(dpNgayKham.SelectedDate)
             End If
+            ThongSoBUS.LoadThongSo()
         End If
     End Sub
 
