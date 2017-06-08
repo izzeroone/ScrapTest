@@ -12,7 +12,7 @@ Public Class ucLoaiCachDung
     Private Async Sub DeleteButton_Click(sender As Object, e As RoutedEventArgs)
         'Kiểm tra người dùng có muốn xóa hay không
         Dim dialog As New Domain.YesNoDialog
-        dialog.Message.Text = "Bạn chắc chắn xóa " + dgLoaiCachDung.SelectedItems.Count.ToString() + " loại cách dùng được chọn"
+        dialog.Message.Text = "Bạn có chắc chắn xóa " + dgLoaiCachDung.SelectedItems.Count.ToString() + " loại cách dùng được chọn"
         Await DialogHost.Show(dialog)
         If (dialog.DialogResult = MessageBoxResult.No) Then
             Exit Sub

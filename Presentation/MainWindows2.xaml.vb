@@ -1,6 +1,8 @@
 ﻿Imports Entities.Entities
 Imports Business.Business
 Imports DataAccess.DataAccess
+Imports MaterialDesignThemes.Wpf
+
 Class MainWindows2
 
     Private manHinhChu As New ucMainMenu() ' Màn hình giới thiệu chương trình
@@ -76,4 +78,5 @@ Class MainWindows2
     Private Sub HomeButton_Click(sender As Object, e As RoutedEventArgs)
         userControlDisplay.Content = manHinhChu
     End Sub
+
 End Class

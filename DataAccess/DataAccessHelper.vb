@@ -2,6 +2,8 @@
 Imports System.Windows.Forms
 Imports Npgsql
 Imports Entities.Entities
+Imports System.Windows.Threading
+
 Namespace DataAccess
     Public Module DataAccessHelper
         'Cấu hình mặc định
@@ -92,7 +94,7 @@ Namespace DataAccess
                 End Try
 
             Catch ex As Exception
-                MessageBox.Show(ex.ToString())
+                Dispatcher.CurrentDispatcher.BeginInvoke(New Action(Sub() MessageBox.Show(ex.ToString)))
             End Try
 
             Return dt
@@ -135,7 +137,7 @@ Namespace DataAccess
                 End Try
 
             Catch ex As Exception
-                MessageBox.Show(ex.ToString())
+                Dispatcher.CurrentDispatcher.BeginInvoke(New Action(Sub() MessageBox.Show(ex.ToString)))
             End Try
 
             Return dt
@@ -178,7 +180,7 @@ Namespace DataAccess
                 End Try
 
             Catch ex As Exception
-                MessageBox.Show(ex.ToString())
+                Dispatcher.CurrentDispatcher.BeginInvoke(New Action(Sub() MessageBox.Show(ex.ToString)))
             End Try
 
             Return n
