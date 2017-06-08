@@ -39,18 +39,15 @@
         </materialDesign:Card>
         <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource LabelStyle}">Server</TextBlock>
         <TextBox Grid.Row="2" Grid.Column="1" 
-				    x:Name="tbServer"
-                 Text="{Binding SelectedItem.Address, ElementName=cbProfile, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+				    x:Name="tbServer">
         </TextBox>
         <TextBlock Grid.Row="2" Grid.Column="2" Style="{StaticResource LabelStyle}">Port</TextBlock>
         <TextBox Grid.Row="2" Grid.Column="3" 
-				    x:Name="tbPort"
-                 Text="{Binding SelectedItem.Port, ElementName=cbProfile, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+				    x:Name="tbPort">
         </TextBox>
         <TextBlock Grid.Row="3" Grid.Column="0" Style="{StaticResource LabelStyle}">Username</TextBlock>
         <TextBox Grid.Row="3" Grid.Column="1" 
-				    x:Name="tbUser"
-                 Text="{Binding SelectedItem.Username, ElementName=cbProfile, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+				    x:Name="tbUser">
         </TextBox>
         <TextBlock Grid.Row="3" Grid.Column="2" Style="{StaticResource LabelStyle}">Password</TextBlock>
         <PasswordBox Grid.Row="3" Grid.Column="3" 
@@ -58,12 +55,10 @@
         </PasswordBox>
         <TextBlock Grid.Row="4" Grid.Column="0" Style="{StaticResource LabelStyle}">Tên Database</TextBlock>
         <TextBox Grid.Row="4" Grid.Column="1" 
-				    x:Name="tbDatabase"
-                 Text="{Binding SelectedItem.Database, ElementName=cbProfile, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+				    x:Name="tbDatabase">
         </TextBox>
         <StackPanel Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="6" Orientation="Horizontal" Margin="0 12 0 0" FlowDirection="RightToLeft">
             <Button Style="{StaticResource MaterialDesignRaisedDarkButton}" Margin="0 12 8 0" Width="100"
-                    ToolTip="Resource name: MaterialDesignRaisedDarkButton"
                     Click="UpdateButton_Click">
                 CẬP NHẬT
             </Button>
@@ -73,7 +68,6 @@
                 MẶC ĐỊNH
             </Button>
             <Button Style="{StaticResource MaterialDesignRaisedAccentButton}" Margin="0 12 16 0" Width="140"
-                    ToolTip="Resource name: MaterialDesignRaisedAccentButton"
                     Click="TestButton_Click">
                 THỬ KẾT NỐI
             </Button>

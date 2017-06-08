@@ -11,7 +11,7 @@ Namespace DataAccess
         Private ReadOnly defaultPassword As String = "vip123"
         Private ReadOnly defaultHost As String = "127.0.0.1"
         Private ReadOnly defaultPort As Integer = 5432
-        Private ReadOnly defaultDatabase As String = "QuanLyPhongMach2"
+        Private ReadOnly defaultDatabase As String = "QuanLyPhongMach"
         Friend CauHinhCSDLDTO
 
         ''' <summary>
@@ -51,6 +51,9 @@ Namespace DataAccess
                                                 .Database = defaultDatabase}
             defaultCauHinh.Password = Encrypt.StringCipher.Encrypt(defaultCauHinh.Password, passphase)
             'Lưu cấu hình xuống file
+            If File.Exists(IO.Path.Combine(My.Application.Info.DirectoryPath, "CauHinh.xml")) Then
+                File.Delete(IO.Path.Combine(My.Application.Info.DirectoryPath, "CauHinh.xml"))
+            End If
             Try
                 Using stream As FileStream = File.OpenWrite(IO.Path.Combine(My.Application.Info.DirectoryPath, "CauHinh.xml"))
                     serializer.Serialize(stream, defaultCauHinh)

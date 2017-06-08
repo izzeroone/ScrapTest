@@ -126,7 +126,8 @@ Public Class ucDanhSachKhamBenh
             'Khi người dùng màn hình đầu tiên thì cập nhật ngày bằng ngày hiện tại
             dpNgayKham.SelectedDate = Date.Now
             firstLoad = False
-            ThongSoBUS.LoadThongSo()
         End If
+        ThongSoBUS.LoadThongSo()
+        tbSoBenhNhan.Text = String.Format("Số bệnh nhân {0}/{1}", listKhamBenh.Count.ToString(), ThongSoDTO.SoBenhNhanKhamToiDa)
     End Sub
 End Class

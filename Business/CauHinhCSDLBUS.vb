@@ -1,6 +1,9 @@
 ﻿Imports Entities.Entities
 Imports DataAccess.DataAccess
 Imports System.Collections.ObjectModel
+Imports System.Windows
+Imports System.Windows.Threading
+
 Namespace Business
     Public Module CauHinhCSDLBUS
         ''' <summary>
@@ -19,8 +22,8 @@ Namespace Business
             'Kiểm tra cấu hình có kết nối được hay không
             If TestCauHinhCSDL(cauHinh) Then
                 'Nếu kết nối được thì ghi cấu hình và cập nhật cấu hình vào Module DataAccessHelper
-                WriteCauHinhCSDL(cauHinh)
                 UpdateCauHinh(cauHinh)
+                WriteCauHinhCSDL(cauHinh)
                 Return True
             Else
                 Return False
