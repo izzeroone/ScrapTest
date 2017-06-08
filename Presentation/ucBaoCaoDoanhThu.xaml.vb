@@ -7,6 +7,7 @@ Public Class ucBaoCaoDoanhThu
         Dim tong As Long
         'Lấy báo cáo doanh thu và tính tổng
         list = BaoCaoDoanhThuBUS.GetBaoCaoDoanhThu(tbNgayKham.SelectedDate, tong)
+        tbTongTien.Text = String.Format("Tổng doanh thu : {0}", tong.ToString())
         If dgChiTietDoanhThu IsNot Nothing Then
             If (list.Count <> 0) Then
                 dgChiTietDoanhThu.ItemsSource = list

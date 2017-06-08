@@ -71,5 +71,8 @@
                 </DataGrid>
             </materialDesign:Card>
         </StackPanel>
+        <materialDesign:Chip Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="6" Margin="20, 0, 0, 0" Background="{DynamicResource SecondaryAccentBrush}">
+            <TextBlock  Foreground="{DynamicResource SecondaryAccentForegroundBrush}" x:Name="tbTongTien">Tổng tiền</TextBlock>
+        </materialDesign:Chip>
     </Grid>
 </UserControl>
