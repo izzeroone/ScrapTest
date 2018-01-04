@@ -6,5 +6,8 @@ Namespace Domain
             messageDialog.Message.Text = content
             Await DialogHost.Show(messageDialog)
         End Sub
+        Public Async Sub ShowUserControl(ByVal content As Object)
+            Await DialogHost.Show(content)
+        End Sub
     End Module
 End Namespace

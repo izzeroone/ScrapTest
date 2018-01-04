@@ -11,7 +11,7 @@ Namespace DataAccess
         Private ReadOnly defaultPassword As String = "vip123"
         Private ReadOnly defaultHost As String = "127.0.0.1"
         Private ReadOnly defaultPort As Integer = 5432
-        Private ReadOnly defaultDatabase As String = "QuanLyPhongMach2"
+        Private ReadOnly defaultDatabase As String = "QuanLyPhongMach"
 
         Private connectionString As String
         'Dùng để lưu thông số cấu hình

@@ -28,7 +28,8 @@
             
         </Style>
     </Window.Resources>
-    <materialDesign:DialogHost Identifier="RootDialog">
+    <materialDesign:DialogHost Identifier="RootDialog"
+                               Loaded="Display_Login">
         <materialDesign:DrawerHost>
             <DockPanel>
                 <materialDesign:ColorZone Padding ="16" materialDesign:ShadowAssist.ShadowDepth="Depth2"

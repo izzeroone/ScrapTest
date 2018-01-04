@@ -132,6 +132,9 @@
     <Compile Include="Domain\DateToStringConverter.vb" />
     <Compile Include="Domain\DoubleToPercentConverter.vb" />
     <Compile Include="Domain\IntegerToTinhTrangConverter.vb" />
+    <Compile Include="Domain\LoginDialog.xaml.vb">
+      <DependentUpon>LoginDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Domain\LongToMoneyConverter.vb" />
     <Compile Include="Domain\YesNoDialog.xaml.vb">
       <DependentUpon>YesNoDialog.xaml</DependentUpon>
@@ -240,6 +243,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Domain\LoginDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Domain\YesNoDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

@@ -79,4 +79,9 @@ Class MainWindows2
         userControlDisplay.Content = manHinhChu
     End Sub
 
+    Private Async Sub Display_Login(sender As Object, e As RoutedEventArgs)
+        Dim dialog As New Domain.LoginDialog
+        Await DialogHost.Show(dialog)
+    End Sub
+
 End Class
