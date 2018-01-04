@@ -80,6 +80,7 @@
     <Compile Include="ChiTietHoaDonDAL.vb" />
     <Compile Include="ChiTietThuocDAL.vb" />
     <Compile Include="ChiTietPhieuKhamDAL.vb" />
+    <Compile Include="DangNhapDAL.vb" />
     <Compile Include="DataAccessHelper.vb" />
     <Compile Include="HoaDonDAL.vb" />
     <Compile Include="KhamBenhDAL.vb" />
