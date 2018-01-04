@@ -122,6 +122,7 @@ Public Class ucPhieuKham
             cbDonVi.ItemsSource = LoaiDonViBUS.GetAllLoaiDonVi()
             cbCachDung.ItemsSource = LoaiCachDungBUS.GetAllLoaiCachDung()
             cbThuoc.ItemsSource = LoaiThuocBUS.GetAllLoaiThuoc()
+            ReloadData()
         End If
     End Sub
 

@@ -7,6 +7,7 @@ Namespace Domain
         Private _dialogResult As MessageBoxResult
         Private ReadOnly DEFAULT_USERNAME As String = "admin"
         Private ReadOnly DEFAULT_PASSWORD As String = "admin"
+        Private MyStoryBoard As Storyboard = New Storyboard
 
         Public Property DialogResult As MessageBoxResult
             Get
@@ -43,7 +44,18 @@ Namespace Domain
         End Sub
 
         Private Sub ButtonNo_Click(sender As Object, e As RoutedEventArgs)
+            Environment.Exit(0)
+        End Sub
 
+
+        Private Sub tbMatKhau_KeyDown(sender As Object, e As KeyEventArgs) Handles tbMatKhau.KeyDown
+            Message.Opacity = 1.0
+            MyStoryBoard.Stop()
+        End Sub
+
+        Private Sub tbDangNhap_KeyDown(sender As Object, e As KeyEventArgs) Handles tbDangNhap.KeyDown
+            Message.Opacity = 1.0
+            MyStoryBoard.Stop()
         End Sub
     End Class
 End Namespace
