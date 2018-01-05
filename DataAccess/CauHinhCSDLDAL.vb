@@ -7,11 +7,11 @@ Namespace DataAccess
     Public Module CauHinhCSDLDAL
         'Thông số cấu hình mặc định
         Private ReadOnly passphase As String = "QuanLyPhongMach"
-        Private ReadOnly defaultUser As String = "ngayngu"
-        Private ReadOnly defaultPassword As String = "vip123"
-        Private ReadOnly defaultHost As String = "127.0.0.1"
+        Private ReadOnly defaultUser As String = "pfncylbl"
+        Private ReadOnly defaultPassword As String = "wVKTeXff1beTxE8KdAlNq4hGBXTYBctd"
+        Private ReadOnly defaultHost As String = "stampy.db.elephantsql.com"
         Private ReadOnly defaultPort As Integer = 5432
-        Private ReadOnly defaultDatabase As String = "QuanLyPhongMach"
+        Private ReadOnly defaultDatabase As String = "pfncylbl"
         Friend CauHinhCSDLDTO
 
         ''' <summary>
