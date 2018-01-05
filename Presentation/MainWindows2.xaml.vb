@@ -46,19 +46,9 @@ Class MainWindows2
     End Sub
 
     Private Sub Window_Loaded(sender As Object, e As RoutedEventArgs)
-        'Hiển thị màn hình chủ
-        userControlDisplay.Content = manHinhChu
-        'Khởi tạo menu
-        SetupMenuItems()
         'Tải cấu hình từ file
         Dim cauHinh As CauHinhCSDLDTO = CauHinhCSDLBUS.GetCauHinhCSDL()
         DataAccessHelper.UpdateCauHinh(cauHinh)
-        'Hiển thị thông báo
-        Task.Factory.StartNew(Sub()
-                                  System.Threading.Thread.Sleep(2500)
-                              End Sub).ContinueWith(Sub(ByVal t)
-                                                        MainSnackbar.MessageQueue.Enqueue("Chào mừng đến với phần mềm quản lý phòng mạch")
-                                                    End Sub, TaskScheduler.FromCurrentSynchronizationContext())
     End Sub
 
     Private Sub listView_MouseLeftButtonUp(sender As Object, e As MouseButtonEventArgs)
@@ -82,6 +72,42 @@ Class MainWindows2
     Private Async Sub Display_Login(sender As Object, e As RoutedEventArgs)
         Dim dialog As New Domain.LoginDialog
         Await DialogHost.Show(dialog)
+
+        'Kiểm tra thông tin đăng nhập
+        If dialog.DialogResult = MessageBoxResult.Yes Then
+            Admin_Load()
+        Else
+            Guest_Load()
+        End If
+    End Sub
+
+
+    Private Sub Admin_Load()
+        'Hiển thị màn hình chủ
+        userControlDisplay.Content = manHinhChu
+        'Khởi tạo menu
+        SetupMenuItems()
+        'Hiển thị thông báo
+        Task.Factory.StartNew(Sub()
+                                  System.Threading.Thread.Sleep(2500)
+                              End Sub).ContinueWith(Sub(ByVal t)
+                                                        MainSnackbar.MessageQueue.Enqueue("Chào mừng đến với phần mềm quản lý phòng mạch")
+                                                    End Sub, TaskScheduler.FromCurrentSynchronizationContext())
+    End Sub
+
+    Private Sub Guest_Load()
+        'Hiển thị màn hình chủ
+        userControlDisplay.Content = manHinhChu
+        'Khởi tạo menu
+        Dim menuItems1 As New Domain.GroupMenuItem With {.Name = "QUẢN LÝ KHÁM BỆNH"}
+        menuItems1.MenuItems.Add(New Domain.MenuItem() With {.Name = "Tra cứu bệnh nhân", .Content = New ucTraCuuBenhNhan()})
+        lvKhamBenh.ItemsSource = menuItems1.MenuItems
+        'Hiển thị thông báo
+        Task.Factory.StartNew(Sub()
+                                  System.Threading.Thread.Sleep(2500)
+                              End Sub).ContinueWith(Sub(ByVal t)
+                                                        MainSnackbar.MessageQueue.Enqueue("Chào mừng đến với phần mềm quản lý phòng mạch")
+                                                    End Sub, TaskScheduler.FromCurrentSynchronizationContext())
     End Sub
 
 End Class

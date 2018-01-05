@@ -45,7 +45,8 @@ Namespace Domain
         End Sub
 
         Private Sub ButtonNo_Click(sender As Object, e As RoutedEventArgs)
-            Environment.Exit(0)
+            DialogHost.CloseDialogCommand.Execute(sender, Me)
+            DialogResult = MessageBoxResult.No
         End Sub
 
 

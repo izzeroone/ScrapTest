@@ -52,7 +52,7 @@
                                         IsCancel="True"
                                         Margin="0 8 8 0"
                                         Click="ButtonNo_Click">
-                THOÁT
+                KHÁCH
             </Button>
         </StackPanel>
     </Grid>
