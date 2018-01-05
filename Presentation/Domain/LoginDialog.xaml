@@ -32,14 +32,12 @@
         </materialDesign:Card>
         <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource LabelStyle}">Tên đăng nhập</TextBlock>
         <TextBox Grid.Row="1" Grid.Column="1" 
-				    x:Name="tbDangNhap"
-                 IsReadOnly="False">
+				    x:Name="tbDangNhap">
         </TextBox>
         <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource LabelStyle}">Mật khẩu</TextBlock>
-        <TextBox Grid.Row="2" Grid.Column="1" 
-				    x:Name="tbMatKhau"
-                 IsReadOnly="False">
-        </TextBox>
+        <PasswordBox Grid.Row="2" Grid.Column="1" 
+				    x:Name="tbMatKhau">
+        </PasswordBox>
         <TextBlock x:Name="Message" 
                    Margin="0 6 0 0"
                    FontSize="12" Grid.Row="3" Grid.ColumnSpan="2"/>

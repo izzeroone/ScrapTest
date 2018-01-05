@@ -1,6 +1,7 @@
 ﻿Imports MaterialDesignThemes.Wpf
 Imports Business
 Imports System.Windows.Media.Animation
+Imports Business.Business
 
 Namespace Domain
     Public Class LoginDialog
@@ -20,8 +21,8 @@ Namespace Domain
 
         Private Sub ButtonYes_Click(sender As Object, e As RoutedEventArgs)
             Dim userName As String = tbDangNhap.Text
-            Dim password As String = tbMatKhau.Text
-            If userName.Equals(DEFAULT_USERNAME) And password.Equals(DEFAULT_PASSWORD) Then
+            Dim password As String = tbMatKhau.Password
+            If (userName.Equals(DEFAULT_USERNAME) And password.Equals(DEFAULT_PASSWORD)) Or (DangNhapBUS.DangNhap(userName, password)) Then
                 DialogHost.CloseDialogCommand.Execute(sender, Me)
             Else
                 Message.Text = "Tên đăng nhập hoặc mật khẩu không đúng"
