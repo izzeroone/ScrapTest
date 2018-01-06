@@ -103,6 +103,21 @@ Public Class ucHoaDonThanhToan
         cbMaKhamBenh.SelectedIndex = tempIndex
     End Sub
 
+
+    Private Async Sub btExport_Click(sender As Object, e As RoutedEventArgs)
+        If cbMaKhamBenh IsNot Nothing And cbMaKhamBenh.SelectedItem IsNot Nothing Then
+            Dim maKhamBenh As String = cbMaKhamBenh.SelectedValue.ToString()
+            'Kiểm tra bệnh nhân đã thanh toán chưa
+            If (HoaDonBUS.IsHoaDonPay(maKhamBenh)) Then
+                Dim dialog As New Domain.MessageDialog
+                dialog.Message.Text = "Bạn chưa lập hóa đơn thanh toán bệnh nhân " + tbHoTen.Text
+                Await DialogHost.Show(dialog)
+            Else
+                HoaDonBUS.ExportInvoice(maKhamBenh)
+            End If
+        End If
+    End Sub
+
     Private Sub dpNgayKham_SelectedDateChanged(sender As Object, e As SelectionChangedEventArgs)
         'Thay đổi danh sách bệnh nhân khi ngày khám thay đổi
         If dpNgayKham IsNot Nothing And dpNgayKham.SelectedDate IsNot Nothing Then

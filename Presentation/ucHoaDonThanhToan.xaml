@@ -140,6 +140,12 @@
                         Click="btDelete_Click">
                     XÓA
                 </Button>
+                <Button Style="{StaticResource MaterialDesignRaisedButton}" Margin="0 12 8 0" Width="100"
+                        ToolTip="Xuất hóa đơn"
+                        x:Name="btExport"
+                        Click="btExport_Click">
+                    XUẤT
+                </Button>
             </StackPanel>
         </Grid>
     </Grid>

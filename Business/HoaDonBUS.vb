@@ -1,6 +1,10 @@
 ﻿Imports System.Collections.ObjectModel
 Imports Entities.Entities
 Imports DataAccess.DataAccess
+Imports Xceed.Words.NET
+Imports System.Windows.Threading
+Imports System.Windows
+
 Namespace Business
     Public Module HoaDonBUS
 #Region "1.Insert"
@@ -48,7 +52,49 @@ Namespace Business
             Return tienThuoc
         End Function
 #End Region
+#Region "Export"
+        Public Sub ExportInvoice(ByVal maKhamBenh As String)
+            Try
+                Dim templateDoc As DocX = DocX.Load(IO.Path.Combine(My.Application.Info.DirectoryPath, "Resources\TemplateInvoice.docx"))
+                If templateDoc IsNot Nothing Then
+                    Dim invoice = CreateInvoiceFromTemplate(templateDoc, maKhamBenh)
+                    invoice.SaveAs(IO.Path.Combine(My.Application.Info.DirectoryPath, "Resources\Invoice.docx"))
+                    'Process.Start("WINWORD.EXE", IO.Path.Combine(My.Application.Info.DirectoryPath, "Resources\Invoice.docx"))
+                    Process.Start("ms-word:ofv|u|file:///" + (IO.Path.Combine(My.Application.Info.DirectoryPath, "Resources\Invoice.docx")))
+                End If
+            Catch ex As Exception
+                Dispatcher.CurrentDispatcher.BeginInvoke(New Action(Sub() MessageBox.Show(IO.Path.Combine(My.Application.Info.DirectoryPath, "Resources\TemplateInvoice.docx"))))
+            End Try
 
+        End Sub
+
+        Private Function CreateInvoiceFromTemplate(ByVal template As DocX, ByVal maKhamBenh As String) As DocX
+            Dim benhNhan As KhamBenhDTO = KhamBenhBUS.GetKhamBenhByMaKhamBenh(maKhamBenh)
+            template.AddCustomProperty(New CustomProperty("ho_ten", benhNhan.HoTenBenhNhan))
+            template.AddCustomProperty(New CustomProperty("nam_sinh", benhNhan.NamSinh))
+            template.AddCustomProperty(New CustomProperty("gioi_tinh", benhNhan.GioiTinh))
+            template.AddCustomProperty(New CustomProperty("trieu_chung", benhNhan.TrieuChung))
+            template.AddCustomProperty(New CustomProperty("loai_benh", benhNhan.MaLoaiBenh))
+            template.AddCustomProperty(New CustomProperty("ngay_ke", benhNhan.NgayKham.Day))
+            template.AddCustomProperty(New CustomProperty("thang_ke", benhNhan.NgayKham.Month))
+            template.AddCustomProperty(New CustomProperty("nam_ke", benhNhan.NgayKham.Year))
+            'Nếu hưa thanh toán thì lấy thuốc sử dụng từ chi tiết phiếu khám
+            'listThuocUnpaid = ChiTietPhieuKhamBUS.GetChiTietHoaDon(maKhamBenh)
+            'dgChiTietThuoc.ItemsSource = listThuocUnpaid
+            ''Hiển thị tiền thuốc và tiền khám
+            'tbTienKham.Text = ThongSoDTO.TienKham
+            'Dim tienThuoc As Integer = HoaDonBUS.CalcTienThuoc(listThuocUnpaid).ToString()
+            'tbTienThuoc.Text = tienThuoc.ToString()
+            'tbTongTien.Text = "Tổng tiền = " + (ThongSoDTO.TienKham + tienThuoc).ToString()
+            ''Hiển thị tình trạng thanh toán
+            'tbTinhTrang.BorderBrush = Brushes.OrangeRed
+            'tbTinhTrang.Text = "Chưa thanh toán"
+            ''Cho phép thanh toán và không cho phép thanh toán
+            'btCheckout.IsEnabled = True
+            'btDelete.IsEnabled = False
+            Return template
+        End Function
+#End Region
     End Module
 End Namespace
 
