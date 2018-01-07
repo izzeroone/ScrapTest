@@ -56,6 +56,7 @@ Public Class ucDanhSachKhamBenh
         End If
         khamBenh.GioiTinh = tbGioiTinh.Text
         khamBenh.DiaChi = tbDiaChi.Text
+        khamBenh.DienThoai = tbDienThoai.Text
         If Not KhamBenhBUS.IsVaildKhamBenh(khamBenh) Then
             Domain.Dialog.Show("Thông tin bệnh nhân không hợp lệ")
             Exit Sub

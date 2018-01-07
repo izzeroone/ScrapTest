@@ -12,6 +12,7 @@ Public Class ucThongSo
             'Cập nhật thông số
             ThongSoBUS.UpdateSoBenhNhanToiDa(soBenhNhanToiDa)
             ThongSoBUS.UpdateTienKham(tienKham)
+            ThongSoBUS.UpdateThongSo("nguoikham", tbTenBacSi.Text)
             Domain.Dialog.Show("Cập nhật thông số thành công")
         End If
     End Sub
@@ -35,6 +36,7 @@ Public Class ucThongSo
             'Cập nhật hiển thị
             tbSoBenhNhanToiDa.Text = ThongSoDTO.SoBenhNhanKhamToiDa.ToString()
             tbTienKham.Text = ThongSoDTO.TienKham.ToString()
+            tbTenBacSi.Text = ThongSoBUS.GetThongSo("nguoikham")
         End If
     End Sub
 

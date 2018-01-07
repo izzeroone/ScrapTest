@@ -4,6 +4,7 @@ Imports DataAccess.DataAccess
 Imports Xceed.Words.NET
 Imports System.Windows.Threading
 Imports System.Windows
+Imports System.Globalization
 
 Namespace Business
     Public Module HoaDonBUS
@@ -59,7 +60,6 @@ Namespace Business
                 If templateDoc IsNot Nothing Then
                     Dim invoice = CreateInvoiceFromTemplate(templateDoc, maKhamBenh)
                     invoice.SaveAs(IO.Path.Combine(My.Application.Info.DirectoryPath, "Resources\Invoice.docx"))
-                    'Process.Start("WINWORD.EXE", IO.Path.Combine(My.Application.Info.DirectoryPath, "Resources\Invoice.docx"))
                     Process.Start("ms-word:ofv|u|file:///" + (IO.Path.Combine(My.Application.Info.DirectoryPath, "Resources\Invoice.docx")))
                 End If
             Catch ex As Exception
@@ -69,29 +69,57 @@ Namespace Business
         End Sub
 
         Private Function CreateInvoiceFromTemplate(ByVal template As DocX, ByVal maKhamBenh As String) As DocX
+            'Declare format
+            Dim tableFormat = New Formatting With {
+                .Size = 9
+            }
             Dim benhNhan As KhamBenhDTO = KhamBenhBUS.GetKhamBenhByMaKhamBenh(maKhamBenh)
             template.AddCustomProperty(New CustomProperty("ho_ten", benhNhan.HoTenBenhNhan))
-            template.AddCustomProperty(New CustomProperty("nam_sinh", benhNhan.NamSinh))
-            template.AddCustomProperty(New CustomProperty("gioi_tinh", benhNhan.GioiTinh))
-            template.AddCustomProperty(New CustomProperty("trieu_chung", benhNhan.TrieuChung))
-            template.AddCustomProperty(New CustomProperty("loai_benh", benhNhan.MaLoaiBenh))
-            template.AddCustomProperty(New CustomProperty("ngay_ke", benhNhan.NgayKham.Day))
-            template.AddCustomProperty(New CustomProperty("thang_ke", benhNhan.NgayKham.Month))
-            template.AddCustomProperty(New CustomProperty("nam_ke", benhNhan.NgayKham.Year))
-            'Nếu hưa thanh toán thì lấy thuốc sử dụng từ chi tiết phiếu khám
-            'listThuocUnpaid = ChiTietPhieuKhamBUS.GetChiTietHoaDon(maKhamBenh)
-            'dgChiTietThuoc.ItemsSource = listThuocUnpaid
-            ''Hiển thị tiền thuốc và tiền khám
-            'tbTienKham.Text = ThongSoDTO.TienKham
-            'Dim tienThuoc As Integer = HoaDonBUS.CalcTienThuoc(listThuocUnpaid).ToString()
-            'tbTienThuoc.Text = tienThuoc.ToString()
-            'tbTongTien.Text = "Tổng tiền = " + (ThongSoDTO.TienKham + tienThuoc).ToString()
-            ''Hiển thị tình trạng thanh toán
-            'tbTinhTrang.BorderBrush = Brushes.OrangeRed
-            'tbTinhTrang.Text = "Chưa thanh toán"
-            ''Cho phép thanh toán và không cho phép thanh toán
-            'btCheckout.IsEnabled = True
-            'btDelete.IsEnabled = False
+            template.AddCustomProperty(New CustomProperty("dien_thoai", benhNhan.DienThoai))
+            template.AddCustomProperty(New CustomProperty("ngay_xuat", benhNhan.NgayKham.Day))
+            template.AddCustomProperty(New CustomProperty("thang_xuat", benhNhan.NgayKham.Month))
+            template.AddCustomProperty(New CustomProperty("nam_xuat", benhNhan.NgayKham.Year))
+            'Lấy thông tin thuốc
+            Dim hoaDon As HoaDonDTO = HoaDonBUS.GetHoaDon(maKhamBenh)
+            Dim listThuocPaid = ChiTietHoaDonBUS.GetAllChiTietHoaDon(maKhamBenh)
+            Dim detailsTable = template.Tables.LastOrDefault()
+            If detailsTable Is Nothing Then
+                Return template
+            End If
+
+            While detailsTable.Rows.Count > 1
+                detailsTable.RemoveRow()
+            End While
+
+            'Thêm khám bệnh
+            Dim khamRow = detailsTable.InsertRow()
+            khamRow.Cells.Item(0).InsertParagraph("Khám bệnh", False, tableFormat)
+            khamRow.Cells.Item(1).InsertParagraph("Lần", False, tableFormat)
+            khamRow.Cells.Item(2).InsertParagraph("1", False, tableFormat)
+            khamRow.Cells.Item(3).InsertParagraph(String.Format(CultureInfo.InvariantCulture,
+                                      "{0:#,0₫}", Int32.Parse(ThongSoDAL.GetThongSo("tienkham"))), False, tableFormat)
+            khamRow.Cells.Item(4).InsertParagraph(String.Format(CultureInfo.InvariantCulture,
+                                      "{0:#,0₫}", Int32.Parse(ThongSoDAL.GetThongSo("tienkham"))), False, tableFormat)
+
+
+            For Each chiTietHoaDon As ChiTietHoaDonDTO In listThuocPaid
+                Dim newRow = detailsTable.InsertRow()
+                newRow.Cells.Item(0).InsertParagraph(chiTietHoaDon.TenThuoc, False, tableFormat)
+                newRow.Cells.Item(1).InsertParagraph(chiTietHoaDon.TenDonVi, False, tableFormat)
+                newRow.Cells.Item(2).InsertParagraph(chiTietHoaDon.SoLuong, False, tableFormat)
+                newRow.Cells.Item(3).InsertParagraph(String.Format(CultureInfo.InvariantCulture,
+                                      "{0:#,0₫}", chiTietHoaDon.DonGiaThucTe), False, tableFormat)
+                newRow.Cells.Item(4).InsertParagraph(String.Format(CultureInfo.InvariantCulture,
+                                      "{0:#,0₫}", chiTietHoaDon.ThanhTien), False, tableFormat)
+            Next
+
+            Dim tongTien = CalcTienThuoc(listThuocPaid) + Int32.Parse(ThongSoDAL.GetThongSo("tienkham"))
+            template.AddCustomProperty(New CustomProperty("tong_tien", String.Format(CultureInfo.InvariantCulture,
+                                      "{0:#,0₫}", tongTien)))
+            template.AddCustomProperty(New CustomProperty("bang_chu", DocTien.TienBangChu(tongTien.ToString()) + " đồng"))
+            template.AddCustomProperty(New CustomProperty("nguoi_xuat", ThongSoDAL.GetThongSo("nguoikham")))
+
+
             Return template
         End Function
 #End Region

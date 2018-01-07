@@ -79,6 +79,7 @@
     <Compile Include="ChiTietThuocBUS.vb" />
     <Compile Include="ChiTieuPhieuKhamBUS.vb" />
     <Compile Include="DangNhapBUS.vb" />
+    <Compile Include="DocTien.vb" />
     <Compile Include="HoaDonBUS.vb" />
     <Compile Include="KhamBenhBUS.vb" />
     <Compile Include="LoaiBenhBUS.vb" />

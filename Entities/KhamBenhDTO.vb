@@ -11,6 +11,7 @@ Namespace Entities
         Private _trieuChung As String
         Private _maLoaiBenh As String
         Private _tinhTrang As Integer
+        Private _dienThoai As String
 
         Public Property MaKhamBenh As String
             Get
@@ -93,6 +94,15 @@ Namespace Entities
             End Set
         End Property
 
+        Public Property DienThoai As String
+            Get
+                Return _dienThoai
+            End Get
+            Set(value As String)
+                _dienThoai = value
+            End Set
+        End Property
+
         Public Sub New()
 
         End Sub
@@ -107,6 +117,17 @@ Namespace Entities
             _diaChi = DiaChi
         End Sub
 
+        Public Sub New(ByVal MaKhamBenh As String, ByVal NgayKham As Date, ByVal HoTenBenhNhan As String, ByVal GioiTinh As String,
+                   ByVal NamSinh As Int16, ByVal DiaChi As String, ByVal DienThoai As String)
+            _maKhamBenh = MaKhamBenh
+            _ngayKham = NgayKham
+            _hoTenBenhNhan = HoTenBenhNhan
+            _gioiTinh = GioiTinh
+            _namSinh = NamSinh
+            _diaChi = DiaChi
+            _dienThoai = DienThoai
+        End Sub
+
         ''' <summary>
         ''' Lấy dữ liệu từ datarow
         ''' </summary>
@@ -118,6 +139,7 @@ Namespace Entities
             _gioiTinh = row.Field(Of String)("gioitinh")
             _namSinh = row.Field(Of Int32)("namsinh")
             _diaChi = row.Field(Of String)("diachi")
+            _dienThoai = row.Field(Of String)("dienthoai")
         End Sub
 
         ''' <summary>

@@ -109,11 +109,11 @@ Public Class ucHoaDonThanhToan
             Dim maKhamBenh As String = cbMaKhamBenh.SelectedValue.ToString()
             'Kiểm tra bệnh nhân đã thanh toán chưa
             If (HoaDonBUS.IsHoaDonPay(maKhamBenh)) Then
+                HoaDonBUS.ExportInvoice(maKhamBenh)
+            Else
                 Dim dialog As New Domain.MessageDialog
                 dialog.Message.Text = "Bạn chưa lập hóa đơn thanh toán bệnh nhân " + tbHoTen.Text
                 Await DialogHost.Show(dialog)
-            Else
-                HoaDonBUS.ExportInvoice(maKhamBenh)
             End If
         End If
     End Sub

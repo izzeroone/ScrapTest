@@ -26,6 +26,7 @@ Namespace DataAccess
                 param.Add(New NpgsqlParameter With {.NpgsqlDbType = NpgsqlDbType.Text, .Value = khamBenh.GioiTinh})
                 param.Add(New NpgsqlParameter With {.NpgsqlDbType = NpgsqlDbType.Integer, .Value = khamBenh.NamSinh})
                 param.Add(New NpgsqlParameter With {.NpgsqlDbType = NpgsqlDbType.Text, .Value = khamBenh.DiaChi})
+                param.Add(New NpgsqlParameter With {.NpgsqlDbType = NpgsqlDbType.Text, .Value = khamBenh.DienThoai})
 
                 Dim n As Boolean = ExecuteNoneQuery("insertorupdatekhambenh", param)
                 If (n = True) Then

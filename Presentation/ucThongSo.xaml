@@ -41,7 +41,11 @@
         <TextBox Grid.Row="2" Grid.Column="1" 
 				 x:Name="tbTienKham">
         </TextBox>
-        <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"   Orientation="Horizontal" FlowDirection="RightToLeft">
+        <TextBlock Grid.Row="3" Grid.Column="0" Style="{StaticResource LabelStyle}">Tên bác sĩ</TextBlock>
+        <TextBox Grid.Row="3" Grid.Column="1" 
+				 x:Name="tbTenBacSi">
+        </TextBox>
+        <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"   Orientation="Horizontal" FlowDirection="RightToLeft">
             <Button Style="{StaticResource MaterialDesignRaisedDarkButton}" Margin="0 12 8 0" Width="100"
                         Click="UpdateButton_Click">
                 CẬP NHẬT

@@ -16,6 +16,15 @@ Namespace Business
                 ThongSoDTO.TienKham = 30000
             End If
         End Sub
+
+        Public Function GetThongSo(ByVal tenThongSo As String) As String
+            Return ThongSoDAL.GetThongSo(tenThongSo)
+        End Function
+
+        Public Sub UpdateThongSo(ByVal tenThongSo As String, ByVal giaTri As String)
+            ThongSoDAL.UpdateThongSo(tenThongSo, giaTri)
+        End Sub
+
         ''' <summary>
         ''' Cập nhật thông số số bệnh nhân tối đa
         ''' </summary>

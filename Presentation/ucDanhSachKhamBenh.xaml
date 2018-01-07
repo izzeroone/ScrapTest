@@ -75,10 +75,16 @@
                     PreviewTextInput="NumberValidationTextBox">
         </TextBox>
         <TextBlock Grid.Row="3" Grid.Column="0" Style="{StaticResource LabelStyle}">Địa chỉ</TextBlock>
-        <TextBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" 
+        <TextBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="1" 
 				    x:Name="tbDiaChi"
                     Text="{Binding SelectedItem.DiaChi, ElementName=dgKhamBenh, Mode=OneWay}"
 				    materialDesign:HintAssist.Hint="Địa chỉ">
+        </TextBox>
+        <TextBlock Grid.Row="3" Grid.Column="2" Style="{StaticResource LabelStyle}">Điện thoại</TextBlock>
+        <TextBox Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="3" 
+				    x:Name="tbDienThoai"
+                    Text="{Binding SelectedItem.DienThoai, ElementName=dgKhamBenh, Mode=OneWay}"
+				    materialDesign:HintAssist.Hint="Điện thoại">
         </TextBox>
         <Separator Grid.Row="4" Grid.Column="0" Style="{DynamicResource MySeparatorStyle}"/>
         <StackPanel Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="8" Style="{StaticResource DataGridStyle}">
@@ -111,7 +117,10 @@
                     <materialDesign:MaterialDataGridTextColumn Binding="{Binding DiaChi}"
                                                                Header="Địa chỉ"                                                        
                                                                EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-                    <materialDesign:MaterialDataGridTextColumn Binding="{Binding TinhTrang, Converter={StaticResource IntegerToTinhTrangConverter}}"
+                        <materialDesign:MaterialDataGridTextColumn Binding="{Binding DienThoai}"
+                                                               Header="Điện thoại"                                                        
+                                                               EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+                        <materialDesign:MaterialDataGridTextColumn Binding="{Binding TinhTrang, Converter={StaticResource IntegerToTinhTrangConverter}}"
                                                                Header="Tình trạng"                                                        
                                                                EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
 
