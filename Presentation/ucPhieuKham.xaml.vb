@@ -54,6 +54,7 @@ Public Class ucPhieuKham
         chiTietPhieuKham.MaChiTietPhieuKham = tbMaChiTietPhieuKham.Text
         chiTietPhieuKham.MaKhamBenh = cbMaKhamBenh.Text
         chiTietPhieuKham.TrieuChung = tbTrieuChung.Text
+        chiTietPhieuKham.LoiDan = tbLoiDan.Text
         chiTietPhieuKham.MaLoaiBenh = cbLoaiBenh.SelectedValue
         chiTietPhieuKham.MaThuoc = cbThuoc.SelectedValue
         chiTietPhieuKham.MaDonVi = cbDonVi.SelectedValue
@@ -99,6 +100,23 @@ Public Class ucPhieuKham
 
     Private Sub CancelButton_Click(sender As Object, e As RoutedEventArgs)
         dgChiTietPhieuKham.SelectedIndex = -1
+    End Sub
+
+    Private Sub ExportButton_Click(sender As Object, e As RoutedEventArgs)
+        'Kiểm tra danh sách chi tiết phiếu khám có rỗng không
+        If Not listChiTietPhieuKham.Count = 0 Then
+            'Kiểm tra người dùng đã cập nhật chi tiết phiếu khám mới thêm vào trước đó hay chưa
+            If Not listChiTietPhieuKham.Last.MaChiTietPhieuKham = ChiTietPhieuKhamBUS.GetMaChiTietPhieuKham() Then
+                'Thêm chi tiết phiếu khám mới rỗng vào danh sách
+                PhieuKhamBUS.ExportInvoice(cbMaKhamBenh.SelectedValue)
+            Else
+                Domain.Dialog.Show("Bạn chưa cập nhật bệnh nhân bạn mới thêm vào trước đó")
+                Exit Sub
+            End If
+        Else
+            'Thêm chi tiết phiếu khám mới rỗng vào danh sách
+            PhieuKhamBUS.ExportInvoice(cbMaKhamBenh.SelectedValue)
+        End If
     End Sub
     ''' <summary>
     ''' Tải lại dữ liệu khi người dùng chọn bệnh nhân khác

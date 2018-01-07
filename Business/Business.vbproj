@@ -101,6 +101,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="PhieuKhamBUS.vb" />
     <Compile Include="ROWChiTietPhieuKhamBUS.vb" />
     <Compile Include="ThongSoBUS.vb" />
   </ItemGroup>

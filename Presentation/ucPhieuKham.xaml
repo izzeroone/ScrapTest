@@ -88,6 +88,11 @@
 				    x:Name="tbTrieuChung"
                  Text="{Binding SelectedItem.TrieuChung, ElementName=cbMaKhamBenh, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
         </TextBox>
+        <TextBlock Grid.Row="4" Grid.Column="0" Style="{StaticResource LabelStyle}" >Lời dặn</TextBlock>
+        <TextBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" 
+				    x:Name="tbLoiDan"
+                 Text="{Binding SelectedItem.LoiDan, ElementName=cbMaKhamBenh, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+        </TextBox>
         <TextBlock Grid.Row="3" Grid.Column="4" Style="{StaticResource LabelStyle}">Bệnh</TextBlock>
         <ComboBox Grid.Row="3" Grid.Column="5" 
 				    x:Name="cbLoaiBenh"
@@ -95,45 +100,45 @@
                   DisplayMemberPath="TenLoaiBenh"
                   SelectedValue="{Binding SelectedItem.MaLoaiBenh, ElementName=cbMaKhamBenh, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
         </ComboBox>
-        <Separator Grid.Row="4" Grid.Column="0" Style="{StaticResource MySeparatorStyle}"/>
-        <TextBlock Grid.Row="5" Grid.Column="0" Style="{StaticResource LabelStyle}" >Mã CTPK</TextBlock>
-        <TextBox Grid.Row="5" Grid.Column="1" 
+        <Separator Grid.Row="5" Grid.Column="0" Style="{StaticResource MySeparatorStyle}"/>
+        <TextBlock Grid.Row="6" Grid.Column="0" Style="{StaticResource LabelStyle}" >Mã CTPK</TextBlock>
+        <TextBox Grid.Row="6" Grid.Column="1" 
 				    x:Name="tbMaChiTietPhieuKham"
                  IsReadOnly="True"
                  Text="{Binding SelectedItem.MaChiTietPhieuKham, ElementName=dgChiTietPhieuKham, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
         </TextBox>
       
         
-        <TextBlock Grid.Row="5" Grid.Column="2" Style="{StaticResource LabelStyle}" >Tên thuốc</TextBlock>
-        <ComboBox Grid.Row="5" Grid.Column="3" 
+        <TextBlock Grid.Row="6" Grid.Column="2" Style="{StaticResource LabelStyle}" >Tên thuốc</TextBlock>
+        <ComboBox Grid.Row="6" Grid.Column="3" 
 				    x:Name="cbThuoc"
                   SelectedValuePath="MaThuoc"
                   DisplayMemberPath="TenThuoc"
                   SelectedValue="{Binding SelectedItem.MaThuoc, ElementName=dgChiTietPhieuKham, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
         </ComboBox>
-        <TextBlock Grid.Row="5" Grid.Column="4" Style="{StaticResource LabelStyle}">Đơn vị</TextBlock>
-        <ComboBox Grid.Row="5" Grid.Column="5" 
+        <TextBlock Grid.Row="6" Grid.Column="4" Style="{StaticResource LabelStyle}">Đơn vị</TextBlock>
+        <ComboBox Grid.Row="6" Grid.Column="5" 
 				    x:Name="cbDonVi"
                   SelectedValuePath="MaDonVi"
                   DisplayMemberPath="TenDonVi"
                   SelectedValue="{Binding SelectedItem.MaDonVi, ElementName=dgChiTietPhieuKham, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
         </ComboBox>
-        <TextBlock Grid.Row="6" Grid.Column="0" Style="{StaticResource LabelStyle}">Số lượng</TextBlock>
-        <TextBox Grid.Row="6" Grid.Column="1" 
+        <TextBlock Grid.Row="7" Grid.Column="0" Style="{StaticResource LabelStyle}">Số lượng</TextBlock>
+        <TextBox Grid.Row="7" Grid.Column="1" 
 				    x:Name="tbSoLuong"
                  Text="{Binding SelectedItem.SoLuong, ElementName=dgChiTietPhieuKham, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                   PreviewTextInput="NumberValidationTextBox">
         </TextBox>
-        <TextBlock Grid.Row="6" Grid.Column="2" Style="{StaticResource LabelStyle}" >Cách dùng</TextBlock>
-        <ComboBox Grid.Row="6" Grid.Column="3" 
+        <TextBlock Grid.Row="7" Grid.Column="2" Style="{StaticResource LabelStyle}" >Cách dùng</TextBlock>
+        <ComboBox Grid.Row="7" Grid.Column="3" 
 				    x:Name="cbCachDung"
                   SelectedValuePath="MaCachDung"
                   DisplayMemberPath="TenCachDung"
                   SelectedValue="{Binding SelectedItem.MaCachDung, ElementName=dgChiTietPhieuKham, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
         </ComboBox>
         
-        <Separator Grid.Row="7" Grid.Column="0" Style="{StaticResource MySeparatorStyle}"/>
-        <StackPanel Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="8" Style="{StaticResource DataGridStyle}" >
+        <Separator Grid.Row="8" Grid.Column="0" Style="{StaticResource MySeparatorStyle}"/>
+        <StackPanel Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="8" Style="{StaticResource DataGridStyle}" >
             <materialDesign:Card>
                 <DataGrid  x:Name="dgChiTietPhieuKham" 
                        materialDesign:DataGridAssist.CellPadding="4 2 2 2" materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2"
@@ -144,15 +149,6 @@
                                                            Header="Mã CTPK"                                                        
                                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" 
                                                            IsReadOnly="True"/>
-
-                        <materialDesign:MaterialDataGridTextColumn Binding="{Binding TrieuChung}"
-                                                           Header="Triệu Chứng"                                                        
-                                                           EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-
-
-                        <materialDesign:MaterialDataGridTextColumn Binding="{Binding TenLoaiBenh}"
-                                                           Header="Tên Bệnh"                                                        
-                                                           EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
 
                         <materialDesign:MaterialDataGridTextColumn Binding="{Binding TenThuoc}"
                                                            Header="Tên Thuốc"                                                        
@@ -175,7 +171,7 @@
                 </DataGrid>
             </materialDesign:Card>
         </StackPanel>
-        <StackPanel Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="8" Orientation="Horizontal" Margin="0 12 0 0" FlowDirection="RightToLeft">
+        <StackPanel Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="8" Orientation="Horizontal" Margin="0 12 0 0" FlowDirection="RightToLeft">
             <Button Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="0 12 8 0" Width="100"
                     ToolTip="Tạo đầu thuốc mới"
                         Click="NewButton_Click">
@@ -185,6 +181,11 @@
                     ToolTip="Cập nhập thuốc, loại bệnh và triệu chứng"
                         Click="UpdateButton_Click">
                 CẬP NHẬT
+            </Button>
+            <Button Style="{StaticResource MaterialDesignRaisedDarkButton}" Margin="0 12 8 0" Width="100"
+                    ToolTip="Cập nhập thuốc, loại bệnh và triệu chứng"
+                        Click="ExportButton_Click">
+                XUẤT
             </Button>
             <Button Style="{StaticResource MaterialDesignRaisedButton}" Margin="0 12 8 0" Width="100"
                     ToolTip="Xóa thuốc đã chọn"
