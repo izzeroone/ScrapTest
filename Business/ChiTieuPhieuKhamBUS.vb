@@ -61,7 +61,7 @@ Namespace Business
             For Each ctpk As ChiTietPhieuKhamDTO In listCTPK
                 listCTHD.Add(New ChiTietHoaDonDTO() With {.MaKhamBenh = ctpk.MaKhamBenh,
                                                           .MaChiTietPhieuKham = ctpk.MaChiTietPhieuKham,
-                                                          .TenThuoc = GetThuoc(ctpk.MaThuoc).TenThuoc,
+                                                          .TenMatHang = GetThuoc(ctpk.MaThuoc).TenThuoc,
                                                           .TenDonVi = GetDonVi(ctpk.MaDonVi).TenDonVi,
                                                           .SoLuong = ctpk.SoLuong,
                                                           .DonGiaThucTe = GetThuoc(ctpk.MaThuoc).DonGia,
@@ -96,9 +96,7 @@ Namespace Business
             ctpk.TrieuChung.Trim()
             If (ctpk.MaCachDung = "" Or
             ctpk.MaDonVi = "" Or
-            ctpk.MaLoaiBenh = "" Or
-            ctpk.MaThuoc = "" Or
-            ctpk.TrieuChung = "") Then
+            ctpk.MaThuoc = "") Then
                 Return False
             End If
             Return True

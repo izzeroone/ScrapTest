@@ -37,6 +37,27 @@ Namespace DataAccess
             End Try
             Return result
         End Function
+
+        Public Function UpdateChuanDoanBenh(ByVal khamBenh As KhamBenhDTO) As Boolean
+            Dim result As Boolean
+            result = False
+            Try
+                Dim param As New List(Of NpgsqlParameter)
+
+                param.Add(New NpgsqlParameter With {.NpgsqlDbType = NpgsqlDbType.Char, .Value = khamBenh.MaKhamBenh})
+                param.Add(New NpgsqlParameter With {.NpgsqlDbType = NpgsqlDbType.Text, .Value = khamBenh.TrieuChung})
+                param.Add(New NpgsqlParameter With {.NpgsqlDbType = NpgsqlDbType.Char, .Value = khamBenh.MaLoaiBenh})
+                param.Add(New NpgsqlParameter With {.NpgsqlDbType = NpgsqlDbType.Text, .Value = khamBenh.LoiDan})
+
+                Dim n As Boolean = ExecuteNoneQuery("updatechuandoanbenh", param)
+                If (n = True) Then
+                    result = True
+                End If
+            Catch ex As Exception
+                MessageBox.Show(ex.ToString())
+            End Try
+            Return result
+        End Function
 #End Region
 #Region "2. Delete"
         ''' <summary>

@@ -2,7 +2,7 @@
     Public Class ChiTietHoaDonDTO
         Private _maChiTietPhieuKham As String
         Private _maKhamBenh As String
-        Private _tenThuoc As String
+        Private _tenMatHang As String
         Private _tenDonVi As String
         Private _soLuong As Integer
         Private _donGiaThucTe As Integer
@@ -26,12 +26,12 @@
             End Set
         End Property
 
-        Public Property TenThuoc As String
+        Public Property TenMatHang As String
             Get
-                Return _tenThuoc
+                Return _tenMatHang
             End Get
             Set(value As String)
-                _tenThuoc = value
+                _tenMatHang = value
             End Set
         End Property
 
@@ -83,7 +83,7 @@
         Public Sub New(ByVal row As DataRow)
             MaChiTietPhieuKham = row.Field(Of String)("machitietphieukham")
             MaKhamBenh = row.Field(Of String)("makhambenh")
-            TenThuoc = row.Field(Of String)("tenthuoc")
+            TenMatHang = row.Field(Of String)("tenthuoc")
             TenDonVi = row.Field(Of String)("tendonvi")
             SoLuong = row.Field(Of Integer)("soluong")
             DonGiaThucTe = row.Field(Of Decimal)("dongiathucte")

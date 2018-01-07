@@ -62,6 +62,7 @@ Namespace Business
                 newRow.Cells.Item(1).InsertParagraph(chiTietPhieuKham.TenThuoc, False, tableFormat)
                 newRow.Cells.Item(1).InsertParagraph("Số lượng :" + chiTietPhieuKham.SoLuong.ToString() + " x " + chiTietPhieuKham.TenDonVi, False, tableFormat)
                 newRow.Cells.Item(1).InsertParagraph("Cách dùng : " + chiTietPhieuKham.TenCachDung, False, tableFormat)
+                stt = stt + 1
             Next
 
             template.AddCustomProperty(New CustomProperty("nguoi_ke", ThongSoDAL.GetThongSo("nguoikham")))

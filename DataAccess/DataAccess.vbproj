@@ -80,12 +80,14 @@
     <Compile Include="ChiTietHoaDonDAL.vb" />
     <Compile Include="ChiTietThuocDAL.vb" />
     <Compile Include="ChiTietPhieuKhamDAL.vb" />
+    <Compile Include="ChuanDoanDAL.vb" />
     <Compile Include="DangNhapDAL.vb" />
     <Compile Include="DataAccessHelper.vb" />
     <Compile Include="HoaDonDAL.vb" />
     <Compile Include="KhamBenhDAL.vb" />
     <Compile Include="LoaiBenhDAL.vb" />
     <Compile Include="LoaiCachDungDAL.vb" />
+    <Compile Include="LoaiDichVuDAL.vb" />
     <Compile Include="LoaiDonViDAL.vb" />
     <Compile Include="LoaiThuocDAL.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />

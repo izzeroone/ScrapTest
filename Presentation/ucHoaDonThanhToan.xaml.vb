@@ -2,12 +2,14 @@
 Imports Business.Business
 Imports System.Collections.ObjectModel
 Imports MaterialDesignThemes.Wpf
+Imports System.Globalization
 
 Public Class ucHoaDonThanhToan
     'Danh sách các loại thuốc 
-    Dim listThuocPaid As ObservableCollection(Of ChiTietHoaDonDTO)
-    Dim listThuocUnpaid As ObservableCollection(Of ChiTietHoaDonDTO)
-
+    Dim listMatHangPaid As ObservableCollection(Of ChiTietHoaDonDTO)
+    Dim listMatHangUnpaid As ObservableCollection(Of ChiTietHoaDonDTO)
+    Dim listDichVu As ObservableCollection(Of ChiTietHoaDonDTO)
+    Dim listHienThi As New ObservableCollection(Of ChiTietHoaDonDTO)
     Dim firstTime As Boolean = True 'Có phải lần đầu tiền vào màn hình hay không
     Private Sub UserControl_IsVisibleChanged(sender As Object, e As DependencyPropertyChangedEventArgs)
         If Me.IsVisible = True Then
@@ -28,17 +30,25 @@ Public Class ucHoaDonThanhToan
         'Kiểm tra người dùng đã chọn mã khám bệnh chưa
         If cbMaKhamBenh IsNot Nothing And cbMaKhamBenh.SelectedItem IsNot Nothing Then
             Dim maKhamBenh As String = cbMaKhamBenh.SelectedValue.ToString()
+
             'Kiểm tra bệnh nhân đã thanh toán chưa
             If (HoaDonBUS.IsHoaDonPay(maKhamBenh)) Then
                 'Nếu đã thanh toán thì lấy hóa đơn cũng như chi tiết các thuốc đã sử dụng và thành tiền
-                Dim hoaDon As HoaDonDTO = HoaDonBUS.GetHoaDon(maKhamBenh)
-                listThuocPaid = ChiTietHoaDonBUS.GetAllChiTietHoaDon(maKhamBenh)
-                tbTienKham.Text = hoaDon.TienKham.ToString()
-                dgChiTietThuoc.ItemsSource = listThuocPaid
+                listMatHangPaid = ChiTietHoaDonBUS.GetAllChiTietThuoc(maKhamBenh)
+                listDichVu = ChiTietHoaDonBUS.GetAllChiTietDichVu(maKhamBenh)
+                listHienThi.Clear()
+                For Each chiTietHoaDon In listMatHangPaid
+                    listHienThi.Add(chiTietHoaDon)
+                Next
+                For Each chiTietHoaDon In listDichVu
+                    listHienThi.Add(chiTietHoaDon)
+                Next
+                'Thêm dịch vụ
+                dgChiTietThuoc.ItemsSource = listHienThi
                 'Hiển thị tiền thuốc, tiền khám và tổng tiền
-                Dim tienThuoc As Integer = HoaDonBUS.CalcTienThuoc(listThuocPaid).ToString()
-                tbTienThuoc.Text = tienThuoc.ToString()
-                tbTongTien.Text = "Tổng tiền = " + (hoaDon.TienKham + tienThuoc).ToString()
+                Dim tienThuoc As Integer = HoaDonBUS.CalcTienThuoc(listMatHangPaid).ToString() + HoaDonBUS.CalcTienThuoc(listDichVu)
+                tbTongTien.Text = "Tổng tiền = " + String.Format(String.Format(CultureInfo.InvariantCulture,
+                                      "{0:#,0₫}", tienThuoc))
                 'Hiển thị tình trạng thanh toán
                 tbTinhTrang.BorderBrush = Brushes.DarkSeaGreen
                 tbTinhTrang.Text = "Đã thanh toán"
@@ -47,13 +57,21 @@ Public Class ucHoaDonThanhToan
                 btDelete.IsEnabled = True
             Else
                 'Nếu hưa thanh toán thì lấy thuốc sử dụng từ chi tiết phiếu khám
-                listThuocUnpaid = ChiTietPhieuKhamBUS.GetChiTietHoaDon(maKhamBenh)
-                dgChiTietThuoc.ItemsSource = listThuocUnpaid
+                listDichVu = ChiTietHoaDonBUS.GetAllChiTietDichVu(maKhamBenh)
+                listMatHangUnpaid = ChiTietPhieuKhamBUS.GetChiTietHoaDon(maKhamBenh)
+                listHienThi.Clear()
+                For Each chiTietHoaDon In listMatHangUnpaid
+                    listHienThi.Add(chiTietHoaDon)
+                Next
+                For Each chiTietHoaDon In listDichVu
+                    listHienThi.Add(chiTietHoaDon)
+                Next
+                'Thêm dịch vụ
+                dgChiTietThuoc.ItemsSource = listHienThi
                 'Hiển thị tiền thuốc và tiền khám
-                tbTienKham.Text = ThongSoDTO.TienKham
-                Dim tienThuoc As Integer = HoaDonBUS.CalcTienThuoc(listThuocUnpaid).ToString()
-                tbTienThuoc.Text = tienThuoc.ToString()
-                tbTongTien.Text = "Tổng tiền = " + (ThongSoDTO.TienKham + tienThuoc).ToString()
+                Dim tienThuoc As Integer = HoaDonBUS.CalcTienThuoc(listMatHangUnpaid).ToString() + HoaDonBUS.CalcTienThuoc(listDichVu)
+                tbTongTien.Text = "Tổng tiền = " + String.Format(String.Format(CultureInfo.InvariantCulture,
+                                      "{0:#,0₫}", tienThuoc))
                 'Hiển thị tình trạng thanh toán
                 tbTinhTrang.BorderBrush = Brushes.OrangeRed
                 tbTinhTrang.Text = "Chưa thanh toán"
@@ -76,7 +94,7 @@ Public Class ucHoaDonThanhToan
         Dim maKhamBenh As String = cbMaKhamBenh.SelectedValue.ToString()
         If (Not HoaDonBUS.IsHoaDonPay(maKhamBenh)) Then
             HoaDonBUS.InsertOrUpdateHoaDon(New HoaDonDTO() With {.MaKhamBenh = maKhamBenh, .TienKham = ThongSoDTO.TienKham})
-            For Each cthd As ChiTietHoaDonDTO In listThuocUnpaid
+            For Each cthd As ChiTietHoaDonDTO In listMatHangUnpaid
                 ChiTietHoaDonBUS.InsertChiTietHoaDon(cthd)
             Next
         End If

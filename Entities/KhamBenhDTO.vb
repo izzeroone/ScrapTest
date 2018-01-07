@@ -10,6 +10,7 @@ Namespace Entities
         Private _diaChi As String
         Private _trieuChung As String
         Private _maLoaiBenh As String
+        Private _loiDan As String
         Private _tinhTrang As Integer
         Private _dienThoai As String
 
@@ -103,6 +104,15 @@ Namespace Entities
             End Set
         End Property
 
+        Public Property LoiDan As String
+            Get
+                Return _loiDan
+            End Get
+            Set(value As String)
+                _loiDan = value
+            End Set
+        End Property
+
         Public Sub New()
 
         End Sub
@@ -140,6 +150,7 @@ Namespace Entities
             _namSinh = row.Field(Of Int32)("namsinh")
             _diaChi = row.Field(Of String)("diachi")
             _dienThoai = row.Field(Of String)("dienthoai")
+            _loiDan = row.Field(Of String)("loidan")
         End Sub
 
         ''' <summary>

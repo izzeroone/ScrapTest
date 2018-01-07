@@ -137,6 +137,9 @@ Public Class ucPhieuKham
                 firstTime = False
             End If
             cbLoaiBenh.ItemsSource = LoaiBenhBUS.GetAllLoaiBenh()
+            If cbMaKhamBenh.SelectedItem IsNot Nothing Then
+                cbLoaiBenh.SelectedValue = CType(cbMaKhamBenh.SelectedItem, KhamBenhDTO).MaLoaiBenh
+            End If
             cbDonVi.ItemsSource = LoaiDonViBUS.GetAllLoaiDonVi()
             cbCachDung.ItemsSource = LoaiCachDungBUS.GetAllLoaiCachDung()
             cbThuoc.ItemsSource = LoaiThuocBUS.GetAllLoaiThuoc()

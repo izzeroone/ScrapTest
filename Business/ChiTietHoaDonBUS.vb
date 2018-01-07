@@ -10,7 +10,7 @@ Namespace Business
         ''' <param name="chiTietHoaDon"></param>
         ''' <returns></returns>
         Public Function InsertChiTietHoaDon(ByVal chiTietHoaDon As ChiTietHoaDonDTO) As Boolean
-            Return ChiTietHoaDonDAL.InsertChiTietHoaDon(chiTietHoaDon)
+            Return ChiTietHoaDonDAL.InsertChiTietThuoc(chiTietHoaDon)
         End Function
 #End Region
 #Region "Get"
@@ -19,16 +19,36 @@ Namespace Business
         ''' </summary>
         ''' <param name="maKhamBenh"></param>
         ''' <returns></returns>
-        Public Function GetAllChiTietHoaDon(ByVal maKhamBenh) As ObservableCollection(Of ChiTietHoaDonDTO)
+        Public Function GetAllChiTietThuoc(ByVal maKhamBenh) As ObservableCollection(Of ChiTietHoaDonDTO)
             Dim list As New ObservableCollection(Of ChiTietHoaDonDTO)
             'Lấy bảng từ cơ sở dữ liệu
-            Dim tb As DataTable = ChiTietHoaDonDAL.GetAllChiTietHoaDon(maKhamBenh)
+            Dim tb As DataTable = ChiTietHoaDonDAL.GetAllChiTietThuoc(maKhamBenh)
             'Thêm chi tiết hóa đơn vào danh sách
             For Each row As DataRow In tb.Rows
                 list.Add(New ChiTietHoaDonDTO(row))
             Next
             Return list
         End Function
+
+        Public Function GetAllChiTietDichVu(ByVal maKhamBenh) As ObservableCollection(Of ChiTietHoaDonDTO)
+            Dim list As New ObservableCollection(Of ChiTietHoaDonDTO)
+            'Lấy bảng từ cơ sở dữ liệu
+            Dim tb = ChuanDoanBUS.GetChuanDoan(maKhamBenh)
+            'Thêm chi tiết hóa đơn vào danh sách
+            For Each chuanDoan As ChuanDoanDTO In tb
+                Dim chiTietHoaDon = New ChiTietHoaDonDTO
+                chiTietHoaDon.MaKhamBenh = chuanDoan.MaKhamBenh
+                chiTietHoaDon.SoLuong = chuanDoan.SoLuong
+                chiTietHoaDon.TenDonVi = chuanDoan.TenDonVi
+                chiTietHoaDon.TenMatHang = chuanDoan.TenDichVu
+                chiTietHoaDon.DonGiaThucTe = chuanDoan.DonGia
+                chiTietHoaDon.ThanhTien = chiTietHoaDon.SoLuong * chiTietHoaDon.DonGiaThucTe
+                list.Add(chiTietHoaDon)
+            Next
+            Return list
+        End Function
+
+
 #End Region
 #Region "Delete"
         ''' <summary>

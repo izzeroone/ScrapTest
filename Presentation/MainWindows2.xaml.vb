@@ -14,21 +14,25 @@ Class MainWindows2
         'Tạo danh sách các màn hình thuộc nhóm khám bệnh
         Dim menuItems1 As New Domain.GroupMenuItem With {.Name = "QUẢN LÝ KHÁM BỆNH"}
         menuItems1.MenuItems.Add(New Domain.MenuItem() With {.Name = "Lập danh sách khám bệnh", .Content = New ucDanhSachKhamBenh()})
-        menuItems1.MenuItems.Add(New Domain.MenuItem() With {.Name = "Lập phiếu khám", .Content = New ucPhieuKham()})
+        menuItems1.MenuItems.Add(New Domain.MenuItem() With {.Name = "Chuẩn đoán", .Content = New ucChuanDoan()})
+        menuItems1.MenuItems.Add(New Domain.MenuItem() With {.Name = "Kê thuốc", .Content = New ucPhieuKham()})
         menuItems1.MenuItems.Add(New Domain.MenuItem() With {.Name = "Tra cứu bệnh nhân", .Content = New ucTraCuuBenhNhan()})
         lvKhamBenh.ItemsSource = menuItems1.MenuItems
 
         'Tạo danh sách các màn hình thuộc nhóm thuốc
-        Dim menuItems2 As New Domain.GroupMenuItem With {.Name = "QUẢN LÝ THUỐC"}
+        Dim menuItems2 As New Domain.GroupMenuItem With {.Name = "QUẢN LÝ"}
         menuItems2.MenuItems.Add(New Domain.MenuItem() With {.Name = "Danh mục loại thuốc", .Content = New ucLoaiThuoc()})
         menuItems2.MenuItems.Add(New Domain.MenuItem() With {.Name = "Danh mục loại đơn vị", .Content = New ucLoaiDonVi()})
         menuItems2.MenuItems.Add(New Domain.MenuItem() With {.Name = "Danh mục loại cách dùng", .Content = New ucLoaiCachDung()})
+        menuItems2.MenuItems.Add(New Domain.MenuItem() With {.Name = "Danh mục loại bệnh", .Content = New ucLoaiBenh()})
+        menuItems2.MenuItems.Add(New Domain.MenuItem() With {.Name = "Danh mục loại dịch vụ", .Content = New ucLoaiDichVu()})
         menuItems2.MenuItems.Add(New Domain.MenuItem() With {.Name = "Báo cáo sử dụng thuốc", .Content = New ucBaoCaoThuoc()})
+
         lvThuoc.ItemsSource = menuItems2.MenuItems
 
         'Tạo danh sách các màn hình thuộc nhóm loại bệnh
         Dim menuItems3 As New Domain.GroupMenuItem With {.Name = "QUẢN LÝ LOẠI BỆNH"}
-        menuItems3.MenuItems.Add(New Domain.MenuItem() With {.Name = "Danh mục loại bệnh", .Content = New ucLoaiBenh()})
+
         lvBenh.ItemsSource = menuItems3.MenuItems
 
         'Tạo danh cách các màn hình thuộc nhóm tài chính

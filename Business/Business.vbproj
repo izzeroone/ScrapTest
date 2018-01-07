@@ -78,12 +78,14 @@
     <Compile Include="ChiTietHoaDonBUS.vb" />
     <Compile Include="ChiTietThuocBUS.vb" />
     <Compile Include="ChiTieuPhieuKhamBUS.vb" />
+    <Compile Include="ChuanDoanBUS.vb" />
     <Compile Include="DangNhapBUS.vb" />
     <Compile Include="DocTien.vb" />
     <Compile Include="HoaDonBUS.vb" />
     <Compile Include="KhamBenhBUS.vb" />
     <Compile Include="LoaiBenhBUS.vb" />
     <Compile Include="LoaiCachDungBUS.vb" />
+    <Compile Include="LoaiDichVuBUS.vb" />
     <Compile Include="LoaiDonViBUS.vb" />
     <Compile Include="LoaiThuocBUS.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />

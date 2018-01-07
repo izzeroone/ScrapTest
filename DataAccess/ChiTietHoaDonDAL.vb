@@ -9,11 +9,20 @@ Namespace DataAccess
         ''' </summary>
         ''' <param name="chiTietHoaDon"></param>
         ''' <returns></returns>
-        Public Function InsertChiTietHoaDon(ByVal chiTietHoaDon As ChiTietHoaDonDTO) As Boolean
+        Public Function InsertChiTietThuoc(ByVal chiTietHoaDon As ChiTietHoaDonDTO) As Boolean
             Dim param As New List(Of NpgsqlParameter)
             param.Add(New NpgsqlParameter() With {.NpgsqlDbType = NpgsqlDbType.Char, .Value = chiTietHoaDon.MaChiTietPhieuKham})
             param.Add(New NpgsqlParameter() With {.NpgsqlDbType = NpgsqlDbType.Money, .Value = chiTietHoaDon.DonGiaThucTe})
             Return ExecuteNoneQuery("insertchitiethoadon", param)
+        End Function
+
+        Public Function InsertChiTietDichVu(ByVal chiTietHoaDon As ChiTietHoaDonDTO) As Boolean
+            'Do nothing
+            Return True
+            'Dim param As New List(Of NpgsqlParameter)
+            'param.Add(New NpgsqlParameter() With {.NpgsqlDbType = NpgsqlDbType.Char, .Value = chiTietHoaDon.MaChiTietPhieuKham})
+            'param.Add(New NpgsqlParameter() With {.NpgsqlDbType = NpgsqlDbType.Money, .Value = chiTietHoaDon.DonGiaThucTe})
+            'Return ExecuteNoneQuery("insertchitiethoadon", param)
         End Function
 #End Region
 #Region "Get"
@@ -22,7 +31,7 @@ Namespace DataAccess
         ''' </summary>
         ''' <param name="maKhamBenh"></param>
         ''' <returns></returns>
-        Public Function GetAllChiTietHoaDon(ByVal maKhamBenh As String) As DataTable
+        Public Function GetAllChiTietThuoc(ByVal maKhamBenh As String) As DataTable
             Dim param As New List(Of NpgsqlParameter)
             param.Add(New NpgsqlParameter() With {.NpgsqlDbType = NpgsqlDbType.Char, .Value = maKhamBenh})
             Return ExecuteQuery("getallchitiethoadon", param)

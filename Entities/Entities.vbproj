@@ -70,10 +70,12 @@
     <Compile Include="ChiTietHoaDonDTO.vb" />
     <Compile Include="ChiTietPhieuKhamDTO.vb" />
     <Compile Include="ChiTietThuocDTO.vb" />
+    <Compile Include="ChuanDoanDTO.vb" />
     <Compile Include="HoaDonDTO.vb" />
     <Compile Include="KhamBenhDTO.vb" />
     <Compile Include="LoaiBenhDTO.vb" />
     <Compile Include="LoaiCachDungDTO.vb" />
+    <Compile Include="LoaiDichVuDTO.vb" />
     <Compile Include="LoaiDonViDTO.vb" />
     <Compile Include="LoaiThuocDTO.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />

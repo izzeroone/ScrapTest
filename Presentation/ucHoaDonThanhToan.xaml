@@ -80,16 +80,7 @@
                  IsReadOnly="True">
         </TextBox>
         <Separator Grid.Row="3" Grid.Column="0" Style="{DynamicResource MySeparatorStyle}"/>
-        <TextBlock Grid.Row="4" Grid.Column="0" Style="{DynamicResource LabelStyle}">Tiền khám</TextBlock>
-        <TextBox Grid.Row="4" Grid.Column="1" 
-				    x:Name="tbTienKham"
-                 IsReadOnly="True">
-        </TextBox>
-        <TextBlock Grid.Row="4" Grid.Column="2" Style="{DynamicResource LabelStyle}">Tiền thuốc</TextBlock>
-        <TextBox Grid.Row="4" Grid.Column="3" 
-				    x:Name="tbTienThuoc"
-                 IsReadOnly="True">
-        </TextBox>
+      
         <TextBlock Grid.Row="4" Grid.Column="4" Style="{DynamicResource LabelStyle}">Tình trạng</TextBlock>
         <TextBox Grid.Row="4" Grid.Column="5" 
 				    x:Name="tbTinhTrang"
@@ -104,8 +95,8 @@
                     ItemsSource="{Binding}" 
                   MaxHeight="330">
             <DataGrid.Columns>
-                        <materialDesign:MaterialDataGridTextColumn Binding="{Binding TenThuoc}"
-                                                               Header="Tên thuốc"                                                        
+                        <materialDesign:MaterialDataGridTextColumn Binding="{Binding TenMatHang}"
+                                                               Header="Tên mặt hàng"                                                        
                                                                EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
                         <materialDesign:MaterialDataGridTextColumn Binding="{Binding TenDonVi}"
                                                                Header="Tên đơn vị"                                                        

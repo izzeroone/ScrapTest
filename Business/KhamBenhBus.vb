@@ -16,6 +16,10 @@ Namespace Business
         Public Function InsertOrUpdateKhamBenh(ByVal khamBenh As KhamBenhDTO) As Boolean
             Return KhamBenhDAL.InsertOrUpdateKhamBenh(khamBenh)
         End Function
+
+        Public Function updateChuanDoanKhamBenh(ByVal khamBenh As KhamBenhDTO) As Boolean
+            Return KhamBenhDAL.UpdateChuanDoanBenh(khamBenh)
+        End Function
 #End Region
 #Region "2. Delete"
         ''' <summary>

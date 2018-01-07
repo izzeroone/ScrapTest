@@ -21,13 +21,10 @@ Namespace DataAccess
                 Dim param As New List(Of NpgsqlParameter)
                 param.Add(New NpgsqlParameter With {.NpgsqlDbType = NpgsqlDbType.Char, .Value = chiTietPhieuKham.MaChiTietPhieuKham})
                 param.Add(New NpgsqlParameter With {.NpgsqlDbType = NpgsqlDbType.Char, .Value = chiTietPhieuKham.MaKhamBenh})
-                param.Add(New NpgsqlParameter With {.NpgsqlDbType = NpgsqlDbType.Text, .Value = chiTietPhieuKham.TrieuChung})
-                param.Add(New NpgsqlParameter With {.NpgsqlDbType = NpgsqlDbType.Char, .Value = chiTietPhieuKham.MaLoaiBenh})
                 param.Add(New NpgsqlParameter With {.NpgsqlDbType = NpgsqlDbType.Char, .Value = chiTietPhieuKham.MaThuoc})
                 param.Add(New NpgsqlParameter With {.NpgsqlDbType = NpgsqlDbType.Char, .Value = chiTietPhieuKham.MaDonVi})
                 param.Add(New NpgsqlParameter With {.NpgsqlDbType = NpgsqlDbType.Integer, .Value = chiTietPhieuKham.SoLuong})
                 param.Add(New NpgsqlParameter With {.NpgsqlDbType = NpgsqlDbType.Char, .Value = chiTietPhieuKham.MaCachDung})
-                param.Add(New NpgsqlParameter With {.NpgsqlDbType = NpgsqlDbType.Text, .Value = chiTietPhieuKham.LoiDan})
                 Dim n As Boolean = ExecuteNoneQuery("insertorupdatechitietphieukham", param)
                 If (n = True) Then
                     result = True

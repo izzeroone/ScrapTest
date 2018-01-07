@@ -151,6 +151,9 @@
     <Compile Include="ucCauHinhCSDL.xaml.vb">
       <DependentUpon>ucCauHinhCSDL.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ucChuanDoan.xaml.vb">
+      <DependentUpon>ucChuanDoan.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ucHoaDonThanhToan.xaml.vb">
       <DependentUpon>ucHoaDonThanhToan.xaml</DependentUpon>
     </Compile>
@@ -159,6 +162,9 @@
     </Compile>
     <Compile Include="ucLoaiCachDung.xaml.vb">
       <DependentUpon>ucLoaiCachDung.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucLoaiDichVu.xaml.vb">
+      <DependentUpon>ucLoaiDichVu.xaml</DependentUpon>
     </Compile>
     <Compile Include="ucLoaiDonVi.xaml.vb">
       <DependentUpon>ucLoaiDonVi.xaml</DependentUpon>
@@ -277,6 +283,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ucChuanDoan.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ucHoaDonThanhToan.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -286,6 +296,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ucLoaiCachDung.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ucLoaiDichVu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

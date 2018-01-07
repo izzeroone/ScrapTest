@@ -22,24 +22,28 @@ Namespace Domain
         Private Sub ButtonYes_Click(sender As Object, e As RoutedEventArgs)
             Dim userName As String = tbDangNhap.Text
             Dim password As String = tbMatKhau.Password
-            If (userName.Equals(DEFAULT_USERNAME) And password.Equals(DEFAULT_PASSWORD)) Or (DangNhapBUS.DangNhap(userName, password)) Then
+            If (userName.Equals(DEFAULT_USERNAME) And password.Equals(DEFAULT_PASSWORD)) Then
                 DialogHost.CloseDialogCommand.Execute(sender, Me)
-            Else
-                Message.Text = "Tên đăng nhập hoặc mật khẩu không đúng"
-                Message.Foreground = New SolidColorBrush(Colors.Red)
-                Dim MyStoryBoard As Storyboard = New Storyboard
-                MyStoryBoard.Duration = New Duration(TimeSpan.FromSeconds(1))
-                Dim opacityAnimation As DoubleAnimation = New DoubleAnimation() With {
-                    .From = 0.0,
-                    .To = 1.0,
-                    .BeginTime = TimeSpan.FromSeconds(0),
-                    .Duration = New Duration(TimeSpan.FromSeconds(0.1))}
-                Storyboard.SetTarget(opacityAnimation, Message)
-                Storyboard.SetTargetProperty(opacityAnimation, New PropertyPath("Opacity"))
-                MyStoryBoard.Children.Add(opacityAnimation)
-                MyStoryBoard.RepeatBehavior = RepeatBehavior.Forever
-                MyStoryBoard.AutoReverse = True
-                MyStoryBoard.Begin()
+                If (DangNhapBUS.DangNhap(userName, password)) Then
+                    DialogHost.CloseDialogCommand.Execute(sender, Me)
+                Else
+                    Message.Text = "Tên đăng nhập hoặc mật khẩu không đúng"
+                    Message.Foreground = New SolidColorBrush(Colors.Red)
+                    Dim MyStoryBoard As Storyboard = New Storyboard
+                    MyStoryBoard.Duration = New Duration(TimeSpan.FromSeconds(1))
+                    Dim opacityAnimation As DoubleAnimation = New DoubleAnimation() With {
+                        .From = 0.0,
+                        .To = 1.0,
+                        .BeginTime = TimeSpan.FromSeconds(0),
+                        .Duration = New Duration(TimeSpan.FromSeconds(0.1))}
+                    Storyboard.SetTarget(opacityAnimation, Message)
+                    Storyboard.SetTargetProperty(opacityAnimation, New PropertyPath("Opacity"))
+                    MyStoryBoard.Children.Add(opacityAnimation)
+                    MyStoryBoard.RepeatBehavior = RepeatBehavior.Forever
+                    MyStoryBoard.AutoReverse = True
+                    MyStoryBoard.Begin()
+                End If
+
             End If
             DialogResult = MessageBoxResult.Yes
         End Sub

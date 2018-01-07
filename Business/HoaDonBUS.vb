@@ -81,7 +81,8 @@ Namespace Business
             template.AddCustomProperty(New CustomProperty("nam_xuat", benhNhan.NgayKham.Year))
             'Lấy thông tin thuốc
             Dim hoaDon As HoaDonDTO = HoaDonBUS.GetHoaDon(maKhamBenh)
-            Dim listThuocPaid = ChiTietHoaDonBUS.GetAllChiTietHoaDon(maKhamBenh)
+            Dim listThuocPaid = ChiTietHoaDonBUS.GetAllChiTietThuoc(maKhamBenh)
+            Dim listDichVu = ChiTietHoaDonBUS.GetAllChiTietDichVu(maKhamBenh)
             Dim detailsTable = template.Tables.LastOrDefault()
             If detailsTable Is Nothing Then
                 Return template
@@ -91,32 +92,46 @@ Namespace Business
                 detailsTable.RemoveRow()
             End While
 
-            'Thêm khám bệnh
-            Dim khamRow = detailsTable.InsertRow()
-            khamRow.Cells.Item(0).InsertParagraph("Khám bệnh", False, tableFormat)
-            khamRow.Cells.Item(1).InsertParagraph("Lần", False, tableFormat)
-            khamRow.Cells.Item(2).InsertParagraph("1", False, tableFormat)
-            khamRow.Cells.Item(3).InsertParagraph(String.Format(CultureInfo.InvariantCulture,
-                                      "{0:#,0₫}", Int32.Parse(ThongSoDAL.GetThongSo("tienkham"))), False, tableFormat)
-            khamRow.Cells.Item(4).InsertParagraph(String.Format(CultureInfo.InvariantCulture,
-                                      "{0:#,0₫}", Int32.Parse(ThongSoDAL.GetThongSo("tienkham"))), False, tableFormat)
-
+            ''Thêm khám bệnh
+            'Dim khamRow = detailsTable.InsertRow()
+            'khamRow.Cells.Item(0).InsertParagraph("Khám bệnh", False, tableFormat)
+            'khamRow.Cells.Item(1).InsertParagraph("Lần", False, tableFormat)
+            'khamRow.Cells.Item(2).InsertParagraph("1", False, tableFormat)
+            'khamRow.Cells.Item(3).InsertParagraph(String.Format(CultureInfo.InvariantCulture,
+            '                          "{0:#,0₫}", Int32.Parse(ThongSoDAL.GetThongSo("tienkham"))), False, tableFormat)
+            'khamRow.Cells.Item(4).InsertParagraph(String.Format(CultureInfo.InvariantCulture,
+            '                          "{0:#,0₫}", Int32.Parse(ThongSoDAL.GetThongSo("tienkham"))), False, tableFormat)
+            Dim stt = 1
+            For Each chiTietHoaDon As ChiTietHoaDonDTO In listDichVu
+                Dim newRow = detailsTable.InsertRow()
+                newRow.Cells.Item(0).InsertParagraph(stt, False, tableFormat)
+                newRow.Cells.Item(1).InsertParagraph(chiTietHoaDon.TenMatHang, False, tableFormat)
+                newRow.Cells.Item(2).InsertParagraph(chiTietHoaDon.TenDonVi, False, tableFormat)
+                newRow.Cells.Item(3).InsertParagraph(chiTietHoaDon.SoLuong, False, tableFormat)
+                newRow.Cells.Item(4).InsertParagraph(String.Format(CultureInfo.InvariantCulture,
+                                      "{0:#,0₫}", chiTietHoaDon.DonGiaThucTe), False, tableFormat)
+                newRow.Cells.Item(5).InsertParagraph(String.Format(CultureInfo.InvariantCulture,
+                                      "{0:#,0₫}", chiTietHoaDon.ThanhTien), False, tableFormat)
+                stt = stt + 1
+            Next
 
             For Each chiTietHoaDon As ChiTietHoaDonDTO In listThuocPaid
                 Dim newRow = detailsTable.InsertRow()
-                newRow.Cells.Item(0).InsertParagraph(chiTietHoaDon.TenThuoc, False, tableFormat)
-                newRow.Cells.Item(1).InsertParagraph(chiTietHoaDon.TenDonVi, False, tableFormat)
-                newRow.Cells.Item(2).InsertParagraph(chiTietHoaDon.SoLuong, False, tableFormat)
-                newRow.Cells.Item(3).InsertParagraph(String.Format(CultureInfo.InvariantCulture,
-                                      "{0:#,0₫}", chiTietHoaDon.DonGiaThucTe), False, tableFormat)
+                newRow.Cells.Item(0).InsertParagraph(stt, False, tableFormat)
+                newRow.Cells.Item(1).InsertParagraph(chiTietHoaDon.TenMatHang, False, tableFormat)
+                newRow.Cells.Item(2).InsertParagraph(chiTietHoaDon.TenDonVi, False, tableFormat)
+                newRow.Cells.Item(3).InsertParagraph(chiTietHoaDon.SoLuong, False, tableFormat)
                 newRow.Cells.Item(4).InsertParagraph(String.Format(CultureInfo.InvariantCulture,
+                                      "{0:#,0₫}", chiTietHoaDon.DonGiaThucTe), False, tableFormat)
+                newRow.Cells.Item(5).InsertParagraph(String.Format(CultureInfo.InvariantCulture,
                                       "{0:#,0₫}", chiTietHoaDon.ThanhTien), False, tableFormat)
+                stt = stt + 1
             Next
 
             Dim tongTien = CalcTienThuoc(listThuocPaid) + Int32.Parse(ThongSoDAL.GetThongSo("tienkham"))
             template.AddCustomProperty(New CustomProperty("tong_tien", String.Format(CultureInfo.InvariantCulture,
                                       "{0:#,0₫}", tongTien)))
-            template.AddCustomProperty(New CustomProperty("bang_chu", DocTien.TienBangChu(tongTien.ToString()) + " đồng"))
+            template.AddCustomProperty(New CustomProperty("bang_chu", DocTien.TienBangChu(tongTien.ToString()) + "đồng"))
             template.AddCustomProperty(New CustomProperty("nguoi_xuat", ThongSoDAL.GetThongSo("nguoikham")))
 
 
