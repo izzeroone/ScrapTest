@@ -30,10 +30,6 @@ Class MainWindows2
 
         lvThuoc.ItemsSource = menuItems2.MenuItems
 
-        'Tạo danh sách các màn hình thuộc nhóm loại bệnh
-        Dim menuItems3 As New Domain.GroupMenuItem With {.Name = "QUẢN LÝ LOẠI BỆNH"}
-
-        lvBenh.ItemsSource = menuItems3.MenuItems
 
         'Tạo danh cách các màn hình thuộc nhóm tài chính
         Dim menuItems4 As New Domain.GroupMenuItem With {.Name = "QUẢN LÝ TÀI CHÍNH"}
@@ -62,7 +58,6 @@ Class MainWindows2
             userControlDisplay.Content = CType(lv.SelectedItem, Domain.MenuItem).Content
         End If
         'Đặt lại các listview
-        lvBenh.SelectedIndex = -1
         lvKhamBenh.SelectedIndex = -1
         lvTaiChinh.SelectedIndex = -1
         lvThuoc.SelectedIndex = -1

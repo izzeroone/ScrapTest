@@ -32,6 +32,7 @@ Namespace Business
             template.AddCustomProperty(New CustomProperty("nam_sinh", benhNhan.NamSinh))
             template.AddCustomProperty(New CustomProperty("gioi_tinh", benhNhan.GioiTinh))
             template.AddCustomProperty(New CustomProperty("dia_chi", benhNhan.DiaChi))
+            template.AddCustomProperty(New CustomProperty("ngay_xuat", benhNhan.NgayKham.Day))
             template.AddCustomProperty(New CustomProperty("thang_xuat", benhNhan.NgayKham.Month))
             template.AddCustomProperty(New CustomProperty("nam_xuat", benhNhan.NgayKham.Year))
             'Lấy thông tin thuốc

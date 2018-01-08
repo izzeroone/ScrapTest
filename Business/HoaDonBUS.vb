@@ -128,7 +128,7 @@ Namespace Business
                 stt = stt + 1
             Next
 
-            Dim tongTien = CalcTienThuoc(listThuocPaid) + Int32.Parse(ThongSoDAL.GetThongSo("tienkham"))
+            Dim tongTien = CalcTienThuoc(listThuocPaid) + CalcTienThuoc(listDichVu)
             template.AddCustomProperty(New CustomProperty("tong_tien", String.Format(CultureInfo.InvariantCulture,
                                       "{0:#,0₫}", tongTien)))
             template.AddCustomProperty(New CustomProperty("bang_chu", DocTien.TienBangChu(tongTien.ToString()) + "đồng"))

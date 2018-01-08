@@ -21,7 +21,7 @@
     <Window.Resources>
         <DataTemplate x:Key="menuItemTemplate" DataType="domain:MenuItem">
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="{Binding Name}" Margin="0, 0, 0, 0" Padding="0, 0, 0, 0" />
+                <TextBlock Text="{Binding Name}" Margin="0, 0, 0, 0" Padding="0, 0, 0, 0" FontSize="10" />
             </StackPanel>
         </DataTemplate>
         <Style TargetType="{x:Type Button}" x:Key="HomeButton">
@@ -81,7 +81,7 @@
                                 </ListView>
                             </StackPanel>
                         </GroupBox>
-                        <GroupBox Header="Quản lý thuốc">
+                        <GroupBox Header="Quản lý thuốc, DV">
                             <GroupBox.HeaderTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
@@ -95,20 +95,7 @@
                                 </ListView>
                             </StackPanel>
                         </GroupBox>
-                        <GroupBox Header="Quản lý loại bệnh ">
-                            <GroupBox.HeaderTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <materialDesign:PackIcon Kind="SeatFlat" Height="32" Width="32" VerticalAlignment="Center" />
-                                        <TextBlock Margin="8,0,0,0" VerticalAlignment="Center" Style="{StaticResource MaterialDesignSubheadingTextBlock}" Text="{Binding}"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </GroupBox.HeaderTemplate>
-                            <StackPanel>
-                                <ListView x:Name="lvBenh" ItemTemplate="{StaticResource menuItemTemplate}" MouseLeftButtonUp="listView_MouseLeftButtonUp">
-                                </ListView>
-                            </StackPanel>
-                        </GroupBox>
+               
                         <GroupBox Header="Tổ chức ">
                             <GroupBox.HeaderTemplate>
                                 <DataTemplate>
